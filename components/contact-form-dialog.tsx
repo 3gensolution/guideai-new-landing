@@ -38,7 +38,7 @@ export function ContactFormDialog({
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/contact`,
+        "https://api.3guideai.com/api/v1/contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
