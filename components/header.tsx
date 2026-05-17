@@ -71,6 +71,14 @@ export function Header() {
             >
               Pricing
             </Link>
+            <Link
+              href="/docs"
+              className={`text-sm font-medium transition-colors duration-300 ${
+                isScrolled ? "text-zinc-600 hover:text-zinc-900" : "text-white/80 hover:text-white"
+              }`}
+            >
+              Docs
+            </Link>
           </div>
         </div>
         <div className="hidden lg:flex lg:items-center lg:gap-x-4">
@@ -141,6 +149,14 @@ export function Header() {
               }`}
             >
               Pricing
+            </Link>
+            <Link
+              href="/docs"
+              className={`block py-2 text-base font-medium transition-colors duration-300 ${
+                isScrolled ? "text-zinc-600" : "text-white/80"
+              }`}
+            >
+              Docs
             </Link>
             <Link
               href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
