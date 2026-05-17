@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { ContactFormDialog } from "@/components/contact-form-dialog";
 
 const tiers = [
   {
@@ -78,9 +80,12 @@ const faqs = [
 ];
 
 export default function PricingPage() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-zinc-950">
       <Header />
+      <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-20">
@@ -142,6 +147,11 @@ export default function PricingPage() {
                       ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600"
                       : "bg-zinc-800 text-white hover:bg-zinc-700"
                   }`}
+                  onClick={
+                    tier.id === "enterprise"
+                      ? () => setContactOpen(true)
+                      : undefined
+                  }
                 >
                   {tier.cta}
                 </Button>
