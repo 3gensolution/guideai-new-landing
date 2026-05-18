@@ -1,31 +1,27 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'GuideAI - AI-First Product Adoption Platform',
   description: 'Build in-app guides in minutes, keep them current automatically. AI-powered onboarding, friction analytics, and browser Copilot for B2B SaaS.',
-  generator: 'v0.app',
+  generator: '3gensolution team',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/logo.jpeg',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/logo.jpeg',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/logo.jpeg',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/logo.jpeg',
   },
 }
 

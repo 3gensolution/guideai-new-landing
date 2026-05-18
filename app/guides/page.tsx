@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Check, Play, Zap, RefreshCw, MousePointer, Layers, Eye } from "lucide-react";
+import Link from "next/link";
 
 export default function GuidesPage() {
   return (
@@ -26,9 +27,12 @@ export default function GuidesPage() {
               Record once, deploy everywhere. Our AI keeps your guides current as your product evolves—no manual updates required.
             </p>
             <div className="mt-10 flex items-center justify-center gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
+              <Link
+                href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
+                target="_blank" 
+                className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 px-8 py-3 rounded-md hover:to-violet-600">
                 Start building guides
-              </Button>
+              </Link>
               {/* <Button size="lg" variant="outline" className="border-zinc-700 text-white hover:bg-zinc-800">
                 <Play className="mr-2 h-4 w-4" />
                 Watch demo

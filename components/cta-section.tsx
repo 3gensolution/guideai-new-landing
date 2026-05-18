@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function CTASection() {
   return (
@@ -34,12 +35,13 @@ export function CTASection() {
               reduce support load, and improve trial-to-paid conversion with
               AI-powered in-app guidance.
             </p>
-            <Button
-              size="lg"
-              className="bg-white px-8 text-zinc-900 hover:bg-white/90"
+            <Link
+              href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
+              target="_blank"
+              className="bg-white px-8 text-zinc-900 hover:bg-white/90 py-3 rounded-md"
             >
               Start free trial
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

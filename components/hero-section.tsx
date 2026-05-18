@@ -55,12 +55,12 @@ export function HeroSection() {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-white px-8 text-zinc-900 hover:bg-white/90"
+            <Link
+              href="mailto:info@3guideai.com"
+              className="bg-white px-8 text-zinc-900 hover:bg-white/90 py-3 px-8 rounded-md"
             >
               Talk to us
-            </Button>
+            </Link>
           </div>
         </div>
 

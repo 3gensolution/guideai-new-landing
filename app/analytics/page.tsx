@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, AlertTriangle, Users, BarChart3, Target, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function AnalyticsPage() {
   return (
@@ -26,9 +27,12 @@ export default function AnalyticsPage() {
               AI-powered analytics that surface friction points, rage clicks, and drop-offs—so you know exactly where to focus.
             </p>
             <div className="mt-10 flex items-center justify-center gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
+              <Link
+                href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
+                target="_blank" 
+                className="px-8 py-3 rounded-md bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
                 Start analyzing
-              </Button>
+              </Link>
               {/* <Button size="lg" variant="outline" className="border-zinc-700 text-white hover:bg-zinc-800">
                 View sample report
               </Button> */}
