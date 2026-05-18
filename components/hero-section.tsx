@@ -5,9 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ContactFormDialog } from "@/components/contact-form-dialog";
 
 export function HeroSection() {
   const [openVideo, setOpenVideo] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-zinc-950">
@@ -55,13 +57,16 @@ export function HeroSection() {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-4">
-            <Link
-              href="mailto:info@3guideai.com"
-              className="bg-white px-8 text-zinc-900 hover:bg-white/90 py-3 px-8 rounded-md"
+            <Button
+              size="lg"
+              className="bg-white px-8 text-zinc-900 hover:bg-white/90"
+              onClick={() => setContactOpen(true)}
             >
               Talk to us
-            </Link>
+            </Button>
           </div>
+
+          <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
         </div>
 
         {/* <div className="relative mt-20 flex justify-center overflow-visible">
