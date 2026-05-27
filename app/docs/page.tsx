@@ -4,25 +4,27 @@ import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
 import {
-  Copy,
   Check,
   ChevronDown,
   ChevronRight,
-  Zap,
   Code,
-  Settings,
+  Copy,
+  HelpCircle,
   Layers,
+  Settings,
   Terminal,
+  Zap,
 } from "lucide-react";
 
 const sidebar = [
-  { id: "getting-started", label: "Getting Started", icon: Zap },
-  { id: "add-cdn", label: "Add the CDN", icon: Code },
-  { id: "scanner", label: "Scanner CLI", icon: Terminal },
+  { id: "install", label: "Install SDK", icon: Code },
+  { id: "public-api", label: "Public API", icon: Layers },
+  { id: "automatic", label: "Automatic Events", icon: Zap },
   { id: "configuration", label: "Configuration", icon: Settings },
-  { id: "usage", label: "Usage Examples", icon: Layers },
+  { id: "knowledge-base", label: "Knowledge Base", icon: Layers },
+  { id: "scanner", label: "Scanner", icon: Terminal },
+  { id: "troubleshooting", label: "Troubleshooting", icon: HelpCircle },
 ];
 
 function CodeBlock({
@@ -94,8 +96,49 @@ function Expandable({
   );
 }
 
+function SimpleTable({
+  columns,
+  rows,
+}: {
+  columns: string[];
+  rows: (string | React.ReactNode)[][];
+}) {
+  return (
+    <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+      <table className="w-full text-left">
+        <thead>
+          <tr className="border-b border-zinc-800 bg-zinc-900/80">
+            {columns.map((col) => (
+              <th
+                key={col}
+                className="px-4 py-3 text-sm font-medium text-zinc-300"
+              >
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-zinc-800/50">
+          {rows.map((row, idx) => (
+            <tr key={idx}>
+              {row.map((cell, cellIdx) => (
+                <td
+                  key={cellIdx}
+                  className="px-4 py-3 text-sm text-zinc-400"
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function DocsPage() {
-  const [activeSection, setActiveSection] = useState("getting-started");
+  const [activeSection, setActiveSection] = useState("install");
 
   const scrollTo = (id: string) => {
     setActiveSection(id);
@@ -109,7 +152,7 @@ export default function DocsPage() {
     <main className="min-h-screen bg-zinc-950">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-16">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
@@ -119,22 +162,24 @@ export default function DocsPage() {
             </span>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
               GuideAI{" "}
-              <span className="text-violet-400">SDK Documentation</span>
+              <span className="text-violet-400">
+                SDK Installation &amp; Usage
+              </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-400">
-              Learn how to add the GuideAI CDN to your site, configure it, and
-              use the API.
+              Install the browser SDK (<code>guideai.js</code>), configure it
+              with <code>data-*</code> attributes, and learn what&apos;s sent
+              automatically vs. what you should send manually.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Docs Content */}
+      {/* Content */}
       <section className="border-t border-zinc-800 py-12">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
           <div className="flex gap-12">
-            {/* Sidebar */}
-            <aside className="hidden w-48 shrink-0 lg:block">
+            <aside className="hidden w-52 shrink-0 lg:block">
               <nav className="sticky top-28 space-y-1">
                 {sidebar.map((item) => (
                   <button
@@ -153,1154 +198,851 @@ export default function DocsPage() {
               </nav>
             </aside>
 
-            {/* Main content */}
             <div className="min-w-0 flex-1 space-y-24">
-              {/* Getting Started */}
-              <div id="getting-started" className="scroll-mt-32">
+              {/* 1) Install */}
+              <div id="install" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-white">
-                  Getting Started
+                  1) Install the SDK on your website
                 </h2>
-                <p className="mt-4 text-lg text-zinc-400">
-                  Get GuideAI running on your site in three steps.
-                </p>
-
-                <div className="mt-10 space-y-10">
-                  {/* Step 1 */}
-                  <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
-                      1
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white">
-                        Scan your project
-                      </h3>
-                      <p className="mt-1 text-zinc-400">
-                        Run the scanner against your codebase to build your
-                        knowledge base.
-                      </p>
-                      <CodeBlock
-                        code="npx @guideai/scanner --key sk_live_YOUR_KEY --dir ./my-app"
-                        language="bash"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Step 2 */}
-                  <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
-                      2
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white">
-                        Add the CDN script to your site
-                      </h3>
-                      <p className="mt-1 text-zinc-400">
-                        Paste this script tag before{" "}
-                        <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
-                          {"</body>"}
-                        </code>{" "}
-                        in your HTML.
-                      </p>
-                      <CodeBlock
-                        code={`<script
-  src="https://cdn.guideai.com/guideai.js"
-  data-site-id="site_YOUR_SITE_ID"
-  data-token="pk_live_YOUR_TOKEN"
-></script>`}
-                        language="html"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
-                      3
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white">
-                        Identify your users (optional)
-                      </h3>
-                      <p className="mt-1 text-zinc-400">
-                        Pass visitor and account info so guides can be
-                        personalized.
-                      </p>
-                      <CodeBlock
-                        code={`window.guideai.initialize({
-  visitor: {
-    id: "user_123",
-    email: "jane@acme.com",
-    role: "admin",
-  },
-  account: {
-    id: "acme_456",
-    name: "Acme Corp",
-    plan: "pro",
-  },
-});`}
-                        language="javascript"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <p className="mt-8 text-zinc-400">
-                  That&apos;s it. Your users will now see the floating help
-                  bubble, receive in-app guides, and have access to AI chat.
-                </p>
-              </div>
-
-              {/* Add the CDN */}
-              <div id="add-cdn" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">Add the CDN</h2>
                 <p className="mt-4 text-zinc-400">
-                  The SDK is a single JavaScript file delivered via CDN. No npm
-                  install or build step required.
-                </p>
-
-                {/* Basic */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Basic script tag
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  The simplest way to add GuideAI. Just two required attributes.
+                  Add this to your HTML (usually near the end of{" "}
+                  <code>{"<body>"}</code>):
                 </p>
                 <CodeBlock
-                  code={`<script
-  src="https://cdn.guideai.com/guideai.js"
-  data-site-id="site_YOUR_SITE_ID"
-  data-token="pk_live_YOUR_TOKEN"
-></script>`}
                   language="html"
-                />
-
-                {/* Async loader */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Async loader (non-blocking)
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  Use this snippet to load the SDK without blocking page render.
-                  It creates{" "}
-                  <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
-                    window.guideai
-                  </code>{" "}
-                  immediately and queues any method calls until the script
-                  loads.
-                </p>
-                <CodeBlock
-                  code={`<script>
-  (function(w,d,s,id,key){
-    if(w.guideai)return;
-    var q=w.guideai={_q:[],_id:id,_k:key};
-    ["initialize","identify","track","trackFeature",
-     "showGuideById","dismissGuide","on","destroy"
-    ].forEach(function(m){
-      q[m]=function(){q._q.push([m,arguments])};
-    });
-    var js=d.createElement(s);js.async=1;
-    js.src="https://cdn.guideai.com/guideai.js";
-    js.dataset.siteId=id;js.dataset.token=key;
-    d.head.appendChild(js);
-  })(window,document,"script","site_YOUR_ID","pk_live_YOUR_TOKEN");
-</script>`}
-                  language="html"
-                />
-
-                {/* Full example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Full example with all options
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  Here is the script tag with every available attribute set.
-                </p>
-                <CodeBlock
                   code={`<script
-  src="https://cdn.guideai.com/guideai.js"
-  data-site-id="site_abc123"
-  data-token="pk_live_xyz789"
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-site-id="YOUR_SITE_ID"
+  data-token="YOUR_PUBLIC_TOKEN"
   data-api-url="https://api.3guideai.com"
-  data-bubble-enabled="true"
-  data-bubble-position="bottom-right"
-  data-bubble-icon="robot"
-  data-bubble-mode="drift"
-  data-guides-enabled="true"
-  data-auto-advance-on-target-click="true"
-  data-feedback-auto-prompt="true"
-  data-chip-dismiss-seconds="300"
-  data-recording="false"
-  data-idle-timeout="20000"
-  data-session-timeout-ms="1800000"
-  data-batch-size="50"
-  data-batch-interval-ms="30000"
-  data-geolocation="off"
+  data-cdn-url="https://cdn.3guideai.com"
 ></script>`}
-                  language="html"
                 />
 
-                {/* SPA */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Single-page apps (React, Vue, Angular)
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  The SDK auto-detects route changes in SPAs. If you use custom
-                  routing you can trigger page loads manually:
-                </p>
-                <CodeBlock
-                  code={`// Tell the SDK about a route change
-window.guideai.pageLoad("/dashboard/settings");`}
-                  language="javascript"
-                />
-
-                {/* Next.js example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Next.js example
-                </h3>
-                <CodeBlock
-                  code={`// app/layout.tsx
-import Script from "next/script";
-
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        {children}
-        <Script
-          src="https://cdn.guideai.com/guideai.js"
-          data-site-id="site_YOUR_SITE_ID"
-          data-token="pk_live_YOUR_TOKEN"
-          strategy="afterInteractive"
-        />
-      </body>
-    </html>
-  );
-}`}
-                  language="tsx"
-                />
-
-                {/* React SPA example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  React (Vite / CRA) example
-                </h3>
-                <CodeBlock
-                  code={`<!-- index.html -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      src="https://cdn.guideai.com/guideai.js"
-      data-site-id="site_YOUR_SITE_ID"
-      data-token="pk_live_YOUR_TOKEN"
-    ></script>
-  </body>
-</html>`}
-                  language="html"
-                />
-
-                {/* Vue example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Vue / Nuxt example
-                </h3>
-                <CodeBlock
-                  code={`<!-- nuxt.config.ts -->
-export default defineNuxtConfig({
-  app: {
-    head: {
-      script: [
-        {
-          src: "https://cdn.guideai.com/guideai.js",
-          "data-site-id": "site_YOUR_SITE_ID",
-          "data-token": "pk_live_YOUR_TOKEN",
-          defer: true,
-        },
-      ],
-    },
-  },
-});`}
-                  language="typescript"
-                />
-
-                {/* Plain HTML */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Plain HTML example
-                </h3>
-                <CodeBlock
-                  code={`<!DOCTYPE html>
-<html>
-  <head>
-    <title>My Website</title>
-  </head>
-  <body>
-    <h1>Welcome</h1>
-
-    <!-- Add before closing body tag -->
-    <script
-      src="https://cdn.guideai.com/guideai.js"
-      data-site-id="site_YOUR_SITE_ID"
-      data-token="pk_live_YOUR_TOKEN"
-    ></script>
-  </body>
-</html>`}
-                  language="html"
-                />
+                <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+                  <h3 className="text-base font-semibold text-white">Notes</h3>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                    <li>
+                      <code>data-site-id</code> and <code>data-token</code> are
+                      required. If either is missing, the SDK will not
+                      initialize.
+                    </li>
+                    <li>
+                      <code>data-api-url</code> is strongly recommended. The
+                      SDK has a default, but you should set it explicitly.
+                    </li>
+                    <li>
+                      <code>data-cdn-url</code> is the CDN base URL.
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              {/* Scanner CLI */}
-              <div id="scanner" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">Scanner CLI</h2>
-                <p className="mt-4 text-zinc-400">
-                  The scanner analyzes your codebase and uploads a knowledge base
-                  to GuideAI. This is what allows the SDK to understand your
-                  app&apos;s pages and elements.
-                </p>
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Run with npx
-                </h3>
-                <CodeBlock
-                  code="npx @guideai/scanner --key sk_live_YOUR_KEY --dir ./my-app"
-                  language="bash"
-                />
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Install globally
-                </h3>
-                <CodeBlock
-                  code={`npm install -g @guideai/scanner
-guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
-                  language="bash"
-                />
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Options
-                </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Flag
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Required
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Default
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          What it does
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
-                      {[
-                        [
-                          "--key",
-                          "Yes*",
-                          "—",
-                          "Your site API key (from dashboard). Not needed with --dry-run.",
-                        ],
-                        [
-                          "--dir",
-                          "No",
-                          "cwd",
-                          "Path to your project root.",
-                        ],
-                        [
-                          "--api-url",
-                          "No",
-                          "https://api.3guideai.com",
-                          "Backend API URL.",
-                        ],
-                        [
-                          "--dry-run",
-                          "No",
-                          "false",
-                          "Output the scan result as JSON without uploading.",
-                        ],
-                        [
-                          "--output",
-                          "No",
-                          "—",
-                          "Write the scan result to a file.",
-                        ],
-                      ].map(([flag, req, def, desc]) => (
-                        <tr key={flag}>
-                          <td className="px-4 py-3">
-                            <code className="text-xs text-violet-400">
-                              {flag}
-                            </code>
-                          </td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">
-                            {req}
-                          </td>
-                          <td className="px-4 py-3">
-                            <code className="text-xs text-zinc-500">{def}</code>
-                          </td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">
-                            {desc}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Supported frameworks
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  The scanner auto-detects your framework. No config needed.
-                </p>
-                <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  {[
-                    "Next.js (App Router)",
-                    "Next.js (Pages Router)",
-                    "React Router",
-                    "Angular",
-                    "Vue / Nuxt",
-                    "Remix",
-                    "SvelteKit",
-                    "Static HTML",
-                  ].map((fw) => (
-                    <div
-                      key={fw}
-                      className="rounded-lg bg-zinc-900 px-4 py-3 text-center text-sm text-zinc-300"
-                    >
-                      {fw}
-                    </div>
-                  ))}
-                </div>
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Dry run example
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  Preview what the scanner finds without uploading anything:
-                </p>
-                <CodeBlock
-                  code={`npx @guideai/scanner --dir ./my-app --dry-run --output scan-result.json`}
-                  language="bash"
-                />
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Vite plugin
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  Auto-scan on every build:
-                </p>
-                <CodeBlock
-                  code={`// vite.config.ts
-import { guideaiPlugin } from "@guideai/scanner/plugins/vite";
-
-export default defineConfig({
-  plugins: [
-    guideaiPlugin({
-      key: process.env.GUIDEAI_KEY,
-    }),
-  ],
-});`}
-                  language="typescript"
-                />
-
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Webpack plugin
-                </h3>
-                <CodeBlock
-                  code={`// webpack.config.js
-const { GuideAIWebpackPlugin } = require("@guideai/scanner/plugins/webpack");
-
-module.exports = {
-  plugins: [
-    new GuideAIWebpackPlugin({
-      key: process.env.GUIDEAI_KEY,
-    }),
-  ],
-};`}
-                  language="javascript"
-                />
-              </div>
-
-              {/* Configuration */}
-              <div id="configuration" className="scroll-mt-32">
+              {/* 2) Public API */}
+              <div id="public-api" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-white">
-                  Configuration
+                  2) Public API (what you can call)
                 </h2>
                 <p className="mt-4 text-zinc-400">
-                  Everything is configured via{" "}
-                  <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
-                    data-*
-                  </code>{" "}
-                  attributes on the script tag. Here is what each one does.
+                  The SDK exposes a global <code>window.guideai</code> object
+                  (and a legacy alias <code>window.__guideai</code>) once
+                  loaded.
                 </p>
 
-                {/* Required */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Required attributes
-                </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Attribute
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Type
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          What it does
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-site-id
-                          </code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
-                          string
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Your site identifier. Find it in your GuideAI
-                          dashboard.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-token
-                          </code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
-                          string
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Your public API token. Starts with{" "}
-                          <code className="text-xs text-zinc-300">
-                            pk_live_
-                          </code>
-                          .
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Bubble */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Bubble (floating button)
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  Control the floating help button that appears on your site.
-                </p>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Attribute
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Default
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Options
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          What it does
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-bubble-enabled
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">true</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
-                          true / false
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Show or hide the floating bubble.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-bubble-position
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">
-                            bottom-right
-                          </code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
-                          bottom-right, bottom-left, top-right, top-left
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Which corner the bubble sits in.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-bubble-icon
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">robot</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
-                          robot, ant, owl, fox, cat, bee, spark
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          The mascot icon displayed on the bubble.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-bubble-mode
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">drift</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
-                          drift, crawl
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          The animation style for the bubble.
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <p className="mt-4 text-sm text-zinc-500">Example:</p>
-                <CodeBlock
-                  code={`<!-- Bubble in the bottom-left with an owl icon -->
-<script
-  src="https://cdn.guideai.com/guideai.js"
-  data-site-id="site_abc123"
-  data-token="pk_live_xyz789"
-  data-bubble-position="bottom-left"
-  data-bubble-icon="owl"
-></script>`}
-                  language="html"
-                />
-
-                {/* Guides */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Guides
-                </h3>
-                <p className="mt-2 text-zinc-400">
-                  Control how in-app guides behave.
-                </p>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Attribute
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Default
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          What it does
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-guides-enabled
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">true</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Turn guide playback on or off.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-auto-advance-on-target-click
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">true</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Auto-advance to the next step when the user clicks the
-                          highlighted element.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-feedback-auto-prompt
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">true</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Ask users for feedback after they complete a guide.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-chip-dismiss-seconds
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">300</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          How long suggestion chips stay visible (in seconds).
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Analytics & Session */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
-                  Analytics & session
-                </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Attribute
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          Default
-                        </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
-                          What it does
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-recording
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">false</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Enable session recording for replay in the dashboard.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-idle-timeout
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">20000</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Milliseconds of inactivity before the user is
-                          considered idle.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-session-timeout-ms
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">
-                            1800000
-                          </code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          How long before a session rotates (default 30 min).
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-batch-size
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">50</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Number of events to batch before sending to the
-                          server.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-batch-interval-ms
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">30000</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          How often to flush event batches (in milliseconds).
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-geolocation
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">off</code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Geo tracking. Options: &quot;off&quot;,
-                          &quot;granted-only&quot;, &quot;prompt&quot;.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
-                            data-api-url
-                          </code>
-                        </td>
-                        <td className="px-4 py-3">
-                          <code className="text-xs text-zinc-400">
-                            https://api.3guideai.com
-                          </code>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Override the backend API URL (for self-hosted setups).
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* Usage Examples */}
-              <div id="usage" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
-                  Usage Examples
-                </h2>
-                <p className="mt-4 text-zinc-400">
-                  All methods are available on{" "}
-                  <code className="rounded bg-zinc-800 px-1.5 text-sm text-violet-400">
-                    window.guideai
-                  </code>
-                  . Here are the most common things you can do.
-                </p>
-
-                {/* Identify users */}
-                <div className="mt-10 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
-                  <Expandable title="Identify users and accounts">
-                    <p className="text-sm text-zinc-400">
-                      Pass visitor and account data so guides can be targeted to
-                      specific users.
-                    </p>
+                <div className="mt-10 space-y-2">
+                  <Expandable title="Tracking">
                     <CodeBlock
-                      code={`window.guideai.initialize({
+                      language="javascript"
+                      code={`guideai.track("signup_completed", { plan: "pro" });
+guideai.trackFeature("settings.saved", "Saved settings", { area: "billing" });`}
+                    />
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                      <li>
+                        <code>track(eventType, properties?)</code>: If{" "}
+                        <code>eventType</code> is a known type, it is sent
+                        as-is. Otherwise it is sent as{" "}
+                        <code>event_type: "custom"</code> with{" "}
+                        <code>metadata.custom_event_name = eventType</code>.
+                      </li>
+                      <li>
+                        <code>trackFeature(featureKey, featureLabel?, properties?)</code>{" "}
+                        sends <code>event_type: "feature_used"</code> with{" "}
+                        <code>metadata.feature_key</code> and optional label.
+                      </li>
+                    </ul>
+                  </Expandable>
+
+                  <Expandable title="Identify">
+                    <CodeBlock
+                      language="javascript"
+                      code={`guideai.identify("user_123");
+
+guideai.initialize({
   visitor: {
     id: "user_123",
-    email: "jane@acme.com",
-    name: "Jane Doe",
-    role: "admin",
-    createdAt: "2024-01-15",
+    email: "ada@company.com",
+    full_name: "Ada Lovelace",
   },
-  account: {
-    id: "acme_456",
-    name: "Acme Corp",
-    plan: "enterprise",
-    mrr: 299,
-  },
-});`}
-                      language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      You can also just set a user ID:
-                    </p>
-                    <CodeBlock
-                      code={`window.guideai.identify("user_123");`}
-                      language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      Update data mid-session without reinitializing:
-                    </p>
-                    <CodeBlock
-                      code={`window.guideai.updateOptions({
+  account: { id: "acct_456", name: "Company Inc" },
+});
+
+guideai.updateOptions({
   visitor: { plan: "pro" },
 });`}
+                    />
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                      <li>
+                        <code>identify(userId)</code> stores a{" "}
+                        <code>user_id</code> for subsequent events.
+                      </li>
+                      <li>
+                        <code>initialize({"{{ visitor, account }}"})</code>{" "}
+                        stores visitor/account objects and emits an{" "}
+                        <code>identify</code> event.
+                      </li>
+                      <li>
+                        <code>updateOptions({"{{ visitor?, account? }}"})</code>{" "}
+                        merges and re-emits an <code>identify</code> event.
+                      </li>
+                    </ul>
+                  </Expandable>
+
+                  <Expandable title="Guides">
+                    <CodeBlock
                       language="javascript"
+                      code={`await guideai.showGuideById("guide_id_here", 0);
+await guideai.dismissGuide();`}
+                    />
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                      <li>
+                        <code>validateGuideById(guideId)</code> checks
+                        existence/playability.
+                      </li>
+                      <li>
+                        <code>showGuideById(guideId, stepIndex?)</code>{" "}
+                        force-starts a guide (bypasses trigger rules).
+                      </li>
+                      <li>
+                        <code>dismissGuide()</code> closes the currently playing
+                        guide (if any).
+                      </li>
+                    </ul>
+                  </Expandable>
+
+                  <Expandable title="Navigation + lifecycle">
+                    <CodeBlock
+                      language="javascript"
+                      code={`guideai.pageLoad(); // manual page_view for custom routers
+guideai.flushNow(); // flush buffered analytics events
+guideai.clearSession(); // rotate session_id (anonymous_id stays)
+const off = guideai.on("player-ended", (detail) => console.log(detail));`}
                     />
                   </Expandable>
 
-                  <Expandable title="Show a guide programmatically">
-                    <p className="text-sm text-zinc-400">
-                      Trigger a specific guide by its ID.
-                    </p>
+                  <Expandable title="Recording and surveys">
                     <CodeBlock
-                      code={`// Start from the beginning
-window.guideai.showGuideById("guide_onboarding");
-
-// Jump to step 3
-window.guideai.showGuideById("guide_onboarding", 2);`}
                       language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      Check if a guide can play on the current page first:
-                    </p>
-                    <CodeBlock
-                      code={`if (window.guideai.validateGuideById("guide_onboarding")) {
-  window.guideai.showGuideById("guide_onboarding");
-}`}
-                      language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      Dismiss the current guide:
-                    </p>
-                    <CodeBlock
-                      code={`window.guideai.dismissGuide();`}
-                      language="javascript"
-                    />
-                  </Expandable>
+                      code={`guideai.startRecording();
+const steps = guideai.stopRecording();
+guideai.cancelRecording();
 
-                  <Expandable title="Track custom events">
-                    <p className="text-sm text-zinc-400">
-                      Send custom analytics events.
-                    </p>
-                    <CodeBlock
-                      code={`window.guideai.track("upgrade_cta_clicked", {
-  plan: "pro",
-  source: "pricing_page",
-});`}
-                      language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      Track feature usage:
-                    </p>
-                    <CodeBlock
-                      code={`window.guideai.trackFeature("csv_export", "Export to CSV", {
-  format: "csv",
-  rows: 1500,
-});`}
-                      language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      Mark a feature as used (for audience targeting):
-                    </p>
-                    <CodeBlock
-                      code={`window.guideai.markFeature("viewed_dashboard");`}
-                      language="javascript"
-                    />
-                  </Expandable>
-
-                  <Expandable title="Listen to events">
-                    <p className="text-sm text-zinc-400">
-                      Subscribe to SDK events to react when things happen.
-                    </p>
-                    <CodeBlock
-                      code={`// When a guide starts
-window.guideai.on("guide-started", (data) => {
-  console.log("Guide started:", data.guideId);
-});
-
-// When a guide is completed
-window.guideai.on("guide-completed", (data) => {
-  console.log("Completed:", data.guideId);
-});
-
-// When a guide is dismissed
-window.guideai.on("guide-dismissed", (data) => {
-  console.log("Dismissed:", data.guideId);
-});
-
-// When the user submits feedback
-window.guideai.on("feedback-submitted", (data) => {
-  console.log("Rating:", data.rating);
-});
-
-// When the chat is opened
-window.guideai.on("chat-opened", () => {
-  console.log("Chat opened");
-});
-
-// When a page is viewed
-window.guideai.on("page-view", (data) => {
-  console.log("Page:", data.url);
-});`}
-                      language="javascript"
-                    />
-                    <p className="mt-4 text-sm text-zinc-500">
-                      Available events: guide-started, guide-completed,
-                      guide-dismissed, before-advance, advanced, chat-opened,
-                      chat-message-sent, bubble-click, feedback-submitted,
-                      survey-response, page-view, session-start, session-end
-                    </p>
-                  </Expandable>
-
-                  <Expandable title="Record a guide">
-                    <p className="text-sm text-zinc-400">
-                      Record user interactions to create a new guide
-                      programmatically.
-                    </p>
-                    <CodeBlock
-                      code={`// Start recording
-window.guideai.startRecording();
-
-// ... user interacts with the app ...
-
-// Stop and get recorded steps
-const steps = window.guideai.stopRecording();
-
-// Save as a draft guide
-window.guideai.saveGuide("Onboarding Flow", "Walks new users through setup");
-
-// Or cancel without saving
-window.guideai.cancelRecording();`}
-                      language="javascript"
-                    />
-                  </Expandable>
-
-                  <Expandable title="Show surveys">
-                    <p className="text-sm text-zinc-400">
-                      Trigger NPS or CSAT surveys.
-                    </p>
-                    <CodeBlock
-                      code={`// NPS survey
-window.guideai.showNPSSurvey({ page: "/settings" });
-
-// CSAT survey
-window.guideai.showCSATSurvey({ after: "guide_complete" });`}
-                      language="javascript"
-                    />
-                  </Expandable>
-
-                  <Expandable title="Session management">
-                    <p className="text-sm text-zinc-400">
-                      Manage user sessions and SDK lifecycle.
-                    </p>
-                    <CodeBlock
-                      code={`// Force-flush all pending events now
-window.guideai.flushNow();
-
-// Clear session (call on logout)
-window.guideai.clearSession();
-
-// Tear down the SDK completely
-window.guideai.destroy();`}
-                      language="javascript"
-                    />
-                  </Expandable>
-
-                  <Expandable title="Trigger a guide from a button click">
-                    <p className="text-sm text-zinc-400">
-                      Common pattern: add a &quot;Help&quot; button that starts a
-                      guide.
-                    </p>
-                    <CodeBlock
-                      code={`<!-- HTML -->
-<button onclick="startHelp()">Need help?</button>
-
-<script>
-  function startHelp() {
-    window.guideai.showGuideById("guide_getting_started");
-  }
-</script>`}
-                      language="html"
-                    />
-                    <p className="mt-4 text-sm text-zinc-400">
-                      In React:
-                    </p>
-                    <CodeBlock
-                      code={`function HelpButton() {
-  const handleClick = () => {
-    window.guideai.showGuideById("guide_getting_started");
-  };
-
-  return <button onClick={handleClick}>Need help?</button>;
-}`}
-                      language="tsx"
-                    />
-                  </Expandable>
-
-                  <Expandable title="Identify on login (React example)">
-                    <p className="text-sm text-zinc-400">
-                      Call initialize after the user logs in.
-                    </p>
-                    <CodeBlock
-                      code={`// After successful login
-async function handleLogin(email, password) {
-  const user = await api.login(email, password);
-
-  window.guideai.initialize({
-    visitor: {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
-    },
-    account: {
-      id: user.orgId,
-      name: user.orgName,
-      plan: user.plan,
-    },
-  });
-}
-
-// On logout
-function handleLogout() {
-  window.guideai.clearSession();
-}`}
-                      language="javascript"
+guideai.showNPSSurvey("billing");
+guideai.showCSATSurvey("support");`}
                     />
                   </Expandable>
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="mt-20 rounded-2xl border border-zinc-800 bg-gradient-to-r from-cyan-500/5 to-violet-500/5 p-10 text-center">
-                <h2 className="text-2xl font-bold text-white">
-                  Ready to get started?
+              {/* 3) Automatic */}
+              <div id="automatic" className="scroll-mt-32">
+                <h2 className="text-3xl font-bold text-white">
+                  3) What the SDK sends automatically
                 </h2>
-                <p className="mt-3 text-zinc-400">
-                  Add the script tag to your site and start delivering guides
-                  today.
+                <p className="mt-4 text-zinc-400">
+                  When <strong>not</strong> in <code>extensionMode</code>, the
+                  SDK automatically emits:
                 </p>
-                <Link href="https://dashboard.3guideai.com" target="_blank">
-                  <Button
-                    size="lg"
-                    className="mt-6 bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600"
-                  >
-                    Get your API keys
-                  </Button>
-                </Link>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Session + page basics
+                </h3>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                  <li>
+                    <code>session_start</code> (includes metadata like entry
+                    URL, referrer, device info, viewport, session number, etc.)
+                  </li>
+                  <li>
+                    Initial <code>page_view</code> (with{" "}
+                    <code>metadata.entry_page: true</code>)
+                  </li>
+                  <li>
+                    <code>page_view</code> on SPA navigations
+                  </li>
+                  <li>
+                    <code>page_exit</code> with engagement + scroll metadata (
+                    <code>time_on_page_ms</code>, <code>active_time_ms</code>,{" "}
+                    <code>idle_time_ms</code>, <code>max_scroll_depth_pct</code>
+                    )
+                  </li>
+                </ul>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Interaction + friction
+                </h3>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                  <li>
+                    <code>click</code>, <code>double_click</code>,{" "}
+                    <code>right_click</code>
+                  </li>
+                  <li>
+                    <code>rage_click</code>, <code>dead_click</code>
+                  </li>
+                  <li>
+                    <code>scroll</code>
+                  </li>
+                  <li>
+                    <code>form_start</code>, <code>form_submit</code>,{" "}
+                    <code>form_abandon</code>, <code>form_error</code>
+                  </li>
+                  <li>
+                    <code>js_error</code>, <code>network_error</code>,{" "}
+                    <code>ui_error</code>
+                  </li>
+                </ul>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  UTM + referrer capture
+                </h3>
+                <p className="mt-2 text-sm text-zinc-300">
+                  On the first load, if UTMs or referrer are present, the SDK
+                  emits an <code>identify</code> event with{" "}
+                  <code>metadata.utm_*</code> and <code>metadata.referrer</code>.
+                </p>
+                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+                  <ul className="list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                    <li>
+                      The SDK does <strong>not</strong> currently send a
+                      dedicated <code>referrer_host</code>; derive it from{" "}
+                      <code>referrer</code> server-side.
+                    </li>
+                    <li>
+                      The SDK does <strong>not</strong> automatically label
+                      clicks as &ldquo;CTA clicks&rdquo; unless your dashboard
+                      logic / click classifier marks them.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* 4) Config */}
+              <div id="configuration" className="scroll-mt-32">
+                <h2 className="text-3xl font-bold text-white">
+                  4) Configuration reference (script tag <code>data-*</code>)
+                </h2>
+                <p className="mt-4 text-zinc-400">
+                  Configuration is read from the <code>{"<script>"}</code> tag.
+                </p>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Required
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Type", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="site-id"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-site-id
+                      </code>,
+                      "string",
+                      "Your site/workspace ID",
+                    ],
+                    [
+                      <code
+                        key="token"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-token
+                      </code>,
+                      "string",
+                      "Public token (pk_live_...) used by the browser SDK",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Endpoints
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Default", "Notes"]}
+                  rows={[
+                    [
+                      <code
+                        key="api-url"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-api-url
+                      </code>,
+                      <code className="text-xs text-zinc-500">
+                        https://api.3guideai.com
+                      </code>,
+                      "Recommended: set to https://api.3guideai.com",
+                    ],
+                    [
+                      <code
+                        key="cdn-url"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-cdn-url
+                      </code>,
+                      <code className="text-xs text-zinc-500">
+                        https://cdn.3guideai.com
+                      </code>,
+                      "Base URL used for KB/assets (not /sdk/guideai.js)",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Sessions + batching
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Default", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="idle-timeout"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-idle-timeout
+                      </code>,
+                      <code className="text-xs text-zinc-500">20000</code>,
+                      "Idle threshold for engagement calculations (ms)",
+                    ],
+                    [
+                      <code
+                        key="session-timeout"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-session-timeout-ms
+                      </code>,
+                      <code className="text-xs text-zinc-500">1800000</code>,
+                      "Rotate session after inactivity (ms)",
+                    ],
+                    [
+                      <code
+                        key="batch-size"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-batch-size
+                      </code>,
+                      <code className="text-xs text-zinc-500">50</code>,
+                      "Max events per batch",
+                    ],
+                    [
+                      <code
+                        key="batch-interval"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-batch-interval-ms
+                      </code>,
+                      <code className="text-xs text-zinc-500">30000</code>,
+                      "Flush interval (ms)",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Privacy / enrichment
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Values", "Default", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="geolocation"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-geolocation
+                      </code>,
+                      <code className="text-xs text-zinc-500">
+                        off | granted-only | prompt
+                      </code>,
+                      <code className="text-xs text-zinc-500">off</code>,
+                      "Optional browser geo enrichment",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Guides + bubble
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Default", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="guides-enabled"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-guides-enabled
+                      </code>,
+                      <code className="text-xs text-zinc-500">true</code>,
+                      "When false, guide playback is disabled",
+                    ],
+                    [
+                      <code
+                        key="auto-advance"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-auto-advance-on-target-click
+                      </code>,
+                      <code className="text-xs text-zinc-500">true</code>,
+                      "Auto-advance guides on target click (when applicable)",
+                    ],
+                    [
+                      <code
+                        key="bubble-enabled"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-bubble-enabled
+                      </code>,
+                      <code className="text-xs text-zinc-500">true</code>,
+                      "Show the bubble entry point",
+                    ],
+                    [
+                      <code
+                        key="bubble-position"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-bubble-position
+                      </code>,
+                      <code className="text-xs text-zinc-500">
+                        bottom-right
+                      </code>,
+                      "Bubble placement",
+                    ],
+                    [
+                      <code
+                        key="bubble-label"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-bubble-label
+                      </code>,
+                      <code className="text-xs text-zinc-500">Help</code>,
+                      "Bubble label",
+                    ],
+                    [
+                      <code
+                        key="bubble-icon"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-bubble-icon
+                      </code>,
+                      <code className="text-xs text-zinc-500">robot</code>,
+                      "Mascot id (or use data-bubble-image)",
+                    ],
+                    [
+                      <code
+                        key="bubble-image"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-bubble-image
+                      </code>,
+                      <span className="text-zinc-500">empty</span>,
+                      "Custom image URL that overrides icon",
+                    ],
+                    [
+                      <code
+                        key="bubble-mode"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-bubble-mode
+                      </code>,
+                      <code className="text-xs text-zinc-500">drift</code>,
+                      "Bubble motion mode",
+                    ],
+                    [
+                      <code
+                        key="widget-mode"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-widget-mode
+                      </code>,
+                      <code className="text-xs text-zinc-500">guide</code>,
+                      "How bubble behaves when support is enabled",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Recording + feedback
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Default", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="recording"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-recording
+                      </code>,
+                      <code className="text-xs text-zinc-500">false</code>,
+                      "Enables session recording",
+                    ],
+                    [
+                      <code
+                        key="feedback-auto"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-feedback-auto-prompt
+                      </code>,
+                      <code className="text-xs text-zinc-500">true</code>,
+                      "Auto-prompt feedback",
+                    ],
+                    [
+                      <code
+                        key="feedback-delay"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-feedback-prompt-delay-ms
+                      </code>,
+                      <code className="text-xs text-zinc-500">30000</code>,
+                      "Delay before prompting (ms)",
+                    ],
+                    [
+                      <code
+                        key="feedback-min"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-feedback-prompt-min-pageviews
+                      </code>,
+                      <code className="text-xs text-zinc-500">2</code>,
+                      "Minimum page views before prompting",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Extension mode
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Default", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="extension-mode"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-extension-mode
+                      </code>,
+                      <code className="text-xs text-zinc-500">false</code>,
+                      "When true, disables analytics/tracking/support because the “visitor” is an extension user",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Announcements
+                </h3>
+                <SimpleTable
+                  columns={["Attribute", "Default", "Meaning"]}
+                  rows={[
+                    [
+                      <code
+                        key="announcement-surface"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-announcement-surface
+                      </code>,
+                      <code className="text-xs text-zinc-500">modal</code>,
+                      "Default surface when opening from beacon",
+                    ],
+                    [
+                      <code
+                        key="announcement-close"
+                        className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-300"
+                      >
+                        data-announcement-close-on-backdrop
+                      </code>,
+                      <code className="text-xs text-zinc-500">true</code>,
+                      "Close announcement when clicking backdrop",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Attributes that are currently ignored
+                </h3>
+                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+                  <p className="text-sm text-zinc-300">
+                    These script attributes are currently not read by{" "}
+                    <code>parseConfig()</code>:
+                  </p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                    <li>
+                      <code>data-track-all</code>
+                    </li>
+                    <li>
+                      <code>data-behavioral-triggers</code>
+                    </li>
+                  </ul>
+                </div>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  5) How to update configuration
+                </h3>
+                <div className="mt-4 space-y-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Update via dashboard (recommended)
+                    </p>
+                    <p className="mt-1 text-sm text-zinc-300">
+                      Some settings are applied from the backend knowledge base
+                      load. Update settings in the dashboard, then reload the
+                      page (or re-initialize the SDK) to apply changes.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Update via script tag
+                    </p>
+                    <p className="mt-1 text-sm text-zinc-300">
+                      Change <code>{"<script data-*>"}</code> attributes and
+                      redeploy your site. These are read during initialization.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Runtime updates
+                    </p>
+                    <p className="mt-1 text-sm text-zinc-300">
+                      <code>updateOptions()</code> is for visitor/account
+                      identity metadata, not for changing widget configuration
+                      at runtime. To hot swap config:
+                    </p>
+                    <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-zinc-300">
+                      <li>
+                        call <code>guideai.destroy()</code>
+                      </li>
+                      <li>remove the script tag (optional)</li>
+                      <li>
+                        re-insert the script tag with updated{" "}
+                        <code>data-*</code>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              {/* 6) KB */}
+              <div id="knowledge-base" className="scroll-mt-32">
+                <h2 className="text-3xl font-bold text-white">
+                  6) Knowledge Base &amp; Scanner (how GuideAI understands your
+                  UI)
+                </h2>
+                <p className="mt-4 text-zinc-400">
+                  GuideAI&apos;s knowledge base (KB) describes your app routes,
+                  interactive elements, and a hierarchical UI map used by AI for
+                  more accurate guidance.
+                </p>
+
+                <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+                  <h3 className="text-lg font-semibold text-white">
+                    Ways to get a KB into GuideAI
+                  </h3>
+                  <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-zinc-300">
+                    <li>Run the scanner (recommended for most teams)</li>
+                    <li>
+                      Upload a KB JSON directly from the dashboard Knowledge
+                      Base page
+                    </li>
+                  </ol>
+                  <p className="mt-4 text-sm text-zinc-300">
+                    Privacy note: the scanner is designed to extract structure
+                    needed for guidance (routes/elements/UI map). It is not
+                    intended to collect secrets.
+                  </p>
+                  <p className="mt-2 text-sm text-zinc-300">
+                    Scanner source (public):{" "}
+                    <a
+                      href="https://github.com/3gensolution/guideai-scanner"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                    >
+                      github.com/3gensolution/guideai-scanner
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              {/* 7) Scanner */}
+              <div id="scanner" className="scroll-mt-32">
+                <h2 className="text-3xl font-bold text-white">
+                  7) GuideAI Scanner — Installation &amp; Usage Guide
+                </h2>
+                <p className="mt-4 text-zinc-400">
+                  GuideAI Scanner scans your web app, detects your framework,
+                  extracts routes and interactive elements, and builds a
+                  knowledge base for AI-powered guidance.
+                </p>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Installation
+                </h3>
+                <CodeBlock language="bash" code={`npm i @guideai/scanner`} />
+                <p className="mt-3 text-sm text-zinc-400">Or globally:</p>
+                <CodeBlock language="bash" code={`npm i -g @guideai/scanner`} />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Quick Start
+                </h3>
+                <Expandable title="Dry Run (No Upload)">
+                  <p className="text-sm text-zinc-300">
+                    Test the scanner without uploading by using{" "}
+                    <code>--dry-run</code>:
+                  </p>
+                  <CodeBlock language="bash" code={`npx guideai-scan --dry-run`} />
+                </Expandable>
+                <Expandable title="Scan & Upload">
+                  <p className="text-sm text-zinc-300">
+                    To scan your code and upload the knowledge base to GuideAI:
+                  </p>
+                  <CodeBlock
+                    language="bash"
+                    code={`npx guideai-scan --key sk_live_xxxxx`}
+                  />
+                </Expandable>
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Command-Line Options
+                </h3>
+                <SimpleTable
+                  columns={["Option", "Description", "Default", "Required"]}
+                  rows={[
+                    ["--dry-run", "Output JSON without uploading", "false", "No"],
+                    ["--dir", "Project root directory", "cwd", "No"],
+                    ["--output", "Save scan result to JSON file", "—", "No"],
+                    [
+                      "--api-url",
+                      "GuideAI API endpoint",
+                      "https://cdn.3guideai.com",
+                      "No",
+                    ],
+                    [
+                      "--key",
+                      "Site API key for uploads",
+                      "—",
+                      "Yes (unless --dry-run)",
+                    ],
+                  ]}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Common Usage Patterns
+                </h3>
+                <CodeBlock
+                  language="bash"
+                  code={`# Preview scan:
+npx guideai-scan --dry-run
+
+# Save results to a file:
+npx guideai-scan --dry-run --output scan-results.json
+
+# Upload:
+npx guideai-scan --key sk_live_your_api_key
+
+# Scan a specific directory:
+npx guideai-scan --dir /path/to/project --dry-run
+
+# Scan, save, and upload:
+npx guideai-scan --key sk_live_your_api_key --output scan-results.json`}
+                />
+
+                <h3 className="mt-10 text-xl font-semibold text-white">
+                  Knowledge Base Output Structure
+                </h3>
+                <CodeBlock
+                  language="json"
+                  code={`{
+  "framework": "nextjs-app-router",
+  "routes": [],
+  "elements": [],
+  "ui_map": { "root": {} },
+  "duration_ms": 1234
+}`}
+                />
+
+                <div className="mt-10 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+                  <h3 className="text-base font-semibold text-white">
+                    Upload KB JSON from the dashboard
+                  </h3>
+                  <p className="mt-2 text-sm text-zinc-300">
+                    If you already have a scan JSON (from CI, from a teammate,
+                    or from a dry-run output file), you can upload it from the
+                    dashboard Knowledge Base page.
+                  </p>
+                </div>
+              </div>
+
+              {/* 8) Troubleshooting */}
+              <div id="troubleshooting" className="scroll-mt-32">
+                <h2 className="text-3xl font-bold text-white">
+                  8) Troubleshooting
+                </h2>
+
+                <div className="mt-6 space-y-2">
+                  <Expandable title='“No script tag found with data-site-id and data-token”'>
+                    <p className="text-sm text-zinc-300">
+                      Make sure your script includes both attributes:
+                    </p>
+                    <CodeBlock
+                      language="html"
+                      code={`<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-site-id="..."
+  data-token="..."
+></script>`}
+                    />
+                  </Expandable>
+
+                  <Expandable title='Scanner error: “--key is required unless --dry-run is enabled”'>
+                    <p className="text-sm text-zinc-300">
+                      Use <code>--dry-run</code> to preview without uploading,
+                      or pass <code>--key sk_live_...</code> for upload.
+                    </p>
+                    <CodeBlock
+                      language="bash"
+                      code={`npx guideai-scan --dry-run
+# or
+npx guideai-scan --key sk_live_xxxxx`}
+                    />
+                  </Expandable>
+                </div>
+
+                <div className="mt-10 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+                  <p className="text-sm text-zinc-300">
+                    Need help? Contact us from{" "}
+                    <Link
+                      href="/policy"
+                      className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                    >
+                      Privacy Policy
+                    </Link>{" "}
+                    or explore{" "}
+                    <Link
+                      href="/pricing"
+                      className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                    >
+                      Pricing
+                    </Link>
+                    .
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1311,3 +1053,4 @@ function handleLogout() {
     </main>
   );
 }
+
