@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
 import {
   Check,
   ChevronDown,
@@ -40,6 +41,7 @@ import {
   MousePointer,
   Package,
   Split,
+  Zap,
 } from "lucide-react";
 
 const sidebar = [
