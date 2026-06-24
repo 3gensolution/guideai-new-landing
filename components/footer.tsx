@@ -16,7 +16,7 @@ const navigation = {
   resources: [
     { name: "Documentation", href: "/docs" },
     { name: "Blog", href: "#" },
-    { name: "Privacy Policy", href: "#" },
+    { name: "Privacy Policy", href: "/policy" },
     { name: "Terms of Service", href: "#" },
   ],
 };

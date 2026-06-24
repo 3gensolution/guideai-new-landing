@@ -112,7 +112,7 @@ export function SmartInsightsSection() {
                 </div>
 
                 <div className="rounded-full bg-white px-4 py-1 text-xs text-zinc-500 shadow-sm">
-                  analytics.guideai.app
+                  dashboard.3guideai.com
                 </div>
 
                 <div className="text-xs text-zinc-400">
@@ -182,9 +182,9 @@ export function SmartInsightsSection() {
               </p>
 
               {/* CTA */}
-              <Button className="mt-8 rounded-xl bg-zinc-900 px-5 text-white hover:bg-zinc-800">
+              {/* <Button className="mt-8 rounded-xl bg-zinc-900 px-5 text-white hover:bg-zinc-800">
                 Explore Analytics
-              </Button>
+              </Button> */}
 
               {/* Steps */}
               <div className="mt-12 space-y-8">

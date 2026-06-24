@@ -4,16 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
 import {
-  Copy,
   Check,
   ChevronDown,
   ChevronRight,
-  Zap,
   Code,
-  Settings,
+  Copy,
+  HelpCircle,
   Layers,
+  Settings,
   Terminal,
   Play,
   Monitor,
@@ -242,7 +241,7 @@ export default function DocsPage() {
     <main className="min-h-screen bg-zinc-950">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-16">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
@@ -252,7 +251,9 @@ export default function DocsPage() {
             </span>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
               GuideAI{" "}
-              <span className="text-violet-400">SDK Documentation</span>
+              <span className="text-violet-400">
+                SDK Installation &amp; Usage
+              </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-400">
               Complete guide to integrating GuideAI into your application.
@@ -279,7 +280,7 @@ export default function DocsPage() {
         </div>
       </section>
 
-      {/* Docs Content */}
+      {/* Content */}
       <section className="border-t border-zinc-800 py-12">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
           <div className="flex gap-12">
@@ -303,7 +304,6 @@ export default function DocsPage() {
               </nav>
             </aside>
 
-            {/* Main content */}
             <div className="min-w-0 flex-1 space-y-24">
               {/* ============================================ */}
               {/* OVERVIEW */}
@@ -670,7 +670,7 @@ export default function DocsPage() {
               {/* ============================================ */}
               <div id="getting-started" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-white">
-                  Getting Started
+                  1) Install the SDK on your website
                 </h2>
                 <p className="mt-4 text-lg text-zinc-400">
                   Get GuideAI running on your site in three steps.
@@ -1010,7 +1010,6 @@ export default function DocsPage() {
   data-theme-text="#111827"
   data-theme-font="Inter"
 ></script>`}
-                  language="html"
                 />
 
                 {/* SPA */}
@@ -1432,7 +1431,7 @@ module.exports = {
               {/* ============================================ */}
               <div id="configuration" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-white">
-                  Configuration
+                  2) Public API (what you can call)
                 </h2>
                 <p className="mt-4 text-zinc-400">
                   Both bundles are configured via{" "}
@@ -1820,7 +1819,32 @@ module.exports = {
                       personalization.
                     </p>
                     <CodeBlock
-                      code={`window.guideai.initialize({
+                      language="javascript"
+                      code={`guideai.track("signup_completed", { plan: "pro" });
+guideai.trackFeature("settings.saved", "Saved settings", { area: "billing" });`}
+                    />
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                      <li>
+                        <code>track(eventType, properties?)</code>: If{" "}
+                        <code>eventType</code> is a known type, it is sent
+                        as-is. Otherwise it is sent as{" "}
+                        <code>event_type: "custom"</code> with{" "}
+                        <code>metadata.custom_event_name = eventType</code>.
+                      </li>
+                      <li>
+                        <code>trackFeature(featureKey, featureLabel?, properties?)</code>{" "}
+                        sends <code>event_type: "feature_used"</code> with{" "}
+                        <code>metadata.feature_key</code> and optional label.
+                      </li>
+                    </ul>
+                  </Expandable>
+
+                  <Expandable title="Identify">
+                    <CodeBlock
+                      language="javascript"
+                      code={`guideai.identify("user_123");
+
+guideai.initialize({
   visitor: {
     id: "user_123",           // Required
     email: "jane@acme.com",
@@ -1857,7 +1881,53 @@ module.exports = {
                       code={`window.guideai.updateOptions({
   visitor: { planLevel: "pro", role: "manager" },
 });`}
+                    />
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                      <li>
+                        <code>identify(userId)</code> stores a{" "}
+                        <code>user_id</code> for subsequent events.
+                      </li>
+                      <li>
+                        <code>initialize({"{{ visitor, account }}"})</code>{" "}
+                        stores visitor/account objects and emits an{" "}
+                        <code>identify</code> event.
+                      </li>
+                      <li>
+                        <code>updateOptions({"{{ visitor?, account? }}"})</code>{" "}
+                        merges and re-emits an <code>identify</code> event.
+                      </li>
+                    </ul>
+                  </Expandable>
+
+                  <Expandable title="Guides">
+                    <CodeBlock
                       language="javascript"
+                      code={`await guideai.showGuideById("guide_id_here", 0);
+await guideai.dismissGuide();`}
+                    />
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                      <li>
+                        <code>validateGuideById(guideId)</code> checks
+                        existence/playability.
+                      </li>
+                      <li>
+                        <code>showGuideById(guideId, stepIndex?)</code>{" "}
+                        force-starts a guide (bypasses trigger rules).
+                      </li>
+                      <li>
+                        <code>dismissGuide()</code> closes the currently playing
+                        guide (if any).
+                      </li>
+                    </ul>
+                  </Expandable>
+
+                  <Expandable title="Navigation + lifecycle">
+                    <CodeBlock
+                      language="javascript"
+                      code={`guideai.pageLoad(); // manual page_view for custom routers
+guideai.flushNow(); // flush buffered analytics events
+guideai.clearSession(); // rotate session_id (anonymous_id stays)
+const off = guideai.on("player-ended", (detail) => console.log(detail));`}
                     />
                   </Expandable>
 
@@ -3541,9 +3611,9 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
                 <h2 className="text-2xl font-bold text-white">
                   Ready to get started?
                 </h2>
-                <p className="mt-3 text-zinc-400">
-                  Add the script tag to your site and start delivering guides
-                  today.
+                <p className="mt-4 text-zinc-400">
+                  When <strong>not</strong> in <code>extensionMode</code>, the
+                  SDK automatically emits:
                 </p>
                 <div className="mt-6 flex items-center justify-center gap-4">
                   <Link href="https://dashboard.3guideai.com" target="_blank">
@@ -3574,3 +3644,4 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
     </main>
   );
 }
+

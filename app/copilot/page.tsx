@@ -4,6 +4,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Play, MessageSquare, Video, Search, Sparkles, Clock, Target } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function CopilotPage() {
   return (
@@ -26,9 +28,12 @@ export default function CopilotPage() {
               A Chrome extension that helps users complete tasks, find answers, and learn your product—without leaving your app.
             </p>
             <div className="mt-10 flex items-center justify-center gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
+              <Link
+                href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
+                target="_blank" 
+                className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600 px-8 py-3 rounded-md">
                 Try Browser Copilot
-              </Button>
+              </Link>
               {/* <Button size="lg" variant="outline" className="border-zinc-700 text-white hover:bg-zinc-800">
                 <Play className="mr-2 h-4 w-4" />
                 See it in action
@@ -39,9 +44,9 @@ export default function CopilotPage() {
       </section>
 
       {/* Demo Preview */}
-      {/* <section className="py-16">
+      <section className="py-8">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
+          {/* <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
             <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900/80 px-4 py-3">
               <div className="flex gap-1.5">
                 <div className="h-3 w-3 rounded-full bg-zinc-700" />
@@ -88,9 +93,16 @@ export default function CopilotPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <Image
+            src="/copilot.png"
+            alt="Demo Preview"
+            width={300}
+            height={300}
+            className="mx-auto h-[400px] w-full sm:w-[500px] md:w-[800px] rounded-xl border border-zinc-700 bg-zinc-900 p-4 shadow-2xl"
+          />
         </div>
-      </section> */}
+      </section>
 
       {/* Features */}
       <section className="border-t border-zinc-800 py-24">

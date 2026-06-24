@@ -104,10 +104,10 @@ export function AgentCanvasSection() {
               experiences that evolve with your product automatically.
             </p>
 
-            <Button className="mt-8 gap-2 rounded-xl bg-white px-6 text-zinc-900 hover:bg-zinc-200">
+            {/* <Button className="mt-8 gap-2 rounded-xl bg-white px-6 text-zinc-900 hover:bg-zinc-200">
               Explore Guide Builder
               <ArrowRight className="h-4 w-4" />
-            </Button>
+            </Button> */}
 
             {/* STORY STEPS */}
             <div className="mt-14 space-y-5">
