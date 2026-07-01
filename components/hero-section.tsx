@@ -3,12 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ContactFormDialog } from "@/components/contact-form-dialog";
 
 export function HeroSection() {
-  const [openVideo, setOpenVideo] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
@@ -56,7 +54,7 @@ export function HeroSection() {
             AI-first product adoption platform for B2B SaaS
           </p>
 
-          <div className="mt-10 flex items-center justify-center gap-4">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4">
             <Button
               size="lg"
               className="bg-white px-8 text-zinc-900 hover:bg-white/90"
@@ -64,6 +62,17 @@ export function HeroSection() {
             >
               Talk to us
             </Button>
+            <div className="mt-6 w-full max-w-3xl overflow-hidden rounded-2xl border border-white/10">
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src="https://www.youtube.com/embed/92bWE8H8MC8?autoplay=1&mute=1&rel=0"
+                  title="GuideAI Demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           </div>
 
           <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
