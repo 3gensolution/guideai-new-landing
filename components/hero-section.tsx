@@ -8,6 +8,7 @@ import { ContactFormDialog } from "@/components/contact-form-dialog";
 
 export function HeroSection() {
   const [contactOpen, setContactOpen] = useState(false);
+  const [demoStarted, setDemoStarted] = useState(false);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-zinc-950">
@@ -74,16 +75,80 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-            <div className="mt-6 w-full max-w-3xl overflow-hidden rounded-2xl border border-white/10">
-              <div className="relative w-full" style={{ paddingBottom: "62.5%" }}>
+            <div
+              className="mt-6 w-full max-w-3xl"
+              style={{ position: "relative", paddingBottom: "calc(62.5% + 52px)", height: 0 }}
+            >
+              {demoStarted ? (
                 <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src="https://demo.3guideai.com/share/5SGvcEhR1xlLOvDUE-OudA"
+                  src="https://demo.3guideai.com/share/5SGvcEhR1xlLOvDUE-OudA?embed=1&autostart=1"
                   title="GuideAI Demo"
+                  allow="fullscreen"
                   allowFullScreen
                   frameBorder="0"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "1px solid rgba(63,95,172,0.28)",
+                    boxShadow: "0 0 18px rgba(26,19,72,0.12)",
+                    borderRadius: "12px",
+                    boxSizing: "border-box",
+                  }}
                 />
-              </div>
+              ) : (
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setDemoStarted(true)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setDemoStarted(true);
+                  }}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    cursor: "pointer",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "20px",
+                    borderRadius: "12px",
+                    overflow: "hidden",
+                    border: "1px solid rgba(63,95,172,0.28)",
+                    boxSizing: "border-box",
+                    background:
+                      "linear-gradient(rgba(15,23,42,0.5),rgba(15,23,42,0.5)),url('https://res.cloudinary.com/dulfwgfga/image/upload/v1783284390/guideai/demos/demo_7fb05626c9ba.jpg') center/cover no-repeat",
+                  }}
+                >
+                  <div
+                    style={{
+                      font: "600 clamp(18px,3vw,26px)/1.3 system-ui,-apple-system,sans-serif",
+                      color: "#ffffff",
+                      textAlign: "center",
+                      padding: "0 24px",
+                      maxWidth: "80%",
+                    }}
+                  >
+                    Project snippet
+                  </div>
+                  <div
+                    style={{
+                      background: "#6E70E7",
+                      color: "#FFFFFF",
+                      font: "700 15px system-ui,-apple-system,sans-serif",
+                      letterSpacing: "0.04em",
+                      padding: "14px 30px",
+                      borderRadius: "10px",
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.22)",
+                    }}
+                  >
+                    VIEW DEMO
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
