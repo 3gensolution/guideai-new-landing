@@ -55,21 +55,33 @@ export function HeroSection() {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-white px-8 text-zinc-900 hover:bg-white/90"
-              onClick={() => setContactOpen(true)}
-            >
-              Talk to us
-            </Button>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button
+                size="lg"
+                className="bg-white px-8 text-zinc-900 hover:bg-white/90"
+                onClick={() => setContactOpen(true)}
+              >
+                Talk to us
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white/20 bg-white/10 px-8 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+              >
+                <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}`} target="_blank">
+                  Get Started
+                </Link>
+              </Button>
+            </div>
             <div className="mt-6 w-full max-w-3xl overflow-hidden rounded-2xl border border-white/10">
-              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+              <div className="relative w-full" style={{ paddingBottom: "62.5%" }}>
                 <iframe
                   className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/92bWE8H8MC8?autoplay=1&mute=1&rel=0"
+                  src="https://demo.3guideai.com/share/5SGvcEhR1xlLOvDUE-OudA"
                   title="GuideAI Demo"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  frameBorder="0"
                 />
               </div>
             </div>
