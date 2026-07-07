@@ -75,82 +75,73 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
+            <div className="mt-6 inline-block">
+              <button
+                type="button"
+                onClick={() => setDemoStarted(true)}
+                style={{
+                  background: "#0a0ed6",
+                  color: "#ece4e4",
+                  font: "700 15px system-ui,-apple-system,sans-serif",
+                  letterSpacing: "0.04em",
+                  padding: "14px 30px",
+                  borderRadius: "10px",
+                  border: 0,
+                  cursor: "pointer",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+                }}
+              >
+                VIEW DEMO
+              </button>
+            </div>
+          </div>
+
+          {demoStarted && (
             <div
-              className="mt-6 w-full max-w-3xl"
-              style={{ position: "relative", paddingBottom: "calc(62.5% + 52px)", height: 0 }}
+              onClick={(e) => {
+                if (e.target === e.currentTarget) setDemoStarted(false);
+              }}
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 99999,
+                background: "rgba(15,23,42,0.72)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "24px",
+              }}
             >
-              {demoStarted ? (
+              <div style={{ position: "relative", width: "100%", maxWidth: "1100px", aspectRatio: "16 / 10" }}>
+                <button
+                  type="button"
+                  onClick={() => setDemoStarted(false)}
+                  aria-label="Close demo"
+                  style={{
+                    position: "absolute",
+                    top: "-38px",
+                    right: 0,
+                    background: "none",
+                    border: 0,
+                    color: "#fff",
+                    fontSize: "30px",
+                    lineHeight: 1,
+                    cursor: "pointer",
+                  }}
+                >
+                  &times;
+                </button>
                 <iframe
-                  src="https://demo.3guideai.com/share/5SGvcEhR1xlLOvDUE-OudA?embed=1&autostart=1"
+                  src="https://demo.3guideai.com/share/nE5fnnsggPXa_qh_3rhZjA?embed=1&autostart=1"
                   title="GuideAI Demo"
                   allow="fullscreen"
                   allowFullScreen
                   frameBorder="0"
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    border: "1px solid rgba(63,95,172,0.28)",
-                    boxShadow: "0 0 18px rgba(26,19,72,0.12)",
-                    borderRadius: "12px",
-                    boxSizing: "border-box",
-                  }}
+                  style={{ width: "100%", height: "100%", border: 0, borderRadius: "12px" }}
                 />
-              ) : (
-                <div
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => setDemoStarted(true)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") setDemoStarted(true);
-                  }}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    cursor: "pointer",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "20px",
-                    borderRadius: "12px",
-                    overflow: "hidden",
-                    border: "1px solid rgba(63,95,172,0.28)",
-                    boxSizing: "border-box",
-                    background:
-                      "linear-gradient(rgba(15,23,42,0.5),rgba(15,23,42,0.5)),url('https://res.cloudinary.com/dulfwgfga/image/upload/v1783284390/guideai/demos/demo_7fb05626c9ba.jpg') center/cover no-repeat",
-                  }}
-                >
-                  <div
-                    style={{
-                      font: "600 clamp(18px,3vw,26px)/1.3 system-ui,-apple-system,sans-serif",
-                      color: "#ffffff",
-                      textAlign: "center",
-                      padding: "0 24px",
-                      maxWidth: "80%",
-                    }}
-                  >
-                    Project snippet
-                  </div>
-                  <div
-                    style={{
-                      background: "#6E70E7",
-                      color: "#FFFFFF",
-                      font: "700 15px system-ui,-apple-system,sans-serif",
-                      letterSpacing: "0.04em",
-                      padding: "14px 30px",
-                      borderRadius: "10px",
-                      boxShadow: "0 10px 30px rgba(0,0,0,0.22)",
-                    }}
-                  >
-                    VIEW DEMO
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
-          </div>
+          )}
 
           <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
         </div>
