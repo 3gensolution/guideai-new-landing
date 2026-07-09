@@ -39,7 +39,7 @@ const steps = [
     id: 4,
     title: "Auto-heal as UI changes",
     description:
-      "GuideAI detects when your product UI changes and updates guides automatically. No manual maintenance required.",
+      "3Guide detects when your product UI changes and updates guides automatically. No manual maintenance required.",
     image: "/story-5.png",
   },
 ];
@@ -96,11 +96,11 @@ export function AgentCanvasSection() {
             </div>
 
             <h2 className="max-w-xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-              Watch GuideAI turn friction into guided product adoption.
+              Watch 3Guide turn friction into guided product adoption.
             </h2>
 
             <p className="mt-6 max-w-lg text-lg leading-8 text-zinc-400">
-              Instead of static documentation, GuideAI creates living onboarding
+              Instead of static documentation, 3Guide creates living onboarding
               experiences that evolve with your product automatically.
             </p>
 

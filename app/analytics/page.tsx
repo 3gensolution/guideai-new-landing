@@ -201,7 +201,7 @@ export default function AnalyticsPage() {
               Stop guessing. Start knowing.
             </h2>
             <p className="mt-4 text-lg text-zinc-400">
-              Friction Analytics is included in all GuideAI plans.
+              Friction Analytics is included in all 3Guide plans.
             </p>
             <Button size="lg" className="mt-8 bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
               Get started free

@@ -12,7 +12,7 @@ import { Footer } from "@/components/footer";
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'GuideAI',
+  name: '3Guide',
   applicationCategory: 'BusinessApplication',
   description:
     'AI-First Product Adoption Platform. Build in-app guides in minutes, keep them current automatically with AI-powered onboarding, friction analytics, and browser Copilot.',
@@ -26,7 +26,7 @@ const jsonLd = {
   },
   provider: {
     '@type': 'Organization',
-    name: 'GuideAI',
+    name: '3Guide',
     url: 'https://3guideai.com',
     email: 'info@3guideai.com',
   },

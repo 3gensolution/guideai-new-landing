@@ -252,13 +252,13 @@ export default function DocsPage() {
               Documentation
             </span>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              GuideAI{" "}
+              3Guide{" "}
               <span className="text-violet-400">
                 SDK Installation &amp; Usage
               </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-400">
-              Complete guide to integrating GuideAI into your application.
+              Complete guide to integrating 3Guide into your application.
               Two complementary bundles — <strong className="text-violet-400">Full SDK</strong> for
               guides, chat & copilot, and{" "}
               <strong className="text-cyan-400">Tracking SDK</strong> for
@@ -313,7 +313,7 @@ export default function DocsPage() {
               <div id="overview" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-white">Overview</h2>
                 <p className="mt-4 text-lg text-zinc-400">
-                  GuideAI is an AI-first digital adoption platform for B2B
+                  3Guide is an AI-first digital adoption platform for B2B
                   SaaS. It ships as two complementary bundles: the{" "}
                   <strong className="text-violet-400">Full SDK</strong>{" "}
                   (<code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">guideai.js</code>)
@@ -368,15 +368,15 @@ export default function DocsPage() {
 
                 {/* Overview Video */}
                 <YouTubeEmbed
-                  title="GuideAI Platform Overview"
+                  title="3Guide Platform Overview"
                   videoId="PLACEHOLDER"
-                  description="Full walkthrough of the GuideAI platform — from installation to creating your first guide."
+                  description="Full walkthrough of the 3Guide platform — from installation to creating your first guide."
                 />
 
                 {/* Architecture diagram screenshot */}
                 <ScreenshotPlaceholder
                   id="screenshot-architecture"
-                  caption="GuideAI architecture — SDK, Scanner CLI, Dashboard, Browser Copilot, and Backend working together."
+                  caption="3Guide architecture — SDK, Scanner CLI, Dashboard, Browser Copilot, and Backend working together."
                   screenshotPath="architecture-overview.png"
                 />
 
@@ -428,7 +428,7 @@ export default function DocsPage() {
                   Choose Your Bundle
                 </h2>
                 <p className="mt-4 text-lg text-zinc-400">
-                  GuideAI ships two separate bundles. Pick the one that matches
+                  3Guide ships two separate bundles. Pick the one that matches
                   your needs.
                 </p>
 
@@ -675,7 +675,7 @@ export default function DocsPage() {
                   1) Install the SDK on your website
                 </h2>
                 <p className="mt-4 text-lg text-zinc-400">
-                  Get GuideAI running on your site in three steps.
+                  Get 3Guide running on your site in three steps.
                 </p>
 
                 {/* Quick Start Video */}
@@ -799,7 +799,7 @@ export default function DocsPage() {
 
                 <ScreenshotPlaceholder
                   id="screenshot-bubble-live"
-                  caption="The GuideAI bubble appearing on a live site after installation."
+                  caption="The 3Guide bubble appearing on a live site after installation."
                   screenshotPath="bubble-on-live-site.png"
                 />
               </div>
@@ -1136,7 +1136,7 @@ export default defineNuxtConfig({
                 <YouTubeEmbed
                   title="CDN Installation Walkthrough"
                   videoId="PLACEHOLDER"
-                  description="Step-by-step video showing how to add the GuideAI CDN to different frameworks (Next.js, React, Vue, HTML)."
+                  description="Step-by-step video showing how to add the 3Guide CDN to different frameworks (Next.js, React, Vue, HTML)."
                 />
               </div>
 
@@ -1148,7 +1148,7 @@ export default defineNuxtConfig({
                 <p className="mt-4 text-zinc-400">
                   The scanner (<code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">@guideai/scanner</code>)
                   analyzes your codebase and uploads a knowledge base to
-                  GuideAI. It parses your JSX/TSX with Babel, extracts routes
+                  3Guide. It parses your JSX/TSX with Babel, extracts routes
                   and interactive elements, and generates 6-tier fingerprints.
                 </p>
 
@@ -1211,7 +1211,7 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                           "--api-url",
                           "No",
                           "https://cdn.3guideai.com",
-                          "GuideAI API endpoint.",
+                          "3Guide API endpoint.",
                         ],
                         [
                           "--dry-run",
@@ -1361,14 +1361,14 @@ module.exports = {
               <div id="dashboard" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-white">Dashboard</h2>
                 <p className="mt-4 text-zinc-400">
-                  The GuideAI dashboard is where you manage guides, view
+                  The 3Guide dashboard is where you manage guides, view
                   analytics, configure settings, and access your API keys.
                 </p>
 
                 <YouTubeEmbed
                   title="Dashboard Tour"
                   videoId="PLACEHOLDER"
-                  description="Complete tour of the GuideAI dashboard — manage guides, view analytics, configure settings, and access API keys."
+                  description="Complete tour of the 3Guide dashboard — manage guides, view analytics, configure settings, and access API keys."
                 />
 
                 <h3 className="mt-10 text-xl font-semibold text-white">
@@ -2743,7 +2743,7 @@ window.guideai.markFeature("used_export");`}
                   6-Tier Fingerprinting
                 </h2>
                 <p className="mt-4 text-zinc-400">
-                  GuideAI uses a 6-tier fingerprinting system to match guide
+                  3Guide uses a 6-tier fingerprinting system to match guide
                   steps to DOM elements. This is what makes guides
                   &quot;auto-heal&quot; when your UI changes — even if selectors
                   break, the fingerprint system finds the right element.
@@ -2816,7 +2816,7 @@ window.guideai.markFeature("used_export");`}
                   Visual Showcase
                 </h2>
                 <p className="mt-4 text-zinc-400">
-                  Every aspect of GuideAI is configurable. Below is a visual
+                  Every aspect of 3Guide is configurable. Below is a visual
                   reference of all the different setups, icons, animations,
                   themes, and guide types available. Bubble, guide, and copilot
                   visuals apply to the{" "}

@@ -45,10 +45,10 @@ function formatLimit(value: number): string {
 const faqs = [
   {
     question: "What counts as a Monthly Active User (MAU)?",
-    answer: "An MAU is any unique user who interacts with at least one GuideAI feature (guide, Copilot, or tracked event) within a calendar month.",
+    answer: "An MAU is any unique user who interacts with at least one 3Guide feature (guide, Copilot, or tracked event) within a calendar month.",
   },
   {
-    question: "Can I use GuideAI for free forever?",
+    question: "Can I use 3Guide for free forever?",
     answer: "Yes! The Starter tier is not a trial—it's a permanent option for small teams. You get full access to all core features.",
   },
   {

@@ -31,7 +31,7 @@ export function CTASection() {
           </div>
           <div className="flex flex-col items-start gap-4 lg:items-end">
             <p className="max-w-md text-zinc-400 lg:text-right">
-              See how GuideAI helps B2B SaaS teams ship onboarding in days,
+              See how 3Guide helps B2B SaaS teams ship onboarding in days,
               reduce support load, and improve trial-to-paid conversion with
               AI-powered in-app guidance.
             </p>

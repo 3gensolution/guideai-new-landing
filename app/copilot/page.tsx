@@ -61,7 +61,7 @@ export default function CopilotPage() {
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500">
                     <Sparkles className="h-4 w-4 text-white" />
                   </div>
-                  <span className="font-medium text-white">GuideAI Copilot</span>
+                  <span className="font-medium text-white">3Guide Copilot</span>
                 </div>
                 <div className="mt-4 space-y-3">
                   <div className="rounded-lg bg-zinc-800 p-3 text-sm text-zinc-300">
@@ -207,7 +207,7 @@ export default function CopilotPage() {
               Give your users superpowers
             </h2>
             <p className="mt-4 text-lg text-zinc-400">
-              Browser Copilot is included in all GuideAI plans.
+              Browser Copilot is included in all 3Guide plans.
             </p>
             <Button size="lg" className="mt-8 bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
               Get started free

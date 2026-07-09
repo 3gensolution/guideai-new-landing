@@ -35,7 +35,7 @@ export function HeroSection() {
             <span className="rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-2 py-0.5 text-xs font-semibold text-white">
               NEW
             </span>
-            GUIDEAI LAUNCHES BROWSER COPILOT FOR TASK COMPLETION
+            3GUIDE LAUNCHES BROWSER COPILOT FOR TASK COMPLETION
           </Link>
         </div>
 
@@ -177,7 +177,7 @@ export function HeroSection() {
                 </button>
                 <iframe
                   src="https://demo.3guideai.com/share/5SGvcEhR1xlLOvDUE-OudA?embed=1&autostart=1"
-                  title="GuideAI Demo"
+                  title="3Guide Demo"
                   allow="fullscreen"
                   allowFullScreen
                   frameBorder="0"
@@ -237,7 +237,7 @@ export function HeroSection() {
 
                 <div className="text-left">
                   <p className="text-sm font-medium text-white">
-                    See GuideAI in action
+                    See 3Guide in action
                   </p>
 
                   <p className="mt-1 text-xs text-white/60">

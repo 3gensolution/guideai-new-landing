@@ -77,7 +77,7 @@ export function VoiceSection() {
                 <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-to-r from-cyan-500 to-violet-500">
                   <Bot className="h-3 w-3 text-white" />
                 </div>
-                <span className="text-sm font-medium text-zinc-900">GuideAI Copilot</span>
+                <span className="text-sm font-medium text-zinc-900">3Guide Copilot</span>
               </div>
               <div className="space-y-3">
                 <div className="rounded-lg bg-zinc-100 p-3">

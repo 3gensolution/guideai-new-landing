@@ -47,18 +47,18 @@ export default function PolicyPage() {
           >
             <div className="space-y-10 text-base leading-relaxed text-zinc-300">
               <p>
-                GuideAI is built to help product teams understand user friction,
+                3Guide is built to help product teams understand user friction,
                 improve onboarding, and deliver in-app guidance that drives
                 activation and adoption.
               </p>
               <p>
-                Your privacy matters to us at GuideAI. This Privacy Policy
+                Your privacy matters to us at 3Guide. This Privacy Policy
                 explains how we collect, use, share, and protect your
                 information when you use our website, SDKs, dashboards, guides,
                 analytics tools, and related services.
               </p>
               <p>
-                By using GuideAI, you agree to the practices described in this
+                By using 3Guide, you agree to the practices described in this
                 Privacy Policy.
               </p>
 
@@ -84,7 +84,7 @@ export default function PolicyPage() {
               <h3 className="text-lg font-semibold text-white/90">
                 b. Product &amp; Usage Data
               </h3>
-              <p>When GuideAI is integrated into a product, we may collect:</p>
+              <p>When 3Guide is integrated into a product, we may collect:</p>
               <ul className="list-disc space-y-1 pl-5">
                 <li>User interaction events</li>
                 <li>Session activity and timelines</li>
@@ -122,7 +122,7 @@ export default function PolicyPage() {
               </h2>
               <p>We use your information to:</p>
               <ul className="list-disc space-y-1 pl-5">
-                <li>Create and manage your GuideAI account</li>
+                <li>Create and manage your 3Guide account</li>
                 <li>Provide analytics, onboarding, and workflow services</li>
                 <li>Improve product performance and usability</li>
                 <li>Monitor product adoption and onboarding effectiveness</li>
@@ -151,7 +151,7 @@ export default function PolicyPage() {
                 </li>
                 <li>
                   Service providers who help us operate, maintain, and improve
-                  GuideAI
+                  3Guide
                 </li>
               </ul>
               <p>
@@ -166,7 +166,7 @@ export default function PolicyPage() {
                 4. Data Storage &amp; Security
               </h2>
               <p>
-                GuideAI uses industry-standard security measures to protect your
+                3Guide uses industry-standard security measures to protect your
                 information, including:
               </p>
               <ul className="list-disc space-y-1 pl-5">
@@ -239,7 +239,7 @@ export default function PolicyPage() {
               >
                 7. Cookies &amp; Analytics
               </h2>
-              <p>GuideAI may use cookies and similar technologies to:</p>
+              <p>3Guide may use cookies and similar technologies to:</p>
               <ul className="list-disc space-y-1 pl-5">
                 <li>Maintain sessions and authentication</li>
                 <li>Understand product and website usage</li>
@@ -255,7 +255,7 @@ export default function PolicyPage() {
                 8. Third-Party Integrations
               </h2>
               <p>
-                GuideAI may integrate with third-party platforms, APIs, or
+                3Guide may integrate with third-party platforms, APIs, or
                 analytics providers. Use of those services may also be subject
                 to their respective privacy policies.
               </p>
@@ -271,7 +271,7 @@ export default function PolicyPage() {
                 9. Children&apos;s Privacy
               </h2>
               <p>
-                GuideAI is not intended for children under the age of 13, and we
+                3Guide is not intended for children under the age of 13, and we
                 do not knowingly collect personal information from children.
               </p>
               <p>
@@ -323,7 +323,7 @@ export default function PolicyPage() {
               </p>
               <ul className="list-disc space-y-1 pl-5">
                 <li>
-                  <strong>GuideAI</strong>
+                  <strong>3Guide</strong>
                 </li>
                 <li>Lagos, Nigeria</li>
                 <li>

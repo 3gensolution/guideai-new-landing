@@ -13,7 +13,7 @@ export function CaseStudySection() {
         <h2 className="text-3xl font-bold text-zinc-900 sm:text-4xl">
           See how SaaS teams improved
           <br />
-          activation with GuideAI
+          activation with 3Guide
         </h2>
 
         <div className="mt-16 overflow-hidden rounded-2xl bg-zinc-100">
@@ -55,7 +55,7 @@ export function CaseStudySection() {
                 <blockquote className="mt-4 text-sm leading-relaxed text-zinc-600">
                   <Quote className="mb-2 h-4 w-4 text-zinc-400" />
                   Our onboarding was entirely support-driven. New users would
-                  schedule calls just to complete basic setup. With GuideAI, we
+                  schedule calls just to complete basic setup. With 3Guide, we
                   shipped contextual guides in days, and our trial-to-paid
                   conversion jumped 35% in the first quarter.
                 </blockquote>

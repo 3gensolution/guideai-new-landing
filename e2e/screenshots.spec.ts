@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import path from "path";
 
 /**
- * GuideAI Documentation Screenshots
+ * 3Guide Documentation Screenshots
  *
  * Captures full-screen (1920x1080) screenshots for the /docs page.
  *

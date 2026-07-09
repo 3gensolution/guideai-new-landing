@@ -69,7 +69,7 @@ export function SmartInsightsSection() {
           </h2>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600">
-            GuideAI combines product analytics with AI-powered onboarding so
+            3Guide combines product analytics with AI-powered onboarding so
             you can detect friction, launch contextual guidance, and improve
             activation without engineering bottlenecks.
           </p>
@@ -124,7 +124,7 @@ export function SmartInsightsSection() {
               <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src="/funnel.png"
-                  alt="GuideAI analytics dashboard"
+                  alt="3Guide analytics dashboard"
                   fill
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
                 />
@@ -176,7 +176,7 @@ export function SmartInsightsSection() {
               {/* Description */}
               <p className="text-sm leading-7 text-zinc-600">
                 Close the gap between discovering friction and fixing it.
-                GuideAI continuously monitors onboarding behavior, surfaces
+                3Guide continuously monitors onboarding behavior, surfaces
                 drop-off patterns, and lets your team launch contextual help
                 flows instantly.
               </p>
@@ -237,7 +237,7 @@ export function SmartInsightsSection() {
 
                 <p className="mt-3 text-sm text-zinc-500">
                   Teams using contextual onboarding reached first value faster
-                  after deploying GuideAI walkthroughs.
+                  after deploying 3Guide walkthroughs.
                 </p>
               </div>
             </div>

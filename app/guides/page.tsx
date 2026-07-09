@@ -64,7 +64,7 @@ export default function GuidesPage() {
               {
                 step: "02",
                 title: "AI generates the guide",
-                description: "GuideAI analyzes your recording and creates step-by-step instructions with smart element targeting.",
+                description: "3Guide analyzes your recording and creates step-by-step instructions with smart element targeting.",
               },
               {
                 step: "03",

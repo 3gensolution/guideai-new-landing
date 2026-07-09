@@ -31,14 +31,14 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/logo.jpeg"
-                alt="GuideAI Logo"
+                alt="3guide Logo"
                 width={32}
                 height={32}
                 className="h-8 w-8 rounded-lg"
               />
-              <span className="text-xl font-semibold text-white">GuideAI</span>
+              <span className="text-xl font-semibold text-white">3guide</span>
             </Link>
-            <p className="mt-4 text-sm text-zinc-500">© 2026 GuideAI</p>
+            <p className="mt-4 text-sm text-zinc-500">© 2026 3guide</p>
           </div>
 
           {/* Links */}

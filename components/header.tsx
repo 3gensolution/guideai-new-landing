@@ -29,14 +29,14 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo.jpeg"
-              alt="GuideAI Logo"
+              alt="3Guide Logo"
               width={32}
               height={32}
               className="h-8 w-8 rounded-lg"
             />
             <span className={`text-xl font-semibold transition-colors duration-300 ${
               isScrolled ? "text-zinc-900" : "text-white"
-            }`}>GuideAI</span>
+            }`}>3Guide</span>
           </Link>
           <div className="hidden lg:flex lg:gap-x-8">
             <Link
