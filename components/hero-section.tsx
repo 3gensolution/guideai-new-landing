@@ -75,24 +75,59 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-            <div className="mt-6 inline-block">
-              <button
-                type="button"
+            <div
+              className="mt-6 w-full max-w-3xl"
+              style={{ position: "relative", paddingBottom: "calc(62.5% + 52px)", height: 0 }}
+            >
+              <div
+                role="button"
+                tabIndex={0}
                 onClick={() => setDemoStarted(true)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setDemoStarted(true);
+                }}
                 style={{
-                  background: "#6e76e7",
-                  color: "#FFFFFF",
-                  font: "700 15px system-ui,-apple-system,sans-serif",
-                  letterSpacing: "0.04em",
-                  padding: "14px 30px",
-                  borderRadius: "10px",
-                  border: 0,
+                  position: "absolute",
+                  inset: 0,
                   cursor: "pointer",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "20px",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  border: "1px solid rgba(63,95,172,0.28)",
+                  boxSizing: "border-box",
+                  background:
+                    "linear-gradient(rgba(15,23,42,0.5),rgba(15,23,42,0.5)),url('https://res.cloudinary.com/dulfwgfga/image/upload/v1783284390/guideai/demos/demo_7fb05626c9ba.jpg') center/cover no-repeat",
                 }}
               >
-                VIEW DEMO
-              </button>
+                <div
+                  style={{
+                    font: "600 clamp(18px,3vw,26px)/1.3 system-ui,-apple-system,sans-serif",
+                    color: "#ffffff",
+                    textAlign: "center",
+                    padding: "0 24px",
+                    maxWidth: "80%",
+                  }}
+                >
+                  Take a tour of Product Tour
+                </div>
+                <div
+                  style={{
+                    background: "#6E70E7",
+                    color: "#FFFFFF",
+                    font: "700 15px system-ui,-apple-system,sans-serif",
+                    letterSpacing: "0.04em",
+                    padding: "14px 30px",
+                    borderRadius: "10px",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.22)",
+                  }}
+                >
+                  VIEW DEMO
+                </div>
+              </div>
             </div>
           </div>
 
@@ -105,15 +140,22 @@ export function HeroSection() {
                 position: "fixed",
                 inset: 0,
                 zIndex: 99999,
-                background:
-                  "linear-gradient(rgba(15,23,42,0.55),rgba(15,23,42,0.55)),url('https://res.cloudinary.com/dulfwgfga/image/upload/v1783284390/guideai/demos/demo_7fb05626c9ba.jpg') center/cover no-repeat",
+                background: "rgba(15,23,42,0.62)",
+                backdropFilter: "blur(2px)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "24px",
               }}
             >
-              <div style={{ position: "relative", width: "100%", maxWidth: "1100px", aspectRatio: "16 / 10" }}>
+              <div
+                style={{
+                  position: "relative",
+                  width: "min(880px,94vw)",
+                  aspectRatio: "16 / 10",
+                  maxHeight: "82vh",
+                }}
+              >
                 <button
                   type="button"
                   onClick={() => setDemoStarted(false)}
@@ -128,6 +170,7 @@ export function HeroSection() {
                     fontSize: "30px",
                     lineHeight: 1,
                     cursor: "pointer",
+                    textShadow: "0 1px 4px rgba(15,23,42,0.45)",
                   }}
                 >
                   &times;
@@ -142,8 +185,9 @@ export function HeroSection() {
                     width: "100%",
                     height: "100%",
                     border: 0,
-                    borderRadius: "12px",
-                    boxShadow: "0 24px 60px rgba(15,23,42,0.35)",
+                    borderRadius: "14px",
+                    boxShadow: "0 24px 60px rgba(15,23,42,0.4)",
+                    background: "#fff",
                   }}
                 />
               </div>
