@@ -105,7 +105,8 @@ export function HeroSection() {
                 position: "fixed",
                 inset: 0,
                 zIndex: 99999,
-                background: "transparent",
+                background:
+                  "linear-gradient(rgba(15,23,42,0.55),rgba(15,23,42,0.55)),url('https://res.cloudinary.com/dulfwgfga/image/upload/v1783284390/guideai/demos/demo_7fb05626c9ba.jpg') center/cover no-repeat",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -127,7 +128,6 @@ export function HeroSection() {
                     fontSize: "30px",
                     lineHeight: 1,
                     cursor: "pointer",
-                    textShadow: "0 1px 4px rgba(15,23,42,0.6)",
                   }}
                 >
                   &times;
