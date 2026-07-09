@@ -80,7 +80,7 @@ export function HeroSection() {
                 type="button"
                 onClick={() => setDemoStarted(true)}
                 style={{
-                  background: "#6E70E7",
+                  background: "#6e76e7",
                   color: "#FFFFFF",
                   font: "700 15px system-ui,-apple-system,sans-serif",
                   letterSpacing: "0.04em",
