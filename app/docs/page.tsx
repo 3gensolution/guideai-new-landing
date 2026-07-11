@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -77,12 +78,14 @@ function CodeBlock({
   };
 
   return (
-    <div className="group relative mt-4 rounded-xl border border-zinc-800 bg-zinc-900">
-      <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-2">
-        <span className="text-xs font-medium text-zinc-500">{language}</span>
+    <div className="group relative mt-4 overflow-hidden rounded-xl bg-ink shadow-lg shadow-purple-950/10">
+      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
+        <span className="font-mono text-xs font-medium text-slate-400">
+          {language}
+        </span>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-1.5 text-xs text-zinc-500 transition hover:text-white"
+          className="flex items-center gap-1.5 text-xs text-slate-400 transition hover:text-white"
         >
           {copied ? (
             <>
@@ -97,7 +100,7 @@ function CodeBlock({
           )}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 text-sm leading-relaxed text-zinc-300">
+      <pre className="overflow-x-auto p-4 text-sm leading-relaxed text-slate-200">
         <code>{code}</code>
       </pre>
     </div>
@@ -113,15 +116,15 @@ function Expandable({
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-zinc-800/50">
+    <div className="border-b border-slate-200/70">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-2 py-4 text-left text-sm font-medium text-white transition hover:text-violet-400"
+        className="flex w-full items-center gap-2 py-4 text-left text-sm font-medium text-slate-900 transition hover:text-purple-600"
       >
         {open ? (
-          <ChevronDown className="h-4 w-4 shrink-0 text-zinc-500" />
+          <ChevronDown className="h-4 w-4 shrink-0 text-slate-500" />
         ) : (
-          <ChevronRight className="h-4 w-4 shrink-0 text-zinc-500" />
+          <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
         )}
         {title}
       </button>
@@ -141,35 +144,16 @@ function ScreenshotPlaceholder({
 }) {
   return (
     <div id={id} className="mt-8">
-      <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50">
-        <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900 px-4 py-2">
-          <Camera className="h-4 w-4 text-zinc-500" />
-          <span className="text-xs text-zinc-500">
-            Screenshot: {screenshotPath}
-          </span>
-        </div>
-        <div className="relative aspect-video w-full bg-zinc-900/80">
-          {/*
-            PLAYWRIGHT SCREENSHOT PLACEHOLDER
-            Run: npx playwright test e2e/screenshots.spec.ts
-            Screenshot will be saved to: public/docs/{screenshotPath}
-            After capturing, replace this placeholder with an <img> tag.
-          */}
-          <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-8">
-            <Monitor className="h-12 w-12 text-zinc-700" />
-            <p className="text-center text-sm text-zinc-600">
-              Full-screen screenshot placeholder
-            </p>
-            <code className="rounded bg-zinc-800 px-2 py-1 text-xs text-violet-400">
-              public/docs/{screenshotPath}
-            </code>
-            <p className="mt-2 text-center text-xs text-zinc-700">
-              Capture with: npx playwright test e2e/screenshots.spec.ts
-            </p>
-          </div>
-        </div>
+      <div className="overflow-hidden rounded-xl border-2 border-purple-100 bg-white shadow-lg shadow-purple-900/5">
+        <Image
+          src={`/docs/${screenshotPath}`}
+          alt={caption}
+          width={1600}
+          height={900}
+          className="h-auto w-full"
+        />
       </div>
-      <p className="mt-2 text-center text-sm text-zinc-500">{caption}</p>
+      <p className="mt-3 text-center text-sm text-slate-500">{caption}</p>
     </div>
   );
 }
@@ -187,25 +171,25 @@ function YouTubeEmbed({
 
   return (
     <div className="mt-8">
-      <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50">
-        <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900 px-4 py-2">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+        <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-2">
           <Video className="h-4 w-4 text-red-500" />
-          <span className="text-xs text-zinc-400">{title}</span>
+          <span className="text-xs text-slate-600">{title}</span>
         </div>
         {isPlaceholder ? (
-          <div className="relative aspect-video w-full bg-zinc-900/80">
+          <div className="relative aspect-video w-full bg-slate-50">
             <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-8">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10">
                 <Play className="h-8 w-8 text-red-500" />
               </div>
-              <p className="text-center text-sm font-medium text-zinc-400">
+              <p className="text-center text-sm font-medium text-slate-600">
                 {title}
               </p>
-              <p className="max-w-md text-center text-xs text-zinc-600">
+              <p className="max-w-md text-center text-xs text-slate-400">
                 {description}
               </p>
-              <div className="mt-2 rounded-lg bg-zinc-800 px-3 py-1.5">
-                <code className="text-xs text-yellow-400">
+              <div className="mt-2 rounded-lg bg-slate-100 px-3 py-1.5">
+                <code className="text-xs text-amber-600">
                   TODO: Record and upload video, then replace videoId
                 </code>
               </div>
@@ -223,7 +207,7 @@ function YouTubeEmbed({
           </div>
         )}
       </div>
-      <p className="mt-2 text-center text-sm text-zinc-500">{description}</p>
+      <p className="mt-2 text-center text-sm text-slate-500">{description}</p>
     </div>
   );
 }
@@ -240,39 +224,39 @@ export default function DocsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen bg-white">
       <Header />
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-16">
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-purple-50/60" />
         <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-400 ring-1 ring-inset ring-violet-500/20">
+            <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-600 ring-1 ring-inset ring-purple-500/20">
               Documentation
             </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
               3Guide{" "}
-              <span className="text-violet-400">
+              <span className="text-purple-600">
                 SDK Installation &amp; Usage
               </span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-zinc-400">
+            <p className="mt-6 text-lg leading-8 text-slate-600">
               Complete guide to integrating 3Guide into your application.
-              Two complementary bundles — <strong className="text-violet-400">Full SDK</strong> for
+              Two complementary bundles — <strong className="text-purple-600">Full SDK</strong> for
               guides, chat & copilot, and{" "}
-              <strong className="text-cyan-400">Tracking SDK</strong> for
+              <strong className="text-purple-600">Tracking SDK</strong> for
               friction analytics & detection. Use one or both.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <Link href="https://dashboard.3guideai.com" target="_blank">
-                <Button className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
+                <Button className="bg-purple-600 text-white hover:bg-purple-500">
                   Get API Keys
                 </Button>
               </Link>
               <Button
                 variant="outline"
-                className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                className="border-slate-300 text-slate-600 hover:bg-slate-100"
                 onClick={() => scrollTo("getting-started")}
               >
                 Quick Start
@@ -283,7 +267,7 @@ export default function DocsPage() {
       </section>
 
       {/* Content */}
-      <section className="border-t border-zinc-800 py-12">
+      <section className="border-t border-slate-200 py-12">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
           <div className="flex gap-12">
             {/* Sidebar */}
@@ -295,8 +279,8 @@ export default function DocsPage() {
                     onClick={() => scrollTo(item.id)}
                     className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm transition ${
                       activeSection === item.id
-                        ? "bg-violet-500/10 font-medium text-violet-400"
-                        : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                        ? "bg-purple-100 font-medium text-purple-600"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     }`}
                   >
                     <item.icon className="h-4 w-4 shrink-0" />
@@ -311,54 +295,54 @@ export default function DocsPage() {
               {/* OVERVIEW */}
               {/* ============================================ */}
               <div id="overview" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">Overview</h2>
-                <p className="mt-4 text-lg text-zinc-400">
+                <h2 className="text-3xl font-bold text-slate-900">Overview</h2>
+                <p className="mt-4 text-lg text-slate-600">
                   3Guide is an AI-first digital adoption platform for B2B
                   SaaS. It ships as two complementary bundles: the{" "}
-                  <strong className="text-violet-400">Full SDK</strong>{" "}
-                  (<code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">guideai.js</code>)
+                  <strong className="text-purple-600">Full SDK</strong>{" "}
+                  (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai.js</code>)
                   for interactive guides, AI chat, browser copilot, and the
                   floating bubble; and the{" "}
-                  <strong className="text-cyan-400">Tracking SDK</strong>{" "}
-                  (<code className="rounded bg-zinc-800 px-1 text-xs text-cyan-400">guideai-tracking.js</code>)
+                  <strong className="text-purple-600">Tracking SDK</strong>{" "}
+                  (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai-tracking.js</code>)
                   for friction analytics, detection, surveys, announcements,
                   and session recording.
                 </p>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10">
-                      <Layers className="h-5 w-5 text-cyan-400" />
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100">
+                      <Layers className="h-5 w-5 text-purple-600" />
                     </div>
-                    <h3 className="mt-4 font-semibold text-white">
+                    <h3 className="mt-4 font-semibold text-slate-900">
                       In-App Guides
                     </h3>
-                    <p className="mt-2 text-sm text-zinc-400">
+                    <p className="mt-2 text-sm text-slate-600">
                       AI-generated interactive walkthroughs with 6-tier
                       fingerprinting that auto-heals when your UI changes.
                     </p>
                   </div>
-                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10">
-                      <MessageSquare className="h-5 w-5 text-violet-400" />
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100">
+                      <MessageSquare className="h-5 w-5 text-purple-600" />
                     </div>
-                    <h3 className="mt-4 font-semibold text-white">
+                    <h3 className="mt-4 font-semibold text-slate-900">
                       Browser Copilot
                     </h3>
-                    <p className="mt-2 text-sm text-zinc-400">
+                    <p className="mt-2 text-sm text-slate-600">
                       Always-on AI assistant powered by RAG and your
                       scanned knowledge base. Answers questions and walks
                       users through tasks.
                     </p>
                   </div>
-                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-pink-500/10">
-                      <BarChart3 className="h-5 w-5 text-pink-400" />
+                      <BarChart3 className="h-5 w-5 text-pink-600" />
                     </div>
-                    <h3 className="mt-4 font-semibold text-white">
+                    <h3 className="mt-4 font-semibold text-slate-900">
                       Friction Analytics
                     </h3>
-                    <p className="mt-2 text-sm text-zinc-400">
+                    <p className="mt-2 text-sm text-slate-600">
                       Detect rage clicks, dead clicks, and hesitation.
                       30+ auto-emitted events with PII stripping and
                       AES-256-GCM encryption.
@@ -380,40 +364,40 @@ export default function DocsPage() {
                   screenshotPath="architecture-overview.png"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Platform architecture
                 </h3>
-                <div className="mt-4 space-y-3 text-sm text-zinc-400">
+                <div className="mt-4 space-y-3 text-sm text-slate-600">
                   <p>
-                    <strong className="text-zinc-200">Full SDK</strong> (<code className="text-xs text-violet-400">guideai.js</code>) —
+                    <strong className="text-slate-700">Full SDK</strong> (<code className="text-xs text-purple-600">guideai.js</code>) —
                     Guides, AI chat, browser copilot, floating bubble,
                     segmentation, and deep UI analyzer. Handles guide playback,
                     recording, and LLM-powered walkthroughs.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">Tracking SDK</strong> (<code className="text-xs text-cyan-400">guideai-tracking.js</code>) —
+                    <strong className="text-slate-700">Tracking SDK</strong> (<code className="text-xs text-purple-600">guideai-tracking.js</code>) —
                     Friction analytics, all detection modules (rage clicks, dead
                     clicks, form tracking), help hints, announcements, NPS/CSAT
                     surveys, feedback, chips, and session recording. No bubble,
                     chat, guides, or copilot.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">Scanner CLI</strong> —
+                    <strong className="text-slate-700">Scanner CLI</strong> —
                     Analyzes your codebase to build a knowledge base of routes
                     and elements. Supports 8+ frameworks.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">Dashboard</strong> —
+                    <strong className="text-slate-700">Dashboard</strong> —
                     Admin UI for creating guides, viewing analytics, managing
                     settings, and accessing API keys.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">Chrome Extension</strong>{" "}
+                    <strong className="text-slate-700">Chrome Extension</strong>{" "}
                     — Visual guide builder with element picker and live
                     recording overlay.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">Backend</strong> —
+                    <strong className="text-slate-700">Backend</strong> —
                     FastAPI + PostgreSQL + Redis + Cloudflare Workers AI for
                     LLM-powered features.
                   </p>
@@ -424,38 +408,38 @@ export default function DocsPage() {
               {/* CHOOSE YOUR BUNDLE */}
               {/* ============================================ */}
               <div id="choose-bundle" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   Choose Your Bundle
                 </h2>
-                <p className="mt-4 text-lg text-zinc-400">
+                <p className="mt-4 text-lg text-slate-600">
                   3Guide ships two separate bundles. Pick the one that matches
                   your needs.
                 </p>
 
                 <div className="mt-8 grid gap-6 sm:grid-cols-2">
                   {/* Full SDK */}
-                  <div className="overflow-hidden rounded-xl border-2 border-violet-500/30 bg-zinc-900/50">
-                    <div className="flex items-center gap-3 border-b border-violet-500/20 bg-violet-500/5 px-6 py-4">
-                      <Package className="h-5 w-5 text-violet-400" />
+                  <div className="overflow-hidden rounded-xl border-2 border-purple-300 bg-slate-50">
+                    <div className="flex items-center gap-3 border-b border-purple-500/20 bg-purple-600/5 px-6 py-4">
+                      <Package className="h-5 w-5 text-purple-600" />
                       <div>
-                        <h3 className="font-semibold text-white">Full SDK</h3>
-                        <code className="text-xs text-violet-400">guideai.js</code>
+                        <h3 className="font-semibold text-slate-900">Full SDK</h3>
+                        <code className="text-xs text-purple-600">guideai.js</code>
                       </div>
-                      <span className="ml-auto rounded bg-violet-500/10 px-2 py-0.5 text-xs font-medium text-violet-400">
+                      <span className="ml-auto rounded bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-600">
                         Recommended
                       </span>
                     </div>
                     <div className="space-y-4 p-6">
-                      <p className="text-sm text-zinc-400">
+                      <p className="text-sm text-slate-600">
                         Interactive guides, AI chat, browser copilot, and the
                         floating bubble. For guide-based onboarding, copilot
                         assistance, and visual walkthroughs.
                       </p>
                       <div className="space-y-2">
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                           Includes
                         </h4>
-                        <ul className="space-y-1.5 text-sm text-zinc-300">
+                        <ul className="space-y-1.5 text-sm text-slate-600">
                           {[
                             "Interactive guide playback",
                             "AI browser copilot & chat",
@@ -467,17 +451,17 @@ export default function DocsPage() {
                             "NPS & CSAT surveys",
                           ].map((f) => (
                             <li key={f} className="flex items-center gap-2">
-                              <Check className="h-3.5 w-3.5 shrink-0 text-violet-400" />
+                              <Check className="h-3.5 w-3.5 shrink-0 text-purple-600" />
                               {f}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                           Not included
                         </h4>
-                        <ul className="space-y-1.5 text-sm text-zinc-500">
+                        <ul className="space-y-1.5 text-sm text-slate-500">
                           {[
                             "Rage / dead click detection",
                             "Form & scroll tracking",
@@ -487,7 +471,7 @@ export default function DocsPage() {
                             "Feedback prompts",
                           ].map((f) => (
                             <li key={f} className="flex items-center gap-2">
-                              <span className="text-zinc-600">-</span>
+                              <span className="text-slate-400">-</span>
                               {f}
                             </li>
                           ))}
@@ -505,27 +489,27 @@ export default function DocsPage() {
                   </div>
 
                   {/* Tracking SDK */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50">
-                    <div className="flex items-center gap-3 border-b border-zinc-800 bg-zinc-900/80 px-6 py-4">
-                      <Package className="h-5 w-5 text-cyan-400" />
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-6 py-4">
+                      <Package className="h-5 w-5 text-purple-600" />
                       <div>
-                        <h3 className="font-semibold text-white">Tracking SDK</h3>
-                        <code className="text-xs text-cyan-400">guideai-tracking.js</code>
+                        <h3 className="font-semibold text-slate-900">Tracking SDK</h3>
+                        <code className="text-xs text-purple-600">guideai-tracking.js</code>
                       </div>
-                      <span className="ml-auto rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-medium text-cyan-400">
+                      <span className="ml-auto rounded bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-600">
                         Lightweight
                       </span>
                     </div>
                     <div className="space-y-4 p-6">
-                      <p className="text-sm text-zinc-400">
+                      <p className="text-sm text-slate-600">
                         Analytics-only bundle. All tracking, detection, and
                         engagement UI without the guide/chat/copilot overhead.
                       </p>
                       <div className="space-y-2">
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                           Includes
                         </h4>
-                        <ul className="space-y-1.5 text-sm text-zinc-300">
+                        <ul className="space-y-1.5 text-sm text-slate-600">
                           {[
                             "Full event tracking & detection",
                             "Rage click / dead click detection",
@@ -537,17 +521,17 @@ export default function DocsPage() {
                             "Feature flag support",
                           ].map((f) => (
                             <li key={f} className="flex items-center gap-2">
-                              <Check className="h-3.5 w-3.5 shrink-0 text-cyan-400" />
+                              <Check className="h-3.5 w-3.5 shrink-0 text-purple-600" />
                               {f}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                           Not included
                         </h4>
-                        <ul className="space-y-1.5 text-sm text-zinc-500">
+                        <ul className="space-y-1.5 text-sm text-slate-500">
                           {[
                             "Floating bubble",
                             "AI chat & copilot",
@@ -557,7 +541,7 @@ export default function DocsPage() {
                             "Support chat",
                           ].map((f) => (
                             <li key={f} className="flex items-center gap-2">
-                              <span className="text-zinc-600">-</span>
+                              <span className="text-slate-400">-</span>
                               {f}
                             </li>
                           ))}
@@ -575,53 +559,53 @@ export default function DocsPage() {
                   </div>
                 </div>
 
-                <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-                  <h3 className="font-semibold text-white">
+                <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 className="font-semibold text-slate-900">
                     Which bundle should I use?
                   </h3>
-                  <div className="mt-4 space-y-3 text-sm text-zinc-400">
+                  <div className="mt-4 space-y-3 text-sm text-slate-600">
                     <p>
-                      <strong className="text-violet-400">Use the Full SDK</strong> if
+                      <strong className="text-purple-600">Use the Full SDK</strong> if
                       you want interactive guides, AI chat, the floating bubble,
                       or browser copilot. It focuses on guide-based onboarding
-                      and AI assistance — it does <strong className="text-zinc-200">not</strong> include
+                      and AI assistance — it does <strong className="text-slate-700">not</strong> include
                       friction analytics or detection modules.
                     </p>
                     <p>
-                      <strong className="text-cyan-400">Use the Tracking SDK</strong> if
+                      <strong className="text-purple-600">Use the Tracking SDK</strong> if
                       you need friction analytics, rage/dead click detection,
                       form tracking, error monitoring, session recording,
                       surveys, and announcements — without any guide overlay or
-                      chat. Guide-related methods (<code className="rounded bg-zinc-800 px-1 text-xs text-zinc-300">showGuideById</code>,{" "}
-                      <code className="rounded bg-zinc-800 px-1 text-xs text-zinc-300">dismissGuide</code>,{" "}
-                      <code className="rounded bg-zinc-800 px-1 text-xs text-zinc-300">startRecording</code>, etc.)
+                      chat. Guide-related methods (<code className="rounded bg-slate-100 px-1 text-xs text-slate-600">showGuideById</code>,{" "}
+                      <code className="rounded bg-slate-100 px-1 text-xs text-slate-600">dismissGuide</code>,{" "}
+                      <code className="rounded bg-slate-100 px-1 text-xs text-slate-600">startRecording</code>, etc.)
                       are available as no-ops so you can switch bundles without
                       changing your code.
                     </p>
                     <p>
-                      <strong className="text-zinc-200">Use both together</strong> if
+                      <strong className="text-slate-700">Use both together</strong> if
                       you want the full experience — add both script tags and
                       get guides + copilot + analytics + detection.
                       Both bundles expose{" "}
-                      <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">window.guideai</code>{" "}
+                      <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">window.guideai</code>{" "}
                       and use the same stub loader pattern.
                     </p>
                   </div>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Bundle comparison
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Feature</th>
-                        <th className="px-4 py-3 text-center text-sm font-medium text-violet-400">Full SDK</th>
-                        <th className="px-4 py-3 text-center text-sm font-medium text-cyan-400">Tracking SDK</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Feature</th>
+                        <th className="px-4 py-3 text-center text-sm font-medium text-purple-600">Full SDK</th>
+                        <th className="px-4 py-3 text-center text-sm font-medium text-purple-600">Tracking SDK</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         ["Guide playback", true, false],
                         ["AI chat & copilot", true, false],
@@ -645,19 +629,19 @@ export default function DocsPage() {
                         ["Feature flags", false, true],
                       ].map(([feature, full, tracking]) => (
                         <tr key={feature as string}>
-                          <td className="px-4 py-2.5 text-sm text-zinc-400">{feature as string}</td>
+                          <td className="px-4 py-2.5 text-sm text-slate-600">{feature as string}</td>
                           <td className="px-4 py-2.5 text-center text-sm">
                             {full ? (
-                              <Check className="mx-auto h-4 w-4 text-violet-400" />
+                              <Check className="mx-auto h-4 w-4 text-purple-600" />
                             ) : (
-                              <span className="text-zinc-600">—</span>
+                              <span className="text-slate-400">—</span>
                             )}
                           </td>
                           <td className="px-4 py-2.5 text-center text-sm">
                             {tracking ? (
-                              <Check className="mx-auto h-4 w-4 text-cyan-400" />
+                              <Check className="mx-auto h-4 w-4 text-purple-600" />
                             ) : (
-                              <span className="text-zinc-600">—</span>
+                              <span className="text-slate-400">—</span>
                             )}
                           </td>
                         </tr>
@@ -671,10 +655,10 @@ export default function DocsPage() {
               {/* GETTING STARTED */}
               {/* ============================================ */}
               <div id="getting-started" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   1) Install the SDK on your website
                 </h2>
-                <p className="mt-4 text-lg text-zinc-400">
+                <p className="mt-4 text-lg text-slate-600">
                   Get 3Guide running on your site in three steps.
                 </p>
 
@@ -688,14 +672,14 @@ export default function DocsPage() {
                 <div className="mt-10 space-y-10">
                   {/* Step 1 */}
                   <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-slate-900">
                       1
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white">
+                      <h3 className="text-lg font-semibold text-slate-900">
                         Scan your project
                       </h3>
-                      <p className="mt-1 text-zinc-400">
+                      <p className="mt-1 text-slate-600">
                         Run the scanner against your codebase to build your
                         knowledge base. The scanner auto-detects your framework.
                       </p>
@@ -713,22 +697,22 @@ export default function DocsPage() {
 
                   {/* Step 2 */}
                   <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-slate-900">
                       2
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white">
+                      <h3 className="text-lg font-semibold text-slate-900">
                         Add the CDN script to your site
                       </h3>
-                      <p className="mt-1 text-zinc-400">
+                      <p className="mt-1 text-slate-600">
                         Paste one of these script tags before{" "}
-                        <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
+                        <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">
                           {"</body>"}
                         </code>{" "}
                         in your HTML. No npm install or build step required.
                       </p>
-                      <p className="mt-2 text-sm text-zinc-500">
-                        <strong className="text-violet-400">Full SDK</strong> — guides, chat, copilot, and bubble:
+                      <p className="mt-2 text-sm text-slate-500">
+                        <strong className="text-purple-600">Full SDK</strong> — guides, chat, copilot, and bubble:
                       </p>
                       <CodeBlock
                         code={`<script
@@ -738,8 +722,8 @@ export default function DocsPage() {
 ></script>`}
                         language="html"
                       />
-                      <p className="mt-4 text-sm text-zinc-500">
-                        <strong className="text-cyan-400">Tracking SDK</strong> — friction analytics, detection, surveys, and announcements:
+                      <p className="mt-4 text-sm text-slate-500">
+                        <strong className="text-purple-600">Tracking SDK</strong> — friction analytics, detection, surveys, and announcements:
                       </p>
                       <CodeBlock
                         code={`<script
@@ -754,14 +738,14 @@ export default function DocsPage() {
 
                   {/* Step 3 */}
                   <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-slate-900">
                       3
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white">
+                      <h3 className="text-lg font-semibold text-slate-900">
                         Identify your users (optional)
                       </h3>
-                      <p className="mt-1 text-zinc-400">
+                      <p className="mt-1 text-slate-600">
                         Pass visitor and account info so guides can be
                         personalized and targeted.
                       </p>
@@ -787,11 +771,11 @@ export default function DocsPage() {
                   </div>
                 </div>
 
-                <p className="mt-8 text-zinc-400">
-                  That&apos;s it. With the <strong className="text-violet-400">Full SDK</strong>,
+                <p className="mt-8 text-slate-600">
+                  That&apos;s it. With the <strong className="text-purple-600">Full SDK</strong>,
                   users will see the floating help bubble, receive in-app
                   guides, and have access to AI chat. With the{" "}
-                  <strong className="text-cyan-400">Tracking SDK</strong>,
+                  <strong className="text-purple-600">Tracking SDK</strong>,
                   friction analytics, detection, surveys, and announcements
                   start working immediately. Use both together for the
                   complete experience.
@@ -808,21 +792,21 @@ export default function DocsPage() {
               {/* ADD THE CDN */}
               {/* ============================================ */}
               <div id="add-cdn" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">Add the CDN</h2>
-                <p className="mt-4 text-zinc-400">
+                <h2 className="text-3xl font-bold text-slate-900">Add the CDN</h2>
+                <p className="mt-4 text-slate-600">
                   Both bundles are delivered via CDN as IIFE scripts. No npm
                   install or build step required. Just two required attributes
                   on the script tag.
                 </p>
 
                 {/* Basic */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Basic script tag
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Choose the bundle that fits your use case.
                 </p>
-                <p className="mt-3 text-sm font-medium text-violet-400">
+                <p className="mt-3 text-sm font-medium text-purple-600">
                   Full SDK (guides + chat + copilot + bubble):
                 </p>
                 <CodeBlock
@@ -833,7 +817,7 @@ export default function DocsPage() {
 ></script>`}
                   language="html"
                 />
-                <p className="mt-4 text-sm font-medium text-cyan-400">
+                <p className="mt-4 text-sm font-medium text-purple-600">
                   Tracking SDK (analytics-only):
                 </p>
                 <CodeBlock
@@ -846,19 +830,19 @@ export default function DocsPage() {
                 />
 
                 {/* Async loader */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Async stub loader (non-blocking)
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Use this snippet to load either bundle without blocking page render.
                   It creates{" "}
-                  <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
+                  <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">
                     window.guideai
                   </code>{" "}
                   immediately and queues method calls until the full script
                   loads. Both bundles use the same stub pattern.
                 </p>
-                <p className="mt-3 text-sm font-medium text-violet-400">
+                <p className="mt-3 text-sm font-medium text-purple-600">
                   Full SDK async loader:
                 </p>
                 <CodeBlock
@@ -900,7 +884,7 @@ export default function DocsPage() {
 </script>`}
                   language="html"
                 />
-                <p className="mt-4 text-sm font-medium text-cyan-400">
+                <p className="mt-4 text-sm font-medium text-purple-600">
                   Tracking SDK async loader:
                 </p>
                 <CodeBlock
@@ -942,13 +926,13 @@ export default function DocsPage() {
                 />
 
                 {/* Full example — Full SDK */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Full SDK — all options
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     guideai.js
                   </span>
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The Full SDK script tag with every available attribute.
                 </p>
                 <CodeBlock
@@ -976,13 +960,13 @@ export default function DocsPage() {
                 />
 
                 {/* Full example — Tracking SDK */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Tracking SDK — all options
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     guideai-tracking.js
                   </span>
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The Tracking SDK script tag with every available attribute.
                 </p>
                 <CodeBlock
@@ -1015,10 +999,10 @@ export default function DocsPage() {
                 />
 
                 {/* SPA */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Single-page apps (React, Vue, Angular)
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The SDK auto-detects route changes in SPAs via the History
                   API and MutationObserver. If you use custom routing you can
                   trigger page loads manually:
@@ -1030,12 +1014,12 @@ window.guideai.pageLoad("/dashboard/settings");`}
                 />
 
                 {/* Next.js example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Next.js example
                 </h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  Swap <code className="text-xs text-violet-400">guideai.js</code> for{" "}
-                  <code className="text-xs text-cyan-400">guideai-tracking.js</code> if
+                <p className="mt-2 text-sm text-slate-500">
+                  Swap <code className="text-xs text-purple-600">guideai.js</code> for{" "}
+                  <code className="text-xs text-purple-600">guideai-tracking.js</code> if
                   you only need tracking.
                 </p>
                 <CodeBlock
@@ -1062,7 +1046,7 @@ export default function RootLayout({ children }) {
                 />
 
                 {/* React SPA example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   React (Vite / CRA) example
                 </h3>
                 <CodeBlock
@@ -1086,7 +1070,7 @@ export default function RootLayout({ children }) {
                 />
 
                 {/* Vue example */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Vue / Nuxt example
                 </h3>
                 <CodeBlock
@@ -1109,7 +1093,7 @@ export default defineNuxtConfig({
                 />
 
                 {/* Plain HTML */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Plain HTML example
                 </h3>
                 <CodeBlock
@@ -1144,9 +1128,9 @@ export default defineNuxtConfig({
               {/* SCANNER CLI */}
               {/* ============================================ */}
               <div id="scanner" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">Scanner CLI</h2>
-                <p className="mt-4 text-zinc-400">
-                  The scanner (<code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">@guideai/scanner</code>)
+                <h2 className="text-3xl font-bold text-slate-900">Scanner CLI</h2>
+                <p className="mt-4 text-slate-600">
+                  The scanner (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">@guideai/scanner</code>)
                   analyzes your codebase and uploads a knowledge base to
                   3Guide. It parses your JSX/TSX with Babel, extracts routes
                   and interactive elements, and generates 6-tier fingerprints.
@@ -1159,7 +1143,7 @@ export default defineNuxtConfig({
                   description="Learn how to scan your codebase, understand the output, and use dry-run mode for testing."
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Install & run
                 </h3>
                 <CodeBlock
@@ -1172,28 +1156,28 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                   language="bash"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   CLI options
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           Flag
                         </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           Required
                         </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           Default
                         </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           What it does
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         [
                           "--key",
@@ -1228,17 +1212,17 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                       ].map(([flag, req, def, desc]) => (
                         <tr key={flag}>
                           <td className="px-4 py-3">
-                            <code className="text-xs text-violet-400">
+                            <code className="text-xs text-purple-600">
                               {flag}
                             </code>
                           </td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">
+                          <td className="px-4 py-3 text-sm text-slate-600">
                             {req}
                           </td>
                           <td className="px-4 py-3">
-                            <code className="text-xs text-zinc-500">{def}</code>
+                            <code className="text-xs text-slate-500">{def}</code>
                           </td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">
+                          <td className="px-4 py-3 text-sm text-slate-600">
                             {desc}
                           </td>
                         </tr>
@@ -1247,10 +1231,10 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                   </table>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Supported frameworks
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The scanner auto-detects your framework from package.json and
                   directory structure. No config needed.
                 </p>
@@ -1267,14 +1251,14 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                   ].map((fw) => (
                     <div
                       key={fw}
-                      className="rounded-lg bg-zinc-900 px-4 py-3 text-center text-sm text-zinc-300"
+                      className="rounded-lg bg-slate-50 px-4 py-3 text-center text-sm text-slate-600"
                     >
                       {fw}
                     </div>
                   ))}
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Dry run (preview without uploading)
                 </h3>
                 <CodeBlock
@@ -1288,7 +1272,7 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                   screenshotPath="scanner-dry-run-output.png"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Scan output structure
                 </h3>
                 <CodeBlock
@@ -1320,7 +1304,7 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
                   language="json"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Vite plugin (auto-scan on build)
                 </h3>
                 <CodeBlock
@@ -1337,7 +1321,7 @@ export default defineConfig({
                   language="typescript"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Webpack plugin
                 </h3>
                 <CodeBlock
@@ -1359,8 +1343,8 @@ module.exports = {
               {/* DASHBOARD */}
               {/* ============================================ */}
               <div id="dashboard" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">Dashboard</h2>
-                <p className="mt-4 text-zinc-400">
+                <h2 className="text-3xl font-bold text-slate-900">Dashboard</h2>
+                <p className="mt-4 text-slate-600">
                   The 3Guide dashboard is where you manage guides, view
                   analytics, configure settings, and access your API keys.
                 </p>
@@ -1371,23 +1355,23 @@ module.exports = {
                   description="Complete tour of the 3Guide dashboard — manage guides, view analytics, configure settings, and access API keys."
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Getting your API keys
                 </h3>
-                <p className="mt-2 text-zinc-400">
-                  Navigate to <strong className="text-zinc-200">Settings → API Keys</strong> to find:
+                <p className="mt-2 text-slate-600">
+                  Navigate to <strong className="text-slate-700">Settings → API Keys</strong> to find:
                 </p>
-                <ul className="mt-3 space-y-2 text-sm text-zinc-400">
+                <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li>
-                    <code className="rounded bg-zinc-800 px-1 text-xs text-cyan-400">site_*</code>{" "}
+                    <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">site_*</code>{" "}
                     — Your site ID (used in the script tag)
                   </li>
                   <li>
-                    <code className="rounded bg-zinc-800 px-1 text-xs text-cyan-400">pk_live_*</code>{" "}
+                    <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">pk_live_*</code>{" "}
                     — Public token (safe for client-side, used in script tag)
                   </li>
                   <li>
-                    <code className="rounded bg-zinc-800 px-1 text-xs text-cyan-400">sk_live_*</code>{" "}
+                    <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">sk_live_*</code>{" "}
                     — Secret key (server-side only, used for Scanner CLI)
                   </li>
                 </ul>
@@ -1398,10 +1382,10 @@ module.exports = {
                   screenshotPath="dashboard-api-keys.png"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Managing guides
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The Guides section lets you create, edit, publish, and
                   archive guides. You can set targeting rules, audience
                   segments, and trigger conditions (manual, auto, URL match, element click).
@@ -1413,10 +1397,10 @@ module.exports = {
                   screenshotPath="dashboard-guides-list.png"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Viewing analytics
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The Analytics section shows guide completion rates, friction
                   points, funnel analysis, and session recordings.
                 </p>
@@ -1432,12 +1416,12 @@ module.exports = {
               {/* CONFIGURATION */}
               {/* ============================================ */}
               <div id="configuration" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   2) Public API (what you can call)
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   Both bundles are configured via{" "}
-                  <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
+                  <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">
                     data-*
                   </code>{" "}
                   attributes on the script tag. Each bundle only reads the
@@ -1446,49 +1430,49 @@ module.exports = {
                 </p>
 
                 {/* Required */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Required attributes
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           Attribute
                         </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           Type
                         </th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">
                           What it does
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
                         <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
+                          <code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">
                             data-site-id
                           </code>
                         </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
+                        <td className="px-4 py-3 text-sm text-slate-500">
                           string
                         </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
+                        <td className="px-4 py-3 text-sm text-slate-600">
                           Your site/workspace identifier from the dashboard.
                         </td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3">
-                          <code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
+                          <code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">
                             data-token
                           </code>
                         </td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">
+                        <td className="px-4 py-3 text-sm text-slate-500">
                           string
                         </td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">
-                          Public API token (starts with <code className="text-xs text-zinc-300">pk_live_</code>).
+                        <td className="px-4 py-3 text-sm text-slate-600">
+                          Public API token (starts with <code className="text-xs text-slate-600">pk_live_</code>).
                           Also used to derive the AES-256-GCM encryption key.
                         </td>
                       </tr>
@@ -1497,267 +1481,267 @@ module.exports = {
                 </div>
 
                 {/* Endpoints */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Endpoints
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Attribute</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Default</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">What it does</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Attribute</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Default</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">What it does</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-api-url</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">https://cdn.3guideai.com</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Backend API URL (override for self-hosted).</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-api-url</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">https://cdn.3guideai.com</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Backend API URL (override for self-hosted).</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-cdn-url</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">https://cdn.3guideai.com</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">CDN base URL for knowledge base and asset loading.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-cdn-url</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">https://cdn.3guideai.com</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">CDN base URL for knowledge base and asset loading.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
                 {/* Bubble */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Bubble (floating button)
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Full SDK only
                   </span>
                 </h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  These attributes only apply to the Full SDK (<code className="text-xs text-violet-400">guideai.js</code>).
+                <p className="mt-2 text-sm text-slate-500">
+                  These attributes only apply to the Full SDK (<code className="text-xs text-purple-600">guideai.js</code>).
                   The Tracking SDK does not render a bubble.
                 </p>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Attribute</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Default</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Options</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">What it does</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Attribute</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Default</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Options</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">What it does</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-bubble-enabled</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">true</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">true / false</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Show or hide the floating bubble.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-bubble-enabled</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">true</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">true / false</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Show or hide the floating bubble.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-bubble-position</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">bottom-right</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">bottom-right, bottom-left</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Which corner the bubble sits in.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-bubble-position</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">bottom-right</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">bottom-right, bottom-left</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Which corner the bubble sits in.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-bubble-icon</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">robot</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">robot, ant, owl, fox, cat, bee, spark</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">The mascot icon on the bubble.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-bubble-icon</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">robot</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">robot, ant, owl, fox, cat, bee, spark</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">The mascot icon on the bubble.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-bubble-image</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">—</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">URL (GIF/PNG)</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Custom image that overrides the icon.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-bubble-image</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">—</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">URL (GIF/PNG)</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Custom image that overrides the icon.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-bubble-mode</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">drift</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">drift, crawl</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Animation style. Drift = smooth float, Crawl = edge walking.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-bubble-mode</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">drift</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">drift, crawl</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Animation style. Drift = smooth float, Crawl = edge walking.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-bubble-label</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">&quot;&quot;</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">string</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Optional label text next to the bubble.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-bubble-label</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">&quot;&quot;</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">string</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Optional label text next to the bubble.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-widget-mode</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">guide</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-500">guide, support, combined</td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Controls bubble behavior: AI chat, live support, or both.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-widget-mode</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">guide</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-500">guide, support, combined</td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Controls bubble behavior: AI chat, live support, or both.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
                 {/* Guides */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Guides
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Full SDK only
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Attribute</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Default</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">What it does</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Attribute</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Default</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">What it does</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-guides-enabled</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">true</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Turn guide playback on or off.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-guides-enabled</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">true</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Turn guide playback on or off.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-auto-advance-on-target-click</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">true</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Auto-advance when user clicks the highlighted element.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-auto-advance-on-target-click</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">true</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Auto-advance when user clicks the highlighted element.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-feedback-auto-prompt</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">true</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Ask for feedback after guide completion.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-feedback-auto-prompt</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">true</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Ask for feedback after guide completion.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-feedback-prompt-delay-ms</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">300000</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Delay before showing feedback prompt (ms).</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-feedback-prompt-delay-ms</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">300000</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Delay before showing feedback prompt (ms).</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-chip-dismiss-seconds</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">300</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">How long &quot;Continue your guide&quot; chips stay visible.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-chip-dismiss-seconds</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">300</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">How long &quot;Continue your guide&quot; chips stay visible.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
                 {/* Analytics & Session */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Analytics & session
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Attribute</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Default</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">What it does</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Attribute</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Default</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">What it does</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-recording</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">false</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Enable session recording for replay.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-recording</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">false</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Enable session recording for replay.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-idle-timeout</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">20000</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Inactivity threshold before idle (ms).</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-idle-timeout</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">20000</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Inactivity threshold before idle (ms).</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-session-timeout-ms</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">1800000</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Session rotation timeout (default 30 min).</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-session-timeout-ms</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">1800000</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Session rotation timeout (default 30 min).</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-batch-size</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">50</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Events to batch before flushing.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-batch-size</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">50</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Events to batch before flushing.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-batch-interval-ms</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">30000</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Flush interval (ms).</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-batch-interval-ms</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">30000</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Flush interval (ms).</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-geolocation</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">off</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Geo tracking: &quot;off&quot;, &quot;granted-only&quot;, &quot;prompt&quot;.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-geolocation</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">off</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Geo tracking: &quot;off&quot;, &quot;granted-only&quot;, &quot;prompt&quot;.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
                 {/* Theme */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Theming
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Attribute</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">What it does</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Attribute</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">What it does</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-theme-primary</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Primary accent color for buttons & highlights.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-theme-primary</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Primary accent color for buttons & highlights.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-theme-background</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Background color for tooltips & panels.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-theme-background</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Background color for tooltips & panels.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-theme-text</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Text color in guide content.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-theme-text</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Text color in guide content.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-theme-font</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Font family for guide content.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-theme-font</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Font family for guide content.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
                 {/* Announcements */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Announcements
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Attribute</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Default</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">What it does</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Attribute</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Default</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">What it does</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-announcement-surface</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">modal</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Display mode: modal, banner, drawer.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-announcement-surface</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">modal</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Display mode: modal, banner, drawer.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-announcement-frequency</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">once</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">once, once_per_session, once_per_day, every_visit.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-announcement-frequency</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">once</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">once, once_per_session, once_per_day, every_visit.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-announcement-display-mode</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">auto</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">beacon (shows pulsing dot), auto (shows immediately), banner.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-announcement-display-mode</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">auto</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">beacon (shows pulsing dot), auto (shows immediately), banner.</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-3"><code className="rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">data-announcement-auto-show-delay-ms</code></td>
-                        <td className="px-4 py-3"><code className="text-xs text-zinc-400">500</code></td>
-                        <td className="px-4 py-3 text-sm text-zinc-400">Delay before auto-showing announcements.</td>
+                        <td className="px-4 py-3"><code className="rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">data-announcement-auto-show-delay-ms</code></td>
+                        <td className="px-4 py-3"><code className="text-xs text-slate-600">500</code></td>
+                        <td className="px-4 py-3 text-sm text-slate-600">Delay before auto-showing announcements.</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1774,26 +1758,26 @@ module.exports = {
               {/* API REFERENCE */}
               {/* ============================================ */}
               <div id="api-reference" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   API Reference
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   Both bundles expose{" "}
-                  <code className="rounded bg-zinc-800 px-1.5 text-sm text-violet-400">
+                  <code className="rounded bg-slate-100 px-1.5 text-sm text-purple-600">
                     window.guideai
                   </code>
                   . Each bundle has its own set of methods. Methods tagged{" "}
-                  <span className="inline-flex items-center rounded bg-violet-500/10 px-1.5 py-0.5 text-xs text-violet-400">
+                  <span className="inline-flex items-center rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">
                     Full SDK
                   </span>{" "}
-                  are only functional in <code className="text-xs text-violet-400">guideai.js</code>.
+                  are only functional in <code className="text-xs text-purple-600">guideai.js</code>.
                   Methods tagged{" "}
-                  <span className="inline-flex items-center rounded bg-cyan-500/10 px-1.5 py-0.5 text-xs text-cyan-400">
+                  <span className="inline-flex items-center rounded bg-purple-100 px-1.5 py-0.5 text-xs text-purple-600">
                     Tracking SDK
                   </span>{" "}
-                  are only functional in <code className="text-xs text-cyan-400">guideai-tracking.js</code>.
+                  are only functional in <code className="text-xs text-purple-600">guideai-tracking.js</code>.
                   Methods tagged{" "}
-                  <span className="inline-flex items-center rounded bg-green-500/10 px-1.5 py-0.5 text-xs text-green-400">
+                  <span className="inline-flex items-center rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-600">
                     Both
                   </span>{" "}
                   work in either bundle. Guide-related methods exist as no-ops
@@ -1808,15 +1792,15 @@ module.exports = {
                 />
 
                 {/* Shared methods (both bundles) */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Shared methods
-                  <span className="ml-3 inline-flex items-center rounded bg-green-500/10 px-2 py-0.5 text-xs font-normal text-green-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-emerald-100 px-2 py-0.5 text-xs font-normal text-emerald-600">
                     Both bundles
                   </span>
                 </h3>
-                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5">
                   <Expandable title="initialize(options) — Identify visitor & account">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Pass visitor and account data for targeting and
                       personalization.
                     </p>
@@ -1825,7 +1809,7 @@ module.exports = {
                       code={`guideai.track("signup_completed", { plan: "pro" });
 guideai.trackFeature("settings.saved", "Saved settings", { area: "billing" });`}
                     />
-                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600">
                       <li>
                         <code>track(eventType, properties?)</code>: If{" "}
                         <code>eventType</code> is a known type, it is sent
@@ -1864,7 +1848,6 @@ guideai.initialize({
     // Any custom fields...
   },
 });`}
-                      language="javascript"
                     />
                   </Expandable>
 
@@ -1876,7 +1859,7 @@ guideai.initialize({
                   </Expandable>
 
                   <Expandable title="updateOptions(options) — Update visitor/account mid-session">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Update data without reinitializing the SDK.
                     </p>
                     <CodeBlock
@@ -1884,7 +1867,7 @@ guideai.initialize({
   visitor: { planLevel: "pro", role: "manager" },
 });`}
                     />
-                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600">
                       <li>
                         <code>identify(userId)</code> stores a{" "}
                         <code>user_id</code> for subsequent events.
@@ -1907,7 +1890,7 @@ guideai.initialize({
                       code={`await guideai.showGuideById("guide_id_here", 0);
 await guideai.dismissGuide();`}
                     />
-                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-300">
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600">
                       <li>
                         <code>validateGuideById(guideId)</code> checks
                         existence/playability.
@@ -1934,7 +1917,7 @@ const off = guideai.on("player-ended", (detail) => console.log(detail));`}
                   </Expandable>
 
                   <Expandable title="pageLoad(route?) — Manual page view for SPAs">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Trigger a page_view event manually. Useful for custom routers
                       where the SDK can&apos;t auto-detect navigation.
                     </p>
@@ -1945,7 +1928,7 @@ const off = guideai.on("player-ended", (detail) => console.log(detail));`}
                   </Expandable>
 
                   <Expandable title="on(event, handler) — Subscribe to SDK events">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Returns an unsubscribe function. Works in both bundles.
                     </p>
                     <CodeBlock
@@ -1973,16 +1956,16 @@ window.guideai.destroy();`}
                 </div>
 
                 {/* Tracking SDK methods */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Tracking & detection
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  These methods are functional in the Tracking SDK (<code className="text-xs text-cyan-400">guideai-tracking.js</code>).
+                <p className="mt-2 text-sm text-slate-500">
+                  These methods are functional in the Tracking SDK (<code className="text-xs text-purple-600">guideai-tracking.js</code>).
                 </p>
-                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5">
                   <Expandable title="track(eventType, properties?) — Custom event tracking">
                     <CodeBlock
                       code={`window.guideai.track("upgrade_cta_clicked", {
@@ -2004,7 +1987,7 @@ window.guideai.destroy();`}
                   </Expandable>
 
                   <Expandable title="markFeature(feature) — Mark feature as used">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Flags a product feature as used for audience targeting
                       and feature flag evaluation.
                     </p>
@@ -2016,12 +1999,12 @@ window.guideai.destroy();`}
                 </div>
 
                 {/* Surveys */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Surveys
                 </h3>
-                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5">
                   <Expandable title="showNPSSurvey(context?) — Show an NPS survey">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Trigger a Net Promoter Score survey programmatically.
                       Available in both bundles.
                     </p>
@@ -2032,7 +2015,7 @@ window.guideai.destroy();`}
                   </Expandable>
 
                   <Expandable title="showCSATSurvey(context?) — Show a CSAT survey">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Trigger a Customer Satisfaction survey. Available in both bundles.
                     </p>
                     <CodeBlock
@@ -2043,20 +2026,20 @@ window.guideai.destroy();`}
                 </div>
 
                 {/* Guide Control */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Guide control
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Full SDK
                   </span>
                 </h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  These methods are functional in the Full SDK (<code className="text-xs text-violet-400">guideai.js</code>).
+                <p className="mt-2 text-sm text-slate-500">
+                  These methods are functional in the Full SDK (<code className="text-xs text-purple-600">guideai.js</code>).
                   In the Tracking SDK, they exist as no-ops
-                  (e.g., <code className="text-xs text-zinc-400">validateGuideById</code> returns{" "}
-                  <code className="text-xs text-zinc-400">{`{valid: false, reason: "tracking_only"}`}</code>)
+                  (e.g., <code className="text-xs text-slate-600">validateGuideById</code> returns{" "}
+                  <code className="text-xs text-slate-600">{`{valid: false, reason: "tracking_only"}`}</code>)
                   so you can share code between bundles.
                 </p>
-                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5">
                   <Expandable title="showGuideById(guideId, stepIndex?) — Force-show a guide">
                     <CodeBlock
                       code={`// Start from beginning
@@ -2085,15 +2068,15 @@ await window.guideai.showGuideById("guide_onboarding", 2);`}
                 </div>
 
                 {/* Recording */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Guide recording (authoring)
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Full SDK
                   </span>
                 </h3>
-                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5">
                   <Expandable title="startRecording() / stopRecording() / saveGuide()">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Record user interactions to create a new guide
                       programmatically.
                     </p>
@@ -2117,15 +2100,15 @@ window.guideai.cancelRecording();`}
                 </div>
 
                 {/* Common patterns */}
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Common patterns
                 </h3>
 
-                <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-5">
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5">
                   <Expandable title="Identify on login — works with both bundles">
-                    <p className="text-sm text-zinc-400">
-                      <code className="text-xs text-green-400">initialize()</code> and{" "}
-                      <code className="text-xs text-green-400">clearSession()</code> are
+                    <p className="text-sm text-slate-600">
+                      <code className="text-xs text-emerald-600">initialize()</code> and{" "}
+                      <code className="text-xs text-emerald-600">clearSession()</code> are
                       shared methods — this pattern works with either bundle.
                     </p>
                     <CodeBlock
@@ -2157,8 +2140,8 @@ function handleLogout() {
                   </Expandable>
 
                   <Expandable title="Trigger a guide from a button click (Full SDK)">
-                    <p className="text-sm text-zinc-400">
-                      Guide methods require the Full SDK (<code className="text-xs text-violet-400">guideai.js</code>).
+                    <p className="text-sm text-slate-600">
+                      Guide methods require the Full SDK (<code className="text-xs text-purple-600">guideai.js</code>).
                     </p>
                     <CodeBlock
                       code={`// Requires guideai.js (Full SDK)
@@ -2177,10 +2160,10 @@ function HelpButton() {
                   </Expandable>
 
                   <Expandable title="Track a conversion event (Tracking SDK)">
-                    <p className="text-sm text-zinc-400">
-                      <code className="text-xs text-cyan-400">track()</code> and{" "}
-                      <code className="text-xs text-cyan-400">trackFeature()</code> require
-                      the Tracking SDK (<code className="text-xs text-cyan-400">guideai-tracking.js</code>).
+                    <p className="text-sm text-slate-600">
+                      <code className="text-xs text-purple-600">track()</code> and{" "}
+                      <code className="text-xs text-purple-600">trackFeature()</code> require
+                      the Tracking SDK (<code className="text-xs text-purple-600">guideai-tracking.js</code>).
                     </p>
                     <CodeBlock
                       code={`// Requires guideai-tracking.js (Tracking SDK)
@@ -2198,10 +2181,10 @@ function handlePurchase(cart) {
                   </Expandable>
 
                   <Expandable title="Use both bundles together">
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-slate-600">
                       Add both script tags to get guides + copilot + full analytics.
                       Both bundles share the same{" "}
-                      <code className="text-xs text-violet-400">window.guideai</code> namespace.
+                      <code className="text-xs text-purple-600">window.guideai</code> namespace.
                     </p>
                     <CodeBlock
                       code={`<!-- Full SDK for guides, chat, copilot, bubble -->
@@ -2231,34 +2214,34 @@ function handlePurchase(cart) {
               {/* EVENTS */}
               {/* ============================================ */}
               <div id="events" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   Event Dictionary
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   Each bundle emits its own set of events. The{" "}
-                  <strong className="text-violet-400">Full SDK</strong> emits
+                  <strong className="text-purple-600">Full SDK</strong> emits
                   session, page, and guide events. The{" "}
-                  <strong className="text-cyan-400">Tracking SDK</strong> emits
+                  <strong className="text-purple-600">Tracking SDK</strong> emits
                   30+ event types covering interaction, form, error, and
                   performance tracking. All events are PII-stripped, encrypted
                   with AES-256-GCM, batched, and sent to the backend.
                 </p>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Session & page events
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Full SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Event</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">When it fires</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Event</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">When it fires</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         ["session_start", "SDK initialized (includes device, referrer, locale)"],
                         ["session_end", "Page unload (includes session_ms duration)"],
@@ -2266,29 +2249,29 @@ function handlePurchase(cart) {
                         ["identify", "User/account identified"],
                       ].map(([event, desc]) => (
                         <tr key={event}>
-                          <td className="px-4 py-3"><code className="text-xs text-cyan-400">{event}</code></td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">{desc}</td>
+                          <td className="px-4 py-3"><code className="text-xs text-purple-600">{event}</code></td>
+                          <td className="px-4 py-3 text-sm text-slate-600">{desc}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Interaction events
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Event</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">When it fires</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Event</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">When it fires</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         ["page_exit", "Leaving page (includes engagement + scroll metrics)"],
                         ["click", "Element clicked (text, tag, position, element_id)"],
@@ -2302,29 +2285,29 @@ function handlePurchase(cart) {
                         ["file_upload", "File input triggered"],
                       ].map(([event, desc]) => (
                         <tr key={event}>
-                          <td className="px-4 py-3"><code className="text-xs text-cyan-400">{event}</code></td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">{desc}</td>
+                          <td className="px-4 py-3"><code className="text-xs text-purple-600">{event}</code></td>
+                          <td className="px-4 py-3 text-sm text-slate-600">{desc}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Form events
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Event</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">When it fires</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Event</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">When it fires</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         ["form_start", "User begins interacting with a form"],
                         ["form_submit", "Form submitted successfully"],
@@ -2332,29 +2315,29 @@ function handlePurchase(cart) {
                         ["form_error", "Validation error displayed"],
                       ].map(([event, desc]) => (
                         <tr key={event}>
-                          <td className="px-4 py-3"><code className="text-xs text-cyan-400">{event}</code></td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">{desc}</td>
+                          <td className="px-4 py-3"><code className="text-xs text-purple-600">{event}</code></td>
+                          <td className="px-4 py-3 text-sm text-slate-600">{desc}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Error & performance events
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-xs font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Event</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">When it fires</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Event</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">When it fires</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         ["js_error", "Uncaught exception (stack, line, col)"],
                         ["ui_error", "DOM parsing/rendering error"],
@@ -2362,29 +2345,29 @@ function handlePurchase(cart) {
                         ["performance", "Web Vitals + long tasks + navigation timing"],
                       ].map(([event, desc]) => (
                         <tr key={event}>
-                          <td className="px-4 py-3"><code className="text-xs text-cyan-400">{event}</code></td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">{desc}</td>
+                          <td className="px-4 py-3"><code className="text-xs text-purple-600">{event}</code></td>
+                          <td className="px-4 py-3 text-sm text-slate-600">{desc}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Guide events
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-xs font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-xs font-normal text-purple-600">
                     Full SDK
                   </span>
                 </h3>
-                <div className="mt-4 overflow-x-auto rounded-xl border border-zinc-800">
+                <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">Event</th>
-                        <th className="px-4 py-3 text-sm font-medium text-zinc-300">When it fires</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">Event</th>
+                        <th className="px-4 py-3 text-sm font-medium text-slate-600">When it fires</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-slate-200">
                       {[
                         ["guide_started", "Guide playback began"],
                         ["guide_completed", "Guide finished all steps"],
@@ -2395,8 +2378,8 @@ function handlePurchase(cart) {
                         ["guide_step_retry", "Re-attempted stuck step"],
                       ].map(([event, desc]) => (
                         <tr key={event}>
-                          <td className="px-4 py-3"><code className="text-xs text-cyan-400">{event}</code></td>
-                          <td className="px-4 py-3 text-sm text-zinc-400">{desc}</td>
+                          <td className="px-4 py-3"><code className="text-xs text-purple-600">{event}</code></td>
+                          <td className="px-4 py-3 text-sm text-slate-600">{desc}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -2408,19 +2391,19 @@ function handlePurchase(cart) {
               {/* GUIDE BUILDER */}
               {/* ============================================ */}
               <div id="guides-builder" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   Guide Builder
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-sm font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Full SDK only
                   </span>
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   The Guide Builder is a visual editor in the dashboard and
                   Chrome extension. Record interactions, edit steps, set
                   targeting, and publish — no code deploy required. Guide
                   playback requires the{" "}
-                  <strong className="text-violet-400">Full SDK</strong>{" "}
-                  (<code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">guideai.js</code>).
+                  <strong className="text-purple-600">Full SDK</strong>{" "}
+                  (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai.js</code>).
                 </p>
 
                 <YouTubeEmbed
@@ -2429,7 +2412,7 @@ function handlePurchase(cart) {
                   description="Full walkthrough: record a workflow, edit steps, add tooltips, set targeting rules, and publish your guide."
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   How it works
                 </h3>
                 <div className="mt-4 space-y-4">
@@ -2439,13 +2422,13 @@ function handlePurchase(cart) {
                     { step: "3", title: "Target", desc: "Set audience rules (role, plan, behavior) and triggers (manual, auto, url_match, element_click)." },
                     { step: "4", title: "Publish", desc: "Hit publish. The guide goes live instantly. Auto-healing via fingerprinting means no code deploy needed." },
                   ].map((item) => (
-                    <div key={item.step} className="flex gap-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/20 text-sm font-bold text-cyan-400">
+                    <div key={item.step} className="flex gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-sm font-bold text-purple-600">
                         {item.step}
                       </div>
                       <div>
-                        <h4 className="font-medium text-white">{item.title}</h4>
-                        <p className="mt-1 text-sm text-zinc-400">{item.desc}</p>
+                        <h4 className="font-medium text-slate-900">{item.title}</h4>
+                        <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -2463,7 +2446,7 @@ function handlePurchase(cart) {
                   screenshotPath="guide-builder-targeting.png"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Step types
                 </h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -2473,35 +2456,35 @@ function handlePurchase(cart) {
                     { type: "Highlight", desc: "Spotlight effect highlighting an element without a popover." },
                     { type: "Action", desc: "Automated action step (click, fill, scroll, navigate)." },
                   ].map((item) => (
-                    <div key={item.type} className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                      <h4 className="font-medium text-violet-400">{item.type}</h4>
-                      <p className="mt-1 text-sm text-zinc-400">{item.desc}</p>
+                    <div key={item.type} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                      <h4 className="font-medium text-purple-600">{item.type}</h4>
+                      <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
                     </div>
                   ))}
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Action types
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Each step can have an action that executes automatically or requires user confirmation:
                 </p>
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   {["click", "fill", "select", "scroll", "navigate", "none"].map((action) => (
-                    <div key={action} className="rounded-lg bg-zinc-900 px-4 py-3 text-center text-sm text-zinc-300">
+                    <div key={action} className="rounded-lg bg-slate-50 px-4 py-3 text-center text-sm text-slate-600">
                       {action}
                     </div>
                   ))}
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Multi-page guides
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Guides automatically resume across page navigations. The SDK
                   persists guide state to sessionStorage and uses dynamic route
-                  matching (supports <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">:id</code> and{" "}
-                  <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">[id]</code> segments) to
+                  matching (supports <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">:id</code> and{" "}
+                  <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">[id]</code> segments) to
                   auto-resume on the correct page.
                 </p>
 
@@ -2516,19 +2499,19 @@ function handlePurchase(cart) {
               {/* COPILOT SETUP */}
               {/* ============================================ */}
               <div id="copilot-setup" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   Browser Copilot
-                  <span className="ml-3 inline-flex items-center rounded bg-violet-500/10 px-2 py-0.5 text-sm font-normal text-violet-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Full SDK only
                   </span>
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   The Browser Copilot is an AI assistant that lives in your
                   product. It uses RAG with your scanned knowledge base to
                   answer questions, generate walkthroughs on-the-fly, and
                   execute copilot tool calls. This feature requires the{" "}
-                  <strong className="text-violet-400">Full SDK</strong>{" "}
-                  (<code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">guideai.js</code>).
+                  <strong className="text-purple-600">Full SDK</strong>{" "}
+                  (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai.js</code>).
                 </p>
 
                 <YouTubeEmbed
@@ -2537,36 +2520,36 @@ function handlePurchase(cart) {
                   description="Setting up the Browser Copilot — configure knowledge base, customize appearance, and see it answer user questions in real-time."
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   How it works
                 </h3>
-                <div className="mt-4 space-y-3 text-sm text-zinc-400">
+                <div className="mt-4 space-y-3 text-sm text-slate-600">
                   <p>
-                    <strong className="text-zinc-200">1.</strong> The scanner uploads your codebase
+                    <strong className="text-slate-700">1.</strong> The scanner uploads your codebase
                     structure to build a knowledge base of routes and elements.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">2.</strong> When a user asks a question, the SDK
+                    <strong className="text-slate-700">2.</strong> When a user asks a question, the SDK
                     captures a page snapshot (URL, visible text, form labels, viewport) and sends it to the backend.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">3.</strong> The backend LLM uses RAG to find
+                    <strong className="text-slate-700">3.</strong> The backend LLM uses RAG to find
                     relevant context from the knowledge base and generates an answer.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">4.</strong> If a walkthrough is appropriate, the
+                    <strong className="text-slate-700">4.</strong> If a walkthrough is appropriate, the
                     LLM generates guide steps that the SDK renders as an ephemeral guide.
                   </p>
                   <p>
-                    <strong className="text-zinc-200">5.</strong> Optional copilot tools allow the AI to
+                    <strong className="text-slate-700">5.</strong> Optional copilot tools allow the AI to
                     execute data queries and actions on behalf of the user (with confirmation for destructive actions).
                   </p>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Enabling the copilot
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The copilot is enabled by default when the bubble is active.
                   Users click the bubble to open the chat interface.
                 </p>
@@ -2582,7 +2565,7 @@ function handlePurchase(cart) {
                   language="html"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Widget modes
                 </h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -2591,9 +2574,9 @@ function handlePurchase(cart) {
                     { mode: "support", desc: "Fixed bubble, live agent support on click." },
                     { mode: "combined", desc: "Both AI chat and live support in tabs." },
                   ].map((item) => (
-                    <div key={item.mode} className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                      <h4 className="font-medium text-violet-400">{item.mode}</h4>
-                      <p className="mt-1 text-sm text-zinc-400">{item.desc}</p>
+                    <div key={item.mode} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                      <h4 className="font-medium text-purple-600">{item.mode}</h4>
+                      <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -2615,17 +2598,17 @@ function handlePurchase(cart) {
               {/* ANALYTICS SETUP */}
               {/* ============================================ */}
               <div id="analytics-setup" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   Friction Analytics
-                  <span className="ml-3 inline-flex items-center rounded bg-cyan-500/10 px-2 py-0.5 text-sm font-normal text-cyan-400">
+                  <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Tracking SDK
                   </span>
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   Friction Analytics automatically detects user frustration.
                   This is available in the{" "}
-                  <strong className="text-cyan-400">Tracking SDK</strong>{" "}
-                  (<code className="rounded bg-zinc-800 px-1 text-xs text-cyan-400">guideai-tracking.js</code>).
+                  <strong className="text-purple-600">Tracking SDK</strong>{" "}
+                  (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai-tracking.js</code>).
                   All 15 detection modules track interactions, errors, and
                   performance without any additional configuration.
                 </p>
@@ -2636,7 +2619,7 @@ function handlePurchase(cart) {
                   description="Understanding the analytics dashboard — friction detection, funnel analysis, and AI recommendations."
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Auto-detected friction signals
                 </h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -2650,17 +2633,17 @@ function handlePurchase(cart) {
                     { signal: "Performance issues", desc: "Web Vitals violations and long tasks." },
                     { signal: "Navigation loops", desc: "Users going back and forth between pages." },
                   ].map((item) => (
-                    <div key={item.signal} className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-                      <h4 className="font-medium text-pink-400">{item.signal}</h4>
-                      <p className="mt-1 text-sm text-zinc-400">{item.desc}</p>
+                    <div key={item.signal} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                      <h4 className="font-medium text-pink-600">{item.signal}</h4>
+                      <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
                     </div>
                   ))}
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Detection modules
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   The SDK includes 15 detection and tracking modules that run
                   automatically:
                 </p>
@@ -2682,16 +2665,16 @@ function handlePurchase(cart) {
                     "EventThrottle",
                     "LivePageScanner",
                   ].map((mod) => (
-                    <div key={mod} className="rounded-lg bg-zinc-900 px-3 py-2 text-center text-xs text-zinc-400">
+                    <div key={mod} className="rounded-lg bg-slate-50 px-3 py-2 text-center text-xs text-slate-600">
                       {mod}
                     </div>
                   ))}
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Enabling session recording
                 </h3>
-                <p className="mt-2 text-sm text-zinc-500">
+                <p className="mt-2 text-sm text-slate-500">
                   Session recording is part of the Tracking SDK.
                 </p>
                 <CodeBlock
@@ -2704,7 +2687,7 @@ function handlePurchase(cart) {
                   language="html"
                 />
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Custom event tracking
                 </h3>
                 <CodeBlock
@@ -2739,10 +2722,10 @@ window.guideai.markFeature("used_export");`}
               {/* FINGERPRINTING */}
               {/* ============================================ */}
               <div id="fingerprinting" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   6-Tier Fingerprinting
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   3Guide uses a 6-tier fingerprinting system to match guide
                   steps to DOM elements. This is what makes guides
                   &quot;auto-heal&quot; when your UI changes — even if selectors
@@ -2751,33 +2734,33 @@ window.guideai.markFeature("used_export");`}
 
                 <div className="mt-8 space-y-4">
                   {[
-                    { tier: "Tier 1 — Stable IDs", desc: "Explicit identifiers: data-guideai, data-testid, HTML id, HTML name attributes.", color: "text-green-400" },
-                    { tier: "Tier 2 — Text Content", desc: "Text content, placeholder text, form labels (exact + fuzzy matching).", color: "text-cyan-400" },
-                    { tier: "Tier 3 — Structural", desc: "HTML tag, ARIA role, CSS path, XPath, DOM depth.", color: "text-blue-400" },
-                    { tier: "Tier 4 — Context", desc: "Parent text, form context, nearest heading, visual zone (header/sidebar/etc).", color: "text-violet-400" },
-                    { tier: "Tier 5 — Position", desc: "Bounding rect (x, y, width, height), relative position to viewport.", color: "text-pink-400" },
-                    { tier: "Tier 6 — Visual", desc: "CSS style hash, visual vector embeddings, canvas hash (optional).", color: "text-orange-400" },
+                    { tier: "Tier 1 — Stable IDs", desc: "Explicit identifiers: data-guideai, data-testid, HTML id, HTML name attributes.", color: "text-emerald-600" },
+                    { tier: "Tier 2 — Text Content", desc: "Text content, placeholder text, form labels (exact + fuzzy matching).", color: "text-purple-600" },
+                    { tier: "Tier 3 — Structural", desc: "HTML tag, ARIA role, CSS path, XPath, DOM depth.", color: "text-blue-600" },
+                    { tier: "Tier 4 — Context", desc: "Parent text, form context, nearest heading, visual zone (header/sidebar/etc).", color: "text-purple-600" },
+                    { tier: "Tier 5 — Position", desc: "Bounding rect (x, y, width, height), relative position to viewport.", color: "text-pink-600" },
+                    { tier: "Tier 6 — Visual", desc: "CSS style hash, visual vector embeddings, canvas hash (optional).", color: "text-orange-600" },
                   ].map((item) => (
-                    <div key={item.tier} className="flex gap-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
+                    <div key={item.tier} className="flex gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4">
                       <div className="flex-1">
                         <h4 className={`font-medium ${item.color}`}>{item.tier}</h4>
-                        <p className="mt-1 text-sm text-zinc-400">{item.desc}</p>
+                        <p className="mt-1 text-sm text-slate-600">{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   How matching works
                 </h3>
-                <div className="mt-4 space-y-3 text-sm text-zinc-400">
+                <div className="mt-4 space-y-3 text-sm text-slate-600">
                   <p>
                     Each tier contributes a weighted score from 0-100. The
                     aggregate weighted average must be ≥50 for acceptance.
                   </p>
                   <p>
                     Higher tiers (Tier 1-2) are preferred — if a{" "}
-                    <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">data-guideai</code>{" "}
+                    <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">data-guideai</code>{" "}
                     attribute matches, the element is found instantly.
                   </p>
                   <p>
@@ -2791,7 +2774,7 @@ window.guideai.markFeature("used_export");`}
                   </p>
                 </div>
 
-                <h3 className="mt-10 text-xl font-semibold text-white">
+                <h3 className="mt-10 text-xl font-semibold text-slate-900">
                   Best practices for stable guides
                 </h3>
                 <CodeBlock
@@ -2801,8 +2784,8 @@ window.guideai.markFeature("used_export");`}
 <nav data-guideai="main-nav">...</nav>`}
                   language="html"
                 />
-                <p className="mt-4 text-sm text-zinc-400">
-                  Adding <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">data-guideai</code>{" "}
+                <p className="mt-4 text-sm text-slate-600">
+                  Adding <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">data-guideai</code>{" "}
                   attributes gives the fingerprint system a stable Tier 1
                   anchor. This is optional but recommended for critical elements.
                 </p>
@@ -2812,51 +2795,51 @@ window.guideai.markFeature("used_export");`}
               {/* VISUAL SHOWCASE */}
               {/* ============================================ */}
               <div id="showcase" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-900">
                   Visual Showcase
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   Every aspect of 3Guide is configurable. Below is a visual
                   reference of all the different setups, icons, animations,
                   themes, and guide types available. Bubble, guide, and copilot
                   visuals apply to the{" "}
-                  <strong className="text-violet-400">Full SDK</strong>.
+                  <strong className="text-purple-600">Full SDK</strong>.
                   Theming and announcements apply to the{" "}
-                  <strong className="text-cyan-400">Tracking SDK</strong>.
+                  <strong className="text-purple-600">Tracking SDK</strong>.
                 </p>
 
                 {/* ---- Bubble Icons ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Bubble icons
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Choose from 7 built-in mascot icons, or provide a custom
                   image URL (GIF/PNG) via{" "}
-                  <code className="rounded bg-zinc-800 px-1 text-xs text-violet-400">
+                  <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">
                     data-bubble-image
                   </code>
                   .
                 </p>
                 <div className="mt-6 grid grid-cols-4 gap-4 sm:grid-cols-7">
                   {[
-                    { name: "robot", icon: Bot, color: "from-violet-500 to-indigo-500" },
-                    { name: "ant", icon: Bug, color: "from-red-500 to-orange-500" },
-                    { name: "owl", icon: Bird, color: "from-amber-500 to-yellow-500" },
-                    { name: "fox", icon: Squirrel, color: "from-orange-500 to-red-500" },
-                    { name: "cat", icon: Cat, color: "from-pink-500 to-rose-500" },
-                    { name: "bee", icon: Bug, color: "from-yellow-500 to-amber-500" },
-                    { name: "spark", icon: Sparkles, color: "from-cyan-500 to-blue-500" },
+                    { name: "robot", icon: Bot, color: "bg-purple-600" },
+                    { name: "ant", icon: Bug, color: "bg-orange-500" },
+                    { name: "owl", icon: Bird, color: "bg-amber-500" },
+                    { name: "fox", icon: Squirrel, color: "bg-orange-600" },
+                    { name: "cat", icon: Cat, color: "bg-rose-500" },
+                    { name: "bee", icon: Bug, color: "bg-yellow-500" },
+                    { name: "spark", icon: Sparkles, color: "bg-sky-500" },
                   ].map((item) => (
                     <div
                       key={item.name}
                       className="flex flex-col items-center gap-3"
                     >
                       <div
-                        className={`flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${item.color} shadow-lg shadow-violet-500/10`}
+                        className={`flex h-14 w-14 items-center justify-center rounded-full ${item.color} shadow-lg shadow-purple-500/10`}
                       >
-                        <item.icon className="h-7 w-7 text-white" />
+                        <item.icon className="h-7 w-7 text-slate-900" />
                       </div>
-                      <span className="text-xs font-medium text-zinc-400">
+                      <span className="text-xs font-medium text-slate-600">
                         {item.name}
                       </span>
                     </div>
@@ -2882,10 +2865,10 @@ window.guideai.markFeature("used_export");`}
                 />
 
                 {/* ---- Bubble Positions ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Bubble positions
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Position the floating bubble in the corner that works best
                   for your layout.
                 </p>
@@ -2896,27 +2879,27 @@ window.guideai.markFeature("used_export");`}
                   ].map((item) => (
                     <div
                       key={item.pos}
-                      className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60"
+                      className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
                     >
-                      <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-2">
-                        <span className="text-xs font-medium text-zinc-400">
+                      <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-2">
+                        <span className="text-xs font-medium text-slate-600">
                           {item.label}
                         </span>
                       </div>
-                      <div className="relative h-40 w-full bg-zinc-950/50">
+                      <div className="relative h-40 w-full bg-white">
                         {/* Simulated page content */}
-                        <div className="absolute left-4 top-4 h-3 w-24 rounded bg-zinc-800" />
-                        <div className="absolute left-4 top-10 h-2 w-40 rounded bg-zinc-800/50" />
-                        <div className="absolute left-4 top-14 h-2 w-32 rounded bg-zinc-800/50" />
+                        <div className="absolute left-4 top-4 h-3 w-24 rounded bg-slate-100" />
+                        <div className="absolute left-4 top-10 h-2 w-40 rounded bg-slate-100" />
+                        <div className="absolute left-4 top-14 h-2 w-32 rounded bg-slate-100" />
                         {/* Bubble position indicator */}
                         <div
                           className={`absolute ${
                             item.pos === "bottom-right"
                               ? "bottom-4 right-4"
                               : "bottom-4 left-4"
-                          } flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-500 shadow-lg shadow-violet-500/30`}
+                          } flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 shadow-lg shadow-purple-500/30`}
                         >
-                          <Bot className="h-6 w-6 text-white" />
+                          <Bot className="h-6 w-6 text-slate-900" />
                         </div>
                       </div>
                     </div>
@@ -2929,25 +2912,25 @@ data-bubble-position="bottom-left"`}
                 />
 
                 {/* ---- Bubble Animation Modes ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Bubble animation modes
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Two animation styles control how the bubble moves on screen.
                 </p>
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {/* Drift Mode */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-                      <Move className="h-4 w-4 text-cyan-400" />
-                      <span className="text-sm font-medium text-white">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+                      <Move className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm font-medium text-slate-900">
                         Drift Mode
                       </span>
-                      <span className="ml-auto rounded bg-cyan-500/10 px-2 py-0.5 text-xs text-cyan-400">
+                      <span className="ml-auto rounded bg-purple-100 px-2 py-0.5 text-xs text-purple-600">
                         default
                       </span>
                     </div>
-                    <div className="relative h-48 w-full bg-zinc-950/50 p-4">
+                    <div className="relative h-48 w-full bg-white p-4">
                       {/* Simulated drift path */}
                       <svg
                         className="absolute inset-0 h-full w-full"
@@ -2961,46 +2944,46 @@ data-bubble-position="bottom-left"`}
                           strokeDasharray="6 4"
                         />
                       </svg>
-                      <div className="absolute bottom-6 right-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 shadow-lg shadow-cyan-500/20">
-                        <Bot className="h-6 w-6 text-white" />
+                      <div className="absolute bottom-6 right-6 flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 shadow-lg shadow-purple-500/20">
+                        <Bot className="h-6 w-6 text-slate-900" />
                       </div>
-                      <div className="space-y-2 text-xs text-zinc-600">
+                      <div className="space-y-2 text-xs text-slate-400">
                         <p>Smooth spring-physics float</p>
                         <p>Constrained to viewport</p>
                         <p>Slow cardinal-point motion</p>
                       </div>
                     </div>
-                    <div className="border-t border-zinc-800 px-4 py-3">
+                    <div className="border-t border-slate-200 px-4 py-3">
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
-                          <span className="text-zinc-500">spring:</span>{" "}
-                          <span className="text-zinc-300">0.0003</span>
+                          <span className="text-slate-500">spring:</span>{" "}
+                          <span className="text-slate-600">0.0003</span>
                         </div>
                         <div>
-                          <span className="text-zinc-500">damping:</span>{" "}
-                          <span className="text-zinc-300">0.993</span>
+                          <span className="text-slate-500">damping:</span>{" "}
+                          <span className="text-slate-600">0.993</span>
                         </div>
                         <div>
-                          <span className="text-zinc-500">min interval:</span>{" "}
-                          <span className="text-zinc-300">18s</span>
+                          <span className="text-slate-500">min interval:</span>{" "}
+                          <span className="text-slate-600">18s</span>
                         </div>
                         <div>
-                          <span className="text-zinc-500">max interval:</span>{" "}
-                          <span className="text-zinc-300">26s</span>
+                          <span className="text-slate-500">max interval:</span>{" "}
+                          <span className="text-slate-600">26s</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Crawl Mode */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-                      <Route className="h-4 w-4 text-orange-400" />
-                      <span className="text-sm font-medium text-white">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+                      <Route className="h-4 w-4 text-orange-600" />
+                      <span className="text-sm font-medium text-slate-900">
                         Crawl Mode
                       </span>
                     </div>
-                    <div className="relative h-48 w-full bg-zinc-950/50 p-4">
+                    <div className="relative h-48 w-full bg-white p-4">
                       {/* Simulated edge-walk path */}
                       <svg
                         className="absolute inset-0 h-full w-full"
@@ -3037,37 +3020,37 @@ data-bubble-position="bottom-left"`}
                         />
                       </svg>
                       {/* Bubble on edge */}
-                      <div className="absolute bottom-2 left-1/3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-500 shadow-lg shadow-orange-500/20">
-                        <Bug className="h-6 w-6 text-white" />
+                      <div className="absolute bottom-2 left-1/3 flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 shadow-lg shadow-orange-500/20">
+                        <Bug className="h-6 w-6 text-slate-900" />
                       </div>
                       {/* Speech bubble */}
-                      <div className="absolute bottom-16 left-[calc(33%-20px)] rounded-lg bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300">
+                      <div className="absolute bottom-16 left-[calc(33%-20px)] rounded-lg bg-slate-100 px-3 py-1.5 text-xs text-slate-600">
                         Need help?
-                        <div className="absolute -bottom-1 left-6 h-2 w-2 rotate-45 bg-zinc-800" />
+                        <div className="absolute -bottom-1 left-6 h-2 w-2 rotate-45 bg-slate-100" />
                       </div>
-                      <div className="space-y-2 text-xs text-zinc-600">
+                      <div className="space-y-2 text-xs text-slate-400">
                         <p>&quot;Ant walk&quot; along viewport edges</p>
                         <p>Pauses at corners</p>
                         <p>Persistent speech bubbles</p>
                       </div>
                     </div>
-                    <div className="border-t border-zinc-800 px-4 py-3">
+                    <div className="border-t border-slate-200 px-4 py-3">
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
-                          <span className="text-zinc-500">speed:</span>{" "}
-                          <span className="text-zinc-300">40px/s</span>
+                          <span className="text-slate-500">speed:</span>{" "}
+                          <span className="text-slate-600">40px/s</span>
                         </div>
                         <div>
-                          <span className="text-zinc-500">climbWalls:</span>{" "}
-                          <span className="text-zinc-300">true</span>
+                          <span className="text-slate-500">climbWalls:</span>{" "}
+                          <span className="text-slate-600">true</span>
                         </div>
                         <div>
-                          <span className="text-zinc-500">cornerPause:</span>{" "}
-                          <span className="text-zinc-300">1500ms</span>
+                          <span className="text-slate-500">cornerPause:</span>{" "}
+                          <span className="text-slate-600">1500ms</span>
                         </div>
                         <div>
-                          <span className="text-zinc-500">messages:</span>{" "}
-                          <span className="text-zinc-300">rotating</span>
+                          <span className="text-slate-500">messages:</span>{" "}
+                          <span className="text-slate-600">rotating</span>
                         </div>
                       </div>
                     </div>
@@ -3096,10 +3079,10 @@ data-bubble-crawl-message-interval-ms="8000"`}
                 />
 
                 {/* ---- Widget Modes ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Widget modes
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Control what happens when users click the bubble.
                 </p>
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -3108,7 +3091,7 @@ data-bubble-crawl-message-interval-ms="8000"`}
                       mode: "guide",
                       label: "Guide Mode",
                       desc: "AI chat + guide playback",
-                      color: "from-violet-500 to-indigo-500",
+                      color: "bg-purple-600",
                       badge: "default",
                       features: ["AI chat assistant", "Guide suggestions", "Walkthrough generation", "Knowledge base Q&A"],
                     },
@@ -3116,7 +3099,7 @@ data-bubble-crawl-message-interval-ms="8000"`}
                       mode: "support",
                       label: "Support Mode",
                       desc: "Live agent support",
-                      color: "from-green-500 to-emerald-500",
+                      color: "bg-emerald-500",
                       badge: null,
                       features: ["Live agent chat", "Ticket creation", "Support queue", "Agent handoff"],
                     },
@@ -3124,35 +3107,35 @@ data-bubble-crawl-message-interval-ms="8000"`}
                       mode: "combined",
                       label: "Combined Mode",
                       desc: "Both AI + live support",
-                      color: "from-cyan-500 to-blue-500",
+                      color: "bg-sky-500",
                       badge: null,
                       features: ["Tabbed interface", "AI chat tab", "Support tab", "Smart escalation"],
                     },
                   ].map((item) => (
                     <div
                       key={item.mode}
-                      className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60"
+                      className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
                     >
-                      <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
+                      <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
                         <div
-                          className={`h-3 w-3 rounded-full bg-gradient-to-br ${item.color}`}
+                          className={`h-3 w-3 rounded-full ${item.color}`}
                         />
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-sm font-medium text-slate-900">
                           {item.label}
                         </span>
                         {item.badge && (
-                          <span className="ml-auto rounded bg-violet-500/10 px-2 py-0.5 text-xs text-violet-400">
+                          <span className="ml-auto rounded bg-purple-100 px-2 py-0.5 text-xs text-purple-600">
                             {item.badge}
                           </span>
                         )}
                       </div>
                       <div className="p-4">
-                        <p className="text-sm text-zinc-400">{item.desc}</p>
+                        <p className="text-sm text-slate-600">{item.desc}</p>
                         <ul className="mt-3 space-y-1.5">
                           {item.features.map((f) => (
                             <li
                               key={f}
-                              className="flex items-center gap-2 text-xs text-zinc-500"
+                              className="flex items-center gap-2 text-xs text-slate-500"
                             >
                               <Circle className="h-1.5 w-1.5 fill-current" />
                               {f}
@@ -3160,8 +3143,8 @@ data-bubble-crawl-message-interval-ms="8000"`}
                           ))}
                         </ul>
                       </div>
-                      <div className="border-t border-zinc-800 px-4 py-2.5">
-                        <code className="text-xs text-violet-400">
+                      <div className="border-t border-slate-200 px-4 py-2.5">
+                        <code className="text-xs text-purple-600">
                           data-widget-mode=&quot;{item.mode}&quot;
                         </code>
                       </div>
@@ -3170,10 +3153,10 @@ data-bubble-crawl-message-interval-ms="8000"`}
                 </div>
 
                 {/* ---- Theme Presets ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Theming
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Customize the look of guides, tooltips, and chat panels to
                   match your brand.
                 </p>
@@ -3203,10 +3186,10 @@ data-bubble-crawl-message-interval-ms="8000"`}
                   ].map((theme) => (
                     <div
                       key={theme.name}
-                      className="overflow-hidden rounded-xl border border-zinc-800"
+                      className="overflow-hidden rounded-xl border border-slate-200"
                     >
-                      <div className="border-b border-zinc-800 px-4 py-2.5">
-                        <span className="text-xs font-medium text-zinc-300">
+                      <div className="border-b border-slate-200 px-4 py-2.5">
+                        <span className="text-xs font-medium text-slate-600">
                           {theme.name}
                         </span>
                       </div>
@@ -3230,7 +3213,7 @@ data-bubble-crawl-message-interval-ms="8000"`}
                           </p>
                           <div className="mt-3 flex gap-2">
                             <button
-                              className="rounded-md px-3 py-1.5 text-xs font-medium text-white"
+                              className="rounded-md px-3 py-1.5 text-xs font-medium text-slate-900"
                               style={{ backgroundColor: theme.primary }}
                             >
                               Next step
@@ -3247,32 +3230,32 @@ data-bubble-crawl-message-interval-ms="8000"`}
                           </div>
                         </div>
                       </div>
-                      <div className="border-t border-zinc-800 px-4 py-2.5">
+                      <div className="border-t border-slate-200 px-4 py-2.5">
                         <div className="grid grid-cols-2 gap-1 text-xs">
                           <div className="flex items-center gap-1.5">
                             <div
-                              className="h-3 w-3 rounded-full border border-zinc-700"
+                              className="h-3 w-3 rounded-full border border-slate-300"
                               style={{ backgroundColor: theme.primary }}
                             />
-                            <span className="text-zinc-500">primary</span>
+                            <span className="text-slate-500">primary</span>
                           </div>
                           <div className="flex items-center gap-1.5">
                             <div
-                              className="h-3 w-3 rounded-full border border-zinc-700"
+                              className="h-3 w-3 rounded-full border border-slate-300"
                               style={{ backgroundColor: theme.bg }}
                             />
-                            <span className="text-zinc-500">background</span>
+                            <span className="text-slate-500">background</span>
                           </div>
                           <div className="flex items-center gap-1.5">
                             <div
-                              className="h-3 w-3 rounded-full border border-zinc-700"
+                              className="h-3 w-3 rounded-full border border-slate-300"
                               style={{ backgroundColor: theme.text }}
                             />
-                            <span className="text-zinc-500">text</span>
+                            <span className="text-slate-500">text</span>
                           </div>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-zinc-500">font:</span>{" "}
-                            <span className="text-zinc-400">{theme.font}</span>
+                            <span className="text-slate-500">font:</span>{" "}
+                            <span className="text-slate-600">{theme.font}</span>
                           </div>
                         </div>
                       </div>
@@ -3305,65 +3288,65 @@ data-bubble-crawl-message-interval-ms="8000"`}
                 />
 
                 {/* ---- Guide Step Types ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Guide step types
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Four distinct step types for different interaction patterns.
                 </p>
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {/* Tooltip */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-                      <MessageSquare className="h-4 w-4 text-violet-400" />
-                      <span className="text-sm font-medium text-white">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+                      <MessageSquare className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm font-medium text-slate-900">
                         Tooltip
                       </span>
                     </div>
-                    <div className="relative h-40 bg-zinc-950/50 p-4">
+                    <div className="relative h-40 bg-white p-4">
                       {/* Simulated button + tooltip */}
-                      <div className="absolute left-8 top-16 rounded-md bg-zinc-700 px-4 py-2 text-xs text-zinc-300">
+                      <div className="absolute left-8 top-16 rounded-md bg-slate-200 px-4 py-2 text-xs text-slate-600">
                         Save Settings
                       </div>
                       {/* Tooltip arrow + content */}
-                      <div className="absolute left-6 top-7 w-44 rounded-lg border border-violet-500/30 bg-white p-3 shadow-xl shadow-violet-500/10">
-                        <p className="text-xs font-medium text-zinc-900">
+                      <div className="absolute left-6 top-7 w-44 rounded-lg border border-purple-300 bg-white p-3 shadow-xl shadow-purple-500/10">
+                        <p className="text-xs font-medium text-slate-900">
                           Click Save
                         </p>
-                        <p className="mt-0.5 text-[10px] text-zinc-500">
+                        <p className="mt-0.5 text-[10px] text-slate-500">
                           Save your changes before continuing.
                         </p>
-                        <div className="absolute -bottom-1 left-8 h-2 w-2 rotate-45 border-b border-r border-violet-500/30 bg-white" />
+                        <div className="absolute -bottom-1 left-8 h-2 w-2 rotate-45 border-b border-r border-purple-300 bg-white" />
                       </div>
                       {/* Highlight overlay */}
-                      <div className="absolute left-6 top-14 h-10 w-28 rounded-md ring-2 ring-violet-500/50" />
+                      <div className="absolute left-6 top-14 h-10 w-28 rounded-md ring-2 ring-purple-500/50" />
                     </div>
                   </div>
 
                   {/* Modal */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-                      <Maximize className="h-4 w-4 text-cyan-400" />
-                      <span className="text-sm font-medium text-white">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+                      <Maximize className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm font-medium text-slate-900">
                         Modal
                       </span>
                     </div>
-                    <div className="relative flex h-40 items-center justify-center bg-zinc-950/50 p-4">
+                    <div className="relative flex h-40 items-center justify-center bg-white p-4">
                       {/* Backdrop */}
                       <div className="absolute inset-0 bg-black/40" />
                       {/* Modal */}
                       <div className="relative w-48 rounded-xl bg-white p-4 shadow-2xl">
-                        <p className="text-xs font-semibold text-zinc-900">
+                        <p className="text-xs font-semibold text-slate-900">
                           Welcome!
                         </p>
-                        <p className="mt-1 text-[10px] text-zinc-500">
+                        <p className="mt-1 text-[10px] text-slate-500">
                           Let us show you around the new dashboard.
                         </p>
                         <div className="mt-3 flex gap-2">
-                          <div className="rounded bg-violet-500 px-2 py-1 text-[10px] text-white">
+                          <div className="rounded bg-purple-600 px-2 py-1 text-[10px] text-slate-900">
                             Start tour
                           </div>
-                          <div className="rounded border border-zinc-200 px-2 py-1 text-[10px] text-zinc-500">
+                          <div className="rounded border border-slate-200 px-2 py-1 text-[10px] text-slate-500">
                             Skip
                           </div>
                         </div>
@@ -3372,38 +3355,38 @@ data-bubble-crawl-message-interval-ms="8000"`}
                   </div>
 
                   {/* Slideout */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-                      <PanelRight className="h-4 w-4 text-green-400" />
-                      <span className="text-sm font-medium text-white">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+                      <PanelRight className="h-4 w-4 text-emerald-600" />
+                      <span className="text-sm font-medium text-slate-900">
                         Slideout
                       </span>
                     </div>
-                    <div className="relative h-40 bg-zinc-950/50">
+                    <div className="relative h-40 bg-white">
                       {/* Page content */}
                       <div className="absolute left-4 top-4 space-y-2">
-                        <div className="h-2 w-20 rounded bg-zinc-800" />
-                        <div className="h-2 w-32 rounded bg-zinc-800/50" />
-                        <div className="h-2 w-28 rounded bg-zinc-800/50" />
+                        <div className="h-2 w-20 rounded bg-slate-100" />
+                        <div className="h-2 w-32 rounded bg-slate-100" />
+                        <div className="h-2 w-28 rounded bg-slate-100" />
                       </div>
                       {/* Slideout panel */}
-                      <div className="absolute right-0 top-0 h-full w-36 border-l border-zinc-700 bg-white p-3 shadow-xl">
-                        <p className="text-xs font-semibold text-zinc-900">
+                      <div className="absolute right-0 top-0 h-full w-36 border-l border-slate-300 bg-white p-3 shadow-xl">
+                        <p className="text-xs font-semibold text-slate-900">
                           Setup Guide
                         </p>
-                        <p className="mt-1 text-[10px] text-zinc-500">
+                        <p className="mt-1 text-[10px] text-slate-500">
                           Complete these steps to finish setup.
                         </p>
                         <div className="mt-3 space-y-2">
                           <div className="flex items-center gap-1.5">
                             <div className="h-3 w-3 rounded-full bg-green-500" />
-                            <span className="text-[10px] text-zinc-600">
+                            <span className="text-[10px] text-slate-400">
                               Add SDK
                             </span>
                           </div>
                           <div className="flex items-center gap-1.5">
-                            <div className="h-3 w-3 rounded-full border border-zinc-300" />
-                            <span className="text-[10px] text-zinc-600">
+                            <div className="h-3 w-3 rounded-full border border-slate-300" />
+                            <span className="text-[10px] text-slate-400">
                               Scan code
                             </span>
                           </div>
@@ -3413,20 +3396,20 @@ data-bubble-crawl-message-interval-ms="8000"`}
                   </div>
 
                   {/* Highlight */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-3">
-                      <MousePointer className="h-4 w-4 text-yellow-400" />
-                      <span className="text-sm font-medium text-white">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+                      <MousePointer className="h-4 w-4 text-amber-600" />
+                      <span className="text-sm font-medium text-slate-900">
                         Highlight + Action
                       </span>
                     </div>
-                    <div className="relative h-40 bg-zinc-950/50 p-4">
+                    <div className="relative h-40 bg-white p-4">
                       {/* Dimmed background */}
                       <div className="absolute inset-0 bg-black/50" />
                       {/* Highlighted element */}
                       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <div className="relative rounded-lg bg-zinc-800 px-6 py-3 ring-4 ring-yellow-400/40">
-                          <span className="text-xs text-zinc-200">
+                        <div className="relative rounded-lg bg-slate-100 px-6 py-3 ring-4 ring-yellow-400/40">
+                          <span className="text-xs text-slate-700">
                             Export Data
                           </span>
                           {/* Pulse animation indicator */}
@@ -3435,7 +3418,7 @@ data-bubble-crawl-message-interval-ms="8000"`}
                         </div>
                       </div>
                       {/* Action label */}
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-zinc-800 px-3 py-1 text-[10px] text-zinc-400">
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-slate-100 px-3 py-1 text-[10px] text-slate-600">
                         Click to continue
                       </div>
                     </div>
@@ -3443,69 +3426,69 @@ data-bubble-crawl-message-interval-ms="8000"`}
                 </div>
 
                 {/* ---- Announcement Surfaces ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Announcement surfaces
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Three ways to display in-app announcements.
                 </p>
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
                   {/* Modal announcement */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="border-b border-zinc-800 px-4 py-2.5">
-                      <span className="text-xs font-medium text-zinc-300">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="border-b border-slate-200 px-4 py-2.5">
+                      <span className="text-xs font-medium text-slate-600">
                         Modal
                       </span>
                     </div>
-                    <div className="relative flex h-32 items-center justify-center bg-zinc-950/50">
+                    <div className="relative flex h-32 items-center justify-center bg-white">
                       <div className="absolute inset-0 bg-black/30" />
                       <div className="relative w-36 rounded-lg bg-white p-3 shadow-lg">
-                        <div className="h-2 w-16 rounded bg-zinc-900" />
-                        <div className="mt-2 h-1.5 w-full rounded bg-zinc-200" />
-                        <div className="mt-1 h-1.5 w-20 rounded bg-zinc-200" />
-                        <div className="mt-2 h-5 w-14 rounded bg-violet-500" />
+                        <div className="h-2 w-16 rounded bg-slate-50" />
+                        <div className="mt-2 h-1.5 w-full rounded bg-slate-200" />
+                        <div className="mt-1 h-1.5 w-20 rounded bg-slate-200" />
+                        <div className="mt-2 h-5 w-14 rounded bg-purple-600" />
                       </div>
                     </div>
                   </div>
 
                   {/* Banner announcement */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="border-b border-zinc-800 px-4 py-2.5">
-                      <span className="text-xs font-medium text-zinc-300">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="border-b border-slate-200 px-4 py-2.5">
+                      <span className="text-xs font-medium text-slate-600">
                         Banner
                       </span>
                     </div>
-                    <div className="relative h-32 bg-zinc-950/50">
+                    <div className="relative h-32 bg-white">
                       {/* Banner at top */}
-                      <div className="flex items-center gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 px-3 py-2">
+                      <div className="flex items-center gap-2 bg-purple-600 px-3 py-2">
                         <div className="h-1.5 w-24 rounded bg-white/80" />
                         <div className="ml-auto h-4 w-4 rounded bg-white/20" />
                       </div>
                       {/* Page content */}
                       <div className="p-3 space-y-2">
-                        <div className="h-2 w-20 rounded bg-zinc-800" />
-                        <div className="h-2 w-32 rounded bg-zinc-800/50" />
+                        <div className="h-2 w-20 rounded bg-slate-100" />
+                        <div className="h-2 w-32 rounded bg-slate-100" />
                       </div>
                     </div>
                   </div>
 
                   {/* Drawer announcement */}
-                  <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60">
-                    <div className="border-b border-zinc-800 px-4 py-2.5">
-                      <span className="text-xs font-medium text-zinc-300">
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                    <div className="border-b border-slate-200 px-4 py-2.5">
+                      <span className="text-xs font-medium text-slate-600">
                         Drawer
                       </span>
                     </div>
-                    <div className="relative h-32 bg-zinc-950/50">
+                    <div className="relative h-32 bg-white">
                       <div className="p-3 space-y-2">
-                        <div className="h-2 w-20 rounded bg-zinc-800" />
-                        <div className="h-2 w-32 rounded bg-zinc-800/50" />
+                        <div className="h-2 w-20 rounded bg-slate-100" />
+                        <div className="h-2 w-32 rounded bg-slate-100" />
                       </div>
                       {/* Drawer from bottom */}
-                      <div className="absolute inset-x-0 bottom-0 rounded-t-xl border-t border-zinc-700 bg-white p-3">
-                        <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-zinc-300" />
-                        <div className="h-2 w-16 rounded bg-zinc-900" />
-                        <div className="mt-1.5 h-1.5 w-full rounded bg-zinc-200" />
+                      <div className="absolute inset-x-0 bottom-0 rounded-t-xl border-t border-slate-300 bg-white p-3">
+                        <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-slate-300" />
+                        <div className="h-2 w-16 rounded bg-slate-50" />
+                        <div className="mt-1.5 h-1.5 w-full rounded bg-slate-200" />
                       </div>
                     </div>
                   </div>
@@ -3526,10 +3509,10 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
                 />
 
                 {/* ---- Full Config Example ---- */}
-                <h3 className="mt-12 text-xl font-semibold text-white">
+                <h3 className="mt-12 text-xl font-semibold text-slate-900">
                   Complete configuration example
                 </h3>
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-slate-600">
                   Every attribute combined in a single script tag:
                 </p>
                 <CodeBlock
@@ -3609,11 +3592,11 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
               </div>
 
               {/* CTA */}
-              <div className="mt-20 rounded-2xl border border-zinc-800 bg-gradient-to-r from-cyan-500/5 to-violet-500/5 p-10 text-center">
-                <h2 className="text-2xl font-bold text-white">
+              <div className="mt-20 rounded-2xl border border-slate-200 bg-purple-50/60 p-10 text-center">
+                <h2 className="text-2xl font-bold text-slate-900">
                   Ready to get started?
                 </h2>
-                <p className="mt-4 text-zinc-400">
+                <p className="mt-4 text-slate-600">
                   When <strong>not</strong> in <code>extensionMode</code>, the
                   SDK automatically emits:
                 </p>
@@ -3621,7 +3604,7 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
                   <Link href="https://dashboard.3guideai.com" target="_blank">
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600"
+                      className="bg-purple-600 text-white hover:bg-purple-500"
                     >
                       Get your API keys
                     </Button>
@@ -3630,7 +3613,7 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
                     <Button
                       size="lg"
                       variant="outline"
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                      className="border-slate-300 text-slate-600 hover:bg-slate-100"
                     >
                       Open Dashboard
                     </Button>

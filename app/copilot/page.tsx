@@ -1,221 +1,210 @@
-"use client";
-
+import Image from "next/image";
+import { Eye, Lock, ShieldCheck, UserCheck } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
-import { Play, MessageSquare, Video, Search, Sparkles, Clock, Target } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { PageHero } from "@/components/marketing/page-hero";
+import { FeatureRow } from "@/components/marketing/feature-row";
+import { FaqSection } from "@/components/marketing/faq";
+import { CtaBanner } from "@/components/marketing/cta-banner";
+import {
+  CheckItem,
+  Container,
+  Eyebrow,
+  Section,
+  SectionHeading,
+  accentCycle,
+  accents,
+} from "@/components/marketing/primitives";
+import { cn } from "@/lib/utils";
+
+const safety = [
+  {
+    icon: ShieldCheck,
+    title: "Allowlisted actions",
+    description:
+      "The copilot only performs supported, pre-approved action types — nothing improvised, nothing destructive.",
+  },
+  {
+    icon: UserCheck,
+    title: "User confirmation",
+    description:
+      "Sensitive steps pause for an explicit yes from the user before anything happens.",
+  },
+  {
+    icon: Eye,
+    title: "Fully visible",
+    description:
+      "Every click and keystroke happens on the live page, in front of the user, with a running execution log.",
+  },
+  {
+    icon: Lock,
+    title: "The user's own session",
+    description:
+      "Actions run with the user's existing permissions — the copilot can never do more than they can.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "How is this different from a normal chatbot?",
+    answer:
+      "A chatbot tells users what to do. The 3Guide copilot can also do it — clicking buttons, filling forms, and navigating pages on the live site while the user watches. When users prefer to learn, it generates a guided walkthrough instead.",
+  },
+  {
+    question: "Where does it get its knowledge?",
+    answer:
+      "From a knowledge base 3Guide builds automatically by scanning your website and docs. Answers are grounded in your own content, and you can curate or extend the knowledge base at any time.",
+  },
+  {
+    question: "What if the AI can't complete a task?",
+    answer:
+      "It falls back gracefully: offering a step-by-step walkthrough, linking relevant knowledge base articles, or handing off to your human support desk with full context.",
+  },
+  {
+    question: "Do my users need to install anything?",
+    answer:
+      "The in-app assistant works with the same one-line snippet as the rest of 3Guide. The full browser-driving copilot is delivered through a lightweight Chrome extension.",
+  },
+];
 
 export default function CopilotPage() {
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen bg-white">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent" />
-        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-400 ring-1 ring-inset ring-violet-500/20">
-              Browser Copilot
-            </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Your users&apos; always-on{" "}
-              <span className="text-violet-400">AI assistant</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-zinc-400">
-              A Chrome extension that helps users complete tasks, find answers, and learn your product—without leaving your app.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <Link
-                href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
-                target="_blank" 
-                className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600 px-8 py-3 rounded-md">
-                Try Browser Copilot
-              </Link>
-              {/* <Button size="lg" variant="outline" className="border-zinc-700 text-white hover:bg-zinc-800">
-                <Play className="mr-2 h-4 w-4" />
-                See it in action
-              </Button> */}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Demo Preview */}
-      <section className="py-8">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          {/* <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
-            <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900/80 px-4 py-3">
-              <div className="flex gap-1.5">
-                <div className="h-3 w-3 rounded-full bg-zinc-700" />
-                <div className="h-3 w-3 rounded-full bg-zinc-700" />
-                <div className="h-3 w-3 rounded-full bg-zinc-700" />
-              </div>
-              <div className="flex-1 text-center text-sm text-zinc-500">your-app.com</div>
-            </div>
-            <div className="relative aspect-video bg-zinc-950 p-8">
-              <div className="absolute right-8 top-8 w-80 rounded-xl border border-zinc-700 bg-zinc-900 p-4 shadow-2xl">
-                <div className="flex items-center gap-3 border-b border-zinc-800 pb-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500">
-                    <Sparkles className="h-4 w-4 text-white" />
-                  </div>
-                  <span className="font-medium text-white">3Guide Copilot</span>
-                </div>
-                <div className="mt-4 space-y-3">
-                  <div className="rounded-lg bg-zinc-800 p-3 text-sm text-zinc-300">
-                    How do I export my data to CSV?
-                  </div>
-                  <div className="rounded-lg bg-violet-500/10 p-3 text-sm text-zinc-300">
-                    <p>I can help you export to CSV! Here&apos;s how:</p>
-                    <ol className="mt-2 list-inside list-decimal space-y-1 text-xs text-zinc-400">
-                      <li>Go to Settings → Data</li>
-                      <li>Click &quot;Export&quot; button</li>
-                      <li>Select CSV format</li>
-                    </ol>
-                    <button className="mt-3 text-xs text-violet-400 hover:text-violet-300">
-                      → Start guided walkthrough
-                    </button>
-                  </div>
-                </div>
-                <div className="mt-4 flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2">
-                  <Search className="h-4 w-4 text-zinc-500" />
-                  <span className="text-sm text-zinc-500">Ask anything...</span>
-                </div>
-              </div>
-              <div className="text-zinc-600">
-                <div className="h-8 w-48 rounded bg-zinc-800/50" />
-                <div className="mt-4 grid grid-cols-3 gap-4">
-                  <div className="h-32 rounded-lg bg-zinc-800/30" />
-                  <div className="h-32 rounded-lg bg-zinc-800/30" />
-                  <div className="h-32 rounded-lg bg-zinc-800/30" />
-                </div>
-              </div>
-            </div>
-          </div> */}
+      <PageHero
+        badge="Browser Copilot"
+        title={
+          <>
+            The AI assistant that{" "}
+            <span className="text-purple-600">gets things done</span>
+          </>
+        }
+        description="Answer questions with AI trained on your product — and when a user asks for help with a task, complete it for them: clicking, typing, and navigating right in their browser."
+      >
+        <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
             src="/copilot.png"
-            alt="Demo Preview"
-            width={300}
-            height={300}
-            className="mx-auto h-[400px] w-full sm:w-[500px] md:w-[800px] rounded-xl border border-zinc-700 bg-zinc-900 p-4 shadow-2xl"
+            alt="3Guide Autonomous Copilot summarizing an inbox and executing tasks in the browser"
+            width={1600}
+            height={900}
+            className="h-auto w-full"
+            priority
           />
         </div>
+      </PageHero>
+
+      <Section>
+        <Container className="space-y-24">
+          <FeatureRow
+            eyebrow="Answer"
+            accent="violet"
+            title="Instant answers from your own knowledge base"
+            description="3Guide scans your website and docs to build a knowledge base automatically, then answers user questions in context — no tab-switching, no stale help center."
+            bullets={[
+              "Knowledge base builds and refreshes itself",
+              "Answers cite your own content, not the open web",
+              "Escalates to your support desk when a human is needed",
+            ]}
+            image="/docs/copilot-chat-open.png"
+            imageAlt="The 3Guide assistant answering a product question in-app"
+          />
+          <FeatureRow
+            eyebrow="Guide"
+            accent="cyan"
+            title="From answer to walkthrough in one click"
+            description="When a user would rather learn the flow, the assistant turns its answer into a live guided walkthrough — highlighting each element in the real UI as they go."
+            bullets={[
+              "Generates walkthroughs from natural-language questions",
+              "Runs on the live page with step-by-step highlights",
+              "Users choose: read the answer, watch the guide, or delegate the task",
+            ]}
+            image="/docs/copilot-walkthrough-generation.png"
+            imageAlt="The assistant generating a guided walkthrough from a question"
+            reverse
+          />
+        </Container>
+      </Section>
+
+      {/* Dark: task execution */}
+      <section className="bg-ink py-20 sm:py-28">
+        <Container>
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div data-reveal>
+              <Eyebrow dark accent="violet">Act</Eyebrow>
+              <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                "Do it for me" —{" "}
+                <span className="text-purple-300">and it does</span>
+              </h2>
+              <p className="mt-4 text-pretty text-lg leading-relaxed text-slate-300">
+                The autonomous copilot drives the browser on the user's behalf:
+                completing forms, configuring settings, and finishing multi-step
+                workflows while the user watches every action in a live
+                execution log.
+              </p>
+              <ul className="mt-8 space-y-3">
+                <CheckItem dark>
+                  Executes clicks, form fills, and navigation on the live page
+                </CheckItem>
+                <CheckItem dark>
+                  Plans multi-step tasks from a single natural-language request
+                </CheckItem>
+                <CheckItem dark>
+                  Streams a step-by-step log of everything it does
+                </CheckItem>
+                <CheckItem dark>
+                  Stops and asks whenever a decision belongs to the user
+                </CheckItem>
+              </ul>
+            </div>
+            <div data-reveal data-reveal-delay="0.15" className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/40">
+              <Image
+                src="/copilot.png"
+                alt="Live execution log of the copilot completing a browser task"
+                width={1400}
+                height={780}
+                data-parallax-img
+                className="h-auto w-full"
+              />
+            </div>
+          </div>
+        </Container>
       </section>
 
-      {/* Features */}
-      <section className="border-t border-zinc-800 py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Everything users need, right where they need it
-            </h2>
-          </div>
-
-          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
-            {[
-              {
-                icon: MessageSquare,
-                title: "Natural Language Q&A",
-                description: "Users ask questions in plain English and get instant, contextual answers sourced from your docs and guides.",
-                highlight: "Powered by RAG + your knowledge base",
-              },
-              {
-                icon: Target,
-                title: "Task Completion Assistant",
-                description: "Copilot can guide users step-by-step through complex workflows, highlighting exactly where to click.",
-                highlight: "Reduces support tickets by 40%",
-              },
-              {
-                icon: Video,
-                title: "On-Demand Video Guides",
-                description: "Auto-generated video walkthroughs play right in the sidebar, showing users exactly what to do.",
-                highlight: "No recording required",
-              },
-              {
-                icon: Clock,
-                title: "Contextual Awareness",
-                description: "Copilot knows what page users are on and proactively offers relevant help based on their actions.",
-                highlight: "Smart, not spammy",
-              },
-            ].map((feature) => (
+      <Section>
+        <Container>
+          <SectionHeading
+            eyebrow="Guardrails"
+            title="Autonomy with a seatbelt"
+            description="An AI that acts needs stricter rules than one that talks. The copilot is constrained by design."
+            align="center"
+          />
+          <div data-stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {safety.map((item, i) => (
               <div
-                key={feature.title}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8"
+                key={item.title}
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-950/10"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10">
-                  <feature.icon className="h-6 w-6 text-violet-400" />
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-white">{feature.title}</h3>
-                <p className="mt-2 text-zinc-400">{feature.description}</p>
-                <p className="mt-4 text-sm font-medium text-violet-400">{feature.highlight}</p>
+                <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl", accents[accentCycle[i % accentCycle.length]].tile)}>
+                  <item.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 text-base font-semibold text-slate-900">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* How It Works */}
-      <section className="border-t border-zinc-800 py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Set up in under 10 minutes
-            </h2>
-          </div>
-
-          <div className="mx-auto mt-16 max-w-3xl">
-            <div className="space-y-8">
-              {[
-                {
-                  step: "1",
-                  title: "Connect your knowledge base",
-                  description: "Import your docs, help center, and existing guides. Copilot indexes everything automatically.",
-                },
-                {
-                  step: "2",
-                  title: "Customize the experience",
-                  description: "Set your brand colors, welcome message, and configure which features to enable.",
-                },
-                {
-                  step: "3",
-                  title: "Deploy to users",
-                  description: "Share the Chrome extension link or embed Copilot directly in your web app.",
-                },
-              ].map((item) => (
-                <div key={item.step} className="flex gap-6">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-lg font-bold text-white">
-                    {item.step}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-zinc-400">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-t border-zinc-800 py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Give your users superpowers
-            </h2>
-            <p className="mt-4 text-lg text-zinc-400">
-              Browser Copilot is included in all 3Guide plans.
-            </p>
-            <Button size="lg" className="mt-8 bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
-              Get started free
-            </Button>
-          </div>
-        </div>
-      </section>
-
+      <FaqSection items={faqItems} title="Browser Copilot, answered" />
+      <CtaBanner
+        title="Give your users an AI that acts"
+        description="Start with the in-app assistant, then turn on task completion when you're ready. Free up to 1,000 monthly active users."
+      />
       <Footer />
     </main>
   );

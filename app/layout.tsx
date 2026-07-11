@@ -1,6 +1,19 @@
 import type { Metadata } from 'next'
+import { Roboto, Roboto_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ScrollFx } from '@/components/marketing/scroll-fx'
 import './globals.css'
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  variable: '--font-roboto',
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-mono',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://3guideai.com'),
@@ -89,8 +102,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`}>
       <body className="font-sans antialiased">
+        <ScrollFx />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

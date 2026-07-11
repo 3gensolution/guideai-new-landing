@@ -79,10 +79,10 @@ export function ContactFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="border-zinc-800 bg-zinc-950 sm:max-w-md">
+      <DialogContent className="border-slate-200 bg-white sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-white">Talk to us</DialogTitle>
-          <DialogDescription className="text-zinc-400">
+          <DialogTitle className="text-slate-900">Talk to us</DialogTitle>
+          <DialogDescription className="text-slate-500">
             Tell us about your project and we&apos;ll get back to you.
           </DialogDescription>
         </DialogHeader>
@@ -104,15 +104,15 @@ export function ContactFormDialog({
                 />
               </svg>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-white">
+            <h3 className="mt-4 text-lg font-semibold text-slate-900">
               Message sent
             </h3>
-            <p className="mt-2 text-sm text-zinc-400">
+            <p className="mt-2 text-sm text-slate-500">
               We&apos;ll be in touch soon.
             </p>
             <Button
               onClick={() => handleClose(false)}
-              className="mt-6 bg-white text-zinc-900 hover:bg-white/90"
+              className="mt-6 bg-purple-600 text-white hover:bg-purple-500"
             >
               Close
             </Button>
@@ -122,7 +122,7 @@ export function ContactFormDialog({
             <div>
               <label
                 htmlFor="contact-name"
-                className="mb-1.5 block text-sm font-medium text-zinc-300"
+                className="mb-1.5 block text-sm font-medium text-slate-700"
               >
                 Name
               </label>
@@ -132,7 +132,7 @@ export function ContactFormDialog({
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 placeholder="Your name"
               />
             </div>
@@ -140,7 +140,7 @@ export function ContactFormDialog({
             <div>
               <label
                 htmlFor="contact-email"
-                className="mb-1.5 block text-sm font-medium text-zinc-300"
+                className="mb-1.5 block text-sm font-medium text-slate-700"
               >
                 Email
               </label>
@@ -150,7 +150,7 @@ export function ContactFormDialog({
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 placeholder="you@company.com"
               />
             </div>
@@ -158,17 +158,17 @@ export function ContactFormDialog({
             <div>
               <label
                 htmlFor="contact-company"
-                className="mb-1.5 block text-sm font-medium text-zinc-300"
+                className="mb-1.5 block text-sm font-medium text-slate-700"
               >
                 Company{" "}
-                <span className="text-zinc-500">(optional)</span>
+                <span className="text-slate-400">(optional)</span>
               </label>
               <input
                 id="contact-company"
                 type="text"
                 value={form.company}
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 placeholder="Acme Corp"
               />
             </div>
@@ -176,7 +176,7 @@ export function ContactFormDialog({
             <div>
               <label
                 htmlFor="contact-message"
-                className="mb-1.5 block text-sm font-medium text-zinc-300"
+                className="mb-1.5 block text-sm font-medium text-slate-700"
               >
                 Message
               </label>
@@ -186,7 +186,7 @@ export function ContactFormDialog({
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+                className="w-full resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 placeholder="Tell us about your project..."
               />
             </div>
@@ -198,7 +198,7 @@ export function ContactFormDialog({
             <Button
               type="submit"
               disabled={status === "submitting"}
-              className="w-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600"
+              className="w-full bg-purple-600 text-white hover:bg-purple-500"
             >
               {status === "submitting" ? (
                 <>

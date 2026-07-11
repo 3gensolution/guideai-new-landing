@@ -1,215 +1,178 @@
-"use client";
-
+import Image from "next/image";
+import {
+  Activity,
+  Filter,
+  Gauge,
+  LineChart,
+  MousePointerClick,
+  Users,
+} from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
-import { TrendingUp, AlertTriangle, Users, BarChart3, Target, Zap } from "lucide-react";
-import Link from "next/link";
+import { PageHero } from "@/components/marketing/page-hero";
+import { FeatureRow } from "@/components/marketing/feature-row";
+import { FaqSection } from "@/components/marketing/faq";
+import { CtaBanner } from "@/components/marketing/cta-banner";
+import {
+  Container,
+  Section,
+  SectionHeading,
+  accentCycle,
+  accents,
+} from "@/components/marketing/primitives";
+import { cn } from "@/lib/utils";
+
+const capabilities = [
+  {
+    icon: LineChart,
+    title: "Acquisition funnels",
+    description:
+      "Visitors → signups → trials → conversions, tracked out of the box with period-over-period trends.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Friction signals",
+    description:
+      "Rage clicks, dead ends, and hesitation points surfaced automatically — before users write in about them.",
+  },
+  {
+    icon: Users,
+    title: "Visitor explorer",
+    description:
+      "Drill into sessions by source, device, and location to see what real users actually do.",
+  },
+  {
+    icon: Gauge,
+    title: "Guide performance",
+    description:
+      "Completion rates, drop-off steps, and time-to-value for every guide you publish.",
+  },
+  {
+    icon: Activity,
+    title: "Feature adoption",
+    description:
+      "Know which features get used, which get ignored, and which segments never find them.",
+  },
+  {
+    icon: Filter,
+    title: "Segmentation",
+    description:
+      "Slice every metric by plan, segment, or behavior to target guidance where it moves the needle.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Do I need to instrument events myself?",
+    answer:
+      "Core funnels — sessions, signups, trials, guide interactions — work automatically from the same snippet that powers guides. You can add custom events when you want more granularity.",
+  },
+  {
+    question: "How is this different from a general analytics tool?",
+    answer:
+      "3Guide analytics are built around adoption: friction points, guide completion, and time-to-value. And because guides live in the same platform, you can go from spotting a drop-off to shipping a fix in minutes — without switching tools.",
+  },
+  {
+    question: "Can I export the data?",
+    answer:
+      "Yes — dashboards support one-click export, and paid plans include configurable data retention.",
+  },
+  {
+    question: "Is user data handled safely?",
+    answer:
+      "3Guide collects product interaction data, not page content. Data is scoped to your workspace and covered by plan-level retention controls.",
+  },
+];
 
 export default function AnalyticsPage() {
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen bg-white">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent" />
-        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-400 ring-1 ring-inset ring-violet-500/20">
-              Friction Analytics
-            </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              See where users{" "}
-              <span className="text-violet-400">get stuck</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-zinc-400">
-              AI-powered analytics that surface friction points, rage clicks, and drop-offs—so you know exactly where to focus.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <Link
-                href={`${process.env.NEXT_PUBLIC_BASE_URL}`}
-                target="_blank" 
-                className="px-8 py-3 rounded-md bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
-                Start analyzing
-              </Link>
-              {/* <Button size="lg" variant="outline" className="border-zinc-700 text-white hover:bg-zinc-800">
-                View sample report
-              </Button> */}
-            </div>
-          </div>
+      <PageHero
+        badge="Friction Analytics"
+        title={
+          <>
+            See where users <span className="text-purple-600">get stuck</span>{" "}
+            — then fix it in-product
+          </>
+        }
+        description="3Guide tracks how real users move through your product — where they hesitate, drop off, or succeed — and pairs every insight with the tool to act on it: a guide, an answer, or a copilot task."
+      >
+        <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
+          <Image
+            src="/story-4.png"
+            alt="3Guide executive overview with visitor, signup, and conversion metrics"
+            width={1600}
+            height={860}
+            className="h-auto w-full"
+            priority
+          />
         </div>
-      </section>
+      </PageHero>
 
-      {/* Dashboard Preview */}
-      {/* <section className="py-16">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
-            <div className="mb-6 flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-white">Friction Dashboard</h3>
-              <div className="flex gap-2">
-                <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">Last 7 days</span>
-              </div>
-            </div>
+      <Section>
+        <Container className="space-y-24">
+          <FeatureRow
+            eyebrow="Understand"
+            accent="cyan"
+            title="Every visitor, every session, every stumble"
+            description="The visitor explorer breaks traffic down by source, device, location, and behavior — and lets you replay how sessions unfolded, so 'users are confused' becomes 'users can't find the export button.'"
+            bullets={[
+              "Session timelines with landing pages and feature usage",
+              "Top sources, devices, and peak hours at a glance",
+              "Filter everything down to a single confused user",
+            ]}
+            image="/funnel.png"
+            imageAlt="3Guide visitors explorer with sessions, sources, and device breakdowns"
+          />
+          <FeatureRow
+            eyebrow="Act"
+            accent="violet"
+            title="Close the loop: insight → guide → lift"
+            description="Analytics that live next to your guides change what you do with them. Spot the drop-off, ship a targeted guide to that exact step, and watch the funnel move — all in one place."
+            bullets={[
+              "Deploy guides directly against friction points",
+              "Measure completion and conversion lift per guide",
+              "Prove ROI with before/after funnel comparisons",
+            ]}
+            image="/story-4.png"
+            imageAlt="Funnel analysis showing where guides lift conversion"
+            reverse
+          />
+        </Container>
+      </Section>
 
-            <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {[
-                { label: "Friction Events", value: "2,847", change: "-12%", positive: true },
-                { label: "Rage Clicks", value: "156", change: "-24%", positive: true },
-                { label: "Drop-off Rate", value: "18%", change: "-5%", positive: true },
-                { label: "Avg. Time to Value", value: "4.2m", change: "-18%", positive: true },
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-xl bg-zinc-800/50 p-4">
-                  <p className="text-sm text-zinc-400">{stat.label}</p>
-                  <p className="mt-1 text-2xl font-bold text-white">{stat.value}</p>
-                  <p className={`mt-1 text-xs ${stat.positive ? "text-green-400" : "text-red-400"}`}>
-                    {stat.change} vs last week
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mb-8 rounded-xl bg-zinc-800/30 p-6">
-              <div className="mb-4 flex items-center justify-between">
-                <span className="text-sm font-medium text-white">Friction Events Over Time</span>
-                <div className="flex gap-4 text-xs text-zinc-400">
-                  <span className="flex items-center gap-1">
-                    <span className="h-2 w-2 rounded-full bg-violet-400" /> Friction
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="h-2 w-2 rounded-full bg-orange-400" /> Rage Clicks
-                  </span>
-                </div>
-              </div>
-              <div className="flex h-40 items-end gap-2">
-                {[65, 45, 55, 40, 35, 50, 30].map((height, i) => (
-                  <div key={i} className="flex flex-1 flex-col gap-1">
-                    <div
-                      className="w-full rounded-t bg-violet-500/60"
-                      style={{ height: `${height}%` }}
-                    />
-                    <div
-                      className="w-full rounded-t bg-orange-500/60"
-                      style={{ height: `${height * 0.2}%` }}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="mt-2 flex justify-between text-xs text-zinc-500">
-                <span>Mon</span>
-                <span>Tue</span>
-                <span>Wed</span>
-                <span>Thu</span>
-                <span>Fri</span>
-                <span>Sat</span>
-                <span>Sun</span>
-              </div>
-            </div>
-
-            <div className="rounded-xl bg-zinc-800/30 p-4">
-              <h4 className="mb-4 text-sm font-medium text-white">Top Friction Points</h4>
-              <div className="space-y-3">
-                {[
-                  { page: "/settings/integrations", events: 342, type: "Confusion" },
-                  { page: "/onboarding/step-3", events: 289, type: "Drop-off" },
-                  { page: "/dashboard/export", events: 156, type: "Rage clicks" },
-                ].map((item) => (
-                  <div key={item.page} className="flex items-center justify-between rounded-lg bg-zinc-800 p-3">
-                    <div className="flex items-center gap-3">
-                      <AlertTriangle className="h-4 w-4 text-orange-400" />
-                      <span className="text-sm text-zinc-300">{item.page}</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <span className="rounded-full bg-zinc-700 px-2 py-0.5 text-xs text-zinc-400">
-                        {item.type}
-                      </span>
-                      <span className="text-sm font-medium text-white">{item.events}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Features */}
-      <section className="border-t border-zinc-800 py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Analytics that drive action
-            </h2>
-            <p className="mt-4 text-lg text-zinc-400">
-              Not just data—insights you can actually use.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: AlertTriangle,
-                title: "Friction Detection",
-                description: "Automatically identify rage clicks, dead clicks, and hesitation patterns.",
-              },
-              {
-                icon: TrendingUp,
-                title: "Funnel Analysis",
-                description: "See exactly where users drop off in onboarding and activation flows.",
-              },
-              {
-                icon: Users,
-                title: "Cohort Comparison",
-                description: "Compare behavior between user segments, plans, and time periods.",
-              },
-              {
-                icon: Target,
-                title: "Guide Performance",
-                description: "Track completion rates and impact of every guide you create.",
-              },
-              {
-                icon: Zap,
-                title: "AI Recommendations",
-                description: "Get suggested guides and interventions based on friction patterns.",
-              },
-              {
-                icon: BarChart3,
-                title: "Custom Dashboards",
-                description: "Build dashboards focused on the metrics that matter to your team.",
-              },
-            ].map((feature) => (
+      <Section className="bg-slate-50">
+        <Container>
+          <SectionHeading
+            eyebrow="Capabilities"
+            title="Adoption analytics, not vanity metrics"
+            align="center"
+          />
+          <div data-stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((cap, i) => (
               <div
-                key={feature.title}
-                className="group rounded-xl bg-zinc-900/50 p-6 transition hover:bg-zinc-900"
+                key={cap.title}
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-950/10"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10">
-                  <feature.icon className="h-5 w-5 text-violet-400" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-white">{feature.title}</h3>
-                <p className="mt-2 text-sm text-zinc-400">{feature.description}</p>
+                <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl", accents[accentCycle[i % accentCycle.length]].tile)}>
+                  <cap.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 text-base font-semibold text-slate-900">
+                  {cap.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  {cap.description}
+                </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* CTA */}
-      <section className="border-t border-zinc-800 py-24">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Stop guessing. Start knowing.
-            </h2>
-            <p className="mt-4 text-lg text-zinc-400">
-              Friction Analytics is included in all 3Guide plans.
-            </p>
-            <Button size="lg" className="mt-8 bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:from-cyan-600 hover:to-violet-600">
-              Get started free
-            </Button>
-          </div>
-        </div>
-      </section>
-
+      <FaqSection items={faqItems} title="Friction analytics, answered" />
+      <CtaBanner title="Find your funnel's leaks this week" />
       <Footer />
     </main>
   );

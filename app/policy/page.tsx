@@ -11,7 +11,7 @@ export default function PolicyPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen bg-white">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-zinc-900"
@@ -22,17 +22,17 @@ export default function PolicyPage() {
       <Header />
 
       <section className="relative overflow-hidden pt-32 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-purple-50/60" />
         <div className="relative mx-auto max-w-[960px] px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-400 ring-1 ring-inset ring-violet-500/20">
+            <span className="inline-flex items-center rounded-full bg-purple-50 px-3 py-1 text-sm font-medium text-purple-600 ring-1 ring-inset ring-purple-200">
               Legal
             </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               Privacy Policy
             </h1>
-            <p className="mt-4 text-base text-zinc-400">
-              <span className="font-semibold text-zinc-200">Effective Date:</span>{" "}
+            <p className="mt-4 text-base text-slate-500">
+              <span className="font-semibold text-slate-700">Effective Date:</span>{" "}
               May 10, 2026
             </p>
           </div>
@@ -43,9 +43,9 @@ export default function PolicyPage() {
         <div className="mx-auto max-w-[960px] px-6 lg:px-8">
           <article
             id="main"
-            className="rounded-2xl border border-zinc-800/70 bg-zinc-900/30 p-6 text-zinc-200 shadow-sm backdrop-blur sm:p-10"
+            className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-slate-700 shadow-sm sm:p-10"
           >
-            <div className="space-y-10 text-base leading-relaxed text-zinc-300">
+            <div className="space-y-10 text-base leading-relaxed text-slate-600">
               <p>
                 3Guide is built to help product teams understand user friction,
                 improve onboarding, and deliver in-app guidance that drives
@@ -64,13 +64,13 @@ export default function PolicyPage() {
 
               <h2
                 id="information-we-collect"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 1. Information We Collect
               </h2>
               <p>We collect the following types of information:</p>
 
-              <h3 className="text-lg font-semibold text-white/90">
+              <h3 className="text-lg font-semibold text-slate-900/90">
                 a. Account &amp; Business Information
               </h3>
               <ul className="list-disc space-y-1 pl-5">
@@ -81,7 +81,7 @@ export default function PolicyPage() {
                 <li>Billing and payment information (when applicable)</li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-white/90">
+              <h3 className="text-lg font-semibold text-slate-900/90">
                 b. Product &amp; Usage Data
               </h3>
               <p>When 3Guide is integrated into a product, we may collect:</p>
@@ -94,7 +94,7 @@ export default function PolicyPage() {
                 <li>Pages visited and interaction timestamps</li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-white/90">
+              <h3 className="text-lg font-semibold text-slate-900/90">
                 c. Technical &amp; Diagnostic Information
               </h3>
               <ul className="list-disc space-y-1 pl-5">
@@ -104,7 +104,7 @@ export default function PolicyPage() {
                 <li>Access logs and security monitoring information</li>
               </ul>
 
-              <h3 className="text-lg font-semibold text-white/90">
+              <h3 className="text-lg font-semibold text-slate-900/90">
                 d. Communication Information
               </h3>
               <ul className="list-disc space-y-1 pl-5">
@@ -116,7 +116,7 @@ export default function PolicyPage() {
 
               <h2
                 id="how-we-use"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 2. How We Use Your Information
               </h2>
@@ -135,7 +135,7 @@ export default function PolicyPage() {
 
               <h2
                 id="how-we-share"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 3. How We Share Information
               </h2>
@@ -161,7 +161,7 @@ export default function PolicyPage() {
 
               <h2
                 id="security"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 4. Data Storage &amp; Security
               </h2>
@@ -182,7 +182,7 @@ export default function PolicyPage() {
 
               <h2
                 id="retention"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 5. Data Retention
               </h2>
@@ -197,7 +197,7 @@ export default function PolicyPage() {
                 You may request deletion of your account or associated data by
                 contacting us at{" "}
                 <a
-                  className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                  className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
                   href="mailto:info@3guideai.com"
                 >
                   info@3guideai.com
@@ -207,7 +207,7 @@ export default function PolicyPage() {
 
               <h2
                 id="your-rights"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 6. Your Rights
               </h2>
@@ -225,7 +225,7 @@ export default function PolicyPage() {
               <p>
                 To exercise these rights, contact us at{" "}
                 <a
-                  className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                  className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
                   href="mailto:info@3guideai.com"
                 >
                   info@3guideai.com
@@ -235,7 +235,7 @@ export default function PolicyPage() {
 
               <h2
                 id="cookies"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 7. Cookies &amp; Analytics
               </h2>
@@ -250,7 +250,7 @@ export default function PolicyPage() {
 
               <h2
                 id="integrations"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 8. Third-Party Integrations
               </h2>
@@ -266,7 +266,7 @@ export default function PolicyPage() {
 
               <h2
                 id="children"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 9. Children&apos;s Privacy
               </h2>
@@ -281,7 +281,7 @@ export default function PolicyPage() {
 
               <h2
                 id="transfers"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 10. International Data Transfers
               </h2>
@@ -297,7 +297,7 @@ export default function PolicyPage() {
 
               <h2
                 id="updates"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 11. Updates to This Privacy Policy
               </h2>
@@ -313,7 +313,7 @@ export default function PolicyPage() {
 
               <h2
                 id="contact"
-                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-white"
+                className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
               >
                 12. Contact Us
               </h2>
@@ -329,7 +329,7 @@ export default function PolicyPage() {
                 <li>
                   Email:{" "}
                   <a
-                    className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                    className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
                     href="mailto:info@3guideai.com"
                   >
                     info@3guideai.com
@@ -337,11 +337,11 @@ export default function PolicyPage() {
                 </li>
               </ul>
 
-              <hr className="border-zinc-800/70" />
-              <p className="text-sm text-zinc-400">
+              <hr className="border-slate-200" />
+              <p className="text-sm text-slate-500">
                 Looking for other resources? Visit{" "}
                 <Link
-                  className="text-violet-300 underline underline-offset-4 hover:text-violet-200"
+                  className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
                   href="/docs"
                 >
                   Docs
