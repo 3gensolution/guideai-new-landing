@@ -101,7 +101,7 @@ export default function AnalyticsPage() {
       >
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
-            src="/story-4.png"
+            src="/friction-img.png"
             alt="3Guide executive overview with visitor, signup, and conversion metrics"
             width={1600}
             height={860}
@@ -123,7 +123,7 @@ export default function AnalyticsPage() {
               "Top sources, devices, and peak hours at a glance",
               "Filter everything down to a single confused user",
             ]}
-            image="/funnel.png"
+            image="/session-img.png"
             imageAlt="3Guide visitors explorer with sessions, sources, and device breakdowns"
           />
           <FeatureRow
@@ -136,7 +136,7 @@ export default function AnalyticsPage() {
               "Measure completion and conversion lift per guide",
               "Prove ROI with before/after funnel comparisons",
             ]}
-            image="/story-4.png"
+            image="/session-id.png"
             imageAlt="Funnel analysis showing where guides lift conversion"
             reverse
           />

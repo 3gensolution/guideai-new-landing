@@ -37,7 +37,7 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
           "Click-by-click walkthroughs built visually — published in one click, healed automatically.",
         href: "/guides",
         icon: MousePointerClick,
-        image: "/story-2.png",
+        image: "/guidance.png",
         imageAlt: "The 3Guide guides dashboard",
       },
       {
@@ -46,7 +46,7 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
           "An AI agent that clicks, types, and navigates on your users' behalf — it completes the task.",
         href: "/copilot",
         icon: Bot,
-        image: "/copilot.png",
+        image: "/co-pilot.png",
         imageAlt: "The Autonomous Copilot running browser tasks",
       },
       {
@@ -55,18 +55,18 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
           "Funnels, session drill-downs, and friction signals that show exactly where users get stuck.",
         href: "/analytics",
         icon: BarChart3,
-        image: "/funnel.png",
+        image: "/friction-img.png",
         imageAlt: "The visitors explorer with sessions and sources",
-      },
-      {
-        name: "Support Desk",
-        description:
-          "A full support inbox with assignment, automation rules, and AI-drafted replies.",
-        href: "/support-desk",
-        icon: Inbox,
-        image: "/docs/bubble-on-live-site.png",
-        imageAlt: "The 3Guide support widget on a live product",
-      },
+      }
+      // {
+      //   name: "Support Desk",
+      //   description:
+      //     "A full support inbox with assignment, automation rules, and AI-drafted replies.",
+      //   href: "/support-desk",
+      //   icon: Inbox,
+      //   image: "/docs/bubble-on-live-site.png",
+      //   imageAlt: "The 3Guide support widget on a live product",
+      // },
     ],
   },
   solutions: {
@@ -78,7 +78,7 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
           "Turn signups into activated users with guided first-run experiences per segment.",
         href: "/use-cases/user-onboarding",
         icon: Rocket,
-        image: "/docs/guide-running-live.png",
+        image: "/assistant-img.png",
         imageAlt: "A guided onboarding tour running live",
       },
       {
@@ -87,7 +87,7 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
           "Deflect repetitive how-do-I questions with AI answers and live walkthroughs.",
         href: "/use-cases/support-ticket-reduction",
         icon: TicketX,
-        image: "/docs/copilot-chat-open.png",
+        image: "/guidance.png",
         imageAlt: "The AI assistant answering a support question",
       },
     ],
@@ -176,13 +176,13 @@ export function Header() {
                 >
                   Pricing
                 </Link>
-                <Link
+                {/* <Link
                   href="/docs"
                   onMouseEnter={() => setOpenMenu(null)}
                   className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
                 >
                   Docs
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -276,7 +276,7 @@ export function Header() {
         {/* Full-width mega dropdown */}
         <div
           className={cn(
-            "absolute inset-x-0 top-[calc(100%+0.5rem)] hidden transition-all duration-300 ease-out lg:block",
+            "absolute inset-x-0 top-full hidden pt-2 transition-all duration-300 ease-out lg:block",
             activeMenu
               ? "visible translate-y-0 opacity-100"
               : "invisible -translate-y-2 opacity-0"

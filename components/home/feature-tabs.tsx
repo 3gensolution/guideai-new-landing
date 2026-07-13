@@ -31,7 +31,7 @@ const tabs = [
       "AI writes the steps, tooltips, and copy for you",
       "Self-healing keeps every guide working after redesigns",
     ],
-    image: "/story-2.png",
+    image: "/guidance-mode.gif",
     imageAlt: "3Guide guides dashboard with published and draft guides",
     href: "/guides",
     linkLabel: "Explore In-App Guides",
@@ -48,7 +48,7 @@ const tabs = [
       "Answers cite your own content — no hallucinated help",
       "Escalates to your support desk when a human is needed",
     ],
-    image: "/docs/copilot-chat-open.png",
+    image: "/assistant-mode.gif",
     imageAlt: "The 3Guide assistant answering a product question in-app",
     href: "/copilot",
     linkLabel: "Explore the AI Assistant",
@@ -86,24 +86,24 @@ const tabs = [
     imageAlt: "3Guide visitors explorer with sessions and sources",
     href: "/analytics",
     linkLabel: "Explore Friction Analytics",
-  },
-  {
-    key: "support",
-    label: "Support Desk",
-    icon: Inbox,
-    title: "AI deflects the repetitive. Your team gets the rest.",
-    description:
-      "A full support inbox with assignment, automation rules, and AI-drafted replies — escalations arrive with the whole conversation and user context attached.",
-    bullets: [
-      "Shared inbox with assignment and internal notes",
-      "Automation rules for routing, tagging, and SLAs",
-      "AI-suggested replies grounded in your knowledge base",
-    ],
-    image: "/docs/bubble-on-live-site.png",
-    imageAlt: "The 3Guide support widget embedded on a live product",
-    href: "/support-desk",
-    linkLabel: "Explore the Support Desk",
-  },
+  }
+  // {
+  //   key: "support",
+  //   label: "Support Desk",
+  //   icon: Inbox,
+  //   title: "AI deflects the repetitive. Your team gets the rest.",
+  //   description:
+  //     "A full support inbox with assignment, automation rules, and AI-drafted replies — escalations arrive with the whole conversation and user context attached.",
+  //   bullets: [
+  //     "Shared inbox with assignment and internal notes",
+  //     "Automation rules for routing, tagging, and SLAs",
+  //     "AI-suggested replies grounded in your knowledge base",
+  //   ],
+  //   image: "/docs/bubble-on-live-site.png",
+  //   imageAlt: "The 3Guide support widget embedded on a live product",
+  //   href: "/support-desk",
+  //   linkLabel: "Explore the Support Desk",
+  // },
 ];
 
 export function FeatureTabs() {

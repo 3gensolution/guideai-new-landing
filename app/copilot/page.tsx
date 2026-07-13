@@ -84,7 +84,7 @@ export default function CopilotPage() {
       >
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
-            src="/copilot.png"
+            src="/assistant-mode.gif"
             alt="3Guide Autonomous Copilot summarizing an inbox and executing tasks in the browser"
             width={1600}
             height={900}
@@ -106,7 +106,7 @@ export default function CopilotPage() {
               "Answers cite your own content, not the open web",
               "Escalates to your support desk when a human is needed",
             ]}
-            image="/docs/copilot-chat-open.png"
+            image="/assistant-img.png"
             imageAlt="The 3Guide assistant answering a product question in-app"
           />
           <FeatureRow
@@ -119,7 +119,7 @@ export default function CopilotPage() {
               "Runs on the live page with step-by-step highlights",
               "Users choose: read the answer, watch the guide, or delegate the task",
             ]}
-            image="/docs/copilot-walkthrough-generation.png"
+            image="/assistant-walkthrough.gif"
             imageAlt="The assistant generating a guided walkthrough from a question"
             reverse
           />

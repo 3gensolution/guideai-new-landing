@@ -24,7 +24,7 @@ const painSections = [
       "Answers cite your own content",
       "Curate and extend sources whenever you want",
     ],
-    image: "/docs/copilot-chat-open.png",
+    image: "/assistant-img.png",
     imageAlt: "The 3Guide assistant answering from the product knowledge base",
     link: { href: "/copilot", label: "Meet the AI assistant" },
   },
@@ -41,28 +41,28 @@ const painSections = [
       "Copilot completes routine tasks on request",
       "Repetitive tickets stop reaching the queue at all",
     ],
-    image: "/docs/copilot-walkthrough-generation.png",
+    image: "/guidance.png",
     imageAlt: "The assistant generating a live walkthrough as an answer",
     link: { href: "/guides", label: "See guided walkthroughs" },
     reverse: true,
   },
-  {
-    quote:
-      "“When something does need a human, my team starts from zero context.”",
-    accent: "emerald" as const,
-    eyebrow: "Support desk",
-    title: "Escalations arrive with the whole story attached",
-    description:
-      "Conversations that need a person land in 3Guide's support desk with the AI transcript, the user's plan, recent sessions, and guide history already attached. Agents answer once, correctly.",
-    bullets: [
-      "Full AI conversation history on every escalation",
-      "User context: plan, sessions, and guide activity",
-      "Automation rules for routing, tags, and SLAs",
-    ],
-    image: "/docs/bubble-on-live-site.png",
-    imageAlt: "The support widget escalating to a human with full context",
-    link: { href: "/support-desk", label: "Explore the support desk" },
-  },
+  // {
+  //   quote:
+  //     "“When something does need a human, my team starts from zero context.”",
+  //   accent: "emerald" as const,
+  //   eyebrow: "Support desk",
+  //   title: "Escalations arrive with the whole story attached",
+  //   description:
+  //     "Conversations that need a person land in 3Guide's support desk with the AI transcript, the user's plan, recent sessions, and guide history already attached. Agents answer once, correctly.",
+  //   bullets: [
+  //     "Full AI conversation history on every escalation",
+  //     "User context: plan, sessions, and guide activity",
+  //     "Automation rules for routing, tags, and SLAs",
+  //   ],
+  //   image: "/docs/bubble-on-live-site.png",
+  //   imageAlt: "The support widget escalating to a human with full context",
+  //   link: { href: "/support-desk", label: "Explore the support desk" },
+  // },
 ];
 
 const faqItems = [

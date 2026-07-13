@@ -151,7 +151,7 @@ export function HowItWorks() {
   return (
     <Section>
       <Container>
-        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-start gap-12">
           <div>
             <SectionHeading
               eyebrow="How it works"
@@ -180,7 +180,7 @@ export function HowItWorks() {
               ))}
             </ol>
           </div>
-          <div
+          {/* <div
             data-reveal
             data-reveal-delay="0.15"
             className="lg:sticky lg:top-28"
@@ -198,7 +198,7 @@ export function HowItWorks() {
             <p className="mt-5 text-center text-base text-slate-500">
               A generated guide running live — built from a 2-minute recording.
             </p>
-          </div>
+          </div> */}
         </div>
       </Container>
     </Section>
@@ -249,7 +249,7 @@ export function CopilotSection() {
           <div data-reveal data-reveal-delay="0.15">
             <div className="overflow-hidden rounded-2xl border-2 border-purple-500/30 shadow-2xl shadow-black/40">
               <Image
-                src="/copilot.png"
+                src="/co-pilot.png"
                 alt="3Guide Autonomous Copilot summarizing an inbox and executing browser tasks"
                 width={1400}
                 height={780}
@@ -281,7 +281,7 @@ export function AnalyticsSection() {
             "Drill into sessions by source, device, and location",
             "Measure guide completion and time-to-value, not just views",
           ]}
-          image="/funnel.png"
+          image="/friction-img.png"
           imageAlt="3Guide visitors explorer with device, source, and session breakdowns"
           link={{ href: "/analytics", label: "Explore analytics" }}
         />
@@ -294,7 +294,7 @@ export function AnalyticsSection() {
             "Automation rules for routing, tagging, and SLAs",
             "AI-drafted replies grounded in your knowledge base",
           ]}
-          image="/docs/copilot-chat-open.png"
+          image="/assistant-img.png"
           imageAlt="In-app assistant chat working alongside the support desk"
           link={{ href: "/support-desk", label: "Explore the support desk" }}
           reverse

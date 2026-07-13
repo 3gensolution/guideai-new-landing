@@ -101,7 +101,7 @@ export default function GuidesPage() {
       >
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
-            src="/story-2.png"
+            src="/guidance-mode.gif"
             alt="3Guide guides dashboard with published guides, drafts, and confidence scores"
             width={1600}
             height={860}
@@ -123,7 +123,7 @@ export default function GuidesPage() {
               "Edit, reorder, and refine before anyone sees it",
             ]}
             badges={["No code required", "Minutes, not weeks"]}
-            image="/story-3.png"
+            image="/guides-img.png"
             imageAlt="Building a guide visually in 3Guide"
           />
           <FeatureRow
@@ -136,7 +136,7 @@ export default function GuidesPage() {
               "Trigger on first visit, on demand, or from a link",
               "Draft and published states with instant rollback",
             ]}
-            image="/docs/guide-running-live.png"
+            image="/guides-img.png"
             imageAlt="A published guide running live in the product"
             reverse
           />
@@ -151,7 +151,7 @@ export default function GuidesPage() {
               "Confidence scores flag anything that needs review",
             ]}
             stat="0 hours of guide maintenance"
-            image="/story-5.png"
+            image="/knowledge.png"
             imageAlt="3Guide self-healing keeping guides anchored after a UI change"
           />
         </Container>
