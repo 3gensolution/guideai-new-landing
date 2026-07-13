@@ -396,11 +396,11 @@ export default function DocsPage() {
                     — Visual guide builder with element picker and live
                     recording overlay.
                   </p>
-                  <p>
+                  {/* <p>
                     <strong className="text-slate-700">Backend</strong> —
                     FastAPI + PostgreSQL + Redis + Cloudflare Workers AI for
                     LLM-powered features.
-                  </p>
+                  </p> */}
                 </div>
               </div>
 
@@ -1286,16 +1286,6 @@ guideai-scan --key sk_live_YOUR_KEY --dir ./my-app`}
       "dynamic_segments": [],
       "auth_required": false,
       "headings": ["Dashboard", "Analytics"]
-    }
-  ],
-  "elements": [
-    {
-      "id": "elem_abc123",
-      "route_path": "/dashboard",
-      "tag": "button",
-      "dom_id": "save-btn",
-      "text": "Save Changes",
-      "fingerprint": { /* 6-tier signals */ }
     }
   ],
   "ui_map": { /* hierarchical component tree */ },
@@ -2718,10 +2708,10 @@ window.guideai.markFeature("used_export");`}
                 />
               </div>
 
-              {/* ============================================ */}
+              ============================================
               {/* FINGERPRINTING */}
               {/* ============================================ */}
-              <div id="fingerprinting" className="scroll-mt-32">
+              {/* <div id="fingerprinting" className="scroll-mt-32">
                 <h2 className="text-3xl font-bold text-slate-900">
                   6-Tier Fingerprinting
                 </h2>
@@ -2789,7 +2779,7 @@ window.guideai.markFeature("used_export");`}
                   attributes gives the fingerprint system a stable Tier 1
                   anchor. This is optional but recommended for critical elements.
                 </p>
-              </div>
+              </div> */}
 
               {/* ============================================ */}
               {/* VISUAL SHOWCASE */}
