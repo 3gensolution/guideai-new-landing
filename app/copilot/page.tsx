@@ -203,7 +203,7 @@ export default function CopilotPage() {
       <FaqSection items={faqItems} title="Browser Copilot, answered" />
       <CtaBanner
         title="Give your users an AI that acts"
-        description="Start with the in-app assistant, then turn on task completion when you're ready. Free up to 1,000 monthly active users."
+        description="Start with the in-app assistant, then turn on task completion when you're ready."
       />
       <Footer />
     </main>

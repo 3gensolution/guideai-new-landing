@@ -174,7 +174,7 @@ export default function SupportTicketReductionPage() {
       <FaqSection items={faqItems} title="Ticket reduction, answered" />
       <CtaBanner
         title="Shrink the queue without shrinking the team"
-        description="Turn repetitive tickets into instant answers. Free up to 1,000 monthly active users."
+        description="Turn repetitive tickets into instant answers."
       />
       <Footer />
     </main>

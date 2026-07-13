@@ -175,7 +175,7 @@ export default function UserOnboardingPage() {
       <FaqSection items={faqItems} title="User onboarding, answered" />
       <CtaBanner
         title="Activate more of the users you already have"
-        description="Ship your first onboarding flow today — free up to 1,000 monthly active users."
+        description="Ship your first onboarding flow today"
       />
       <Footer />
     </main>

@@ -278,7 +278,7 @@ export default function SupportDeskPage() {
       <FaqSection items={faqItems} title="Support desk, answered" />
       <CtaBanner
         title="Give your support team superpowers"
-        description="Deflect the repetitive, resolve the rest — with AI and humans working the same queue. Free up to 1,000 monthly active users."
+        description="Deflect the repetitive, resolve the rest — with AI and humans working the same queue."
       />
       <Footer />
     </main>

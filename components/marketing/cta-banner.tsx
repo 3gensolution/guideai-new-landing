@@ -4,7 +4,7 @@ import { DASHBOARD_URL } from "@/lib/site";
 
 export function CtaBanner({
   title = "Ready to turn friction into activation?",
-  description = "Ship your first guide in minutes, answer questions automatically, and let the copilot handle the rest. Free up to 1,000 monthly active users.",
+  description = "Ship your first guide in minutes, answer questions automatically, and let the copilot handle the rest.",
 }: {
   title?: string;
   description?: string;
