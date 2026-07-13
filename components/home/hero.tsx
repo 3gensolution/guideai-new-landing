@@ -112,11 +112,6 @@ export function HomeHero() {
               Talk to us
             </button>
           </div>
-
-          <p data-hero="note" className="mt-6 text-base text-slate-500">
-            One-snippet install · No
-            credit card required
-          </p>
         </div>
       </Container>
 
