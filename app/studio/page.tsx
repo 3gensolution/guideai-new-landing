@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { DownloadButtons } from "@/components/studio/download-buttons";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
@@ -24,7 +25,6 @@ import {
   accents,
   accentCycle,
 } from "@/components/marketing/primitives";
-import { DASHBOARD_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const capabilities = [
@@ -128,11 +128,10 @@ export default function StudioPage() {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
-                href={DASHBOARD_URL}
-                target="_blank"
+                href="#download"
                 className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-purple-600/25 transition hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-600/30"
               >
-                Get Guide Studio
+                Download Guide Studio
               </Link>
               <Link
                 href="/pricing"
@@ -141,8 +140,12 @@ export default function StudioPage() {
                 See pricing
               </Link>
             </div>
-            <p className="mt-6 text-base text-slate-500">
-              For macOS, Windows, and Linux
+          </div>
+
+          <div id="download" className="scroll-mt-28">
+            <DownloadButtons />
+            <p className="mt-4 text-center text-sm text-slate-500">
+              Free to download · Works on macOS, Windows, and Linux
             </p>
           </div>
         </Container>
