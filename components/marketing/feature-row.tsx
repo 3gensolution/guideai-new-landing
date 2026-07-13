@@ -88,7 +88,6 @@ export function FeatureRow({
             alt={imageAlt}
             width={1200}
             height={750}
-            data-parallax-img
             className="h-auto w-full"
           />
         </div>

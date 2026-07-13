@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Header } from "@/components/header";
@@ -214,14 +214,56 @@ function YouTubeEmbed({
 
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState("overview");
+  // While a click-to-scroll is animating, ignore the observer so the
+  // highlight lands on the clicked item instead of flickering through
+  // every section it passes.
+  const clickScrolling = useRef(false);
+  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollTo = (id: string) => {
     setActiveSection(id);
+    clickScrolling.current = true;
+    if (clickTimer.current) clearTimeout(clickTimer.current);
+    clickTimer.current = setTimeout(() => {
+      clickScrolling.current = false;
+    }, 800);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  // Scroll-spy: highlight the sidebar entry for whichever section is
+  // currently in view.
+  useEffect(() => {
+    const sections = sidebar
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (clickScrolling.current) return;
+        // Of the sections intersecting the activation band, pick the
+        // topmost one on the page.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      {
+        // Activation band sits just below the fixed header; a section
+        // becomes active once its top passes ~24% down the viewport.
+        rootMargin: "-96px 0px -76% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="min-h-screen bg-white">

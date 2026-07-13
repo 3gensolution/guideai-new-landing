@@ -10,9 +10,10 @@ import { DASHBOARD_URL } from "@/lib/site";
 const navigation = {
   product: [
     { name: "In-App Guides", href: "/guides" },
-    { name: "Browser Copilot", href: "/copilot" },
+    { name: "Guide Pro", href: "/guide-pro" },
+    { name: "Guide Studio", href: "/studio" },
+    { name: "GuideAI CoPilot", href: "/copilot" },
     { name: "Friction Analytics", href: "/analytics" },
-    { name: "Support Desk", href: "/support-desk" },
     { name: "Pricing", href: "/pricing" },
   ],
   solutions: [

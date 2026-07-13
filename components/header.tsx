@@ -8,9 +8,10 @@ import {
   BarChart3,
   Bot,
   ChevronDown,
-  Inbox,
   Menu,
+  MonitorPlay,
   MousePointerClick,
+  Presentation,
   Rocket,
   TicketX,
   X,
@@ -39,6 +40,24 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
         icon: MousePointerClick,
         image: "/guidance.png",
         imageAlt: "The 3Guide guides dashboard",
+      },
+      {
+        name: "Guide Pro",
+        description:
+          "Interactive product demos built from screenshots — record, AI-enhance, and embed anywhere.",
+        href: "/guide-pro",
+        icon: Presentation,
+        image: "/guide-pro-img.png",
+        imageAlt: "An interactive Guide Pro demo",
+      },
+      {
+        name: "Guide Studio",
+        description:
+          "A desktop app that turns a screen recording into a polished product video with AI zoom and voiceover.",
+        href: "/studio",
+        icon: MonitorPlay,
+        image: "/guide-studio-img.png",
+        imageAlt: "The Guide Studio screen recorder and editor",
       },
       {
         name: "GuideAI CoPilot",
@@ -89,6 +108,15 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
         icon: TicketX,
         image: "/guidance.png",
         imageAlt: "The AI assistant answering a support question",
+      },
+      {
+        name: "Sales & Marketing Demos",
+        description:
+          "Let buyers experience your product before the first call — with interactive demos and product video.",
+        href: "/use-cases/sales-and-marketing-demos",
+        icon: Presentation,
+        image: "/guide-pro-img.png",
+        imageAlt: "An interactive product demo used in sales",
       },
     ],
   },

@@ -5,8 +5,9 @@ import Image from "next/image";
 import {
   BarChart3,
   Bot,
-  Inbox,
+  MonitorPlay,
   MousePointerClick,
+  Presentation,
   Sparkles,
 } from "lucide-react";
 import {
@@ -35,6 +36,40 @@ const tabs = [
     imageAlt: "3Guide guides dashboard with published and draft guides",
     href: "/guides",
     linkLabel: "Explore In-App Guides",
+  },
+  {
+    key: "guide-pro",
+    label: "Guide Pro",
+    icon: Presentation,
+    title: "Interactive product demos, built from screenshots",
+    description:
+      "Record a few clicks through your product and turn them into a shareable, interactive demo — no live access needed. AI adds the tooltips, voiceover, and zoom.",
+    bullets: [
+      "Capture screenshots or fully clickable page snapshots",
+      "AI writes tooltips and narration, picks the best zoom per screen",
+      "Embed inline, as an overlay, or a popup — anywhere",
+    ],
+    image: "/story-2.png",
+    imageAlt: "An interactive Guide Pro demo in the builder",
+    href: "/guide-pro",
+    linkLabel: "Explore Guide Pro",
+  },
+  {
+    key: "studio",
+    label: "Guide Studio",
+    icon: MonitorPlay,
+    title: "Turn a screen recording into a polished video",
+    description:
+      "A desktop app that records your screen and adds automatic zoom, smooth cursor, backgrounds, captions, and AI voiceover — then exports a clean MP4 or GIF.",
+    bullets: [
+      "Automatic zoom and cursor effects, no keyframing",
+      "One-click polish, or edit by asking the AI assistant",
+      "Export MP4 or GIF for the web, social, and docs",
+    ],
+    image: "/co-pilot.png",
+    imageAlt: "The Guide Studio screen recorder and video editor",
+    href: "/studio",
+    linkLabel: "Explore Guide Studio",
   },
   {
     key: "assistant",
@@ -115,8 +150,8 @@ export function FeatureTabs() {
       <Container>
         <SectionHeading
           eyebrow="The platform"
-          title="One snippet. Five products."
-          description="Everything your users need to learn, use, and love your product — sharing one brain: your product's knowledge."
+          title="One platform. Six products."
+          description="Everything you need to onboard, demo, and support your product — from in-app guidance to interactive demos and polished product video."
           align="center"
         />
 
