@@ -114,7 +114,7 @@ export function HomeHero() {
           </div>
 
           <p data-hero="note" className="mt-6 text-base text-slate-500">
-            Free up to 1,000 monthly active users · One-snippet install · No
+            One-snippet install · No
             credit card required
           </p>
         </div>
