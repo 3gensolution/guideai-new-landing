@@ -173,7 +173,7 @@ export default function StudioPage() {
               "Smart trim removes the dead air",
               "Backgrounds, padding, rounded corners, and shadows",
             ]}
-            image="/funnel.png"
+            image="/guide-studio-ai.png"
             imageAlt="Polishing a recording in the Guide Studio timeline"
             reverse
           />
@@ -187,7 +187,7 @@ export default function StudioPage() {
               "AI demo recorder navigates a site and narrates it",
               "AI voiceover and on-device auto-captions",
             ]}
-            image="/story-4.png"
+            image="/guide-studio-polish.png"
             imageAlt="The Guide Studio AI editing assistant"
           />
         </Container>
