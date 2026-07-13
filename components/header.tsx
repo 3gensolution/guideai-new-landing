@@ -176,13 +176,13 @@ export function Header() {
                 >
                   Pricing
                 </Link>
-                {/* <Link
+                <Link
                   href="/docs"
                   onMouseEnter={() => setOpenMenu(null)}
                   className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
                 >
                   Docs
-                </Link> */}
+                </Link>
               </div>
             </div>
 
