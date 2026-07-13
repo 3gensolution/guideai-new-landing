@@ -41,13 +41,13 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
         imageAlt: "The 3Guide guides dashboard",
       },
       {
-        name: "Browser Copilot",
+        name: "GuideAI Agent",
         description:
           "An AI agent that clicks, types, and navigates on your users' behalf — it completes the task.",
         href: "/copilot",
         icon: Bot,
         image: "/co-pilot.png",
-        imageAlt: "The Autonomous Copilot running browser tasks",
+        imageAlt: "The GuideAI Agent running browser tasks",
       },
       {
         name: "Friction Analytics",
