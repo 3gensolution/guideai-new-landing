@@ -58,7 +58,7 @@ const sidebar = [
   { id: "guides-builder", label: "Guide Builder", icon: Play },
   { id: "copilot-setup", label: "Browser Copilot", icon: MessageSquare },
   { id: "analytics-setup", label: "Analytics", icon: BarChart3 },
-  { id: "fingerprinting", label: "Fingerprinting", icon: Shield },
+  // { id: "fingerprinting", label: "Fingerprinting", icon: Shield },
   { id: "showcase", label: "Visual Showcase", icon: Palette },
 ];
 

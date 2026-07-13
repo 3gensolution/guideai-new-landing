@@ -41,7 +41,7 @@ const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }
         imageAlt: "The 3Guide guides dashboard",
       },
       {
-        name: "GuideAI Agent",
+        name: "GuideAI CoPilot",
         description:
           "An AI agent that clicks, types, and navigates on your users' behalf — it completes the task.",
         href: "/copilot",
