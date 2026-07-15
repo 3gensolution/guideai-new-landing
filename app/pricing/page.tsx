@@ -184,7 +184,7 @@ export default function PricingPage() {
               <span className="text-purple-600">Scale when ready.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-600">
-              Everything you need to build great product adoption — included in
+              Everything you need to build great product adoption is included in
               our generous free tier. No credit card required.
             </p>
           </div>
@@ -357,7 +357,7 @@ export default function PricingPage() {
       <FaqSection items={faqs} title="Pricing, answered" />
       <CtaBanner
         title="Ready to improve your product adoption?"
-        description="Get started for free today — no credit card required."
+        // description="Get started for free today — no credit card required."
       />
       <Footer />
     </main>

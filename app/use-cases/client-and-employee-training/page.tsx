@@ -18,7 +18,7 @@ const painSections = [
     eyebrow: "Employee enablement",
     title: "Train your team inside the tools they actually use",
     description:
-      "Build click-by-click walkthroughs that run right on top of your internal apps. New employees learn by doing — guided step by step through real workflows — instead of sitting through a recording or reading a wiki that's already out of date.",
+      "Build click-by-click walkthroughs that run right on top of your internal apps. New employees learn by doing guided step by step through real workflows, instead of sitting through a recording or reading a wiki that's already out of date.",
     bullets: [
       "In-app guides that walk staff through real tasks",
       "Self-updating steps that heal when the UI changes",
@@ -35,7 +35,7 @@ const painSections = [
     eyebrow: "Client onboarding",
     title: "Get clients productive without a training call",
     description:
-      "Hand clients an interactive Guide Pro demo they can click through at their own pace — a self-contained copy of your product, no logins or live access required. They learn the workflow before they ever open a ticket.",
+      "Hand clients an interactive Guide Pro demo they can click through at their own pace, a self-contained copy of your product, no logins or live access required. They learn the workflow before they ever open a ticket.",
     bullets: [
       "Self-serve interactive demos, no live product needed",
       "AI-written tooltips and narration for every step",
@@ -53,7 +53,7 @@ const painSections = [
     eyebrow: "Training library",
     title: "Turn a screen recording into a training video in minutes",
     description:
-      "Guide Studio turns a raw screen recording into a finished training video — automatic zoom, smooth cursor, clean backgrounds, captions, and AI voiceover — then exports an MP4 or GIF ready for your LMS, help center, or onboarding library.",
+      "Guide Studio turns a raw screen recording into a finished training video automatic zoom, smooth cursor, clean backgrounds, captions, and AI voiceover then exports an MP4 or GIF ready for your LMS, help center, or onboarding library.",
     bullets: [
       "Automatic zoom and cursor polish, no editing skills",
       "AI voiceover and on-device captions for accessibility",
@@ -79,12 +79,12 @@ const faqItems = [
   {
     question: "Can we tailor training to different teams or roles?",
     answer:
-      "Yes. Target guides and tours by segment so each team — or each client account — sees only the workflows relevant to them, instead of one generic tour for everyone.",
+      "Yes. Target guides and tours by segment so each team or each client account sees only the workflows relevant to them, instead of one generic tour for everyone.",
   },
   {
     question: "What's the difference between an interactive guide and a video?",
     answer:
-      "An in-app guide or Guide Pro demo lets people learn by doing — clicking through the real steps. A Guide Studio video is a finished MP4 or GIF for your LMS or help center. Most training programs use both: guides for hands-on practice, videos for reference.",
+      "An in-app guide or Guide Pro demo lets people learn by doing clicking through the real steps. A Guide Studio video is a finished MP4 or GIF for your LMS or help center. Most training programs use both: guides for hands-on practice, videos for reference.",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function ClientEmployeeTrainingPage() {
             <span className="text-purple-600">by letting them do it</span>
           </>
         }
-        description="People learn software by using it, not by watching. 3Guide turns your product into in-app walkthroughs, interactive demos, and polished training videos that get clients and employees productive faster — with fewer questions and less hand-holding."
+        description="People learn software by using it, not by watching. 3Guide turns your product into in-app walkthroughs, interactive demos, and polished training videos that get clients and employees productive faster with fewer questions and less hand-holding."
       />
 
       <Section className="pt-0">

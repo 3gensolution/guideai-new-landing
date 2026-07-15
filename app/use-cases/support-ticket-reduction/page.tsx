@@ -13,12 +13,12 @@ import {
 const painSections = [
   {
     quote:
-      "“We want real answers from an AI that knows our product — not another canned-response chatbot.”",
+      "“We want real answers from an AI that knows our product, not another canned-response chatbot.”",
     accent: "violet" as const,
     eyebrow: "AI assistant",
     title: "Answers grounded in your product, not the open web",
     description:
-      "3Guide builds a knowledge base automatically by scanning your website and docs, and keeps it fresh. The assistant answers from that — your features, your terminology, your screenshots — and says so when it doesn't know.",
+      "3Guide builds a knowledge base automatically by scanning your website and docs, and keeps it fresh. The assistant answers from your features, your terminology, your screenshots and says so when it doesn't know.",
     bullets: [
       "Knowledge base auto-built and auto-refreshed",
       "Answers cite your own content",
@@ -33,9 +33,9 @@ const painSections = [
       "“Half our tickets are the same five how-do-I questions, every single week.”",
     accent: "cyan" as const,
     eyebrow: "Guided deflection",
-    title: "Don't describe the fix — walk them through it",
+    title: "Don't describe the fix, walk them through it",
     description:
-      "For how-do-I questions, the assistant doesn't paste a doc link. It offers a live walkthrough that highlights each step in the real UI — or hands the task to the copilot to complete outright.",
+      "For how-do-I questions, the assistant doesn't paste a doc link. It offers a live walkthrough that highlights each step in the real UI or hands the task to the copilot to complete outright.",
     bullets: [
       "Walkthroughs generated from natural-language questions",
       "Copilot completes routine tasks on request",
@@ -69,12 +69,12 @@ const faqItems = [
   {
     question: "How is this different from adding a chatbot to our site?",
     answer:
-      "Generic chatbots answer from generic knowledge. 3Guide answers from a knowledge base built from your own product, can show users the steps live in your UI, and can even complete the task via the browser copilot — three levels of deflection instead of one.",
+      "Generic chatbots answer from generic knowledge. 3Guide answers from a knowledge base built from your own product, can show users the steps live in your UI, and can even complete the task via the browser copilot, three levels of deflection instead of one.",
   },
   {
     question: "What keeps the knowledge base accurate?",
     answer:
-      "It's rebuilt from your site and docs automatically, so shipped changes flow into answers. You can also curate entries manually — pin canonical answers, exclude pages, or add internal knowledge.",
+      "It's rebuilt from your site and docs automatically, so shipped changes flow into answers. You can also curate entries manually pin canonical answers, exclude pages, or add internal knowledge.",
   },
   {
     question: "Will users get stuck talking to a bot when they need a human?",
@@ -84,7 +84,7 @@ const faqItems = [
   {
     question: "How do we measure the deflection?",
     answer:
-      "The dashboard tracks AI-resolved conversations versus escalations, repeat question topics, and ticket volume over time — so the reduction is a number, not a feeling.",
+      "The dashboard tracks AI-resolved conversations versus escalations, repeat question topics, and ticket volume over time so the reduction is a number, not a feeling.",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function SupportTicketReductionPage() {
             <span className="text-purple-600">Deflect it forever.</span>
           </>
         }
-        description="Your support queue is full of questions your product should answer itself. 3Guide deflects them in-app — with AI answers, live walkthroughs, and a copilot that does the task — so your team only sees what truly needs a human."
+        description="Your support queue is full of questions your product should answer itself. 3Guide deflects them in-app with AI answers, live walkthroughs, and a copilot that does the task, so your team only sees what truly needs a human."
       />
 
       <Section className="pt-0">

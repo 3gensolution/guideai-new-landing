@@ -61,7 +61,7 @@ const oldWay = [
 ];
 
 const newWay = [
-  "Build guides visually with the Chrome extension — no code",
+  "Build guides visually with the Chrome extension",
   "Self-healing re-anchors every step when your UI moves",
   "An AI assistant answers instantly from your own knowledge base",
   "Friction analytics show every drop-off, rage click, and dead end",
@@ -74,7 +74,7 @@ export function ProblemSection() {
         <SectionHeading
           eyebrow="Why 3Guide"
           title="The old onboarding playbook doesn't scale"
-          description="Static tours, stale docs, and a swamped support inbox — every SaaS team knows the pattern. 3Guide replaces it with guidance that builds, maintains, and measures itself."
+          description="Static tours, stale docs, and a swamped support inbox every SaaS team knows the pattern. 3Guide replaces it with guidance that builds, maintains, and measures itself."
           align="center"
         />
         <div
@@ -130,7 +130,7 @@ const steps = [
   {
     title: "AI generates the guide",
     description:
-      "Your recording becomes a polished walkthrough with tooltips, highlights, and step-by-step instructions — ready to edit.",
+      "Your recording becomes a polished walkthrough with tooltips, highlights, and step-by-step instructions ready to edit.",
     badge: "Minutes, not weeks",
   },
   {
@@ -211,7 +211,7 @@ export function HowItWorks() {
 
 const copilotPoints = [
   "Executes clicks, form fills, and navigation on the live page",
-  "Grounded in your knowledge base — it knows your product, not just the web",
+  "Grounded in your knowledge base, it knows your product, not just the web",
   "Falls back to a guided walkthrough when the user wants to learn instead",
   "Scoped permissions and confirmations keep every action safe",
 ];
@@ -229,7 +229,7 @@ export function CopilotSection() {
             </h2>
             <p className="mt-5 text-pretty text-xl leading-relaxed text-slate-300">
               Most platforms stop at showing users where to click. 3Guide ships
-              an autonomous copilot that can complete the task for them —
+              an autonomous copilot that can complete the task for them like
               clicking buttons, filling forms, and navigating pages, with the
               user watching every step.
             </p>
@@ -275,7 +275,7 @@ export function AnalyticsSection() {
         <FeatureRow
           eyebrow="Friction Analytics"
           title="See every stuck user before they churn"
-          description="3Guide tracks how real users move through your product — where they hesitate, drop off, or succeed — and turns it into funnels and dashboards your whole team can act on."
+          description="3Guide tracks how real users move through your product where they hesitate, drop off, or succeed and turns it into funnels and dashboards your whole team can act on."
           bullets={[
             "Acquisition and activation funnels out of the box",
             "Drill into sessions by source, device, and location",
@@ -288,7 +288,7 @@ export function AnalyticsSection() {
         <FeatureRow
           eyebrow="Support Desk"
           title="AI handles the repetitive. Humans handle the rest."
-          description="When a question needs a person, it lands in a real support inbox — with assignment, automation rules, and full conversation history. The AI assistant deflects the how-do-I questions so your team only sees the ones that matter."
+          description="When a question needs a person, it lands in a real support inbox with assignment, automation rules, and full conversation history. The AI assistant deflects the how-do-I questions so your team only sees the ones that matter."
           bullets={[
             "Shared inbox with assignment and internal notes",
             "Automation rules for routing, tagging, and SLAs",
@@ -320,7 +320,7 @@ const useCases = [
     icon: TicketX,
     title: "Support Ticket Reduction",
     description:
-      "Deflect repetitive how-do-I questions with AI answers and in-context guides — before they become tickets.",
+      "Deflect repetitive how-do-I questions with AI answers and in-context guides before they become tickets.",
     href: "/use-cases/support-ticket-reduction",
   },
 ];

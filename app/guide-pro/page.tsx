@@ -36,7 +36,7 @@ const capabilities = [
     icon: ScanLine,
     title: "Two ways to capture",
     description:
-      "Record a clickable copy of your product that replays like the live app, or a crisp image-based demo — one clean shot per click.",
+      "Record a clickable copy of your product that replays like the live app, or a crisp image-based demo.",
   },
   {
     icon: Wand2,
@@ -56,17 +56,17 @@ const capabilities = [
     description:
       "Blur PII with a non-destructive frosted mask, crop the frame, and draw arrows or highlights right on the screen.",
   },
-  {
-    icon: UserSquare,
-    title: "Presenter face-cam",
-    description:
-      "Record or upload a presenter video that follows the viewer as a floating bubble across every step.",
-  },
+  // {
+  //   icon: UserSquare,
+  //   title: "Presenter face-cam",
+  //   description:
+  //     "Record or upload a presenter video that follows the viewer as a floating bubble across every step.",
+  // },
   {
     icon: Fingerprint,
     title: "Personalization tokens",
     description:
-      "Drop in {{first_name}} and other variables that fill from the share link or a lead form — one demo, personalized for everyone.",
+      "Drop in {{first_name}} and other variables that fill from the share link or a lead form one demo, personalized for everyone.",
   },
 ];
 
@@ -75,7 +75,7 @@ const embedTypes = [
     icon: MousePointerClick,
     title: "Inline",
     description:
-      "Embed the demo directly in your page — it plays right where it sits, perfect for landing pages and docs.",
+      "Embed the demo directly in your page. It plays right where it sits, perfect for landing pages and docs.",
   },
   {
     icon: Radar,
@@ -87,7 +87,7 @@ const embedTypes = [
     icon: Share2,
     title: "Popup",
     description:
-      "A button or poster that opens the demo in a popup over your page — drop it anywhere on your site.",
+      "A button or poster that opens the demo in a popup over your page and drop it anywhere on your site.",
   },
 ];
 
@@ -100,7 +100,7 @@ const faqItems = [
   {
     question: "How do I build a demo?",
     answer:
-      "Click 'Create Demo' to start recording in the extension, then click through your product. Each click captures a screen. Stop recording and the demo imports automatically as a draft — AI adds tooltips, voiceover, and zoom, and you refine it in the builder.",
+      "Click 'Create Demo' to start recording in the extension, then click through your product. Each click captures a screen. Stop recording and the demo imports automatically as a draft. The AI adds tooltips, voiceover, and zoom, and you refine it in the builder.",
   },
   {
     question: "Where can I share or embed a demo?",
@@ -115,7 +115,7 @@ const faqItems = [
   {
     question: "Can I export a demo as a video?",
     answer:
-      "Yes. Any demo can be exported as a PDF, an autoplay GIF, or a rendered MP4 with the voiceover and zoom baked in — great for emails, decks, and social.",
+      "Yes. Any demo can be exported as a PDF, an autoplay GIF, or a rendered MP4 with the voiceover and zoom baked in. Great for emails, decks, and social.",
   },
 ];
 
@@ -148,7 +148,7 @@ export default function GuideProPage() {
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600">
               Turn a few clicks through your product into a shareable,
-              interactive demo — no live access required. Record, let AI add
+              interactive demo. Record, let AI add
               tooltips, voiceover, and zoom, then embed it anywhere. The demo
               below was built with Guide Pro.
             </p>
@@ -182,7 +182,7 @@ export default function GuideProPage() {
           <FeatureRow
             eyebrow="Record"
             title="Click through your product. Get a demo."
-            description="Start recording in the Chrome extension and click around your app. Every click captures a screen — either a pixel-perfect image or a clickable snapshot that replays like the live product. Stop, and it imports as a draft automatically."
+            description="Start recording in the Chrome extension and click around your app. Every click captures a screen either a pixel-perfect image or a clickable snapshot that replays like the live product. Stop, and it imports as a draft automatically."
             bullets={[
               "Capture screenshots or fully clickable page snapshots",
               "Records your clicks, typing, and scrolling as steps",
@@ -196,7 +196,7 @@ export default function GuideProPage() {
             eyebrow="Enhance"
             accent="cyan"
             title="AI turns raw screens into a polished story"
-            description="AI reads your captured screens and picks the best treatment for each one — a zoom toward the action, a scroll pan down a long page, or a self-playing motion step with narration — then writes the tooltip copy and an intro and outro to wrap it all."
+            description="AI reads your captured screens and picks the best treatment for each one, a zoom toward the action, a scroll pan down a long page, or a self-playing motion step with narration, then writes the tooltip copy and an intro and outro to wrap it all."
             bullets={[
               "Auto-written tooltips and step copy",
               "Best zoom, pan, or motion chosen per screen",
@@ -209,7 +209,7 @@ export default function GuideProPage() {
           <FeatureRow
             eyebrow="Refine"
             accent="emerald"
-            title="Make it yours — down to the pixel"
+            title="Make it yours, down to the pixel"
             description="Add chapters, hotspots, and highlights. Blur anything sensitive with a non-destructive mask. Drop in a lead form to capture prospects mid-demo, and add a presenter face-cam that follows viewers across every step."
             bullets={[
               "Chapters, hotspots, highlights, and click beacons",
@@ -228,7 +228,7 @@ export default function GuideProPage() {
           <SectionHeading
             eyebrow="Share anywhere"
             title="One demo, three ways to embed"
-            description="Publish once and drop the demo wherever your buyers are — your website, a landing page, an email, or a sales follow-up."
+            description="Publish once and drop the demo wherever your buyers are your website, a landing page, an email, or a sales follow-up."
             align="center"
           />
           <div
@@ -313,8 +313,7 @@ export default function GuideProPage() {
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-600">
                 Every demo can leave the browser as a document, an autoplay GIF,
-                or a rendered video with the voiceover and zoom baked in — ready
-                for decks, emails, and social.
+                or a rendered video with the voiceover and zoom baked in.
               </p>
             </div>
           </div>

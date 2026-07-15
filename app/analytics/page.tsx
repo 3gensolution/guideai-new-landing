@@ -33,7 +33,7 @@ const capabilities = [
     icon: MousePointerClick,
     title: "Friction signals",
     description:
-      "Rage clicks, dead ends, and hesitation points surfaced automatically — before users write in about them.",
+      "Rage clicks, dead ends, and hesitation points surfaced automatically before users write in about them.",
   },
   {
     icon: Users,
@@ -65,17 +65,17 @@ const faqItems = [
   {
     question: "Do I need to instrument events myself?",
     answer:
-      "Core funnels — sessions, signups, trials, guide interactions — work automatically from the same snippet that powers guides. You can add custom events when you want more granularity.",
+      "Core funnel sessions, signups, trials, guide interactions work automatically from the same snippet that powers guides. You can add custom events when you want more granularity.",
   },
   {
     question: "How is this different from a general analytics tool?",
     answer:
-      "3Guide analytics are built around adoption: friction points, guide completion, and time-to-value. And because guides live in the same platform, you can go from spotting a drop-off to shipping a fix in minutes — without switching tools.",
+      "3Guide analytics are built around adoption: friction points, guide completion, and time-to-value. And because guides live in the same platform, you can go from spotting a drop-off to shipping a fix in minutes without switching tools.",
   },
   {
     question: "Can I export the data?",
     answer:
-      "Yes — dashboards support one-click export, and paid plans include configurable data retention.",
+      "Yes the dashboard supports one-click export, and paid plans include configurable data retention.",
   },
   {
     question: "Is user data handled safely?",
@@ -94,10 +94,10 @@ export default function AnalyticsPage() {
         title={
           <>
             See where users <span className="text-purple-600">get stuck</span>{" "}
-            — then fix it in-product
+            then fix it in-product
           </>
         }
-        description="3Guide tracks how real users move through your product — where they hesitate, drop off, or succeed — and pairs every insight with the tool to act on it: a guide, an answer, or a copilot task."
+        description="3Guide tracks how real users move through your product where they hesitate, drop off, or succeed and pairs every insight with the tool to act on it: a guide, an answer, or a copilot task."
       >
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
@@ -117,7 +117,7 @@ export default function AnalyticsPage() {
             eyebrow="Understand"
             accent="cyan"
             title="Every visitor, every session, every stumble"
-            description="The visitor explorer breaks traffic down by source, device, location, and behavior — and lets you replay how sessions unfolded, so 'users are confused' becomes 'users can't find the export button.'"
+            description="The visitor explorer breaks traffic down by source, device, location, and behavior lets you replay how sessions unfolded, so 'users are confused' becomes 'users can't find the export button.'"
             bullets={[
               "Session timelines with landing pages and feature usage",
               "Top sources, devices, and peak hours at a glance",
@@ -130,7 +130,7 @@ export default function AnalyticsPage() {
             eyebrow="Act"
             accent="violet"
             title="Close the loop: insight → guide → lift"
-            description="Analytics that live next to your guides change what you do with them. Spot the drop-off, ship a targeted guide to that exact step, and watch the funnel move — all in one place."
+            description="Analytics that live next to your guides change what you do with them. Spot the drop-off, ship a targeted guide to that exact step, and watch the funnel move all in one place."
             bullets={[
               "Deploy guides directly against friction points",
               "Measure completion and conversion lift per guide",

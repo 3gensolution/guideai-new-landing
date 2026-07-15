@@ -27,7 +27,7 @@ const capabilities = [
     icon: Puzzle,
     title: "Chrome extension builder",
     description:
-      "Build guides by clicking through your own product — no code, no selectors, no engineering tickets.",
+      "Build guides by clicking through your own product. No code, no selectors, no engineering tickets.",
   },
   {
     icon: Wand2,
@@ -39,7 +39,7 @@ const capabilities = [
     icon: Target,
     title: "Segment targeting",
     description:
-      "Show each guide to the right users — by segment, plan, page, or workflow stage.",
+      "Show each guide to the right users. By segment, plan, page, or workflow stage.",
   },
   {
     icon: Film,
@@ -65,12 +65,12 @@ const faqItems = [
   {
     question: "Do I need engineers to build a guide?",
     answer:
-      "No. Guides are built visually with the Chrome extension by clicking through your product. Engineering is only involved once — adding the one-line install snippet.",
+      "No. Guides are built visually with the Chrome extension by clicking through your product. Engineering is only involved once, adding the one-line install snippet.",
   },
   {
     question: "How does self-healing actually work?",
     answer:
-      "Each step stores a fingerprint of its target element — a combination of structural, visual, and semantic signals rather than a brittle CSS selector. When your UI changes, the engine matches the fingerprint against the new page and re-anchors the step automatically.",
+      "Each step stores a fingerprint of its target element, a combination of structural, visual, and semantic signals rather than a brittle CSS selector. When your UI changes, the engine matches the fingerprint against the new page and re-anchors the step automatically.",
   },
   {
     question: "Can I control who sees each guide?",
@@ -93,8 +93,8 @@ export default function GuidesPage() {
         badge="In-App Guides"
         title={
           <>
-            Product tours that build —{" "}
-            <span className="text-purple-600">and fix</span> — themselves
+            Product tours that build{" "}
+            <span className="text-purple-600">and fix</span> themselves
           </>
         }
         description="Create click-by-click walkthroughs in minutes with the visual builder, publish in one click, and let the self-healing engine keep every step working as your product evolves."
@@ -102,7 +102,7 @@ export default function GuidesPage() {
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
             src="/guidance-mode.gif"
-            alt="3Guide guides dashboard with published guides, drafts, and confidence scores"
+            alt="3Guide guidance mode"
             width={1600}
             height={860}
             className="h-auto w-full"
@@ -116,7 +116,7 @@ export default function GuidesPage() {
           <FeatureRow
             eyebrow="Create"
             title="Record a workflow. Get a guide."
-            description="Click through any flow in your product with the Chrome extension. 3Guide captures every step and AI turns the recording into a polished walkthrough — tooltips, highlights, and copy included."
+            description="Click through any flow in your product with the Chrome extension. 3Guide captures every step and AI turns the recording into a polished walkthrough, tooltips, highlights, and copy included."
             bullets={[
               "Visual builder — zero code, zero selectors",
               "AI writes step titles and instructions automatically",
@@ -144,7 +144,7 @@ export default function GuidesPage() {
             eyebrow="Maintain"
             accent="emerald"
             title="Redesign your product. Guides keep working."
-            description="Every step is anchored with an element fingerprint — like face recognition for your UI. Move a button, rename a menu, restyle a page: the engine re-locates the target and the guide carries on."
+            description="Every step is anchored with an element fingerprint like face recognition for your UI. Move a button, rename a menu, restyle a page: the engine re-locates the target and the guide carries on."
             bullets={[
               "Fingerprints combine structure, position, and semantics",
               "Automatic re-anchoring when elements move",

@@ -22,7 +22,7 @@ const safety = [
     icon: ShieldCheck,
     title: "Allowlisted actions",
     description:
-      "The copilot only performs supported, pre-approved action types — nothing improvised, nothing destructive.",
+      "The copilot only performs supported, pre-approved action types, nothing improvised, nothing destructive.",
   },
   {
     icon: UserCheck,
@@ -40,7 +40,7 @@ const safety = [
     icon: Lock,
     title: "The user's own session",
     description:
-      "Actions run with the user's existing permissions — the copilot can never do more than they can.",
+      "Actions run with the user's existing permissions, the copilot can never do more than they can.",
   },
 ];
 
@@ -48,7 +48,7 @@ const faqItems = [
   {
     question: "How is this different from a normal chatbot?",
     answer:
-      "A chatbot tells users what to do. The 3Guide copilot can also do it — clicking buttons, filling forms, and navigating pages on the live site while the user watches. When users prefer to learn, it generates a guided walkthrough instead.",
+      "A chatbot tells users what to do. The 3Guide copilot can also do it by clicking buttons, filling forms, and navigating pages on the live site while the user watches. When users prefer to learn, it generates a guided walkthrough instead.",
   },
   {
     question: "Where does it get its knowledge?",
@@ -80,7 +80,7 @@ export default function CopilotPage() {
             <span className="text-purple-600">gets things done</span>
           </>
         }
-        description="Answer questions with AI trained on your product — and when a user asks for help with a task, complete it for them: clicking, typing, and navigating right in their browser."
+        description="Answer questions with AI trained on your product and when a user asks for help with a task, complete it for them: clicking, typing, and navigating right in their browser."
       >
         <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
           <Image
@@ -100,7 +100,7 @@ export default function CopilotPage() {
             eyebrow="Answer"
             accent="violet"
             title="Instant answers from your own knowledge base"
-            description="3Guide scans your website and docs to build a knowledge base automatically, then answers user questions in context — no tab-switching, no stale help center."
+            description="3Guide scans your website and docs to build a knowledge base automatically, then answers user questions in context no tab-switching, no stale help center."
             bullets={[
               "Knowledge base builds and refreshes itself",
               "Answers cite your own content, not the open web",
@@ -113,7 +113,7 @@ export default function CopilotPage() {
             eyebrow="Guide"
             accent="cyan"
             title="From answer to walkthrough in one click"
-            description="When a user would rather learn the flow, the assistant turns its answer into a live guided walkthrough — highlighting each element in the real UI as they go."
+            description="When a user would rather learn the flow, the assistant turns its answer into a live guided walkthroughs highlighting each element in the real UI as they go."
             bullets={[
               "Generates walkthroughs from natural-language questions",
               "Runs on the live page with step-by-step highlights",

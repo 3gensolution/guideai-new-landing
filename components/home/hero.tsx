@@ -90,7 +90,7 @@ export function HomeHero() {
             3Guide is the AI-first product adoption platform for B2B SaaS.
             Build click-by-click guides in minutes, answer questions with AI
             trained on your product, and let a copilot complete tasks for your
-            users — right in the browser.
+            users right in the browser.
           </p>
 
           <div

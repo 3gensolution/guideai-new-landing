@@ -285,7 +285,7 @@ export default function DocsPage() {
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
               Complete guide to integrating 3Guide into your application.
-              Two complementary bundles — <strong className="text-purple-600">Full SDK</strong> for
+              Two complementary bundles <strong className="text-purple-600">Full SDK</strong> for
               guides, chat & copilot, and{" "}
               <strong className="text-purple-600">Tracking SDK</strong> for
               friction analytics & detection. Use one or both.

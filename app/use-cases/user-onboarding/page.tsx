@@ -18,7 +18,7 @@ const painSections = [
     eyebrow: "Self-healing guides",
     title: "Ship UI changes without breaking onboarding",
     description:
-      "Every guide step is anchored by an element fingerprint, not a brittle selector. Redesign freely — guides re-anchor themselves, and confidence scores flag the rare step that needs a human look.",
+      "Every guide step is anchored by an element fingerprint, not a brittle selector. Redesign freely, guides re-anchor themselves, and confidence scores flag the rare step that needs a human look.",
     bullets: [
       "Automatic re-anchoring after UI changes",
       "Confidence scores on every guide",
@@ -35,7 +35,7 @@ const painSections = [
     eyebrow: "Visual builder",
     title: "Product and CS teams ship tours without engineers",
     description:
-      "Record any workflow with the Chrome extension and AI turns it into a polished guide. Publish targeted onboarding for each segment in an afternoon — engineering only installs one snippet, once.",
+      "Record any workflow with the Chrome extension and AI turns it into a polished guide. Publish targeted onboarding for each segment in an afternoon, engineering only installs one snippet, once.",
     bullets: [
       "Chrome extension builder, zero code",
       "AI-generated steps, tooltips, and copy",
@@ -48,12 +48,12 @@ const painSections = [
   },
   {
     quote:
-      "“New users churn before they reach the aha moment — and we don't know why.”",
+      "“New users churn before they reach the aha moment and we don't know why.”",
     accent: "violet" as const,
     eyebrow: "Friction analytics",
     title: "See the exact step where activation dies",
     description:
-      "Acquisition and activation funnels are tracked out of the box. Find the drop-off step, ship a guide against it, and measure the lift — the whole loop lives in one platform.",
+      "Acquisition and activation funnels are tracked out of the box. Find the drop-off step, ship a guide against it, and measure the lift. The whole loop lives in one platform.",
     bullets: [
       "Signup → activation funnels by segment",
       "Session-level drill-down into stuck users",
@@ -74,7 +74,7 @@ const faqItems = [
   {
     question: "Can different user segments get different onboarding?",
     answer:
-      "Yes. Target guides by segment, plan, page, or workflow — new admins, invited teammates, and trial users can each get their own first-run experience.",
+      "Yes. Target guides by segment, plan, page, or workflow new admins, invited teammates, and trial users can each get their own first-run experience.",
   },
   {
     question: "What if users skip the tour?",
@@ -132,7 +132,7 @@ export default function UserOnboardingPage() {
           <SectionHeading
             eyebrow="The playbook"
             title="Onboarding that compounds"
-            description="Identify friction with analytics, fix it with targeted guides, deflect the leftover questions with AI — then measure and repeat."
+            description="Identify friction with analytics, fix it with targeted guides, deflect the leftover questions with AI, then measure and repeat."
             align="center"
           />
           <div data-stagger className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">

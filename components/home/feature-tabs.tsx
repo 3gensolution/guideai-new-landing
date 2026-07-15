@@ -28,7 +28,7 @@ const tabs = [
     description:
       "Create guided tours by clicking through your own product. Publish in one click, target by segment, and never write custom code for onboarding again.",
     bullets: [
-      "Visual builder via the Chrome extension — zero code",
+      "Visual builder via the Chrome extension",
       "AI writes the steps, tooltips, and copy for you",
       "Self-healing keeps every guide working after redesigns",
     ],
@@ -43,13 +43,13 @@ const tabs = [
     icon: Presentation,
     title: "Interactive product demos, built from screenshots",
     description:
-      "Record a few clicks through your product and turn them into a shareable, interactive demo — no live access needed. AI adds the tooltips, voiceover, and zoom.",
+      "Record a few clicks through your product and turn them into a shareable, interactive demo. AI adds the tooltips, voiceover, and zoom.",
     bullets: [
       "Capture screenshots or fully clickable page snapshots",
       "AI writes tooltips and narration, picks the best zoom per screen",
-      "Embed inline, as an overlay, or a popup — anywhere",
+      "Embed inline, as an overlay, or a popup",
     ],
-    image: "/story-2.png",
+    image: "/guide-pro-img.png",
     imageAlt: "An interactive Guide Pro demo in the builder",
     href: "/guide-pro",
     linkLabel: "Explore Guide Pro",
@@ -60,13 +60,13 @@ const tabs = [
     icon: MonitorPlay,
     title: "Turn a screen recording into a polished video",
     description:
-      "A desktop app that records your screen and adds automatic zoom, smooth cursor, backgrounds, captions, and AI voiceover — then exports a clean MP4 or GIF.",
+      "A desktop app that records your screen and adds automatic zoom, smooth cursor, backgrounds, captions, and AI voiceover and then exports a clean MP4 or GIF.",
     bullets: [
       "Automatic zoom and cursor effects, no keyframing",
       "One-click polish, or edit by asking the AI assistant",
       "Export MP4 or GIF for the web, social, and docs",
     ],
-    image: "/co-pilot.png",
+    image: "/guide-studio-img.png",
     imageAlt: "The Guide Studio screen recorder and video editor",
     href: "/studio",
     linkLabel: "Explore Guide Studio",
@@ -80,7 +80,7 @@ const tabs = [
       "An assistant embedded in your app that answers user questions from a knowledge base built automatically from your own website and docs.",
     bullets: [
       "Knowledge base builds and refreshes itself",
-      "Answers cite your own content — no hallucinated help",
+      "Answers cite your own content",
       "Escalates to your support desk when a human is needed",
     ],
     image: "/assistant-mode.gif",
@@ -94,7 +94,7 @@ const tabs = [
     icon: Sparkles,
     title: "An AI that completes the task for your users",
     description:
-      "Beyond showing users where to click — the autonomous copilot clicks, types, and navigates on their behalf while they watch every step.",
+      "Beyond showing users where to click. The autonomous copilot clicks, types, and navigates on their behalf while they watch every step.",
     bullets: [
       "Executes clicks, form fills, and navigation on the live page",
       "Plans multi-step tasks from one natural-language request",
@@ -111,13 +111,13 @@ const tabs = [
     icon: BarChart3,
     title: "See exactly where users get stuck",
     description:
-      "Funnels, session drill-downs, and friction signals out of the box — so 'users are confused' becomes 'users can't find the export button.'",
+      "Funnels, session drill-downs, and friction signals out of the box so 'users are confused' becomes 'users can't find the export button.'",
     bullets: [
       "Acquisition and activation funnels automatically",
       "Session-level drill-down by source, device, and location",
       "Measure guide completion and time-to-value",
     ],
-    image: "/funnel.png",
+    image: "/friction-img.png",
     imageAlt: "3Guide visitors explorer with sessions and sources",
     href: "/analytics",
     linkLabel: "Explore Friction Analytics",
@@ -147,18 +147,18 @@ export function FeatureTabs() {
 
   return (
     <Section className="bg-purple-50/60">
-      <Container>
+      <Container className="px-6">
         <SectionHeading
           eyebrow="The platform"
           title="One platform. Six products."
-          description="Everything you need to onboard, demo, and support your product — from in-app guidance to interactive demos and polished product video."
+          description="Everything you need to onboard, demo, and support your product from in-app guidance to interactive demos and polished product video."
           align="center"
         />
 
         {/* Tab pills */}
         <div
           data-reveal
-          className="mt-12 flex flex-wrap items-center justify-center gap-3"
+          className="mt-12 flex items-center justify-center gap-3 overflow-auto py-4"
         >
           {tabs.map((t, i) => (
             <button
@@ -166,7 +166,7 @@ export function FeatureTabs() {
               type="button"
               onClick={() => setActive(i)}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-bold transition-all duration-300",
+                "inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 text-base font-bold transition-all duration-300",
                 i === active
                   ? "bg-purple-600 text-white shadow-lg shadow-purple-600/25"
                   : "border-2 border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-700"

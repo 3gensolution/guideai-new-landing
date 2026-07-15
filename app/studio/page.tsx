@@ -38,7 +38,7 @@ const capabilities = [
     icon: ZoomIn,
     title: "Automatic zoom",
     description:
-      "Zoom and pan follow your cursor automatically, so the viewer's eye is always on the action — no keyframing required.",
+      "Zoom and pan follow your cursor automatically, so the viewer's eye is always on the action.",
   },
   {
     icon: MousePointer2,
@@ -56,13 +56,13 @@ const capabilities = [
     icon: Captions,
     title: "Auto captions",
     description:
-      "Transcribe your recording into styled captions on-device in seconds — no upload, no manual typing.",
+      "Transcribe your recording into styled captions on-device in seconds. No upload, no manual typing.",
   },
   {
     icon: Clapperboard,
     title: "Scene builder",
     description:
-      "Open on a title card, cut to a metrics scene, end on your logo — cinematic scene templates snap into the timeline.",
+      "Open on a title card, cut to a metrics scene, end on your logo.",
   },
 ];
 
@@ -70,22 +70,22 @@ const faqItems = [
   {
     question: "What is Guide Studio?",
     answer:
-      "Guide Studio is a desktop app for recording your screen and turning it into a polished product video. It handles the capture, the zoom and cursor effects, backgrounds, captions, and voiceover — then exports a finished MP4 or GIF.",
+      "Guide Studio is a desktop app for recording your screen and turning it into a polished product video. It handles the capture, the zoom and cursor effects, backgrounds, captions, and voiceover.",
   },
   {
     question: "How is it different from Guide Pro?",
     answer:
-      "Guide Pro builds interactive, clickable demos you embed on a page. Guide Studio produces finished video — the MP4 or GIF you'd post to your site, a launch tweet, or a training library. Many teams use both: an interactive demo to explore, a video to watch.",
+      "Guide Pro builds interactive, clickable demos you embed on a page. Guide Studio produces finished video. The MP4 or GIF you'd post to your site, a launch tweet, or a training library. Many teams use both: an interactive demo to explore, a video to watch.",
   },
   {
     question: "Do I need to edit the video by hand?",
     answer:
-      "Only if you want to. One-click polish adds zooms, trims dead air, and cleans up the cursor automatically. You can also just tell the built-in AI assistant what to change — 'trim the boring parts', 'add a zoom at 0:15', 'speed up this section'.",
+      "Only if you want to. One-click polish adds zooms, trims dead air, and cleans up the cursor automatically. You can also just tell the built-in AI assistant what to change, 'trim the boring parts', 'add a zoom at 0:15', 'speed up this section'.",
   },
   {
     question: "Can it generate a demo on its own?",
     answer:
-      "Yes. Give the AI demo recorder a URL and a goal and it navigates the site itself, capturing the flow with narration written as it goes — a first draft you can refine.",
+      "Yes. Give the AI demo recorder a URL and a goal and it navigates the site itself, capturing the flow with narration written as it goes as a first draft you can refine.",
   },
   {
     question: "What can I export?",
@@ -122,7 +122,7 @@ export default function StudioPage() {
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600">
               Guide Studio is a desktop app that turns a raw screen recording
-              into a finished product video — automatic zoom, smooth cursor,
+              into a finished product video, automatic zoom, smooth cursor,
               beautiful backgrounds, captions, and AI voiceover. Then export a
               clean MP4 or GIF.
             </p>
@@ -156,7 +156,7 @@ export default function StudioPage() {
           <FeatureRow
             eyebrow="Record"
             title="Capture the screen, cursor, and you"
-            description="Record your full screen or a single window with system audio and microphone, and add a webcam bubble you can shape and position. Guide Studio captures your real cursor — every shape, click, and movement — so it can polish it later."
+            description="Record your full screen or a single window with system audio and microphone, and add a webcam bubble you can shape and position. Guide Studio captures your real cursor every shape, click, and movement so it can polish it later."
             bullets={[
               "Full screen or single window, with system + mic audio",
               "Webcam picture-in-picture with masks and placement",
@@ -170,7 +170,7 @@ export default function StudioPage() {
             eyebrow="Polish"
             accent="cyan"
             title="One click makes it look produced"
-            description="Automatic zoom follows your cursor, dead air gets trimmed, and the cursor path smooths itself out. Drop the recording onto a background, round the corners, add a shadow, and it looks like it took hours — in seconds."
+            description="Automatic zoom follows your cursor, dead air gets trimmed, and the cursor path smooths itself out. Drop the recording onto a background, round the corners, add a shadow, and it looks like it took hours in seconds."
             bullets={[
               "Auto-zoom and pan that track the action",
               "Smart trim removes the dead air",
@@ -184,9 +184,9 @@ export default function StudioPage() {
             eyebrow="Direct with AI"
             accent="violet"
             title="Tell the editor what you want"
-            description="Ask the built-in AI assistant to make the changes — 'trim the boring parts', 'add a zoom at 0:15', 'speed up 5s to 12s'. Or hand the AI demo recorder a URL and a goal and let it capture and narrate a full walkthrough on its own."
+            description="Ask the built-in AI assistant to make the changes 'trim the boring parts', 'add a zoom at 0:15', 'speed up 5s to 12s'. Or hand the AI demo recorder a URL and a goal and let it capture and narrate a full walkthrough on its own."
             bullets={[
-              "Natural-language editing — no timeline wrangling",
+              "Natural-language editing. No timeline wrangling",
               "AI demo recorder navigates a site and narrates it",
               "AI voiceover and on-device auto-captions",
             ]}
@@ -244,7 +244,7 @@ export default function StudioPage() {
                 Export a clean MP4 or GIF
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-300">
-                Render at any aspect ratio and resolution — landscape for the
+                Render at any aspect ratio and resolution and landscape for the
                 web, square for social, or a lightweight GIF for a README. One
                 export, ready to ship.
               </p>
