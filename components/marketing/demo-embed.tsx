@@ -49,7 +49,10 @@ export function DemoEmbed() {
           }}
           className="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-900/60 p-6 backdrop-blur-sm"
         >
-          <div className="relative h-[80vh] w-[80vw] max-lg:w-[94vw]">
+          <div
+            className="relative aspect-[16/10]"
+            style={{ width: "min(880px, 94vw, calc(82vh * 1.6))" }}
+          >
             <button
               type="button"
               onClick={() => setDemoStarted(false)}
