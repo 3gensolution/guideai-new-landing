@@ -158,7 +158,23 @@ export function FeatureTabs() {
         {/* Tab pills */}
         <div
           data-reveal
-          className="mt-12 flex items-center justify-center gap-3 overflow-auto py-4"
+          className="
+            mt-12
+            flex
+            gap-3
+            overflow-x-auto
+            overflow-y-hidden
+            px-4
+            py-4
+            pl-2
+            lg:pl-24
+            [scrollbar-width:none]
+            [-ms-overflow-style:none]
+            [&::-webkit-scrollbar]:hidden
+            lg:justify-center
+            lg:overflow-x-visible
+            lg:gap-4
+          "
         >
           {tabs.map((t, i) => (
             <button

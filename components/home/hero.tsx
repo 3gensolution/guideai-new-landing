@@ -74,7 +74,7 @@ export function HomeHero() {
       />
 
       <Container className="relative">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto">
           <h1
             data-hero="title"
             className="text-balance text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl"

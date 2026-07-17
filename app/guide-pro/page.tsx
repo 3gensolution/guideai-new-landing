@@ -30,6 +30,7 @@ import {
 } from "@/components/marketing/primitives";
 import { DASHBOARD_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { DemoGuideProEmbed } from "@/components/marketing/demo-guide-embed";
 
 const capabilities = [
   {
@@ -171,7 +172,7 @@ export default function GuideProPage() {
 
           <div data-reveal data-reveal-delay="0.15" className="mt-16 px-4">
             <div className="mx-auto max-w-6xl rounded-2xl border-2 border-purple-100 bg-white p-2 shadow-2xl shadow-purple-900/15">
-              <DemoEmbed />
+              <DemoGuideProEmbed />
             </div>
           </div>
         </Container>
