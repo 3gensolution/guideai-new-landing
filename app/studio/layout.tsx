@@ -8,9 +8,9 @@ export const metadata: Metadata = {
     title: "Guide Studio — AI Screen Recorder & Video Editor | 3Guide",
     description:
       "Record your screen and turn it into a polished product video with AI zoom, captions, and voiceover. Export MP4 or GIF.",
-    url: "https://3guideai.com/studio",
+    url: "https://www.3guideai.com/studio",
   },
-  alternates: { canonical: "https://3guideai.com/studio" },
+  alternates: { canonical: "https://www.3guideai.com/studio" },
 };
 
 export default function StudioLayout({

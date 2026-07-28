@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'Support Ticket Reduction | 3Guide',
     description:
       'Deflect repetitive support questions with AI answers and in-context walkthroughs.',
-    url: 'https://3guideai.com/use-cases/support-ticket-reduction',
+    url: 'https://www.3guideai.com/use-cases/support-ticket-reduction',
   },
   alternates: {
-    canonical: 'https://3guideai.com/use-cases/support-ticket-reduction',
+    canonical: 'https://www.3guideai.com/use-cases/support-ticket-reduction',
   },
 }
 

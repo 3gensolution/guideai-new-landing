@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: "Client & Employee Training | 3Guide",
     description:
       "In-app walkthroughs, interactive demos, and training videos that get clients and employees productive faster.",
-    url: "https://3guideai.com/use-cases/client-and-employee-training",
+    url: "https://www.3guideai.com/use-cases/client-and-employee-training",
   },
   alternates: {
-    canonical: "https://3guideai.com/use-cases/client-and-employee-training",
+    canonical: "https://www.3guideai.com/use-cases/client-and-employee-training",
   },
 };
 

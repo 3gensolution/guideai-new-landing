@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'Support Desk | 3Guide',
     description:
       'An AI-first support inbox: AI deflects repetitive questions, humans handle the rest.',
-    url: 'https://3guideai.com/support-desk',
+    url: 'https://www.3guideai.com/support-desk',
   },
   alternates: {
-    canonical: 'https://3guideai.com/support-desk',
+    canonical: 'https://www.3guideai.com/support-desk',
   },
 }
 

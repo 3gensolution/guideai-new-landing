@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'User Onboarding | 3Guide',
     description:
       'Turn signups into activated users with AI-built guided tours and friction analytics.',
-    url: 'https://3guideai.com/use-cases/user-onboarding',
+    url: 'https://www.3guideai.com/use-cases/user-onboarding',
   },
   alternates: {
-    canonical: 'https://3guideai.com/use-cases/user-onboarding',
+    canonical: 'https://www.3guideai.com/use-cases/user-onboarding',
   },
 }
 

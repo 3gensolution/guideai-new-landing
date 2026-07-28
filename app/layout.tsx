@@ -16,9 +16,9 @@ const robotoMono = Roboto_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://3guideai.com'),
+  metadataBase: new URL('https://www.3guideai.com'),
   title: {
-    default: '3Guide - AI-First Product Adoption Platform',
+    default: '3Guide (3GuideAI) - AI-First Product Adoption Platform',
     template: '%s | 3Guide',
   },
   description: 'Build in-app guides in minutes, keep them current automatically. AI-powered onboarding, friction analytics, and browser Copilot for B2B SaaS.',
@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   applicationName: '3Guide',
   keywords: [
     '3Guide',
+    '3GuideAI',
+    '3guideai',
+    'GuideAI',
+    'Guide AI',
     'product adoption',
     'in-app guides',
     'user onboarding',
@@ -38,13 +42,13 @@ export const metadata: Metadata = {
     'digital adoption platform',
     'interactive walkthroughs',
   ],
-  authors: [{ name: '3Guide', url: 'https://3guideai.com' }],
+  authors: [{ name: '3Guide', url: 'https://www.3guideai.com' }],
   creator: '3Guide',
   publisher: '3Guide',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://3guideai.com',
+    url: 'https://www.3guideai.com',
     siteName: '3Guide',
     title: '3Guide - AI-First Product Adoption Platform',
     description: 'Build in-app guides in minutes, keep them current automatically. AI-powered onboarding, friction analytics, and browser Copilot for B2B SaaS.',
@@ -75,7 +79,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://3guideai.com',
+    canonical: 'https://www.3guideai.com',
   },
   icons: {
     icon: [

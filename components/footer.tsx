@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Facebook, Linkedin, Mail, X } from "lucide-react";
+import { Linkedin, Mail, X } from "lucide-react";
 import { ContactFormDialog } from "@/components/contact-form-dialog";
 import { DASHBOARD_URL } from "@/lib/site";
 
@@ -31,11 +31,10 @@ const navigation = {
 };
 
 const socialLinks = [
-  { name: "X", href: "https://x.com/3guideai", icon: X },
-  { name: "Facebook", href: "https://facebook.com/3guideai", icon: Facebook },
+  { name: "X", href: "https://x.com/GuideAIhq", icon: X },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/3guideai",
+    href: "https://www.linkedin.com/company/3guideai",
     icon: Linkedin,
   },
 ];

@@ -46,14 +46,42 @@ const faqItems = [
   },
 ];
 
+const SAME_AS = [
+  "https://www.linkedin.com/company/3guideai",
+  "https://x.com/GuideAIhq",
+];
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.3guideai.com/#organization",
+  name: "3Guide",
+  alternateName: ["3GuideAI", "3guideai", "GuideAI", "Guide AI"],
+  url: "https://www.3guideai.com",
+  logo: "https://www.3guideai.com/logo.jpeg",
+  email: "info@3guideai.com",
+  sameAs: SAME_AS,
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.3guideai.com/#website",
+  name: "3Guide",
+  alternateName: ["3GuideAI", "GuideAI"],
+  url: "https://www.3guideai.com",
+  publisher: { "@id": "https://www.3guideai.com/#organization" },
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "3Guide",
+  alternateName: ["3GuideAI", "3guideai", "GuideAI", "Guide AI"],
   applicationCategory: "BusinessApplication",
   description:
     "AI-First Product Adoption Platform. Build in-app guides in minutes, keep them current automatically with AI-powered onboarding, friction analytics, and browser Copilot.",
-  url: "https://3guideai.com",
+  url: "https://www.3guideai.com",
   operatingSystem: "Web",
   offers: {
     "@type": "Offer",
@@ -61,12 +89,8 @@ const jsonLd = {
     priceCurrency: "USD",
     // description: "Free tier available with up to 1,000 monthly active users",
   },
-  provider: {
-    "@type": "Organization",
-    name: "3Guide",
-    url: "https://3guideai.com",
-    email: "info@3guideai.com",
-  },
+  provider: { "@id": "https://www.3guideai.com/#organization" },
+  sameAs: SAME_AS,
   featureList: [
     "AI-powered in-app guides",
     "Auto-healing product tours",
@@ -80,6 +104,14 @@ const jsonLd = {
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

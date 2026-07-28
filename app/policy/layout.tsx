@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Privacy Policy | 3Guide',
     description: '3Guide privacy policy. Learn how we collect, use, and protect your data.',
-    url: 'https://3guideai.com/policy',
+    url: 'https://www.3guideai.com/policy',
   },
   alternates: {
-    canonical: 'https://3guideai.com/policy',
+    canonical: 'https://www.3guideai.com/policy',
   },
 }
 

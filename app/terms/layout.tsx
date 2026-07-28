@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'The terms that govern your use of 3Guide.',
   alternates: {
-    canonical: 'https://3guideai.com/terms',
+    canonical: 'https://www.3guideai.com/terms',
   },
 }
 

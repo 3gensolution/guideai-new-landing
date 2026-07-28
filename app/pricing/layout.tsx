@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'Pricing | 3Guide',
     description:
       '3Guide pricing plans for teams of all sizes. Start free with up to 1,000 monthly active users.',
-    url: 'https://3guideai.com/pricing',
+    url: 'https://www.3guideai.com/pricing',
   },
   alternates: {
-    canonical: 'https://3guideai.com/pricing',
+    canonical: 'https://www.3guideai.com/pricing',
   },
 }
 

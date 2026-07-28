@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'Friction Analytics | 3Guide',
     description:
       'Identify and eliminate user friction. Track behavior, detect drop-offs, and optimize your product experience.',
-    url: 'https://3guideai.com/analytics',
+    url: 'https://www.3guideai.com/analytics',
   },
   alternates: {
-    canonical: 'https://3guideai.com/analytics',
+    canonical: 'https://www.3guideai.com/analytics',
   },
 }
 

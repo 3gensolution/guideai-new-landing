@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'Browser Copilot | 3Guide',
     description:
       'AI-powered Chrome extension with RAG-powered Q&A. Instant answers and contextual help right in your product.',
-    url: 'https://3guideai.com/copilot',
+    url: 'https://www.3guideai.com/copilot',
   },
   alternates: {
-    canonical: 'https://3guideai.com/copilot',
+    canonical: 'https://www.3guideai.com/copilot',
   },
 }
 

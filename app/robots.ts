@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://3guideai.com/sitemap.xml',
+    sitemap: 'https://www.3guideai.com/sitemap.xml',
   }
 }

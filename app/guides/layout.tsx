@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: 'In-App Guides | 3Guide',
     description:
       'Create AI-powered in-app guides in minutes. Auto-healing product tours and interactive walkthroughs.',
-    url: 'https://3guideai.com/guides',
+    url: 'https://www.3guideai.com/guides',
   },
   alternates: {
-    canonical: 'https://3guideai.com/guides',
+    canonical: 'https://www.3guideai.com/guides',
   },
 }
 
