@@ -109,25 +109,6 @@ function formatPrice(plan: SubscriptionPlan): string {
   }
 }
 
-/**
- * Format an overage price (minor units) in the plan's currency.
- */
-function formatOverage(plan: SubscriptionPlan): string {
-  const amount =
-    plan.localized_event_overage_price_minor / 10 ** plan.currency_minor_units;
-  try {
-    return new Intl.NumberFormat("en", {
-      style: "currency",
-      currency: plan.currency,
-      currencyDisplay: "narrowSymbol",
-      minimumFractionDigits: plan.currency_minor_units,
-      maximumFractionDigits: plan.currency_minor_units,
-    }).format(amount);
-  } catch {
-    return `${plan.currency} ${amount.toFixed(plan.currency_minor_units)}`;
-  }
-}
-
 function formatLimit(value: number): string {
   if (value === -1) return "Unlimited";
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(0)}M`;
@@ -140,7 +121,11 @@ function formatLimit(value: number): string {
  * plan's credit_rate_multiplier (e.g. 2.0 -> "2×", 1.0 -> "1×"). "1×" is the
  * best (cheapest) rate. Nothing hardcoded — the number comes straight from the API.
  */
-function creditRateLabel(multiplier: number): { text: string; isBest: boolean } {
+function creditRateLabel(multiplier: number): {
+  text: string;
+  isBest: boolean;
+  multiplier: string;
+} {
   const rounded = Number.isInteger(multiplier)
     ? multiplier.toString()
     : multiplier.toFixed(1).replace(/\.0$/, "");
@@ -148,15 +133,16 @@ function creditRateLabel(multiplier: number): { text: string; isBest: boolean } 
   return {
     text: isBest ? `Best ${rounded}× credit rate` : `${rounded}× credit usage rate`,
     isBest,
+    multiplier: rounded,
   };
 }
 
 const faqs = [
-  {
-    question: "What counts as a Monthly Active User (MAU)?",
-    answer:
-      "An MAU is any unique user who interacts with at least one 3Guide feature (guide, Copilot, or tracked event) within a calendar month.",
-  },
+  // {
+  //   question: "What counts as a Monthly Active User (MAU)?",
+  //   answer:
+  //     "An MAU is any unique user who interacts with at least one 3Guide feature (guide, Copilot, or tracked event) within a calendar month.",
+  // },
   {
     question: "Can I use 3Guide for free forever?",
     answer:
@@ -174,16 +160,21 @@ const faqs = [
   },
 ];
 
+// Only the details that actually affect a plan choice — all from real API fields.
 const comparisonRows: {
   label: string;
   render: (plan: SubscriptionPlan) => React.ReactNode;
 }[] = [
   {
-    label: "Monthly sessions",
-    render: (p) => formatLimit(p.monthly_session_limit),
+    label: "Price",
+    render: (p) =>
+      p.localized_price_minor === 0 ? "Free" : formatPrice(p),
   },
-  { label: "Monthly events", render: (p) => formatLimit(p.monthly_event_limit) },
-  { label: "AI credits", render: (p) => formatLimit(p.monthly_credits) },
+  { label: "Monthly credits", render: (p) => formatLimit(p.monthly_credits) },
+  {
+    label: "Credit rate",
+    render: (p) => `${creditRateLabel(p.credit_rate_multiplier).multiplier}×`,
+  },
   {
     label: "Sites",
     render: (p) => (p.max_sites === -1 ? "Unlimited" : p.max_sites),
@@ -191,48 +182,10 @@ const comparisonRows: {
   { label: "Team seats", render: (p) => p.max_seats },
   { label: "Data retention", render: (p) => `${p.data_retention_days} days` },
   {
-    label: "SSO",
-    render: (p) =>
-      p.features.includes("SSO") ? (
-        <Check className="mx-auto h-4 w-4 text-purple-600" />
-      ) : (
-        <span className="text-slate-300">—</span>
-      ),
-  },
-  {
-    label: "Custom integrations",
-    render: (p) =>
-      p.features.includes("Custom integrations") ? (
-        <Check className="mx-auto h-4 w-4 text-purple-600" />
-      ) : (
-        <span className="text-slate-300">—</span>
-      ),
-  },
-  {
-    label: "SLA guarantee",
-    render: (p) =>
-      p.features.includes("SLA guarantee") ? (
-        <Check className="mx-auto h-4 w-4 text-purple-600" />
-      ) : (
-        <span className="text-slate-300">—</span>
-      ),
-  },
-  {
-    label: "Free trial",
-    render: (p) => (p.trial_days > 0 ? `${p.trial_days} days` : "—"),
-  },
-  {
-    label: "Event overage policy",
-    render: (p) =>
-      p.event_overage_policy === "hard_block"
-        ? "Hard block"
-        : `Overage (${formatOverage(p)}/unit)`,
-  },
-  {
-    label: "BYOK (Bring Your Own Key)",
+    label: "Bring your own AI key",
     render: (p) =>
       p.byok_allowed ? (
-        <Check className="mx-auto h-4 w-4 text-purple-600" />
+        "Available"
       ) : (
         <span className="text-slate-300">—</span>
       ),
@@ -497,47 +450,57 @@ export default function PricingPage() {
       {!loading && !error && plans.length > 0 && (
         <section className="border-t border-slate-200 bg-slate-50 py-20 sm:py-24">
           <Container>
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-                Compare plans
+            <div className="mx-auto max-w-5xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+                Compare credits and access
               </h2>
-            </div>
+              <p className="mt-2 text-slate-600">
+                Only the details that affect your plan choice.
+              </p>
 
-            <div className="mx-auto mt-14 max-w-4xl overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <table className="w-full min-w-[560px]">
-                <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50/60">
-                    <th className="px-6 py-4 text-left font-mono text-xs font-semibold uppercase tracking-wider text-slate-500">
-                      Feature
-                    </th>
-                    {plans.map((plan) => (
-                      <th
-                        key={plan.id}
-                        className="px-6 py-4 text-center text-sm font-semibold text-slate-900"
-                      >
-                        {plan.name}
+              <div className="mt-8 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <table className="w-full min-w-[560px]">
+                  <thead>
+                    <tr className="border-b border-slate-200 bg-slate-50/60">
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
+                        Plan details
                       </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {comparisonRows.map((row) => (
-                    <tr key={row.label}>
-                      <td className="px-6 py-4 text-sm text-slate-600">
-                        {row.label}
-                      </td>
-                      {plans.map((plan) => (
-                        <td
+                      {plans.map((plan, index) => (
+                        <th
                           key={plan.id}
-                          className="px-6 py-4 text-center text-sm text-slate-700"
+                          className="px-6 py-4 text-center text-sm font-semibold text-slate-900"
                         >
-                          {row.render(plan)}
-                        </td>
+                          <span className="inline-flex items-baseline gap-2">
+                            {plan.name}
+                            {isHighlighted(index) && (
+                              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-purple-600">
+                                Recommended
+                              </span>
+                            )}
+                          </span>
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {comparisonRows.map((row) => (
+                      <tr key={row.label}>
+                        <td className="px-6 py-4 text-sm text-slate-600">
+                          {row.label}
+                        </td>
+                        {plans.map((plan) => (
+                          <td
+                            key={plan.id}
+                            className="px-6 py-4 text-center text-sm font-medium text-slate-900"
+                          >
+                            {row.render(plan)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </Container>
         </section>
