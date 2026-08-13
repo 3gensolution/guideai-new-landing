@@ -68,6 +68,18 @@ function countryFromLocale(): string {
   return "US";
 }
 
+// Countries we bill in their own local currency. Everyone else is priced in USD.
+// (NG -> NGN, GB -> GBP; the "?country=" endpoint infers the currency from this.)
+const LOCALIZED_COUNTRIES = new Set(["NG", "GB"]);
+
+/**
+ * Map a detected country to the country we actually query pricing with. Nigeria
+ * and the UK keep their own currency; every other country defaults to "US" (USD).
+ */
+function pricingCountry(detected: string): string {
+  return LOCALIZED_COUNTRIES.has(detected) ? detected : "US";
+}
+
 /**
  * Detect the visitor's country from their IP address via BigDataCloud's keyless
  * client-side reverse-geocode endpoint. This reflects the user's actual physical
@@ -202,7 +214,7 @@ export default function PricingPage() {
     setError(null);
     setLoading(true);
     try {
-      const country = await detectCountry();
+      const country = pricingCountry(await detectCountry());
       const res = await fetch(
         `https://dashboard.3guideai.com/api/v1/subscription-plans?country=${encodeURIComponent(country)}`,
       );
