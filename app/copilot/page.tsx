@@ -69,7 +69,7 @@ const faqItems = [
 
 export default function CopilotPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       <PageHero

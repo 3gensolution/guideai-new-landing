@@ -86,7 +86,7 @@ const faqItems = [
 
 export default function AnalyticsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       <PageHero

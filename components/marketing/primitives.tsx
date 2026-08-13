@@ -27,35 +27,37 @@ type AccentStyles = {
   numberBadge: string;
 };
 
+/* Light-theme accent tokens. "Light" variant targets the white canvas;
+   "*Dark" variant targets dark/purple sections (footer, copilot). */
 const purple: AccentStyles = {
   text: "text-purple-600",
-  textDark: "text-purple-300",
+  textDark: "text-purple-200",
   tile: "bg-purple-100 text-purple-700",
-  tileDark: "bg-purple-500/20 text-purple-300",
+  tileDark: "bg-white/10 text-purple-100 ring-1 ring-white/15",
   check: "bg-purple-100 text-purple-700",
-  checkDark: "bg-purple-500/20 text-purple-300",
+  checkDark: "bg-white/10 text-purple-100",
   pill: "border-purple-200 bg-purple-50 text-purple-700",
   numberBadge: "border-purple-200 bg-purple-100 text-purple-700",
 };
 
 const emerald: AccentStyles = {
   text: "text-emerald-600",
-  textDark: "text-emerald-300",
+  textDark: "text-emerald-200",
   tile: "bg-emerald-100 text-emerald-700",
-  tileDark: "bg-emerald-500/20 text-emerald-300",
+  tileDark: "bg-white/10 text-emerald-100 ring-1 ring-white/15",
   check: "bg-emerald-100 text-emerald-700",
-  checkDark: "bg-emerald-500/20 text-emerald-300",
+  checkDark: "bg-white/10 text-emerald-100",
   pill: "border-emerald-200 bg-emerald-50 text-emerald-700",
   numberBadge: "border-emerald-200 bg-emerald-100 text-emerald-700",
 };
 
 const rose: AccentStyles = {
   text: "text-rose-600",
-  textDark: "text-rose-300",
+  textDark: "text-rose-200",
   tile: "bg-rose-100 text-rose-700",
-  tileDark: "bg-rose-500/20 text-rose-300",
+  tileDark: "bg-white/10 text-rose-100 ring-1 ring-white/15",
   check: "bg-rose-100 text-rose-700",
-  checkDark: "bg-rose-500/20 text-rose-300",
+  checkDark: "bg-white/10 text-rose-100",
   pill: "border-rose-200 bg-rose-50 text-rose-700",
   numberBadge: "border-rose-200 bg-rose-100 text-rose-700",
 };
@@ -122,10 +124,14 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "font-mono text-sm font-semibold uppercase tracking-[0.2em]",
+        "inline-flex items-center gap-2.5 kicker",
         dark ? accents[accent].textDark : accents[accent].text
       )}
     >
+      <span
+        aria-hidden
+        className={cn("h-px w-6", dark ? "bg-white/30" : "bg-purple-400/50")}
+      />
       {children}
     </p>
   );
@@ -164,8 +170,8 @@ export function SectionHeading({
       )}
       <h2
         className={cn(
-          "mt-4 text-balance text-4xl font-bold tracking-tight sm:text-5xl",
-          dark ? "text-white" : "text-slate-900"
+          "font-display display-tight mt-6 text-balance text-4xl font-bold leading-[1.02] sm:text-5xl lg:text-6xl",
+          dark ? "text-gradient-light" : "text-gradient"
         )}
       >
         {title}
@@ -173,8 +179,9 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "mt-5 text-pretty text-xl leading-relaxed",
-            dark ? "text-slate-300" : "text-slate-600"
+            "mt-6 max-w-2xl text-pretty text-lg leading-relaxed sm:text-xl",
+            dark ? "text-slate-300" : "text-slate-600",
+            align === "center" && "mx-auto"
           )}
         >
           {description}
@@ -258,13 +265,13 @@ export function ArrowLink({
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center gap-1.5 text-base font-bold transition",
+        "group inline-flex items-center gap-2 text-base font-semibold tracking-tight transition",
         dark ? accents[accent].textDark : accents[accent].text,
         className
       )}
     >
-      {children}
-      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+      <span className="link-underline">{children}</span>
+      <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
     </Link>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { Roboto, Roboto_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { Roboto, Roboto_Mono, Space_Grotesk } from 'next/font/google'
 import { ScrollFx } from '@/components/marketing/scroll-fx'
+import { CookieConsent } from '@/components/cookie-consent'
 import './globals.css'
 
 const roboto = Roboto({
@@ -13,6 +13,13 @@ const roboto = Roboto({
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
   variable: '--font-roboto-mono',
+})
+
+// Sharp, bold geometric sans for headlines (Everstage-style display voice)
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-space',
 })
 
 export const metadata: Metadata = {
@@ -106,11 +113,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`}>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${robotoMono.variable} ${spaceGrotesk.variable}`}
+    >
       <body className="font-sans antialiased">
         <ScrollFx />
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <CookieConsent />
       </body>
     </html>
   )

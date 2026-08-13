@@ -197,7 +197,7 @@ function InboxMock() {
 
 export default function SupportDeskPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       <PageHero

@@ -11,7 +11,7 @@ export default function PolicyPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-zinc-900"
@@ -133,6 +133,40 @@ export default function PolicyPage() {
                 <li>Send marketing communications where permitted</li>
               </ul>
 
+              <h3 className="text-lg font-semibold text-slate-900/90">
+                Lawful basis for processing
+              </h3>
+              <p>
+                Under the Nigeria Data Protection Act (NDPA) 2023, we process
+                personal data only where a lawful basis applies:
+              </p>
+              <ul className="list-disc space-y-1 pl-5">
+                <li>
+                  <span className="font-semibold text-slate-800">Consent</span>{" "}
+                  — for analytics cookies and marketing communications, which you
+                  may withdraw at any time.
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Performance of a contract
+                  </span>{" "}
+                  — to create your account and deliver the services you request.
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Legitimate interests
+                  </span>{" "}
+                  — to secure, maintain, and improve the platform, balanced
+                  against your rights and freedoms.
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Legal obligation
+                  </span>{" "}
+                  — where processing is required to comply with applicable law.
+                </li>
+              </ul>
+
               <h2
                 id="how-we-share"
                 className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
@@ -212,18 +246,75 @@ export default function PolicyPage() {
                 6. Your Rights
               </h2>
               <p>
-                Depending on your location and applicable laws, you may have
+                Under the NDPA 2023, and depending on your location, you have
                 the right to:
               </p>
               <ul className="list-disc space-y-1 pl-5">
-                <li>Access your personal information</li>
-                <li>Correct inaccurate information</li>
-                <li>Request deletion of your data</li>
-                <li>Object to certain processing activities</li>
-                <li>Withdraw consent for marketing communications</li>
+                <li>
+                  <span className="font-semibold text-slate-800">Access</span>{" "}
+                  the personal data we hold about you
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Rectify
+                  </span>{" "}
+                  inaccurate or incomplete information
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">Erase</span>{" "}
+                  your data (&ldquo;right to be forgotten&rdquo;)
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Data portability
+                  </span>{" "}
+                  — receive your data in a structured, machine-readable format
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Restrict or object
+                  </span>{" "}
+                  to certain processing activities
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Withdraw consent
+                  </span>{" "}
+                  at any time, without affecting prior lawful processing
+                </li>
+                <li>
+                  Lodge a complaint with the{" "}
+                  <span className="font-semibold text-slate-800">
+                    Nigeria Data Protection Commission (NDPC)
+                  </span>
+                </li>
               </ul>
+
+              <h3 className="text-lg font-semibold text-slate-900/90">
+                How to make a Data Subject Access Request (DSAR)
+              </h3>
               <p>
-                To exercise these rights, contact us at{" "}
+                To exercise any of the rights above, email our Data Protection
+                Officer at{" "}
+                <a
+                  className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
+                  href="mailto:privacy@3guideai.com?subject=Data%20Subject%20Access%20Request"
+                >
+                  privacy@3guideai.com
+                </a>{" "}
+                with the subject line &ldquo;Data Subject Access Request.&rdquo;
+                We will verify your identity and respond within{" "}
+                <span className="font-semibold text-slate-800">30 days</span> as
+                required by the NDPA. There is no fee for a standard request.
+              </p>
+
+              <h3 className="text-lg font-semibold text-slate-900/90">
+                Data Protection Officer
+              </h3>
+              <p>
+                3Guide has designated a Data Protection Officer (DPO)
+                responsible for overseeing compliance with the NDPA 2023. You
+                can reach our DPO at{" "}
                 <a
                   className="text-purple-600 underline underline-offset-4 hover:text-purple-700"
                   href="mailto:info@3guideai.com"
@@ -239,14 +330,39 @@ export default function PolicyPage() {
               >
                 7. Cookies &amp; Analytics
               </h2>
-              <p>3Guide may use cookies and similar technologies to:</p>
+              <p>3Guide uses two categories of cookies:</p>
               <ul className="list-disc space-y-1 pl-5">
-                <li>Maintain sessions and authentication</li>
-                <li>Understand product and website usage</li>
-                <li>Improve onboarding and navigation</li>
-                <li>Analyze platform performance</li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Essential cookies
+                  </span>{" "}
+                  — required to maintain sessions, authentication, security, and
+                  core site functionality. These are always active.
+                </li>
+                <li>
+                  <span className="font-semibold text-slate-800">
+                    Analytics cookies
+                  </span>{" "}
+                  — used to understand how the website is used so we can improve
+                  onboarding and navigation. These load{" "}
+                  <span className="font-semibold text-slate-800">
+                    only after you opt in
+                  </span>{" "}
+                  via our cookie banner.
+                </li>
               </ul>
-              <p>You can manage cookie settings through your browser preferences.</p>
+              <p>
+                In line with the Nigeria Data Protection Act (NDPA) 2023 and the
+                Nigeria Data Protection Regulation (NDPR), we do not set
+                non-essential cookies without your explicit, freely given
+                consent. You can withdraw your consent at any time using the{" "}
+                <span className="font-semibold text-slate-800">
+                  &ldquo;Cookie settings&rdquo;
+                </span>{" "}
+                link in the footer, or by clearing cookies in your browser.
+                Withdrawing consent does not affect processing carried out
+                before withdrawal.
+              </p>
 
               <h2
                 id="integrations"
@@ -286,13 +402,54 @@ export default function PolicyPage() {
                 10. International Data Transfers
               </h2>
               <p>
-                Your information may be processed or stored in countries outside
-                your own jurisdiction where our infrastructure or service
-                providers operate.
+                Because 3Guide serves customers globally, personal data may be
+                transferred to and processed in countries outside Nigeria where
+                our infrastructure and sub-processors operate. Our principal
+                sub-processors and their processing locations are:
+              </p>
+              <div className="overflow-x-auto">
+                <table className="mt-2 w-full border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-slate-500">
+                      <th className="py-2 pr-4 font-semibold">Provider</th>
+                      <th className="py-2 pr-4 font-semibold">Purpose</th>
+                      <th className="py-2 font-semibold">Location</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-slate-600">
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2 pr-4">Cloud hosting &amp; storage</td>
+                      <td className="py-2 pr-4">
+                        Application hosting, database, backups
+                      </td>
+                      <td className="py-2">United States / EU</td>
+                    </tr>
+                    <tr className="border-b border-slate-100">
+                      <td className="py-2 pr-4">Vercel</td>
+                      <td className="py-2 pr-4">
+                        Website hosting &amp; privacy-friendly analytics
+                      </td>
+                      <td className="py-2">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 pr-4">Payment processor</td>
+                      <td className="py-2 pr-4">Billing (where applicable)</td>
+                      <td className="py-2">United States / EU</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                Where we transfer personal data outside Nigeria, we rely on a
+                lawful transfer mechanism under NDPA Sections 41&ndash;43 —
+                namely an adequacy decision by the Nigeria Data Protection
+                Commission, or an approved transfer instrument such as Standard
+                Contractual Clauses combined with appropriate technical and
+                organisational safeguards, or your explicit consent after being
+                informed of the risks.
               </p>
               <p>
-                We take reasonable steps to ensure appropriate safeguards are in
-                place for international data transfers.
+                We take reasonable steps to ensure that any appropriate safeguards are in place for international transfers, and that your personal data is treated securely and in accordance with this Privacy Policy.
               </p>
 
               <h2

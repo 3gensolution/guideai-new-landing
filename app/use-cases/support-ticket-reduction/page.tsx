@@ -90,7 +90,7 @@ const faqItems = [
 
 export default function SupportTicketReductionPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       <PageHero

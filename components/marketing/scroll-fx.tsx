@@ -25,17 +25,20 @@ export function ScrollFx() {
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Editorial reveal — small offset, long soft ease. Deliberate, not springy.
+      const editorialEase = "power2.out";
+
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, y: 32 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.9,
-            ease: "power3.out",
+            duration: 1.1,
+            ease: editorialEase,
             delay: parseFloat(el.dataset.revealDelay || "0"),
-            scrollTrigger: { trigger: el, start: "top 88%", once: true },
+            scrollTrigger: { trigger: el, start: "top 90%", once: true },
           }
         );
       });
@@ -43,14 +46,14 @@ export function ScrollFx() {
       gsap.utils.toArray<HTMLElement>("[data-stagger]").forEach((group) => {
         gsap.fromTo(
           group.children,
-          { opacity: 0, y: 28 },
+          { opacity: 0, y: 18 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.75,
-            ease: "power3.out",
-            stagger: 0.09,
-            scrollTrigger: { trigger: group, start: "top 86%", once: true },
+            duration: 0.95,
+            ease: editorialEase,
+            stagger: 0.12,
+            scrollTrigger: { trigger: group, start: "top 88%", once: true },
           }
         );
       });

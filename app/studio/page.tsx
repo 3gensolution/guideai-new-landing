@@ -96,7 +96,7 @@ const faqItems = [
 
 export default function StudioPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       <section className="relative overflow-hidden bg-white pb-16 pt-32 sm:pt-40">

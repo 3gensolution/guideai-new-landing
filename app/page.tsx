@@ -2,13 +2,11 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { HomeHero } from "@/components/home/hero";
 import { FeatureTabs } from "@/components/home/feature-tabs";
+import { ExperienceSection } from "@/components/home/experience-section";
 import {
-  AnalyticsSection,
-  CopilotSection,
   HowItWorks,
   ProblemSection,
   StatBand,
-  UseCasesSection,
 } from "@/components/home/sections";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
@@ -116,16 +114,14 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-background">
         <Header />
         <HomeHero />
         <StatBand />
         <ProblemSection />
         <FeatureTabs />
         <HowItWorks />
-        <CopilotSection />
-        <AnalyticsSection />
-        <UseCasesSection />
+        <ExperienceSection />
         <FaqSection
           items={faqItems}
           description="Everything teams usually ask before installing 3Guide."

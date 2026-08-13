@@ -150,14 +150,15 @@ export function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
+    <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className="relative mx-auto max-w-6xl"
+        className="relative"
         onMouseLeave={() => setOpenMenu(null)}
       >
-        {/* Floating island bar */}
-        <div className="rounded-2xl border border-slate-200 bg-white/95 px-5 shadow-lg shadow-purple-900/5 backdrop-blur-md">
-          <nav className="flex h-16 items-center justify-between">
+        {/* Full-width bar — dark plum (Everstage-style) */}
+        <div className="border-b border-white/10 bg-plum/95 shadow-lg shadow-plum/20 backdrop-blur-xl">
+          <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+
             <div className="flex items-center gap-x-8">
               <Link href="/" className="flex items-center gap-2">
                 <Image
@@ -167,7 +168,7 @@ export function Header() {
                   height={32}
                   className="h-8 w-8 rounded-lg"
                 />
-                <span className="text-lg font-bold tracking-tight text-slate-900">
+                <span className="font-display text-lg font-bold tracking-tight text-white">
                   3Guide
                 </span>
               </Link>
@@ -184,8 +185,8 @@ export function Header() {
                       className={cn(
                         "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition",
                         openMenu === key
-                          ? "text-purple-700"
-                          : "text-slate-600 hover:text-slate-900"
+                          ? "text-white"
+                          : "text-purple-100/80 hover:text-white"
                       )}
                     >
                       {menus[key].label}
@@ -201,14 +202,14 @@ export function Header() {
                 <Link
                   href="/pricing"
                   onMouseEnter={() => setOpenMenu(null)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-purple-100/80 transition hover:text-white"
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/docs"
                   onMouseEnter={() => setOpenMenu(null)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-purple-100/80 transition hover:text-white"
                 >
                   Docs
                 </Link>
@@ -219,14 +220,14 @@ export function Header() {
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-purple-100/80 transition hover:text-white"
               >
                 Sign in
               </Link>
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-purple-600/25 transition hover:bg-purple-500"
+                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold tracking-tight text-plum transition-colors duration-300 hover:bg-purple-50"
               >
                 Start free
               </Link>
@@ -234,7 +235,7 @@ export function Header() {
 
             <button
               type="button"
-              className="text-slate-900 lg:hidden"
+              className="text-white lg:hidden"
               aria-label="Toggle menu"
               onClick={() => setMobileMenuOpen((v) => !v)}
             >
@@ -246,13 +247,13 @@ export function Header() {
             </button>
           </nav>
 
-          {/* Mobile menu (inside the island) */}
+          {/* Mobile menu */}
           {mobileMenuOpen && (
-            <div className="max-h-[calc(100vh-8rem)] overflow-y-auto border-t border-slate-200 py-6 lg:hidden">
+            <div className="mx-auto max-h-[calc(100vh-8rem)] max-w-7xl overflow-y-auto border-t border-white/10 px-6 py-6 lg:hidden">
               {(Object.keys(menus) as Array<Exclude<MenuKey, null>>).map(
                 (key) => (
                   <div key={key} className="mb-6">
-                    <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                    <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-purple-300/70">
                       {menus[key].label}
                     </p>
                     <div className="mt-2 space-y-1">
@@ -260,9 +261,9 @@ export function Header() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="flex items-center gap-3 rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
+                          className="flex items-center gap-3 rounded-xl px-2 py-2.5 text-base font-medium text-purple-50"
                         >
-                          <item.icon className="h-5 w-5 text-purple-700" />
+                          <item.icon className="h-5 w-5 text-purple-300" />
                           {item.name}
                         </Link>
                       ))}
@@ -270,23 +271,23 @@ export function Header() {
                   </div>
                 )
               )}
-              <div className="space-y-1 border-t border-slate-200 pt-4">
+              <div className="space-y-1 border-t border-white/10 pt-4">
                 <Link
                   href="/pricing"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
+                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-purple-50"
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/docs"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
+                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-purple-50"
                 >
                   Docs
                 </Link>
                 <Link
                   href={DASHBOARD_URL}
                   target="_blank"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
+                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-purple-50"
                 >
                   Sign in
                 </Link>
@@ -294,7 +295,7 @@ export function Header() {
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="mt-4 flex w-full items-center justify-center rounded-xl bg-purple-600 px-5 py-3 text-sm font-bold text-white shadow-md shadow-purple-600/25"
+                className="mt-4 flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold tracking-tight text-plum"
               >
                 Start free
               </Link>
@@ -302,20 +303,23 @@ export function Header() {
           )}
         </div>
 
-        {/* Full-width mega dropdown */}
+        {/* Mega dropdown */}
         <div
           className={cn(
-            "absolute inset-x-0 top-full hidden pt-2 transition-all duration-300 ease-out lg:block",
+            "absolute inset-x-0 top-full hidden px-6 pt-2 transition-all duration-300 ease-out lg:block lg:px-8",
             activeMenu
               ? "visible translate-y-0 opacity-100"
               : "invisible -translate-y-2 opacity-0"
           )}
         >
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl shadow-purple-900/10">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-white/95 p-6 shadow-2xl shadow-purple-900/10 backdrop-blur-xl">
             {activeMenu && previewItem && (
               <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
                 {/* Items with descriptions */}
                 <div className="grid content-start gap-1">
+                  <p className="mb-2 px-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                    {activeMenu.label}
+                  </p>
                   {activeMenu.items.map((item, i) => (
                     <Link
                       key={item.href}
@@ -350,8 +354,11 @@ export function Header() {
                   ))}
                 </div>
 
-                {/* Live preview of the hovered item */}
+                {/* Live preview of the hovered item — "Why 3Guide?" tile */}
                 <div className="relative overflow-hidden rounded-xl border border-purple-100 bg-purple-50/60 p-4">
+                  <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-purple-600">
+                    Why 3Guide?
+                  </p>
                   <div
                     key={previewItem.href}
                     className="duration-300 animate-in fade-in"

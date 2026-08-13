@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowRight,
   BarChart3,
   Bot,
   MonitorPlay,
@@ -11,7 +13,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import {
-  ArrowLink,
   CheckItem,
   Container,
   Section,
@@ -146,7 +147,7 @@ export function FeatureTabs() {
   const tab = tabs[active];
 
   return (
-    <Section className="bg-purple-50/60">
+    <Section className="bg-background">
       <Container className="px-6">
         <SectionHeading
           eyebrow="The platform"
@@ -155,74 +156,84 @@ export function FeatureTabs() {
           align="center"
         />
 
-        {/* Tab pills */}
+        {/* Horizontal underline tab row (Everstage-style) */}
         <div
           data-reveal
-          className="
-            mt-12
-            flex
-            gap-3
-            overflow-x-auto
-            overflow-y-hidden
-            px-4
-            py-4
-            pl-2
-            lg:pl-24
-            [scrollbar-width:none]
-            [-ms-overflow-style:none]
-            [&::-webkit-scrollbar]:hidden
-            lg:justify-center
-            lg:overflow-x-visible
-            lg:gap-4
-          "
+          className="mt-14 flex gap-8 overflow-x-auto border-b border-slate-200 pb-px [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {tabs.map((t, i) => (
-            <button
-              key={t.key}
-              type="button"
-              onClick={() => setActive(i)}
-              className={cn(
-                "inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 text-base font-bold transition-all duration-300",
-                i === active
-                  ? "bg-purple-600 text-white shadow-lg shadow-purple-600/25"
-                  : "border-2 border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-700"
-              )}
-            >
-              <t.icon className="h-5 w-5" />
-              {t.label}
-            </button>
-          ))}
+          {tabs.map((t, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={t.key}
+                type="button"
+                onClick={() => setActive(i)}
+                className={cn(
+                  "relative flex shrink-0 items-center gap-2 pb-4 text-base font-semibold tracking-tight transition-colors duration-300",
+                  isActive
+                    ? "text-purple-700"
+                    : "text-slate-500 hover:text-slate-900"
+                )}
+              >
+                {isActive && (
+                  <t.icon className="h-4 w-4 text-purple-600" />
+                )}
+                {t.label}
+                <span
+                  className={cn(
+                    "absolute inset-x-0 -bottom-px h-0.5 rounded-full transition-all duration-300",
+                    isActive ? "bg-purple-600" : "bg-transparent"
+                  )}
+                />
+              </button>
+            );
+          })}
         </div>
 
-        {/* Active panel — keyed so it re-animates on change */}
+        {/* Big dark panel: copy left, screenshot right */}
         <div
           key={tab.key}
-          className="mt-12 grid items-center gap-10 duration-500 animate-in fade-in slide-in-from-bottom-4 lg:grid-cols-[1fr_1.35fr] lg:gap-16"
+          className="mt-8 overflow-hidden rounded-3xl bg-ink duration-500 animate-in fade-in"
         >
-          <div>
-            <h3 className="text-balance text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              {tab.title}
-            </h3>
-            <p className="mt-5 text-pretty text-lg leading-relaxed text-slate-600">
-              {tab.description}
-            </p>
-            <ul className="mt-7 space-y-4">
-              {tab.bullets.map((b) => (
-                <CheckItem key={b}>{b}</CheckItem>
-              ))}
-            </ul>
-            <div className="mt-8">
-              <ArrowLink href={tab.href}>{tab.linkLabel}</ArrowLink>
+          <div className="grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-2 lg:gap-14 lg:p-16">
+            <div>
+              <p className="kicker inline-flex items-center gap-2.5 text-purple-300">
+                <span aria-hidden className="h-px w-6 bg-white/30" />
+                {tab.label}
+              </p>
+              <h3 className="font-display display-tight text-gradient-light mt-6 text-balance text-3xl font-bold leading-[1.05] sm:text-4xl lg:text-[2.75rem]">
+                {tab.title}
+              </h3>
+              <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-purple-100/80">
+                {tab.description}
+              </p>
+              <ul className="mt-7 space-y-3">
+                {tab.bullets.map((b) => (
+                  <CheckItem key={b} dark>
+                    {b}
+                  </CheckItem>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Link
+                  href={tab.href}
+                  className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold tracking-tight text-plum transition-colors duration-300 hover:bg-purple-50"
+                >
+                  {tab.linkLabel}
+                  <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="overflow-hidden rounded-2xl border-2 border-purple-100 bg-white shadow-2xl shadow-purple-900/10">
-            <Image
-              src={tab.image}
-              alt={tab.imageAlt}
-              width={1400}
-              height={800}
-              className="h-auto w-full"
-            />
+
+            <div className="wave-card overflow-hidden border border-white/10 bg-white/5 p-2 shadow-2xl shadow-black/40">
+              <Image
+                src={tab.image}
+                alt={tab.imageAlt}
+                width={1400}
+                height={800}
+                className="h-auto w-full rounded-3xl"
+              />
+            </div>
           </div>
         </div>
       </Container>

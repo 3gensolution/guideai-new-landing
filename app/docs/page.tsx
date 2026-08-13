@@ -266,7 +266,7 @@ export default function DocsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       {/* Hero */}

@@ -170,7 +170,7 @@ export default function PricingPage() {
   const isHighlighted = (index: number) => index === 1;
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
       <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
 

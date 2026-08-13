@@ -67,7 +67,7 @@ const sections: { title: string; body: string[] }[] = [
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       <section className="relative overflow-hidden pb-12 pt-32 sm:pt-40">

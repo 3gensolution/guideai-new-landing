@@ -122,7 +122,7 @@ const faqItems = [
 
 export default function GuideProPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       {/* Hero — reuses the real, live Guide Pro demo */}

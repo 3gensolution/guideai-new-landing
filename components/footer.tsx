@@ -27,6 +27,10 @@ const navigation = {
     { name: "Contact", href: "mailto:info@3guideai.com" },
     { name: "Privacy Policy", href: "/policy" },
     { name: "Terms of Service", href: "/terms" },
+    {
+      name: "Data Request (DSAR)",
+      href: "mailto:info@3guideai.com?subject=Data%20Subject%20Access%20Request",
+    },
   ],
 };
 
@@ -44,6 +48,26 @@ export function Footer() {
 
   return (
     <>
+      {/* Purple wave divider that curves down into the dark footer */}
+      <div aria-hidden className="relative -mb-px bg-background">
+        <svg
+          className="block h-16 w-full sm:h-24 lg:h-32"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          fill="none"
+        >
+          <path
+            d="M0,40 C360,120 1080,-20 1440,60 L1440,120 L0,120 Z"
+            fill="var(--color-ink)"
+          />
+          <path
+            d="M0,40 C360,120 1080,-20 1440,60"
+            stroke="oklch(0.55 0.24 300)"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
+      </div>
       <footer className="relative isolate overflow-hidden bg-ink text-white">
         <div className="pointer-events-none absolute -left-16 top-40 hidden h-[28rem] w-[28rem] opacity-70 lg:block">
           <span className="absolute left-20 top-2 h-64 w-64 rounded-full border-[28px] border-purple-500/20 border-b-transparent border-r-transparent" />
@@ -53,7 +77,7 @@ export function Footer() {
         </div>
 
         <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
-          <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold leading-[1.05] tracking-normal text-slate-100 sm:text-5xl lg:text-6xl">
+          <h2 className="font-display display-tight text-gradient-light mx-auto max-w-4xl text-center text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
             Together, we can make product adoption feel effortless.
           </h2>
 
@@ -85,14 +109,14 @@ export function Footer() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Link
                   href={DASHBOARD_URL}
-                  className="inline-flex items-center justify-center rounded-md bg-purple-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-purple-950/30 transition hover:bg-purple-500"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-base font-semibold tracking-tight text-slate-950 transition-colors duration-300 hover:bg-white/90"
                 >
                   Start free
                 </Link>
                 <button
                   type="button"
                   onClick={() => setContactOpen(true)}
-                  className="inline-flex items-center justify-center rounded-md border border-purple-200/70 px-6 py-4 text-base font-bold text-slate-100 transition hover:border-white hover:bg-white hover:text-purple-700"
+                  className="glass-dark inline-flex items-center justify-center rounded-full px-6 py-4 text-base font-semibold tracking-tight text-white transition-colors duration-300"
                 >
                   Request a demo
                 </button>
@@ -158,7 +182,7 @@ export function Footer() {
               </p>
               <Link
                 href="mailto:info@3guideai.com?subject=Subscribe%20to%203Guide%20newsletter"
-                className="mt-6 inline-flex rounded-md border border-purple-200/70 px-7 py-4 text-base font-bold text-slate-100 transition hover:border-white hover:bg-white hover:text-purple-700"
+                className="glass-dark mt-6 inline-flex rounded-full px-7 py-4 text-base font-semibold tracking-tight text-white transition-colors duration-300"
               >
                 Subscribe to our newsletter
               </Link>
@@ -190,10 +214,21 @@ export function Footer() {
             </p>
           </div>
 
-          <p className="text-center text-sm font-semibold text-slate-500">
-            © {new Date().getFullYear()} 3Guide, by 3gensolution. All Rights
-            Reserved
-          </p>
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-6">
+            <p className="text-center text-sm font-semibold text-slate-500">
+              © {new Date().getFullYear()} 3Guide, by 3gensolution. All Rights
+              Reserved
+            </p>
+            <button
+              type="button"
+              onClick={() =>
+                window.dispatchEvent(new Event("open-cookie-settings"))
+              }
+              className="text-sm font-semibold text-slate-400 underline underline-offset-4 transition hover:text-white"
+            >
+              Cookie settings
+            </button>
+          </div>
         </div>
       </footer>
       <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />

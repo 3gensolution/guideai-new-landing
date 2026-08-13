@@ -112,7 +112,7 @@ export function ContactFormDialog({
             </p>
             <Button
               onClick={() => handleClose(false)}
-              className="mt-6 bg-purple-600 text-white hover:bg-purple-500"
+              className="mt-6 bg-purple-600 text-white hover:bg-purple-700"
             >
               Close
             </Button>
