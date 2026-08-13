@@ -30,13 +30,102 @@ interface SubscriptionPlan {
   trial_days: number;
   display_order: number;
   monthly_credits: number;
+  credit_rate_multiplier: number;
   credit_overage_policy: string;
   byok_allowed: boolean;
+  country_code: string;
+  base_currency: string;
+  currency: string;
+  currency_minor_units: number;
+  localized_price_minor: number;
+  localized_event_overage_price_minor: number;
+  exchange_rate: number;
+  exchange_rate_date: string | null;
 }
 
-function formatPrice(priceCents: number): string {
-  if (priceCents === 0) return "$0";
-  return `$${(priceCents / 100).toFixed(0)}`;
+/**
+ * Resolve a fallback country from the browser locale (e.g. "en-NG" -> "NG").
+ * Used only when IP geolocation is unavailable. Returns "US" if nothing resolves.
+ */
+function countryFromLocale(): string {
+  if (typeof navigator === "undefined") return "US";
+  const languages =
+    navigator.languages && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language];
+  for (const lang of languages) {
+    if (!lang) continue;
+    try {
+      const region = new Intl.Locale(lang).region;
+      if (region) return region.toUpperCase();
+    } catch {
+      const parts = lang.split(/[-_]/);
+      if (parts.length > 1 && parts[1].length === 2) {
+        return parts[1].toUpperCase();
+      }
+    }
+  }
+  return "US";
+}
+
+/**
+ * Detect the visitor's country from their IP address via BigDataCloud's keyless
+ * client-side reverse-geocode endpoint. This reflects the user's actual physical
+ * location (the browser UserAgent carries no geolocation). Falls back to the
+ * browser locale, then "US", if the lookup fails.
+ */
+async function detectCountry(): Promise<string> {
+  try {
+    const res = await fetch(
+      "https://api-bdc.net/data/reverse-geocode-client?localityLanguage=en",
+    );
+    if (res.ok) {
+      const data = (await res.json()) as { countryCode?: string };
+      if (data.countryCode) return data.countryCode.toUpperCase();
+    }
+  } catch {
+    // Network/geo lookup failed — fall through to locale-based guess.
+  }
+  return countryFromLocale();
+}
+
+/**
+ * Format a price expressed in the currency's minor units (e.g. cents) using the
+ * plan's own currency + minor-unit metadata. No currency is hardcoded — the code,
+ * symbol and decimal precision all come from the API response.
+ */
+function formatPrice(plan: SubscriptionPlan): string {
+  const amount = plan.localized_price_minor / 10 ** plan.currency_minor_units;
+  try {
+    return new Intl.NumberFormat("en", {
+      style: "currency",
+      currency: plan.currency,
+      currencyDisplay: "narrowSymbol",
+      minimumFractionDigits: amount % 1 === 0 ? 0 : plan.currency_minor_units,
+      maximumFractionDigits: plan.currency_minor_units,
+    }).format(amount);
+  } catch {
+    return `${plan.currency} ${amount.toFixed(plan.currency_minor_units)}`;
+  }
+}
+
+/**
+ * Format an overage price (minor units) in the plan's currency.
+ */
+function formatOverage(plan: SubscriptionPlan): string {
+  const amount =
+    plan.localized_event_overage_price_minor / 10 ** plan.currency_minor_units;
+  try {
+    return new Intl.NumberFormat("en", {
+      style: "currency",
+      currency: plan.currency,
+      currencyDisplay: "narrowSymbol",
+      minimumFractionDigits: plan.currency_minor_units,
+      maximumFractionDigits: plan.currency_minor_units,
+    }).format(amount);
+  } catch {
+    return `${plan.currency} ${amount.toFixed(plan.currency_minor_units)}`;
+  }
 }
 
 function formatLimit(value: number): string {
@@ -44,6 +133,22 @@ function formatLimit(value: number): string {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(0)}M`;
   if (value >= 1_000) return `${(value / 1_000).toFixed(0).replace(/\.0$/, "")}k`;
   return value.toLocaleString();
+}
+
+/**
+ * A short multiplier label for how fast credits are spent, derived from the
+ * plan's credit_rate_multiplier (e.g. 2.0 -> "2×", 1.0 -> "1×"). "1×" is the
+ * best (cheapest) rate. Nothing hardcoded — the number comes straight from the API.
+ */
+function creditRateLabel(multiplier: number): { text: string; isBest: boolean } {
+  const rounded = Number.isInteger(multiplier)
+    ? multiplier.toString()
+    : multiplier.toFixed(1).replace(/\.0$/, "");
+  const isBest = multiplier <= 1;
+  return {
+    text: isBest ? `Best ${rounded}× credit rate` : `${rounded}× credit usage rate`,
+    isBest,
+  };
 }
 
 const faqs = [
@@ -121,7 +226,7 @@ const comparisonRows: {
     render: (p) =>
       p.event_overage_policy === "hard_block"
         ? "Hard block"
-        : `Overage ($${(p.event_overage_price_cents / 100).toFixed(2)}/unit)`,
+        : `Overage (${formatOverage(p)}/unit)`,
   },
   {
     label: "BYOK (Bring Your Own Key)",
@@ -140,29 +245,32 @@ export default function PricingPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchPlans = () => {
+  const fetchPlans = async () => {
     setError(null);
     setLoading(true);
-    fetch("https://api.3guideai.com/api/v1/subscription-plans")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch plans");
-        return res.json();
-      })
-      .then((data: SubscriptionPlan[]) => {
-        data.sort((a, b) => a.display_order - b.display_order);
-        setPlans(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Unable to load pricing plans. Please try again later.");
-        setLoading(false);
-      });
+    try {
+      const country = await detectCountry();
+      const res = await fetch(
+        `https://dashboard.3guideai.com/api/v1/subscription-plans?country=${encodeURIComponent(country)}`,
+      );
+      if (!res.ok) throw new Error("Failed to fetch plans");
+      const data = (await res.json()) as SubscriptionPlan[];
+      data.sort((a, b) => a.display_order - b.display_order);
+      setPlans(data);
+    } catch {
+      setError("Unable to load pricing plans. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  useEffect(fetchPlans, []);
+  useEffect(() => {
+    fetchPlans();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getCtaText = (plan: SubscriptionPlan) => {
-    if (plan.price_cents === 0) return "Get started free";
+    if (plan.localized_price_minor === 0) return "Get started free";
     if (plan.trial_days > 0) return `Start ${plan.trial_days}-day free trial`;
     return "Get started";
   };
@@ -210,92 +318,173 @@ export default function PricingPage() {
               </button>
             </div>
           ) : (
-            <div data-stagger className="mx-auto grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-3">
+            <div data-stagger className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 lg:grid-cols-3">
               {plans.map((plan, index) => {
                 const highlighted = isHighlighted(index);
+                const isFree = plan.localized_price_minor === 0;
+                const rate = creditRateLabel(plan.credit_rate_multiplier);
                 return (
                   <div
                     key={plan.id}
-                    className={`relative rounded-3xl p-8 ${
+                    className={`relative flex flex-col overflow-hidden rounded-3xl ${
                       highlighted
                         ? "border-2 border-purple-600 bg-white shadow-xl shadow-purple-600/10"
                         : "border border-slate-200 bg-white shadow-sm"
                     }`}
                   >
                     {highlighted && (
-                      <span className="bg-purple-600 absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold text-white shadow-md">
-                        Most popular
-                      </span>
-                    )}
-                    <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-slate-900">
-                        {plan.name}
-                      </h3>
-                      <div className="mt-4">
-                        <span className="text-4xl font-semibold tracking-tight text-slate-900">
-                          {formatPrice(plan.price_cents)}
-                        </span>
-                        <span className="text-slate-500">
-                          /{plan.billing_interval === "yearly" ? "year" : "mo"}
-                        </span>
+                      <div className="bg-purple-600 py-2.5 text-center text-xs font-semibold text-white">
+                        Recommended · credits last longer
                       </div>
-                      <p className="mt-2 text-sm text-slate-600">
-                        {plan.description}
-                      </p>
-                    </div>
-
-                    <ul className="mb-8 space-y-3">
-                      {[
-                        ...plan.features,
-                        `${formatLimit(plan.monthly_credits)} credits/mo`,
-                        `${formatLimit(plan.monthly_event_limit)} events/mo`,
-                        `${formatLimit(plan.monthly_session_limit)} sessions/mo`,
-                        `${plan.max_sites === -1 ? "Unlimited" : plan.max_sites} site${plan.max_sites !== 1 ? "s" : ""}`,
-                        `${plan.max_seats} team seat${plan.max_seats !== 1 ? "s" : ""}`,
-                        `${plan.data_retention_days}-day data retention`,
-                        ...(plan.trial_days > 0
-                          ? [`${plan.trial_days}-day free trial`]
-                          : []),
-                        ...(plan.byok_allowed
-                          ? ["Bring Your Own Key (BYOK)"]
-                          : []),
-                      ].map((feature) => (
-                        <li key={feature} className="flex items-start gap-3">
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-50 text-purple-600">
-                            <Check className="h-3 w-3" strokeWidth={3} />
-                          </span>
-                          <span className="text-sm text-slate-600">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {plan.slug === "business" ? (
-                      <button
-                        type="button"
-                        onClick={() => setContactOpen(true)}
-                        className={`w-full rounded-xl px-5 py-3 text-sm font-semibold transition ${
-                          highlighted
-                            ? "bg-purple-600 text-white shadow-md shadow-purple-600/25 hover:bg-purple-500"
-                            : "border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50"
-                        }`}
-                      >
-                        {getCtaText(plan)}
-                      </button>
-                    ) : (
-                      <Link
-                        href={DASHBOARD_URL}
-                        target="_blank"
-                        className={`block w-full rounded-xl px-5 py-3 text-center text-sm font-semibold transition ${
-                          highlighted
-                            ? "bg-purple-600 text-white shadow-md shadow-purple-600/25 hover:bg-purple-500"
-                            : "border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50"
-                        }`}
-                      >
-                        {getCtaText(plan)}
-                      </Link>
                     )}
+
+                    <div className="flex flex-1 flex-col p-8">
+                      {/* Header: name + description */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-slate-900">
+                          {plan.name}
+                        </h3>
+                        <p className="mt-1.5 text-sm text-slate-600">
+                          {plan.description}
+                        </p>
+                      </div>
+
+                      {/* Price */}
+                      <div className="mt-6">
+                        {isFree ? (
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-4xl font-semibold tracking-tight text-slate-900">
+                              Free
+                            </span>
+                            <span className="text-sm text-slate-500">
+                              No card required
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-4xl font-semibold tracking-tight text-slate-900">
+                              {formatPrice(plan)}
+                            </span>
+                            <span className="text-sm text-slate-500">
+                              per{" "}
+                              {plan.billing_interval === "yearly"
+                                ? "year"
+                                : "month"}
+                            </span>
+                          </div>
+                        )}
+                        {plan.trial_days > 0 && (
+                          <p className="mt-2 text-sm font-medium text-purple-600">
+                            Includes a {plan.trial_days}-day free trial
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Credits block */}
+                      <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="text-2xl font-semibold tracking-tight text-slate-900">
+                            {formatLimit(plan.monthly_credits)}
+                          </div>
+                          <span
+                            className={`shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ${
+                              rate.isBest
+                                ? "bg-emerald-50 text-emerald-700"
+                                : "bg-amber-50 text-amber-700"
+                            }`}
+                          >
+                            {rate.text}
+                          </span>
+                        </div>
+                        <div className="mt-0.5 text-sm text-slate-500">
+                          credits every month
+                        </div>
+                      </div>
+
+                      {/* Key specs */}
+                      <dl className="mt-6 space-y-3 text-sm">
+                        <div className="flex items-center justify-between">
+                          <dt className="text-slate-600">Sites</dt>
+                          <dd className="font-semibold text-slate-900">
+                            {plan.max_sites === -1 ? "Unlimited" : plan.max_sites}
+                          </dd>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <dt className="text-slate-600">Team seats</dt>
+                          <dd className="font-semibold text-slate-900">
+                            {plan.max_seats}
+                          </dd>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <dt className="text-slate-600">Data retention</dt>
+                          <dd className="font-semibold text-slate-900">
+                            {plan.data_retention_days} days
+                          </dd>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <dt className="text-slate-600">Bring your own AI key</dt>
+                          <dd className="font-semibold text-slate-900">
+                            {plan.byok_allowed ? "Available" : "—"}
+                          </dd>
+                        </div>
+                      </dl>
+
+                      {/* Also included */}
+                      {plan.features.length > 0 && (
+                        <div className="mt-7 border-t border-slate-100 pt-6">
+                          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-400">
+                            Also included
+                          </p>
+                          <ul className="mt-4 space-y-3">
+                            {plan.features.map((feature) => (
+                              <li
+                                key={feature}
+                                className="flex items-start gap-3"
+                              >
+                                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-50 text-purple-600">
+                                  <Check className="h-3 w-3" strokeWidth={3} />
+                                </span>
+                                <span className="text-sm text-slate-600">
+                                  {feature}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* CTA */}
+                      <div className="mt-8 pt-2">
+                        {plan.slug === "business" ? (
+                          <button
+                            type="button"
+                            onClick={() => setContactOpen(true)}
+                            className={`w-full rounded-xl px-5 py-3 text-sm font-semibold transition ${
+                              highlighted
+                                ? "bg-purple-600 text-white shadow-md shadow-purple-600/25 hover:bg-purple-500"
+                                : "border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50"
+                            }`}
+                          >
+                            {getCtaText(plan)}
+                          </button>
+                        ) : (
+                          <Link
+                            href={DASHBOARD_URL}
+                            target="_blank"
+                            className={`block w-full rounded-xl px-5 py-3 text-center text-sm font-semibold transition ${
+                              highlighted
+                                ? "bg-purple-600 text-white shadow-md shadow-purple-600/25 hover:bg-purple-500"
+                                : "border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50"
+                            }`}
+                          >
+                            {getCtaText(plan)}
+                          </Link>
+                        )}
+                        <p className="mt-4 text-center text-xs text-slate-400">
+                          Credit-based actions pause when the balance reaches zero.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 );
               })}
