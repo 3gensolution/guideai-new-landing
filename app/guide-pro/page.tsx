@@ -67,7 +67,7 @@ const capabilities = [
     icon: Fingerprint,
     title: "Personalization tokens",
     description:
-      "Drop in {{first_name}} and other variables that fill from the share link or a lead form one demo, personalized for everyone.",
+      "Drop in {{first_name}} and other variables that fill from the share link so each user sees a walkthrough that feels made for their account.",
   },
 ];
 
@@ -76,47 +76,47 @@ const embedTypes = [
     icon: MousePointerClick,
     title: "Inline",
     description:
-      "Embed the demo directly in your page. It plays right where it sits, perfect for landing pages and docs.",
+      "Embed the walkthrough right in your help center or docs. It plays where it sits, so users learn the step without leaving the page.",
   },
   {
     icon: Radar,
     title: "Overlay",
     description:
-      "A branded poster with a call-to-action. One click takes over the full screen with the demo.",
+      "A poster with a 'Show me how' button. One click takes over the full screen with the guided walkthrough.",
   },
   {
     icon: Share2,
     title: "Popup",
     description:
-      "A button or poster that opens the demo in a popup over your page and drop it anywhere on your site.",
+      "A button or link that opens the walkthrough in a popup, drop it into an onboarding email, in-app tooltip, or knowledge base.",
   },
 ];
 
 const faqItems = [
   {
-    question: "Do I need to give access to my live product?",
+    question: "Do users need access to our live product to learn from it?",
     answer:
-      "No. Guide Pro demos are self-contained copies built from screenshots and page snapshots captured with the Chrome extension. They play as a standalone page or embed, so prospects never touch your real app.",
+      "No. Guide Pro walkthroughs are self-contained copies built from screenshots and page snapshots captured with the Chrome extension. Users click through a realistic replica of the workflow to learn it, with no login, no live access, and no risk to real data.",
   },
   {
-    question: "How do I build a demo?",
+    question: "How do I build a walkthrough?",
     answer:
-      "Click 'Create Demo' to start recording in the extension, then click through your product. Each click captures a screen. Stop recording and the demo imports automatically as a draft. The AI adds tooltips, voiceover, and zoom, and you refine it in the builder.",
+      "Click 'Create Demo' to start recording in the extension, then click through the workflow you want to teach. Each click captures a screen. Stop recording and it imports automatically as a draft. The AI adds tooltips, voiceover, and zoom, and you refine it in the builder.",
   },
   {
-    question: "Where can I share or embed a demo?",
+    question: "Where do walkthroughs help users adopt the product?",
     answer:
-      "Publish a demo to get a share link on its own domain, then embed it inline on a page, as a click-to-play overlay poster, or as a popup. All three come with copy-paste code and a branded call-to-action.",
+      "Anywhere they get stuck. Embed a walkthrough inline in your help center, drop it into an onboarding email as a click-to-play popup, or surface it as an overlay so users can learn a feature in the moment instead of filing a ticket.",
   },
   {
-    question: "Can I capture leads inside a demo?",
+    question: "Can I tailor a walkthrough to a specific user or account?",
     answer:
-      "Yes. Drop a lead-form step anywhere in the flow to capture viewer details mid-demo. The values they enter can personalize the rest of the demo with tokens.",
+      "Yes. Personalization tokens like {{first_name}} fill from the share link, so a user sees a walkthrough that reflects their own name or account. One walkthrough adapts to everyone who opens it.",
   },
   {
-    question: "Can I export a demo as a video?",
+    question: "Can I turn a walkthrough into a video for our help center?",
     answer:
-      "Yes. Any demo can be exported as a PDF, an autoplay GIF, or a rendered MP4 with the voiceover and zoom baked in. Great for emails, decks, and social.",
+      "Yes. Any walkthrough can be exported as a PDF, an autoplay GIF, or a rendered MP4 with the voiceover and zoom baked in, ready for your knowledge base, LMS, or an onboarding email.",
   },
 ];
 
@@ -144,14 +144,15 @@ export default function GuideProPage() {
           <div data-reveal className="mx-auto max-w-4xl text-center">
             <PillBadge>Guide Pro</PillBadge>
             <h1 className="mt-7 text-balance text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-              Interactive product demos,{" "}
-              <span className="text-purple-600">built from screenshots</span>
+              Help users learn your product{" "}
+              <span className="text-purple-600">by doing it</span>
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600">
-              Turn a few clicks through your product into a shareable,
-              interactive demo. Record, let AI add
-              tooltips, voiceover, and zoom, then embed it anywhere. The demo
-              below was built with Guide Pro.
+              People adopt software by using it, not by reading about it. Guide
+              Pro turns a few clicks through your product into a hands-on,
+              interactive walkthrough, so new users go from exploration to their
+              first win in the flow of work, without a support ticket. The
+              walkthrough below was built with Guide Pro.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
@@ -159,7 +160,7 @@ export default function GuideProPage() {
                 target="_blank"
                 className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-purple-600/25 transition hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-600/30"
               >
-                Build a demo
+                Build a walkthrough
               </Link>
               <Link
                 href="/pricing"
@@ -182,8 +183,8 @@ export default function GuideProPage() {
         <Container className="space-y-24">
           <FeatureRow
             eyebrow="Record"
-            title="Click through your product. Get a demo."
-            description="Start recording in the Chrome extension and click around your app. Every click captures a screen either a pixel-perfect image or a clickable snapshot that replays like the live product. Stop, and it imports as a draft automatically."
+            title="Click through the workflow you want to teach"
+            description="Start recording in the Chrome extension and click through the task your users need to learn. Every click captures a screen either a pixel-perfect image or a clickable snapshot that replays like the live product. Stop, and it imports as a draft automatically."
             bullets={[
               "Capture screenshots or fully clickable page snapshots",
               "Records your clicks, typing, and scrolling as steps",
@@ -191,34 +192,34 @@ export default function GuideProPage() {
             ]}
             badges={["No code required", "No live product needed"]}
             image="/guide-pro.gif"
-            imageAlt="Recording an interactive demo with the 3Guide extension"
+            imageAlt="Recording an interactive walkthrough with the 3Guide extension"
           />
           <FeatureRow
             eyebrow="Enhance"
             accent="cyan"
-            title="AI turns raw screens into a polished story"
-            description="AI reads your captured screens and picks the best treatment for each one, a zoom toward the action, a scroll pan down a long page, or a self-playing motion step with narration, then writes the tooltip copy and an intro and outro to wrap it all."
+            title="AI turns raw screens into clear, guided steps"
+            description="AI reads your captured screens and picks the best treatment for each one, a zoom toward the action, a scroll pan down a long page, or a self-playing motion step with narration, then writes the tooltip copy that tells users exactly what to do next, plus an intro and outro to frame the whole flow."
             bullets={[
-              "Auto-written tooltips and step copy",
+              "Auto-written tooltips that explain each step",
               "Best zoom, pan, or motion chosen per screen",
               "Natural voiceover on every step, or clone your own voice",
             ]}
             image="/guide-pro-enhance.png"
-            imageAlt="AI enhancing a demo with tooltips, zoom, and voiceover"
+            imageAlt="AI enhancing a walkthrough with tooltips, zoom, and voiceover"
             reverse
           />
           <FeatureRow
             eyebrow="Refine"
             accent="emerald"
-            title="Make it yours, down to the pixel"
-            description="Add chapters, hotspots, and highlights. Blur anything sensitive with a non-destructive mask. Drop in a lead form to capture prospects mid-demo, and add a presenter face-cam that follows viewers across every step."
+            title="Guide attention to exactly the right place"
+            description="Break long flows into chapters, add hotspots and highlights that point users to the next click, and blur anything sensitive with a non-destructive mask. Personalize each walkthrough by name or account, and add a presenter face-cam that follows users across every step."
             bullets={[
               "Chapters, hotspots, highlights, and click beacons",
               "Blur PII, crop frames, and annotate on the screen",
-              "Lead forms and personalization tokens built in",
+              "Personalization tokens and self-paced chapters built in",
             ]}
             image="/guide-pro-edit.png"
-            imageAlt="Editing an interactive demo in the Guide Pro builder"
+            imageAlt="Editing an interactive walkthrough in the Guide Pro builder"
           />
         </Container>
       </Section>
@@ -227,9 +228,9 @@ export default function GuideProPage() {
       <Section className="bg-purple-50/60">
         <Container>
           <SectionHeading
-            eyebrow="Share anywhere"
-            title="One demo, three ways to embed"
-            description="Publish once and drop the demo wherever your buyers are your website, a landing page, an email, or a sales follow-up."
+            eyebrow="Meet users where they get stuck"
+            title="One walkthrough, three ways to embed"
+            description="Publish once and surface the walkthrough wherever users need help your help center, an onboarding email, an in-app tooltip, or your knowledge base."
             align="center"
           />
           <div
@@ -261,7 +262,7 @@ export default function GuideProPage() {
         <Container>
           <SectionHeading
             eyebrow="Everything included"
-            title="A full demo studio, not just a screen recorder"
+            title="Built to make people productive, not just to record"
             align="center"
           />
           <div
@@ -313,8 +314,9 @@ export default function GuideProPage() {
                 Export as PDF, GIF, or MP4
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-600">
-                Every demo can leave the browser as a document, an autoplay GIF,
-                or a rendered video with the voiceover and zoom baked in.
+                Turn any walkthrough into a step-by-step PDF guide, an autoplay
+                GIF, or a rendered video with voiceover and zoom baked in, ready
+                for your knowledge base, LMS, or onboarding emails.
               </p>
             </div>
           </div>
@@ -323,8 +325,8 @@ export default function GuideProPage() {
 
       <FaqSection items={faqItems} title="Guide Pro, answered" />
       <CtaBanner
-        title="Turn your product into a demo people can play with"
-        description="Record a few clicks, let AI do the polish, and share an interactive demo anywhere."
+        title="Turn your product into its own onboarding guide"
+        description="Record a few clicks, let AI do the polish, and give every user a hands-on walkthrough that gets them productive faster."
       />
       <Footer />
     </main>

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Guide Pro — Interactive Product Demos",
+  title: "Guide Pro — Interactive Product Walkthroughs",
   description:
-    "Build shareable, interactive product demos from screenshots — no live product access needed. Record with the extension, let AI add tooltips, voiceover, and zoom, then embed anywhere.",
+    "Help users learn your product by doing. Build hands-on, interactive walkthroughs from screenshots — no live access needed. Record with the extension, let AI add tooltips, voiceover, and zoom, then embed them wherever users get stuck.",
   openGraph: {
-    title: "Guide Pro — Interactive Product Demos | 3Guide",
+    title: "Guide Pro — Interactive Product Walkthroughs | 3Guide",
     description:
-      "Interactive product demos, built from screenshots and Html and CSS. Record, AI-enhance, share or embed anywhere.",
+      "Interactive product walkthroughs that get users productive faster. Record, AI-enhance, and embed in your help center, onboarding emails, or app.",
     url: "https://www.3guideai.com/guide-pro",
   },
   alternates: { canonical: "https://www.3guideai.com/guide-pro" },

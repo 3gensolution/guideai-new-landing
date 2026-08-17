@@ -92,6 +92,11 @@ const faqItems = [
     answer:
       "MP4 or GIF, in whatever aspect ratio and resolution you need for the web, social, or docs.",
   },
+  {
+    question: "How much does Guide Studio cost?",
+    answer:
+      "Nothing. Guide Studio is completely free to download and use, no account, no trial, and no paywalled features. We're also open-sourcing it soon, so you'll be able to inspect, self-host, and contribute to the code.",
+  },
 ];
 
 export default function StudioPage() {
@@ -115,37 +120,34 @@ export default function StudioPage() {
         />
         <Container className="relative">
           <div data-reveal className="mx-auto max-w-4xl text-center">
-            <PillBadge>Guide Studio · Desktop app</PillBadge>
+            <PillBadge>Guide Studio · Free desktop app</PillBadge>
             <h1 className="mt-7 text-balance text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl">
               Record your screen.{" "}
               <span className="text-purple-600">Ship a polished video.</span>
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600">
-              Guide Studio is a desktop app that turns a raw screen recording
-              into a finished product video, automatic zoom, smooth cursor,
-              beautiful backgrounds, captions, and AI voiceover. Then export a
-              clean MP4 or GIF.
+              Guide Studio is a completely free desktop app that turns a raw
+              screen recording into a finished product video, automatic zoom,
+              smooth cursor, beautiful backgrounds, captions, and AI voiceover.
+              Then export a clean MP4 or GIF.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center justify-center gap-4">
               <Link
                 href="#download"
                 className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-purple-600/25 transition hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-600/30"
               >
-                Download Guide Studio
+                Download Guide Studio — free
               </Link>
-              <Link
-                href="/pricing"
-                className="inline-flex items-center justify-center rounded-xl border-2 border-slate-200 bg-white px-9 py-4 text-base font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-purple-200 hover:bg-purple-50"
-              >
-                See pricing
-              </Link>
+              <p className="text-sm font-medium text-slate-500">
+                No account, no trial, no paywall · Open-sourcing soon
+              </p>
             </div>
           </div>
 
           <div id="download" className="scroll-mt-28">
             <DownloadButtons />
             <p className="mt-4 text-center text-sm text-slate-500">
-              Free to download · Works on macOS, Windows, and Linux
+              Free forever · Works on macOS, Windows, and Linux
             </p>
           </div>
         </Container>
@@ -255,8 +257,8 @@ export default function StudioPage() {
 
       <FaqSection items={faqItems} title="Guide Studio, answered" />
       <CtaBanner
-        title="Make product videos worth watching"
-        description="Record, let Guide Studio polish it, and export a finished video in minutes."
+        title="Make product videos worth watching — free"
+        description="Download Guide Studio, record, let it polish the video, and export in minutes. Completely free, and open-sourcing soon."
       />
       <Footer />
     </main>
