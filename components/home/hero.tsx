@@ -74,23 +74,20 @@ export function HomeHero() {
       />
 
       <Container className="relative">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <h1
             data-hero="title"
             className="text-balance text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl"
           >
-            Turn every user into a{" "}
-            <span className="text-purple-600">power user</span>
+            Users shouldn't need a manual to use{" "}
+            <span className="text-purple-600">your product</span>
           </h1>
 
           <p
             data-hero="sub"
             className="mt-8 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600"
           >
-            3Guide is the AI-first product adoption platform for B2B SaaS.
-            Build click-by-click guides in minutes, answer questions with AI
-            trained on your product, and let a copilot complete tasks for your
-            users right in the browser.
+            3Guide guides users through your product, answers questions in context, and can complete tasks for them, while showing your team exactly where users struggle.
           </p>
 
           <div

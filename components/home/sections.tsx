@@ -61,7 +61,7 @@ const oldWay = [
 ];
 
 const newWay = [
-  "Build guides visually with the Chrome extension",
+  "Build guides visually in minutes with the Chrome extension",
   "Self-healing re-anchors every step when your UI moves",
   "An AI assistant answers instantly from your own knowledge base",
   "Friction analytics show every drop-off, rage click, and dead end",
