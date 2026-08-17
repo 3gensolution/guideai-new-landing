@@ -253,12 +253,13 @@ export default function PricingPage() {
           <div className="mx-auto max-w-3xl text-center">
             <PillBadge>Pricing</PillBadge>
             <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              Start free.{" "}
-              <span className="text-purple-600">Scale when ready.</span>
+              Find the right plan{" "}
+              <span className="text-purple-600">for your team</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-600">
-              Everything you need to build great product adoption is included in
-              our generous free tier. No credit card required.
+              Start free and scale when you're ready. Every plan includes what
+              you need to drive product adoption, with no credit card required to
+              begin.
             </p>
           </div>
         </Container>
