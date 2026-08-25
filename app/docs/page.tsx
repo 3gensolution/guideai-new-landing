@@ -266,7 +266,7 @@ export default function DocsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       {/* Hero */}
@@ -277,7 +277,7 @@ export default function DocsPage() {
             <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-600 ring-1 ring-inset ring-purple-500/20">
               Documentation
             </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+            <h1 className="font-display mt-6 text-balance text-title font-semibold text-slate-900">
               3Guide{" "}
               <span className="text-purple-600">
                 SDK Installation &amp; Usage
@@ -337,7 +337,7 @@ export default function DocsPage() {
               {/* OVERVIEW */}
               {/* ============================================ */}
               <div id="overview" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">Overview</h2>
+                <h2 className="text-3xl font-medium text-slate-900">Overview</h2>
                 <p className="mt-4 text-lg text-slate-600">
                   3Guide is an AI-first digital adoption platform for B2B
                   SaaS. It ships as two complementary bundles: the{" "}
@@ -450,7 +450,7 @@ export default function DocsPage() {
               {/* CHOOSE YOUR BUNDLE */}
               {/* ============================================ */}
               <div id="choose-bundle" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   Choose Your Bundle
                 </h2>
                 <p className="mt-4 text-lg text-slate-600">
@@ -697,7 +697,7 @@ export default function DocsPage() {
               {/* GETTING STARTED */}
               {/* ============================================ */}
               <div id="getting-started" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   1) Install the SDK on your website
                 </h2>
                 <p className="mt-4 text-lg text-slate-600">
@@ -714,7 +714,7 @@ export default function DocsPage() {
                 <div className="mt-10 space-y-10">
                   {/* Step 1 */}
                   <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-slate-900">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-medium text-slate-900">
                       1
                     </div>
                     <div className="flex-1">
@@ -739,7 +739,7 @@ export default function DocsPage() {
 
                   {/* Step 2 */}
                   <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-slate-900">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-medium text-slate-900">
                       2
                     </div>
                     <div className="flex-1">
@@ -780,7 +780,7 @@ export default function DocsPage() {
 
                   {/* Step 3 */}
                   <div className="flex gap-6">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-bold text-slate-900">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-lg font-medium text-slate-900">
                       3
                     </div>
                     <div className="flex-1">
@@ -834,7 +834,7 @@ export default function DocsPage() {
               {/* ADD THE CDN */}
               {/* ============================================ */}
               <div id="add-cdn" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">Add the CDN</h2>
+                <h2 className="text-3xl font-medium text-slate-900">Add the CDN</h2>
                 <p className="mt-4 text-slate-600">
                   Both bundles are delivered via CDN as IIFE scripts. No npm
                   install or build step required. Just two required attributes
@@ -1170,7 +1170,7 @@ export default defineNuxtConfig({
               {/* SCANNER CLI */}
               {/* ============================================ */}
               <div id="scanner" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">Scanner CLI</h2>
+                <h2 className="text-3xl font-medium text-slate-900">Scanner CLI</h2>
                 <p className="mt-4 text-slate-600">
                   The scanner (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">@guideai/scanner</code>)
                   analyzes your codebase and uploads a knowledge base to
@@ -1375,7 +1375,7 @@ module.exports = {
               {/* DASHBOARD */}
               {/* ============================================ */}
               <div id="dashboard" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">Dashboard</h2>
+                <h2 className="text-3xl font-medium text-slate-900">Dashboard</h2>
                 <p className="mt-4 text-slate-600">
                   The 3Guide dashboard is where you manage guides, view
                   analytics, configure settings, and access your API keys.
@@ -1448,7 +1448,7 @@ module.exports = {
               {/* CONFIGURATION */}
               {/* ============================================ */}
               <div id="configuration" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   2) Public API (what you can call)
                 </h2>
                 <p className="mt-4 text-slate-600">
@@ -1790,7 +1790,7 @@ module.exports = {
               {/* API REFERENCE */}
               {/* ============================================ */}
               <div id="api-reference" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   API Reference
                 </h2>
                 <p className="mt-4 text-slate-600">
@@ -2246,7 +2246,7 @@ function handlePurchase(cart) {
               {/* EVENTS */}
               {/* ============================================ */}
               <div id="events" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   Event Dictionary
                 </h2>
                 <p className="mt-4 text-slate-600">
@@ -2423,7 +2423,7 @@ function handlePurchase(cart) {
               {/* GUIDE BUILDER */}
               {/* ============================================ */}
               <div id="guides-builder" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   Guide Builder
                   <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Full SDK only
@@ -2455,7 +2455,7 @@ function handlePurchase(cart) {
                     { step: "4", title: "Publish", desc: "Hit publish. The guide goes live instantly. Auto-healing via fingerprinting means no code deploy needed." },
                   ].map((item) => (
                     <div key={item.step} className="flex gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-sm font-bold text-purple-600">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-sm font-medium text-purple-600">
                         {item.step}
                       </div>
                       <div>
@@ -2531,7 +2531,7 @@ function handlePurchase(cart) {
               {/* COPILOT SETUP */}
               {/* ============================================ */}
               <div id="copilot-setup" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   Browser Copilot
                   <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Full SDK only
@@ -2630,7 +2630,7 @@ function handlePurchase(cart) {
               {/* ANALYTICS SETUP */}
               {/* ============================================ */}
               <div id="analytics-setup" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   Friction Analytics
                   <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Tracking SDK
@@ -2754,7 +2754,7 @@ window.guideai.markFeature("used_export");`}
               {/* FINGERPRINTING */}
               {/* ============================================ */}
               {/* <div id="fingerprinting" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   6-Tier Fingerprinting
                 </h2>
                 <p className="mt-4 text-slate-600">
@@ -2827,7 +2827,7 @@ window.guideai.markFeature("used_export");`}
               {/* VISUAL SHOWCASE */}
               {/* ============================================ */}
               <div id="showcase" className="scroll-mt-32">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="text-3xl font-medium text-slate-900">
                   Visual Showcase
                 </h2>
                 <p className="mt-4 text-slate-600">
@@ -3625,7 +3625,7 @@ data-announcement-display-mode="beacon"  <!-- show pulsing dot first -->`}
 
               {/* CTA */}
               <div className="mt-20 rounded-2xl border border-slate-200 bg-purple-50/60 p-10 text-center">
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-medium text-slate-900">
                   Ready to get started?
                 </h2>
                 <p className="mt-4 text-slate-600">

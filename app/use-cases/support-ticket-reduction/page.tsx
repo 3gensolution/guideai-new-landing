@@ -4,6 +4,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
   Section,
@@ -90,7 +91,7 @@ const faqItems = [
 
 export default function SupportTicketReductionPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
@@ -98,7 +99,7 @@ export default function SupportTicketReductionPage() {
         title={
           <>
             Answer it once.{" "}
-            <span className="text-purple-600">Deflect it forever.</span>
+            <span className="text-[#f0c9a0]">Deflect it forever.</span>
           </>
         }
         description="Your support queue is full of questions your product should answer itself. 3Guide deflects them in-app with AI answers, live walkthroughs, and a copilot that does the task, so your team only sees what truly needs a human."
@@ -156,7 +157,7 @@ export default function SupportTicketReductionPage() {
                 key={item.step}
                 className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-950/10"
               >
-                <p className="text-purple-600 font-mono text-sm font-bold">
+                <p className="text-purple-600 font-mono text-sm font-medium">
                   {item.step}
                 </p>
                 <h3 className="mt-3 text-base font-semibold text-slate-900">
@@ -171,6 +172,7 @@ export default function SupportTicketReductionPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="support" />
       <FaqSection items={faqItems} title="Ticket reduction, answered" />
       <CtaBanner
         title="Shrink the queue without shrinking the team"

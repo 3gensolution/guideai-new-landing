@@ -4,6 +4,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
   Section,
@@ -90,7 +91,7 @@ const faqItems = [
 
 export default function ClientEmployeeTrainingPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
@@ -98,7 +99,7 @@ export default function ClientEmployeeTrainingPage() {
         title={
           <>
             Train your clients and team{" "}
-            <span className="text-purple-600">by letting them do it</span>
+            <span className="text-[#f0c9a0]">by letting them do it</span>
           </>
         }
         description="People learn software by using it, not by watching. 3Guide turns your product into in-app walkthroughs, interactive demos, and polished training videos that get clients and employees productive faster with fewer questions and less hand-holding."
@@ -163,7 +164,7 @@ export default function ClientEmployeeTrainingPage() {
                 key={item.step}
                 className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-950/10"
               >
-                <p className="text-purple-600 font-mono text-sm font-bold">
+                <p className="text-purple-600 font-mono text-sm font-medium">
                   {item.step}
                 </p>
                 <h3 className="mt-3 text-base font-semibold text-slate-900">
@@ -178,6 +179,7 @@ export default function ClientEmployeeTrainingPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="training" />
       <FaqSection items={faqItems} title="Client & employee training, answered" />
       <CtaBanner
         title="Turn your product into its own training program"

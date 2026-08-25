@@ -31,10 +31,10 @@ export function DemoEmbed() {
             background: `linear-gradient(rgba(15,23,42,0.5),rgba(15,23,42,0.5)),url('${DEMO_THUMBNAIL}') center/cover no-repeat`,
           }}
         >
-          <p className="max-w-[80%] px-6 text-center text-xl font-bold leading-snug text-white sm:text-3xl">
+          <p className="max-w-[80%] px-6 text-center text-xl font-medium leading-snug text-white sm:text-3xl">
             Take a tour of Product Tour
           </p>
-          <span className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-8 py-4 text-base font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-950/30 transition group-hover:scale-105 group-hover:bg-purple-500">
+          <span className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-8 py-4 text-base font-medium uppercase tracking-wider text-white shadow-lg shadow-purple-950/30 transition group-hover:scale-105 group-hover:bg-purple-500">
             <Play className="h-5 w-5 fill-current" />
             View demo
           </span>

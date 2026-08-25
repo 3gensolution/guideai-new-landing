@@ -13,6 +13,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
   Section,
@@ -86,14 +87,14 @@ const faqItems = [
 
 export default function AnalyticsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
         badge="Friction Analytics"
         title={
           <>
-            See where users <span className="text-purple-600">get stuck</span>{" "}
+            See where users <span className="text-[#f0c9a0]">get stuck</span>{" "}
             then fix it in-product
           </>
         }
@@ -171,6 +172,7 @@ export default function AnalyticsPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="adoption" />
       <FaqSection items={faqItems} title="Friction analytics, answered" />
       <CtaBanner title="Find your funnel's leaks this week" />
       <Footer />

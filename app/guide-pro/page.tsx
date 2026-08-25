@@ -15,14 +15,15 @@ import {
   Wand2,
 } from "lucide-react";
 import { Header } from "@/components/header";
+import { HeroStreaks } from "@/components/marketing/hero-streaks";
 import { Footer } from "@/components/footer";
 import { DemoEmbed } from "@/components/marketing/demo-embed";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
-  PillBadge,
   Section,
   SectionHeading,
   accents,
@@ -122,32 +123,28 @@ const faqItems = [
 
 export default function GuideProPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       {/* Hero — reuses the real, live Guide Pro demo */}
-      <section className="relative overflow-hidden bg-white pb-16 pt-32 sm:pt-40">
+      <section className="relative overflow-hidden bg-ink pb-20 pt-36 sm:pt-44">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] opacity-40"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(147,51,234,0.14) 1.5px, transparent 1.5px)",
-            backgroundSize: "28px 28px",
-            maskImage:
-              "radial-gradient(55rem 24rem at 50% 0%, black, transparent 75%)",
-            WebkitMaskImage:
-              "radial-gradient(55rem 24rem at 50% 0%, black, transparent 75%)",
+            background:
+              "radial-gradient(56rem 28rem at 12% 96%, rgba(176,74,66,0.28), transparent 62%), radial-gradient(52rem 26rem at 88% 88%, rgba(150,60,80,0.22), transparent 62%)",
           }}
         />
-        <Container className="relative">
+        <HeroStreaks />
+        <Container className="relative z-10">
           <div data-reveal className="mx-auto max-w-4xl text-center">
-            <PillBadge>Guide Pro</PillBadge>
-            <h1 className="mt-7 text-balance text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#f0c9a0]">Guide Pro</span>
+            <h1 data-mask-reveal className="font-display mt-8 text-balance text-title text-white">
               Help users learn your product{" "}
-              <span className="text-purple-600">by doing it</span>
+              <span className="text-[#f0c9a0]">by doing it</span>
             </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600">
+            <p className="mx-auto mt-7 max-w-2xl text-pretty text-lead text-slate-300">
               People adopt software by using it, not by reading about it. Guide
               Pro turns a few clicks through your product into a hands-on,
               interactive walkthrough, so new users go from exploration to their
@@ -158,13 +155,13 @@ export default function GuideProPage() {
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-purple-600/25 transition hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-600/30"
+                className="inline-flex items-center justify-center bg-[#e8a56d] px-9 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-[#2b1420] transition duration-300 hover:bg-[#efb684]"
               >
                 Build a walkthrough
               </Link>
               <Link
                 href="/pricing"
-                className="inline-flex items-center justify-center rounded-xl border-2 border-slate-200 bg-white px-9 py-4 text-base font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-purple-200 hover:bg-purple-50"
+                className="inline-flex items-center justify-center border border-white/25 px-9 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-white transition duration-300 hover:border-white/50 hover:bg-white/5"
               >
                 See pricing
               </Link>
@@ -172,7 +169,7 @@ export default function GuideProPage() {
           </div>
 
           <div data-reveal data-reveal-delay="0.15" className="mt-16 px-4">
-            <div className="mx-auto max-w-6xl rounded-2xl border-2 border-purple-100 bg-white p-2 shadow-2xl shadow-purple-900/15">
+            <div className="mx-auto max-w-6xl rounded-2xl border border-white/10 bg-white/5 p-2 shadow-2xl shadow-black/50">
               <DemoGuideProEmbed />
             </div>
           </div>
@@ -225,7 +222,7 @@ export default function GuideProPage() {
       </Section>
 
       {/* Embed types */}
-      <Section className="bg-purple-50/60">
+      <Section className="bg-canvas-deep">
         <Container>
           <SectionHeading
             eyebrow="Meet users where they get stuck"
@@ -245,7 +242,7 @@ export default function GuideProPage() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
                   <type.icon className="h-6 w-6" />
                 </span>
-                <h3 className="mt-5 text-xl font-bold text-slate-900">
+                <h3 className="mt-5 text-xl font-medium text-slate-900">
                   {type.title}
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-slate-600">
@@ -295,7 +292,7 @@ export default function GuideProPage() {
       </Section>
 
       {/* Export strip */}
-      <Section className="bg-purple-50/60">
+      <Section className="bg-canvas-deep">
         <Container>
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border-2 border-purple-100 bg-white p-10 text-center shadow-sm sm:flex-row sm:text-left">
             <div className="flex gap-3">
@@ -310,7 +307,7 @@ export default function GuideProPage() {
               </span>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900">
+              <h3 className="text-2xl font-medium text-slate-900">
                 Export as PDF, GIF, or MP4
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-600">
@@ -323,6 +320,7 @@ export default function GuideProPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="training" />
       <FaqSection items={faqItems} title="Guide Pro, answered" />
       <CtaBanner
         title="Turn your product into its own onboarding guide"

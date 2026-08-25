@@ -4,6 +4,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
   Section,
@@ -90,7 +91,7 @@ const faqItems = [
 
 export default function UserOnboardingPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
@@ -98,7 +99,7 @@ export default function UserOnboardingPage() {
         title={
           <>
             Turn signups into{" "}
-            <span className="text-purple-600">activated users</span>
+            <span className="text-[#f0c9a0]">activated users</span>
           </>
         }
         description="The gap between 'created an account' and 'got value' is where SaaS growth dies. 3Guide closes it with guided first-run experiences, in-context answers, and analytics that show exactly where new users stall."
@@ -157,7 +158,7 @@ export default function UserOnboardingPage() {
                 key={item.step}
                 className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-950/10"
               >
-                <p className="text-purple-600 font-mono text-sm font-bold">
+                <p className="text-purple-600 font-mono text-sm font-medium">
                   {item.step}
                 </p>
                 <h3 className="mt-3 text-base font-semibold text-slate-900">
@@ -172,6 +173,7 @@ export default function UserOnboardingPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="adoption" />
       <FaqSection items={faqItems} title="User onboarding, answered" />
       <CtaBanner
         title="Activate more of the users you already have"

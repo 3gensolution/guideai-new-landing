@@ -13,6 +13,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
   Section,
@@ -86,7 +87,7 @@ const faqItems = [
 
 export default function GuidesPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
@@ -94,7 +95,7 @@ export default function GuidesPage() {
         title={
           <>
             Product tours that build{" "}
-            <span className="text-purple-600">and fix</span> themselves
+            <span className="text-[#f0c9a0]">and fix</span> themselves
           </>
         }
         description="Create click-by-click walkthroughs in minutes with the visual builder, publish in one click, and let the self-healing engine keep every step working as your product evolves."
@@ -185,6 +186,7 @@ export default function GuidesPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="adoption" />
       <FaqSection items={faqItems} title="In-app guides, answered" />
       <CtaBanner title="Ship your first guide today" />
       <Footer />

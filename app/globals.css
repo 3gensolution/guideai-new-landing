@@ -3,8 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ------------------------------------------------------------------ */
+/* Brand ground.                                                       */
+/* Warm off-white canvas (not pure white) + deep plum ink, the way     */
+/* Everstage grounds its palette in cream rather than #fff. Purple      */
+/* stays the accent; clay is the warm secondary so stat/emphasis        */
+/* moments aren't all one hue.                                          */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(0.985 0.004 85);
   --foreground: oklch(0.208 0.042 265.755);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.208 0.042 265.755);
@@ -74,12 +81,44 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-@theme inline {
-  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-roboto-mono), ui-monospace, monospace;
+/* Brand tokens: plain @theme so Tailwind emits real utilities for them. */
+@theme {
+  /* Figtree carries the display voice — bold geometric sans, Everstage-style.
+     Geist handles every piece of UI and body text. */
+  --font-display: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
   /* Deep purple-tinted near-black for dark marketing sections */
   --color-ink: oklch(0.185 0.05 305);
   --color-ink-soft: oklch(0.24 0.06 304);
+  /* Warm canvas + warm secondary accent */
+  --color-canvas: oklch(0.985 0.004 85);
+  --color-canvas-deep: oklch(0.965 0.008 84);
+  --color-clay-100: oklch(0.94 0.03 55);
+  --color-clay-400: oklch(0.72 0.12 50);
+  --color-clay-600: oklch(0.58 0.14 45);
+
+  /* Display type scale — fluid, so headlines breathe without a
+     stack of per-breakpoint utilities at every call site. */
+  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.03em;
+  --text-title: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+  --text-title--line-height: 1.06;
+  --text-title--letter-spacing: -0.025em;
+  --text-section: clamp(1.875rem, 1.35rem + 2vw, 3rem);
+  --text-section--line-height: 1.1;
+  --text-section--letter-spacing: -0.02em;
+  --text-sub: clamp(1.375rem, 1.15rem + 0.9vw, 1.875rem);
+  --text-sub--line-height: 1.2;
+  --text-sub--letter-spacing: -0.015em;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+
+}
+
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -124,6 +163,62 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Display headlines are heavy and tightly tracked — the weight is what
+     carries them, so they never need a decorative face to feel designed. */
+  .font-display {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion primitives                                                   */
+/* Elements start hidden ONLY when JS will animate them, so a failed    */
+/* script or reduced-motion never leaves content invisible.             */
+/* ------------------------------------------------------------------ */
+[data-reveal],
+[data-stagger] > *,
+[data-mask-reveal] {
+  opacity: 1;
+}
+
+html.fx-ready [data-reveal],
+html.fx-ready [data-stagger] > * {
+  opacity: 0;
+}
+
+html.fx-ready [data-mask-reveal] {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.fx-ready [data-reveal],
+  html.fx-ready [data-stagger] > *,
+  html.fx-ready [data-mask-reveal] {
+    opacity: 1;
+    clip-path: none;
+  }
+}
+
+/* Logo marquee */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-x var(--marquee-duration, 38s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
   }
 }
 

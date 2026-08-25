@@ -16,6 +16,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
   Section,
@@ -154,7 +155,7 @@ function InboxMock() {
         <div className="p-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-purple-100 text-xs font-bold text-purple-700">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-purple-100 text-xs font-medium text-purple-700">
                 J
               </span>
               <div>
@@ -197,7 +198,7 @@ function InboxMock() {
 
 export default function SupportDeskPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
@@ -205,7 +206,7 @@ export default function SupportDeskPage() {
         title={
           <>
             AI answers first.{" "}
-            <span className="text-purple-600">Humans finish strong.</span>
+            <span className="text-[#f0c9a0]">Humans finish strong.</span>
           </>
         }
         description="A full support inbox built into your adoption platform. The AI assistant deflects the repetitive questions; your team gets the rest — with assignment, automation rules, and every user's product context attached."
@@ -275,6 +276,7 @@ export default function SupportDeskPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="support" />
       <FaqSection items={faqItems} title="Support desk, answered" />
       <CtaBanner
         title="Give your support team superpowers"

@@ -113,7 +113,7 @@ function MacDownloadButton() {
           {APPLE_ICON}
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block text-base font-bold text-white">
+          <span className="block text-base font-medium text-white">
             Download for macOS
           </span>
           <span className="mt-0.5 block text-sm text-slate-400">
@@ -160,7 +160,7 @@ function MacDownloadButton() {
                 onClick={() => setOpen(false)}
                 className="block rounded-xl px-4 py-3.5 transition hover:bg-white/10"
               >
-                <span className="block text-sm font-bold text-white">
+                <span className="block text-sm font-medium text-white">
                   {option.label}
                 </span>
                 <span className="mt-0.5 block text-xs text-slate-400">
@@ -194,7 +194,7 @@ export function DownloadButtons() {
             {item.icon}
           </span>
           <span>
-            <span className="block text-base font-bold text-white">
+            <span className="block text-base font-medium text-white">
               {item.label}
             </span>
             <span className="mt-0.5 block text-sm text-slate-400">

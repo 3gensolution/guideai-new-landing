@@ -10,116 +10,179 @@ import {
   ChevronDown,
   GraduationCap,
   Menu,
+  MessageCircleQuestion,
   MonitorPlay,
   MousePointerClick,
   Presentation,
   Rocket,
+  Sparkles,
   TicketX,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DASHBOARD_URL } from "@/lib/site";
 
+/* Legal/utility pages keep a plain light top instead of the plum hero. */
+const LIGHT_HERO_ROUTES = ["/policy", "/terms", "/docs"];
+
+function hasDarkHero(pathname: string) {
+  return !LIGHT_HERO_ROUTES.some(
+    (r) => pathname === r || pathname.startsWith(r + "/")
+  );
+}
+
 interface NavItem {
   name: string;
   description: string;
   href: string;
   icon: typeof Bot;
-  image: string;
-  imageAlt: string;
 }
 
-const menus: Record<"product" | "solutions", { label: string; items: NavItem[] }> = {
-  product: {
-    label: "Product",
-    items: [
-      {
-        name: "In-App Guides",
-        description:
-          "Click-by-click walkthroughs built visually — published in one click, healed automatically.",
-        href: "/guides",
-        icon: MousePointerClick,
-        image: "/guidance.png",
-        imageAlt: "The 3Guide guides dashboard",
-      },
-      {
-        name: "Guide Pro",
-        description:
-          "Interactive product demos built from screenshots — record, AI-enhance, and embed anywhere.",
-        href: "/guide-pro",
-        icon: Presentation,
-        image: "/guide-pro-img.png",
-        imageAlt: "An interactive Guide Pro demo",
-      },
-      {
-        name: "Guide Studio",
-        description:
-          "A desktop app that turns a screen recording into a polished product video with AI zoom and voiceover.",
-        href: "/studio",
-        icon: MonitorPlay,
-        image: "/guide-studio-img.png",
-        imageAlt: "The Guide Studio screen recorder and editor",
-      },
-      {
-        name: "GuideAI CoPilot",
-        description:
-          "An AI agent that clicks, types, and navigates on your users' behalf — it completes the task.",
-        href: "/copilot",
-        icon: Bot,
-        image: "/co-pilot.png",
-        imageAlt: "The GuideAI Agent running browser tasks",
-      },
-      {
-        name: "Friction Analytics",
-        description:
-          "Funnels, session drill-downs, and friction signals that show exactly where users get stuck.",
-        href: "/analytics",
-        icon: BarChart3,
-        image: "/friction-img.png",
-        imageAlt: "The visitors explorer with sessions and sources",
-      }
-      // {
-      //   name: "Support Desk",
-      //   description:
-      //     "A full support inbox with assignment, automation rules, and AI-drafted replies.",
-      //   href: "/support-desk",
-      //   icon: Inbox,
-      //   image: "/docs/bubble-on-live-site.png",
-      //   imageAlt: "The 3Guide support widget on a live product",
-      // },
-    ],
-  },
+interface MenuDef {
+  label: string;
+  // A short line shown above the columns in the mega-menu.
+  intro: string;
+  columns: { heading: string; items: NavItem[] }[];
+  // The featured tile on the right of the mega-menu.
+  feature: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    href: string;
+    image: string;
+    imageAlt: string;
+  };
+}
+
+/* Use-case-first IA: Solutions leads (outcomes), Product second (capabilities). */
+const menus: Record<"solutions" | "product", MenuDef> = {
   solutions: {
     label: "Solutions",
-    items: [
+    intro: "Start from the outcome you're after — 3Guide maps to it.",
+    columns: [
       {
-        name: "User Onboarding",
-        description:
-          "Turn signups into activated users with guided first-run experiences per segment.",
-        href: "/use-cases/user-onboarding",
-        icon: Rocket,
-        image: "/assistant-img.png",
-        imageAlt: "A guided onboarding tour running live",
+        heading: "By use case",
+        items: [
+          {
+            name: "User Onboarding",
+            description: "Turn signups into activated users.",
+            href: "/use-cases/user-onboarding",
+            icon: Rocket,
+          },
+          {
+            name: "Support Deflection",
+            description: "Answer how-do-I before it's a ticket.",
+            href: "/use-cases/support-ticket-reduction",
+            icon: TicketX,
+          },
+          {
+            name: "Feature Adoption",
+            description: "Launch features contextually, in-app.",
+            href: "/use-cases/user-onboarding",
+            icon: Sparkles,
+          },
+          {
+            name: "Client & Employee Training",
+            description: "Teach people where the work happens.",
+            href: "/use-cases/client-and-employee-training",
+            icon: GraduationCap,
+          },
+        ],
       },
       {
-        name: "Support Ticket Reduction",
-        description:
-          "Deflect repetitive how-do-I questions with AI answers and live walkthroughs.",
-        href: "/use-cases/support-ticket-reduction",
-        icon: TicketX,
-        image: "/guidance.png",
-        imageAlt: "The AI assistant answering a support question",
-      },
-      {
-        name: "Client & Employee Training",
-        description:
-          "Ramp clients and staff with in-app walkthroughs, interactive demos, and polished training videos.",
-        href: "/use-cases/client-and-employee-training",
-        icon: GraduationCap,
-        image: "/guidance.png",
-        imageAlt: "An in-app training walkthrough on an internal tool",
+        heading: "By outcome",
+        items: [
+          {
+            name: "Reduce time-to-value",
+            description: "Get users to their first win faster.",
+            href: "/use-cases/user-onboarding",
+            icon: MousePointerClick,
+          },
+          {
+            name: "Cut support volume",
+            description: "Deflect repetitive questions with AI.",
+            href: "/use-cases/support-ticket-reduction",
+            icon: MessageCircleQuestion,
+          },
+          {
+            name: "Understand friction",
+            description: "See exactly where users get stuck.",
+            href: "/analytics",
+            icon: BarChart3,
+          },
+        ],
       },
     ],
+    feature: {
+      eyebrow: "The whole loop",
+      title: "One platform, every stage of adoption",
+      description:
+        "Guide, understand, answer, and act — installed with a single snippet.",
+      href: "/#platform",
+      image: "/assistant-img.png",
+      imageAlt: "A guided onboarding tour running live",
+    },
+  },
+  product: {
+    label: "Product",
+    intro: "Everything the 3Guide SDK runs on your product.",
+    columns: [
+      {
+        heading: "Guide & train",
+        items: [
+          {
+            name: "In-App Guides",
+            description: "Visual walkthroughs that heal themselves.",
+            href: "/guides",
+            icon: MousePointerClick,
+          },
+          {
+            name: "Guide Pro",
+            description: "Interactive, shareable product demos.",
+            href: "/guide-pro",
+            icon: Presentation,
+          },
+          {
+            name: "Guide Studio",
+            description: "Screen recording to polished video.",
+            href: "/studio",
+            icon: MonitorPlay,
+          },
+        ],
+      },
+      {
+        heading: "Answer & act",
+        items: [
+          {
+            name: "AI Assistant",
+            description: "Answers trained on your product.",
+            href: "/copilot",
+            icon: Bot,
+          },
+          {
+            name: "Browser Copilot",
+            description: "An AI that completes the task for users.",
+            href: "/copilot",
+            icon: Sparkles,
+          },
+          {
+            name: "Friction Analytics",
+            description: "Funnels, sessions, and friction signals.",
+            href: "/analytics",
+            icon: BarChart3,
+          },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: "Beyond guidance",
+      title: "An AI that acts, not just points",
+      description:
+        "The Browser Copilot clicks, fills, and navigates — with the user watching every step.",
+      href: "/copilot",
+      image: "/co-pilot.png",
+      imageAlt: "The 3Guide Browser Copilot running tasks",
+    },
   },
 };
 
@@ -128,8 +191,20 @@ type MenuKey = keyof typeof menus | null;
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<MenuKey>(null);
-  const [preview, setPreview] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  /* Every page now opens on the dark plum hero, so the bar starts
+     transparent everywhere and turns into a solid light bar once you
+     scroll off it. Pages without a dark hero opt out via DARK_HERO. */
+  const overHero = hasDarkHero(pathname) && !scrolled && !mobileMenuOpen;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -137,28 +212,27 @@ export function Header() {
   }, [pathname]);
 
   const activeMenu = openMenu ? menus[openMenu] : null;
-  const previewItem = activeMenu?.items[Math.min(preview, activeMenu.items.length - 1)];
 
-  const toggleMenu = (key: Exclude<MenuKey, null>) => {
-    setPreview(0);
+  const toggleMenu = (key: Exclude<MenuKey, null>) =>
     setOpenMenu((current) => (current === key ? null : key));
-  };
-
-  const openMenuOnHover = (key: Exclude<MenuKey, null>) => {
-    if (openMenu !== key) setPreview(0);
-    setOpenMenu(key);
-  };
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
+    <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className="relative mx-auto max-w-6xl"
+        className="relative"
         onMouseLeave={() => setOpenMenu(null)}
       >
-        {/* Floating island bar */}
-        <div className="rounded-2xl border border-slate-200 bg-white/95 px-5 shadow-lg shadow-purple-900/5 backdrop-blur-md">
-          <nav className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-x-8">
+        {/* Full-bleed bar, level with the hero — no island, no border. */}
+        <div
+          className={cn(
+            "px-6 transition-colors duration-500 lg:px-10",
+            overHero
+              ? "bg-transparent"
+              : "border-b border-slate-200/70 bg-white/90 backdrop-blur-xl"
+          )}
+        >
+          <nav className="mx-auto flex h-20 max-w-[100rem] items-center justify-between">
+            <div className="flex items-center gap-x-10">
               <Link href="/" className="flex items-center gap-2">
                 <Image
                   src="/logo.jpeg"
@@ -167,7 +241,7 @@ export function Header() {
                   height={32}
                   className="h-8 w-8 rounded-lg"
                 />
-                <span className="text-lg font-bold tracking-tight text-slate-900">
+                <span className={cn("font-display text-xl font-semibold tracking-tight", overHero ? "text-white" : "text-slate-900")}>
                   3Guide
                 </span>
               </Link>
@@ -179,13 +253,21 @@ export function Header() {
                       key={key}
                       type="button"
                       onClick={() => toggleMenu(key)}
-                      onMouseEnter={() => openMenuOnHover(key)}
+                      onMouseEnter={() => setOpenMenu(key)}
                       aria-expanded={openMenu === key}
                       className={cn(
-                        "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition",
+                        /* The open item becomes a block that visually joins
+                           the panel below it, capped by an amber rule. */
+                        "relative flex h-20 items-center gap-1 px-5 text-sm font-medium transition",
+                        "before:absolute before:inset-x-0 before:top-0 before:h-0.5 before:bg-[#e8a56d] before:opacity-0",
+                        openMenu === key && "before:opacity-100",
                         openMenu === key
-                          ? "text-purple-700"
-                          : "text-slate-600 hover:text-slate-900"
+                          ? overHero
+                            ? "bg-white/[0.07] text-white"
+                            : "bg-slate-900/[0.04] text-purple-700"
+                          : overHero
+                            ? "text-slate-200 hover:text-white"
+                            : "text-slate-600 hover:text-slate-900"
                       )}
                     >
                       {menus[key].label}
@@ -199,16 +281,23 @@ export function Header() {
                   )
                 )}
                 <Link
+                  href="/#customers"
+                  onMouseEnter={() => setOpenMenu(null)}
+                  className={cn("rounded-lg px-3 py-2 text-sm transition", overHero ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900")}
+                >
+                  Customers
+                </Link>
+                <Link
                   href="/pricing"
                   onMouseEnter={() => setOpenMenu(null)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                  className={cn("rounded-lg px-3 py-2 text-sm transition", overHero ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900")}
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/docs"
                   onMouseEnter={() => setOpenMenu(null)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                  className={cn("rounded-lg px-3 py-2 text-sm transition", overHero ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900")}
                 >
                   Docs
                 </Link>
@@ -219,14 +308,19 @@ export function Header() {
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                className={cn("rounded-lg px-3 py-2 text-sm transition", overHero ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900")}
               >
                 Sign in
               </Link>
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-purple-600/25 transition hover:bg-purple-500"
+                className={cn(
+                  "inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition duration-300",
+                  overHero
+                    ? "bg-[#e8a56d] text-[#2b1420] hover:bg-[#efb684]"
+                    : "bg-purple-600 text-white shadow-md shadow-purple-600/20 hover:bg-purple-500"
+                )}
               >
                 Start free
               </Link>
@@ -234,7 +328,7 @@ export function Header() {
 
             <button
               type="button"
-              className="text-slate-900 lg:hidden"
+              className={cn("lg:hidden", overHero ? "text-white" : "text-slate-900")}
               aria-label="Toggle menu"
               onClick={() => setMobileMenuOpen((v) => !v)}
             >
@@ -256,21 +350,29 @@ export function Header() {
                       {menus[key].label}
                     </p>
                     <div className="mt-2 space-y-1">
-                      {menus[key].items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="flex items-center gap-3 rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
-                        >
-                          <item.icon className="h-5 w-5 text-purple-700" />
-                          {item.name}
-                        </Link>
-                      ))}
+                      {menus[key].columns
+                        .flatMap((col) => col.items)
+                        .map((item) => (
+                          <Link
+                            key={item.name + item.href}
+                            href={item.href}
+                            className="flex items-center gap-3 rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
+                          >
+                            <item.icon className="h-5 w-5 text-purple-700" />
+                            {item.name}
+                          </Link>
+                        ))}
                     </div>
                   </div>
                 )
               )}
               <div className="space-y-1 border-t border-slate-200 pt-4">
+                <Link
+                  href="/#customers"
+                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
+                >
+                  Customers
+                </Link>
                 <Link
                   href="/pricing"
                   className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
@@ -294,7 +396,7 @@ export function Header() {
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="mt-4 flex w-full items-center justify-center rounded-xl bg-purple-600 px-5 py-3 text-sm font-bold text-white shadow-md shadow-purple-600/25"
+                className="mt-4 flex w-full items-center justify-center rounded-full bg-purple-600 px-5 py-3 text-sm font-medium text-white shadow-md shadow-purple-600/25"
               >
                 Start free
               </Link>
@@ -305,74 +407,81 @@ export function Header() {
         {/* Full-width mega dropdown */}
         <div
           className={cn(
-            "absolute inset-x-0 top-full hidden pt-2 transition-all duration-300 ease-out lg:block",
+            "absolute inset-x-0 top-full hidden transition-all duration-300 ease-out lg:block",
             activeMenu
               ? "visible translate-y-0 opacity-100"
               : "invisible -translate-y-2 opacity-0"
           )}
         >
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl shadow-purple-900/10">
-            {activeMenu && previewItem && (
-              <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
-                {/* Items with descriptions */}
-                <div className="grid content-start gap-1">
-                  {activeMenu.items.map((item, i) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onMouseEnter={() => setPreview(i)}
-                      onClick={() => setOpenMenu(null)}
-                      style={{ transitionDelay: activeMenu ? `${i * 40}ms` : "0ms" }}
-                      className={cn(
-                        "flex items-start gap-4 rounded-xl p-4 transition-all duration-300",
-                        preview === i ? "bg-purple-50" : "hover:bg-slate-50"
-                      )}
-                    >
-                      <span
-                        className={cn(
-                          "mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition",
-                          preview === i
-                            ? "bg-purple-600 text-white"
-                            : "bg-purple-100 text-purple-700"
-                        )}
-                      >
-                        <item.icon className="h-5 w-5" />
-                      </span>
-                      <span>
-                        <span className="block text-base font-bold text-slate-900">
-                          {item.name}
-                        </span>
-                        <span className="mt-1 block text-sm leading-relaxed text-slate-500">
-                          {item.description}
-                        </span>
-                      </span>
-                    </Link>
+          {activeMenu && (
+            <div className="border-b border-white/10 bg-ink/98 shadow-2xl shadow-black/40 backdrop-blur-xl">
+             <div className="mx-auto max-w-[100rem] px-6 py-10 lg:px-10">
+              <p className="mb-7 max-w-[76rem] font-mono text-xs font-medium uppercase tracking-[0.22em] text-slate-400">
+                {activeMenu.intro}
+              </p>
+              <div className="grid max-w-[76rem] gap-10 lg:grid-cols-[1.5fr_1fr]">
+                {/* Grouped link columns */}
+                <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2">
+                  {activeMenu.columns.map((col) => (
+                    <div key={col.heading}>
+                      <p className="mb-3 px-3 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#e8a56d]">
+                        {col.heading}
+                      </p>
+                      <div className="grid gap-1">
+                        {col.items.map((item) => (
+                          <Link
+                            key={item.name + item.href}
+                            href={item.href}
+                            onClick={() => setOpenMenu(null)}
+                            className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-white/[0.06]"
+                          >
+                            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-purple-200 transition group-hover:bg-[#e8a56d] group-hover:text-[#2b1420]">
+                              <item.icon className="h-4.5 w-4.5" />
+                            </span>
+                            <span>
+                              <span className="block text-sm font-medium text-white">
+                                {item.name}
+                              </span>
+                              <span className="mt-0.5 block text-xs leading-relaxed text-slate-400">
+                                {item.description}
+                              </span>
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
 
-                {/* Live preview of the hovered item */}
-                <div className="relative overflow-hidden rounded-xl border border-purple-100 bg-purple-50/60 p-4">
-                  <div
-                    key={previewItem.href}
-                    className="duration-300 animate-in fade-in"
-                  >
-                    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
-                      <Image
-                        src={previewItem.image}
-                        alt={previewItem.imageAlt}
-                        width={900}
-                        height={540}
-                        className="h-auto w-full"
-                      />
-                    </div>
-                    <p className="mt-3 text-sm font-medium text-slate-600">
-                      {previewItem.imageAlt}
-                    </p>
+                {/* Featured tile */}
+                <Link
+                  href={activeMenu.feature.href}
+                  onClick={() => setOpenMenu(null)}
+                  className="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-[#e8a56d]/50"
+                >
+                  <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#e8a56d]">
+                    {activeMenu.feature.eyebrow}
+                  </p>
+                  <h4 className="mt-2 text-base font-medium text-white">
+                    {activeMenu.feature.title}
+                  </h4>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
+                    {activeMenu.feature.description}
+                  </p>
+                  <div className="mt-4 overflow-hidden rounded-lg border border-white/10 shadow-lg">
+                    <Image
+                      src={activeMenu.feature.image}
+                      alt={activeMenu.feature.imageAlt}
+                      width={900}
+                      height={540}
+                      className="h-auto w-full transition duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                </div>
+                </Link>
               </div>
-            )}
-          </div>
+             </div>
+            </div>
+          )}
         </div>
       </div>
     </header>

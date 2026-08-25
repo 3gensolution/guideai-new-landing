@@ -1,18 +1,27 @@
 import type { Metadata } from 'next'
-import { Roboto, Roboto_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { Figtree, Geist, Geist_Mono } from 'next/font/google'
+import { CookieConsent } from '@/components/cookie-consent'
 import { ScrollFx } from '@/components/marketing/scroll-fx'
 import './globals.css'
 
-const roboto = Roboto({
+/* Display voice — a bold geometric sans. Headlines run at 800 so they
+   read as confident and structural, not delicate. */
+const figtree = Figtree({
   subsets: ['latin'],
-  weight: ['400', '500', '700', '900'],
-  variable: '--font-roboto',
+  variable: '--font-figtree',
+  display: 'swap',
 })
 
-const robotoMono = Roboto_Mono({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-roboto-mono',
+  variable: '--font-geist',
+  display: 'swap',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -21,7 +30,7 @@ export const metadata: Metadata = {
     default: '3Guide (3GuideAI) - AI-First Product Adoption Platform',
     template: '%s | 3Guide',
   },
-  description: 'Build in-app guides in minutes, keep them current automatically. AI-powered onboarding, friction analytics, and browser Copilot for B2B SaaS.',
+  description: 'One line of code puts an AI helper inside your product. It shows people how, answers their questions, and completes the task for them — fewer tickets, faster onboarding, and data on where users get stuck.',
   generator: '3gensolution team',
   applicationName: '3Guide',
   keywords: [
@@ -51,7 +60,7 @@ export const metadata: Metadata = {
     url: 'https://www.3guideai.com',
     siteName: '3Guide',
     title: '3Guide - AI-First Product Adoption Platform',
-    description: 'Build in-app guides in minutes, keep them current automatically. AI-powered onboarding, friction analytics, and browser Copilot for B2B SaaS.',
+    description: 'One line of code puts an AI helper inside your product. It shows people how, answers their questions, and completes the task for them — fewer tickets, faster onboarding, and data on where users get stuck.',
     images: [
       {
         url: '/apple-icon.png',
@@ -64,7 +73,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '3Guide - AI-First Product Adoption Platform',
-    description: 'Build in-app guides in minutes, keep them current automatically. AI-powered onboarding, friction analytics, and browser Copilot for B2B SaaS.',
+    description: 'One line of code puts an AI helper inside your product. It shows people how, answers their questions, and completes the task for them — fewer tickets, faster onboarding, and data on where users get stuck.',
     images: ['/apple-icon.png'],
   },
   robots: {
@@ -106,11 +115,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} ${robotoMono.variable}`}>
+    <html lang="en" className={`${figtree.variable} ${geist.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
         <ScrollFx />
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {/* Analytics mounts only after opt-in consent (NDPA 2023 §§25-26). */}
+        <CookieConsent />
       </body>
     </html>
   )

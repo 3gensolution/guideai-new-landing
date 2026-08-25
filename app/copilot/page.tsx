@@ -6,6 +6,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   CheckItem,
   Container,
@@ -69,7 +70,7 @@ const faqItems = [
 
 export default function CopilotPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
       <PageHero
@@ -77,7 +78,7 @@ export default function CopilotPage() {
         title={
           <>
             The AI assistant that{" "}
-            <span className="text-purple-600">gets things done</span>
+            <span className="text-[#f0c9a0]">gets things done</span>
           </>
         }
         description="Answer questions with AI trained on your product and when a user asks for help with a task, complete it for them: clicking, typing, and navigating right in their browser."
@@ -200,6 +201,7 @@ export default function CopilotPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="adoption" />
       <FaqSection items={faqItems} title="Browser Copilot, answered" />
       <CtaBanner
         title="Give your users an AI that acts"

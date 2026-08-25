@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Check, Loader2 } from "lucide-react";
 import { Header } from "@/components/header";
+import { HeroStreaks } from "@/components/marketing/hero-streaks";
 import { Footer } from "@/components/footer";
 import { ContactFormDialog } from "@/components/contact-form-dialog";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { Container, PillBadge } from "@/components/marketing/primitives";
+import { Container } from "@/components/marketing/primitives";
 import { DASHBOARD_URL } from "@/lib/site";
 
 interface SubscriptionPlan {
@@ -243,20 +244,31 @@ export default function PricingPage() {
   const isHighlighted = (index: number) => index === 1;
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
       <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden pb-4 pt-32 sm:pt-40">
-        <Container className="relative">
+      <section className="relative overflow-hidden bg-ink pb-24 pt-36 sm:pt-44">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(56rem 28rem at 12% 96%, rgba(176,74,66,0.28), transparent 62%), radial-gradient(52rem 26rem at 88% 88%, rgba(150,60,80,0.22), transparent 62%)",
+          }}
+        />
+        <HeroStreaks />
+        <Container className="relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <PillBadge>Pricing</PillBadge>
-            <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#f0c9a0]">
+              Pricing
+            </span>
+            <h1 data-mask-reveal className="font-display mt-8 text-balance text-title text-white">
               Find the right plan{" "}
-              <span className="text-purple-600">for your team</span>
+              <span className="text-[#f0c9a0]">for your team</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-600">
+            <p className="mx-auto mt-7 max-w-2xl text-pretty text-lead text-slate-300">
               Start free and scale when you're ready. Every plan includes what
               you need to drive product adoption, with no credit card required to
               begin.

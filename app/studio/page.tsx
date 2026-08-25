@@ -12,14 +12,15 @@ import {
   ZoomIn,
 } from "lucide-react";
 import { Header } from "@/components/header";
+import { HeroStreaks } from "@/components/marketing/hero-streaks";
 import { Footer } from "@/components/footer";
 import { DownloadButtons } from "@/components/studio/download-buttons";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
+import { PillarStrip } from "@/components/marketing/pillar-strip";
 import {
   Container,
-  PillBadge,
   Section,
   SectionHeading,
   accents,
@@ -101,31 +102,27 @@ const faqItems = [
 
 export default function StudioPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <Header />
 
-      <section className="relative overflow-hidden bg-white pb-16 pt-32 sm:pt-40">
+      <section className="relative overflow-hidden bg-ink pb-20 pt-36 sm:pt-44">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] opacity-40"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(147,51,234,0.14) 1.5px, transparent 1.5px)",
-            backgroundSize: "28px 28px",
-            maskImage:
-              "radial-gradient(55rem 24rem at 50% 0%, black, transparent 75%)",
-            WebkitMaskImage:
-              "radial-gradient(55rem 24rem at 50% 0%, black, transparent 75%)",
+            background:
+              "radial-gradient(56rem 28rem at 12% 96%, rgba(176,74,66,0.28), transparent 62%), radial-gradient(52rem 26rem at 88% 88%, rgba(150,60,80,0.22), transparent 62%)",
           }}
         />
-        <Container className="relative">
+        <HeroStreaks />
+        <Container className="relative z-10">
           <div data-reveal className="mx-auto max-w-4xl text-center">
-            <PillBadge>Guide Studio · Free desktop app</PillBadge>
-            <h1 className="mt-7 text-balance text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#f0c9a0]">Guide Studio · Free desktop app</span>
+            <h1 data-mask-reveal className="font-display mt-8 text-balance text-title text-white">
               Record your screen.{" "}
-              <span className="text-purple-600">Ship a polished video.</span>
+              <span className="text-[#f0c9a0]">Ship a polished video.</span>
             </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-slate-600">
+            <p className="mx-auto mt-7 max-w-2xl text-pretty text-lead text-slate-300">
               Guide Studio is a completely free desktop app that turns a raw
               screen recording into a finished product video, automatic zoom,
               smooth cursor, beautiful backgrounds, captions, and AI voiceover.
@@ -134,11 +131,11 @@ export default function StudioPage() {
             <div className="mt-10 flex flex-col items-center justify-center gap-4">
               <Link
                 href="#download"
-                className="inline-flex items-center justify-center rounded-xl bg-purple-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-purple-600/25 transition hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-600/30"
+                className="inline-flex items-center justify-center bg-[#e8a56d] px-9 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-[#2b1420] transition duration-300 hover:bg-[#efb684]"
               >
                 Download Guide Studio — free
               </Link>
-              <p className="text-sm font-medium text-slate-500">
+              <p className="text-sm text-slate-400">
                 No account, no trial, no paywall · Open-sourcing soon
               </p>
             </div>
@@ -146,7 +143,7 @@ export default function StudioPage() {
 
           <div id="download" className="scroll-mt-28">
             <DownloadButtons />
-            <p className="mt-4 text-center text-sm text-slate-500">
+            <p className="mt-4 text-center text-sm text-slate-400">
               Free forever · Works on macOS, Windows, and Linux
             </p>
           </div>
@@ -198,7 +195,7 @@ export default function StudioPage() {
         </Container>
       </Section>
 
-      <Section className="bg-purple-50/60">
+      <Section className="bg-canvas-deep">
         <Container>
           <SectionHeading
             eyebrow="In the box"
@@ -242,7 +239,7 @@ export default function StudioPage() {
               <Video className="h-7 w-7" />
             </span>
             <div>
-              <h3 className="text-2xl font-bold text-white">
+              <h3 className="text-2xl font-medium text-white">
                 Export a clean MP4 or GIF
               </h3>
               <p className="mt-2 text-base leading-relaxed text-slate-300">
@@ -255,6 +252,7 @@ export default function StudioPage() {
         </Container>
       </Section>
 
+      <PillarStrip active="training" />
       <FaqSection items={faqItems} title="Guide Studio, answered" />
       <CtaBanner
         title="Make product videos worth watching — free"

@@ -41,9 +41,9 @@ const tabs = [
     key: "guide-pro",
     label: "Guide Pro",
     icon: Presentation,
-    title: "Interactive product demos, built from screenshots",
+    title: "Interactive demos that train clients and prospects",
     description:
-      "Record a few clicks through your product and turn them into a shareable, interactive demo. AI adds the tooltips, voiceover, and zoom.",
+      "Turn a few clicks through your product into a shareable, self-paced demo — the fastest way to onboard prospects and train clients without a live call. AI adds the tooltips, voiceover, and zoom.",
     bullets: [
       "Capture screenshots or fully clickable page snapshots",
       "AI writes tooltips and narration, picks the best zoom per screen",
@@ -58,9 +58,9 @@ const tabs = [
     key: "studio",
     label: "Guide Studio",
     icon: MonitorPlay,
-    title: "Turn a screen recording into a polished video",
+    title: "Turn a screen recording into training video",
     description:
-      "A desktop app that records your screen and adds automatic zoom, smooth cursor, backgrounds, captions, and AI voiceover and then exports a clean MP4 or GIF.",
+      "A desktop app that turns a raw screen recording into polished training and support video — automatic zoom, smooth cursor, backgrounds, captions, and AI voiceover, then exports a clean MP4 or GIF.",
     bullets: [
       "Automatic zoom and cursor effects, no keyframing",
       "One-click polish, or edit by asking the AI assistant",
@@ -146,12 +146,12 @@ export function FeatureTabs() {
   const tab = tabs[active];
 
   return (
-    <Section className="bg-purple-50/60">
+    <Section id="platform" className="bg-canvas">
       <Container className="px-6">
         <SectionHeading
-          eyebrow="The platform"
-          title="One platform. Six products."
-          description="Everything you need to onboard, demo, and support your product from in-app guidance to interactive demos and polished product video."
+          eyebrow="What you install"
+          title="One layer. No rebuild. No migration."
+          description="In-app guidance, interactive demos, polished training video, an AI assistant, a task-completing copilot, and friction analytics — every capability points at the same outcome: users who succeed with your product."
           align="center"
         />
 
@@ -182,7 +182,7 @@ export function FeatureTabs() {
               type="button"
               onClick={() => setActive(i)}
               className={cn(
-                "inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 text-base font-bold transition-all duration-300",
+                "inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 text-base font-medium transition-all duration-300",
                 i === active
                   ? "bg-purple-600 text-white shadow-lg shadow-purple-600/25"
                   : "border-2 border-slate-200 bg-white text-slate-600 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-700"
@@ -200,7 +200,7 @@ export function FeatureTabs() {
           className="mt-12 grid items-center gap-10 duration-500 animate-in fade-in slide-in-from-bottom-4 lg:grid-cols-[1fr_1.35fr] lg:gap-16"
         >
           <div>
-            <h3 className="text-balance text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h3 className="text-balance font-display text-sub font-semibold text-slate-900">
               {tab.title}
             </h3>
             <p className="mt-5 text-pretty text-lg leading-relaxed text-slate-600">

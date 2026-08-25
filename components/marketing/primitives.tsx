@@ -84,7 +84,7 @@ export function Container({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("mx-auto w-full max-w-6xl px-6 lg:px-8", className)}>
+    <div className={cn("mx-auto w-full max-w-7xl px-6 lg:px-8", className)}>
       {children}
     </div>
   );
@@ -100,7 +100,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("py-20 sm:py-28", className)}>
+    <section id={id} className={cn("py-20 sm:py-24 lg:py-28", className)}>
       {children}
     </section>
   );
@@ -122,7 +122,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "font-mono text-sm font-semibold uppercase tracking-[0.2em]",
+        "font-mono text-xs font-medium uppercase tracking-[0.22em]",
         dark ? accents[accent].textDark : accents[accent].text
       )}
     >
@@ -163,8 +163,9 @@ export function SectionHeading({
         </Eyebrow>
       )}
       <h2
+        data-mask-reveal
         className={cn(
-          "mt-4 text-balance text-4xl font-bold tracking-tight sm:text-5xl",
+          "font-display mt-5 text-balance text-section font-semibold",
           dark ? "text-white" : "text-slate-900"
         )}
       >
@@ -173,7 +174,7 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "mt-5 text-pretty text-xl leading-relaxed",
+            "mt-5 text-pretty text-lead",
             dark ? "text-slate-300" : "text-slate-600"
           )}
         >
@@ -258,7 +259,7 @@ export function ArrowLink({
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center gap-1.5 text-base font-bold transition",
+        "group inline-flex items-center gap-1.5 text-base font-medium transition",
         dark ? accents[accent].textDark : accents[accent].text,
         className
       )}

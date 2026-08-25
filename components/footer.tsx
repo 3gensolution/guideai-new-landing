@@ -53,7 +53,7 @@ export function Footer() {
         </div>
 
         <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
-          <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold leading-[1.05] tracking-normal text-slate-100 sm:text-5xl lg:text-6xl">
+          <h2 className="mx-auto max-w-4xl text-center text-4xl font-medium leading-[1.05] tracking-normal text-slate-100 sm:text-5xl lg:text-6xl">
             Together, we can make product adoption feel effortless.
           </h2>
 
@@ -67,7 +67,7 @@ export function Footer() {
                   height={40}
                   className="h-10 w-10 rounded-xl"
                 />
-                <span className="text-2xl font-bold tracking-normal text-white">
+                <span className="text-2xl font-medium tracking-normal text-white">
                   3Guide
                 </span>
               </Link>
@@ -85,14 +85,14 @@ export function Footer() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Link
                   href={DASHBOARD_URL}
-                  className="inline-flex items-center justify-center rounded-md bg-purple-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-purple-950/30 transition hover:bg-purple-500"
+                  className="inline-flex items-center justify-center rounded-md bg-purple-600 px-6 py-4 text-base font-medium text-white shadow-lg shadow-purple-950/30 transition hover:bg-purple-500"
                 >
                   Start free
                 </Link>
                 <button
                   type="button"
                   onClick={() => setContactOpen(true)}
-                  className="inline-flex items-center justify-center rounded-md border border-purple-200/70 px-6 py-4 text-base font-bold text-slate-100 transition hover:border-white hover:bg-white hover:text-purple-700"
+                  className="inline-flex items-center justify-center rounded-md border border-purple-200/70 px-6 py-4 text-base font-medium text-slate-100 transition hover:border-white hover:bg-white hover:text-purple-700"
                 >
                   Request a demo
                 </button>
@@ -101,7 +101,7 @@ export function Footer() {
 
             <div className="grid gap-10 sm:grid-cols-3 lg:pt-16">
               <div>
-                <h3 className="text-sm font-bold text-slate-300">Product</h3>
+                <h3 className="text-sm font-medium text-slate-300">Product</h3>
                 <ul className="mt-5 space-y-4">
                   {navigation.product.map((item) => (
                     <li key={item.name}>
@@ -116,7 +116,7 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-300">Solutions</h3>
+                <h3 className="text-sm font-medium text-slate-300">Solutions</h3>
                 <ul className="mt-5 space-y-4">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
@@ -131,7 +131,7 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-300">Company</h3>
+                <h3 className="text-sm font-medium text-slate-300">Company</h3>
                 <ul className="mt-5 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
@@ -150,7 +150,7 @@ export function Footer() {
 
           <div className="mt-24 flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <div>
-              <h3 className="text-xl font-bold text-slate-100">
+              <h3 className="text-xl font-medium text-slate-100">
                 Stay in touch!
               </h3>
               <p className="mt-1 text-base font-medium text-slate-400">
@@ -158,7 +158,7 @@ export function Footer() {
               </p>
               <Link
                 href="mailto:info@3guideai.com?subject=Subscribe%20to%203Guide%20newsletter"
-                className="mt-6 inline-flex rounded-md border border-purple-200/70 px-7 py-4 text-base font-bold text-slate-100 transition hover:border-white hover:bg-white hover:text-purple-700"
+                className="mt-6 inline-flex rounded-md border border-purple-200/70 px-7 py-4 text-base font-medium text-slate-100 transition hover:border-white hover:bg-white hover:text-purple-700"
               >
                 Subscribe to our newsletter
               </Link>

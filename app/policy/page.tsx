@@ -11,7 +11,7 @@ export default function PolicyPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-canvas">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-zinc-900"
@@ -28,7 +28,7 @@ export default function PolicyPage() {
             <span className="inline-flex items-center rounded-full bg-purple-50 px-3 py-1 text-sm font-medium text-purple-600 ring-1 ring-inset ring-purple-200">
               Legal
             </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            <h1 className="mt-6 font-display text-section font-semibold text-slate-900">
               Privacy Policy
             </h1>
             <p className="mt-4 text-base text-slate-500">

@@ -22,7 +22,7 @@ export function FaqSection({
   const [open, setOpen] = useState<number>(0);
 
   return (
-    <Section className="bg-purple-50/60">
+    <Section className="bg-canvas">
       <Container>
         <SectionHeading
           eyebrow="FAQ"
@@ -53,7 +53,7 @@ export function FaqSection({
                   aria-expanded={isOpen}
                   className="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left"
                 >
-                  <span className="text-lg font-bold text-slate-900">
+                  <span className="text-lg font-medium text-slate-900">
                     {item.question}
                   </span>
                   <span

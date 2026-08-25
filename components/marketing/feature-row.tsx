@@ -40,7 +40,7 @@ export function FeatureRow({
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <div data-reveal className={cn(reverse && "lg:order-2")}>
         {eyebrow && <Eyebrow accent={accent}>{eyebrow}</Eyebrow>}
-        <h3 className="mt-4 text-balance text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        <h3 className="mt-4 text-balance font-display text-sub font-semibold text-slate-900">
           {title}
         </h3>
         <p className="mt-5 text-pretty text-lg leading-relaxed text-slate-600">
@@ -65,7 +65,7 @@ export function FeatureRow({
           </div>
         )}
         {stat && (
-          <p className="mt-7 inline-flex items-center gap-2 rounded-lg bg-emerald-100 px-4 py-2.5 font-mono text-base font-bold text-emerald-700">
+          <p className="mt-7 inline-flex items-center gap-2 rounded-lg bg-emerald-100 px-4 py-2.5 font-mono text-base font-medium text-emerald-700">
             {stat}
           </p>
         )}
