@@ -281,13 +281,6 @@ export function Header() {
                   )
                 )}
                 <Link
-                  href="/#customers"
-                  onMouseEnter={() => setOpenMenu(null)}
-                  className={cn("rounded-lg px-3 py-2 text-sm transition", overHero ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900")}
-                >
-                  Customers
-                </Link>
-                <Link
                   href="/pricing"
                   onMouseEnter={() => setOpenMenu(null)}
                   className={cn("rounded-lg px-3 py-2 text-sm transition", overHero ? "text-slate-200 hover:text-white" : "text-slate-600 hover:text-slate-900")}

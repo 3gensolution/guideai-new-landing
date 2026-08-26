@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Figtree, Geist, Geist_Mono } from 'next/font/google'
 import { CookieConsent } from '@/components/cookie-consent'
+import { GuideAiSdk } from '@/components/guideai-sdk'
 import { ScrollFx } from '@/components/marketing/scroll-fx'
 import './globals.css'
 
@@ -121,6 +122,8 @@ export default function RootLayout({
         {children}
         {/* Analytics mounts only after opt-in consent (NDPA 2023 §§25-26). */}
         <CookieConsent />
+        {/* next/script places these itself — no wrapper element needed. */}
+        <GuideAiSdk />
       </body>
     </html>
   )

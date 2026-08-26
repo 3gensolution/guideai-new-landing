@@ -56,7 +56,7 @@ export function TrustSection() {
         </div>
 
         {/* The mode-safety point — a genuine differentiator, not boilerplate. */}
-        <div
+        {/* <div
           data-reveal
           className="mt-8 rounded-3xl border border-purple-200/70 bg-purple-50/50 p-8 lg:p-10"
         >
@@ -70,7 +70,7 @@ export function TrustSection() {
             feature, not decoration: nobody should ask a how-to question and
             have their account cancelled.
           </p>
-        </div>
+        </div> */}
       </Container>
     </Section>
   );

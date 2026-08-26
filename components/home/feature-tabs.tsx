@@ -55,23 +55,6 @@ const tabs = [
     linkLabel: "Explore Guide Pro",
   },
   {
-    key: "studio",
-    label: "Guide Studio",
-    icon: MonitorPlay,
-    title: "Turn a screen recording into training video",
-    description:
-      "A desktop app that turns a raw screen recording into polished training and support video — automatic zoom, smooth cursor, backgrounds, captions, and AI voiceover, then exports a clean MP4 or GIF.",
-    bullets: [
-      "Automatic zoom and cursor effects, no keyframing",
-      "One-click polish, or edit by asking the AI assistant",
-      "Export MP4 or GIF for the web, social, and docs",
-    ],
-    image: "/guide-studio-img.png",
-    imageAlt: "The Guide Studio screen recorder and video editor",
-    href: "/studio",
-    linkLabel: "Explore Guide Studio",
-  },
-  {
     key: "assistant",
     label: "AI Assistant",
     icon: Bot,
