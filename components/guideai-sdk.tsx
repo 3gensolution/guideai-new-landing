@@ -6,10 +6,10 @@ import { useState } from "react";
 export function GuideAiSdk() {
   const [sdkReady, setSdkReady] = useState(false);
 
-  const siteId = process.env.GUIDEAI_SITE_ID;
-  const token = process.env.GUIDEAI_TOKEN;
+  const siteId = process.env["NEXT_PUBLIC_GUIDEAI_SITE_ID"];
+  const token = process.env["NEXT_PUBLIC_GUIDEAI_TOKEN"];
   const cdn =
-    process.env.GUIDEAI_CDN_URL ?? "https://cdn.3guideai.com";
+    process.env["NEXT_PUBLIC_GUIDEAI_CDN_URL"] ?? "https://cdn.3guideai.com";
 
   // No credentials configured (a fresh clone, or a preview env) — render
   // nothing rather than firing requests that will be rejected.
