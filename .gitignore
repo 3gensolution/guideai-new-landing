@@ -17,3 +17,7 @@ node_modules
 
 .env
 giga*
+# Single lockfile: this project uses npm (package-lock.json).
+# A stray pnpm lockfile makes Vercel switch package managers and fail CI.
+pnpm-lock.yaml
+yarn.lock
