@@ -192,6 +192,9 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<MenuKey>(null);
   const [scrolled, setScrolled] = useState(false);
+  /* Which mobile accordion is expanded. A single value rather than a set is
+     the whole accordion rule: opening one necessarily closes the other. */
+  const [mobileSection, setMobileSection] = useState<MenuKey>(null);
   const pathname = usePathname();
 
   /* Every page now opens on the dark plum hero, so the bar starts
@@ -227,6 +230,7 @@ export function Header() {
   useEffect(() => {
     setMobileMenuOpen(false);
     setOpenMenu(null);
+    setMobileSection(null);
   }, [pathname]);
 
   const activeMenu = openMenu ? menus[openMenu] : null;
@@ -245,15 +249,27 @@ export function Header() {
             its opacity. Adding and removing backdrop-blur made Safari build
             and tear down the backdrop layer on every scroll-state change,
             which flickered; a layer that always exists is rasterized once. */}
-        <div className="relative px-6 lg:px-10">
+        {/* No horizontal padding here: the open mobile menu is a child and
+            must run edge to edge. The bar's own inset lives on <nav>.
+            While the menu is open the whole block takes the hero ink so the
+            bar and the panel below it are one continuous surface. */}
+        <div
+          className={cn(
+            "relative transition-colors duration-500 ease-in-out",
+            mobileMenuOpen ? "bg-ink" : "bg-transparent"
+          )}
+        >
           <div
             aria-hidden
             className={cn(
               "pointer-events-none absolute inset-0 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl transition-opacity duration-500",
-              overHero ? "opacity-0" : "opacity-100"
+              /* Hidden entirely while the mobile menu is open, otherwise a
+                 half-opaque white sheet sits over the ink panel and reads as
+                 a grey band across the top. */
+              overHero || mobileMenuOpen ? "opacity-0" : "opacity-100"
             )}
           />
-          <nav className="relative mx-auto flex h-20 max-w-[100rem] items-center justify-between">
+          <nav className="relative mx-auto flex h-20 max-w-[100rem] items-center justify-between px-6 lg:px-10">
             <div className="flex items-center gap-x-10">
               <Link href="/" className="flex items-center gap-2">
                 <Image
@@ -263,7 +279,7 @@ export function Header() {
                   height={32}
                   className="h-8 w-8 rounded-lg"
                 />
-                <span className={cn("font-display text-xl font-semibold tracking-tight", overHero ? "text-white" : "text-slate-900")}>
+                <span className={cn("font-display text-xl font-semibold tracking-tight transition-colors duration-500 ease-in-out", overHero || mobileMenuOpen ? "text-white" : "text-slate-900")}>
                   3Guide
                 </span>
               </Link>
@@ -343,7 +359,7 @@ export function Header() {
 
             <button
               type="button"
-              className={cn("lg:hidden", overHero ? "text-white" : "text-slate-900")}
+              className={cn("lg:hidden transition-colors duration-500 ease-in-out", overHero || mobileMenuOpen ? "text-white" : "text-slate-900")}
               aria-label="Toggle menu"
               onClick={() => setMobileMenuOpen((v) => !v)}
             >
@@ -355,68 +371,144 @@ export function Header() {
             </button>
           </nav>
 
-          {/* Mobile menu (inside the island) */}
-          {mobileMenuOpen && (
-            <div className="max-h-[calc(100vh-8rem)] overflow-y-auto border-t border-slate-200 py-6 lg:hidden">
+          {/* Mobile menu (inside the island).
+              `relative` lifts it above the absolutely-positioned blur layer,
+              which spans the whole wrapper and would otherwise paint over it.
+              It also carries its own opaque background: the blur layer is
+              transparent over the dark hero, and the panel overlays page
+              content either way. */}
+          {/* Always mounted so the panel can ease closed as well as open —
+              unmounting on close would snap it away. The grid 0fr/1fr pair
+              animates to the content's real height, and `invisible` at rest
+              keeps closed links out of the tab order. */}
+          <div
+            className={cn(
+              "grid overflow-hidden transition-all duration-500 ease-in-out lg:hidden",
+              mobileMenuOpen
+                ? "grid-rows-[1fr] opacity-100"
+                : "invisible grid-rows-[0fr] opacity-0"
+            )}
+          >
+            <div className="min-h-0">
+            {/* Height follows the content. The panel only scrolls if an open
+                section actually overflows the viewport, so a collapsed menu is
+                a short card rather than a full-height column. */}
+            <div className="relative max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-white/10 bg-ink">
               {(Object.keys(menus) as Array<Exclude<MenuKey, null>>).map(
-                (key) => (
-                  <div key={key} className="mb-6">
-                    <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                      {menus[key].label}
-                    </p>
-                    <div className="mt-2 space-y-1">
-                      {menus[key].columns
-                        .flatMap((col) => col.items)
-                        .map((item) => (
-                          <Link
-                            key={item.name + item.href}
-                            href={item.href}
-                            className="flex items-center gap-3 rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
-                          >
-                            <item.icon className="h-5 w-5 text-purple-700" />
-                            {item.name}
-                          </Link>
-                        ))}
+                (key) => {
+                  const expanded = mobileSection === key;
+                  return (
+                    <div key={key} className="border-b border-white/10">
+                      <button
+                        type="button"
+                        aria-expanded={expanded}
+                        aria-controls={`mobile-section-${key}`}
+                        /* Assigning the key (not toggling a set) is what keeps
+                           a second section from opening alongside the first. */
+                        onClick={() =>
+                          setMobileSection((cur) => (cur === key ? null : key))
+                        }
+                        className="flex w-full items-center justify-between px-6 py-4 text-left text-lg font-medium text-white"
+                      >
+                        {menus[key].label}
+                        <ChevronDown
+                          className={cn(
+                            "h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300",
+                            expanded && "rotate-180"
+                          )}
+                        />
+                      </button>
+
+                      {/* Grid-rows trick: animates cleanly from 0 to the
+                          content's natural height, which max-height cannot do
+                          without hard-coding a guess. */}
+                      <div
+                        id={`mobile-section-${key}`}
+                        className={cn(
+                          "grid transition-all duration-300 ease-out",
+                          expanded
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        )}
+                      >
+                        {/* `invisible` when collapsed removes the links from
+                            the tab order and the accessibility tree — the grid
+                            collapse alone hides them visually but leaves them
+                            focusable, so keyboard users land on nothing. */}
+                        <div
+                          className={cn(
+                            "overflow-hidden",
+                            !expanded && "invisible"
+                          )}
+                        >
+                          <div className="space-y-5 px-6 pb-5">
+                            {menus[key].columns.map((col) => (
+                              <div key={col.heading}>
+                                <p className="font-mono text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                                  {col.heading}
+                                </p>
+                                <div className="mt-2 space-y-1">
+                                  {col.items.map((item) => (
+                                    <Link
+                                      key={item.name + item.href}
+                                      href={item.href}
+                                      className="flex items-center gap-3 rounded-xl py-2.5 text-base font-medium text-slate-200"
+                                    >
+                                      <item.icon className="h-5 w-5 shrink-0 text-purple-400" />
+                                      {item.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                )
+                  );
+                }
               )}
-              <div className="space-y-1 border-t border-slate-200 pt-4">
-                <Link
-                  href="/#customers"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
-                >
-                  Customers
-                </Link>
-                <Link
-                  href="/pricing"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
-                >
-                  Pricing
-                </Link>
-                <Link
-                  href="/docs"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
-                >
-                  Docs
-                </Link>
-                <Link
-                  href={DASHBOARD_URL}
-                  target="_blank"
-                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-slate-700"
-                >
-                  Sign in
-                </Link>
-              </div>
+
+              {/* Flat links sit at the same level as the accordion triggers so
+                  the whole menu reads as one list. */}
+              <Link
+                href="/#customers"
+                className="block border-b border-white/10 px-6 py-4 text-lg font-medium text-white"
+              >
+                Customers
+              </Link>
+              <Link
+                href="/pricing"
+                className="block border-b border-white/10 px-6 py-4 text-lg font-medium text-white"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/docs"
+                className="block border-b border-white/10 px-6 py-4 text-lg font-medium text-white"
+              >
+                Docs
+              </Link>
               <Link
                 href={DASHBOARD_URL}
                 target="_blank"
-                className="mt-4 flex w-full items-center justify-center rounded-full bg-purple-600 px-5 py-3 text-sm font-medium text-white shadow-md shadow-purple-600/25"
+                className="block px-6 py-4 text-lg font-medium text-white"
               >
-                Get started
+                Sign in
               </Link>
+
+              <div className="px-6 pb-6 pt-2">
+                <Link
+                  href={DASHBOARD_URL}
+                  target="_blank"
+                  className="flex w-full items-center justify-center rounded-full bg-purple-600 px-5 py-3.5 text-base font-medium text-white shadow-md shadow-purple-600/25"
+                >
+                  Get started
+                </Link>
+              </div>
             </div>
-          )}
+            </div>
+          </div>
         </div>
 
         {/* Full-width mega dropdown */}

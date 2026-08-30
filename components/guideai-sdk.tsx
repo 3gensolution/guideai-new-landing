@@ -93,9 +93,7 @@ export function GuideAiSdk() {
           strategy="afterInteractive"
           data-site-id={siteId}
           data-token={token}
-          data-api-url={cdn}
-          data-cdn-url={cdn}
-          data-recording="false"
+          data-track-all="true"
         />
       )}
     </>
