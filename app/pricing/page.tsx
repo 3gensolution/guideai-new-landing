@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, X } from "lucide-react";
 import { Header } from "@/components/header";
 import { HeroStreaks } from "@/components/marketing/hero-streaks";
 import { Footer } from "@/components/footer";
@@ -24,6 +24,7 @@ interface SubscriptionPlan {
   monthly_session_limit: number;
   max_sites: number;
   max_seats: number;
+  max_voice_clones: number;
   data_retention_days: number;
   event_overage_policy: string;
   event_overage_price_cents: number;
@@ -34,6 +35,14 @@ interface SubscriptionPlan {
   credit_rate_multiplier: number;
   credit_overage_policy: string;
   byok_allowed: boolean;
+  /* Quote-on-request plans (Enterprise, Pay as you go). These come back with
+     localized_price_minor === 0, so price alone can't tell them apart from the
+     genuinely free Starter plan — always branch on contact_sales. */
+  contact_sales: boolean;
+  min_topup_cents: number;
+  credit_price_cents_per_1000: number;
+  entitlements: Record<string, boolean>;
+  quotas: Record<string, number>;
   country_code: string;
   base_currency: string;
   currency: string;
@@ -100,6 +109,53 @@ async function detectCountry(): Promise<string> {
     // Network/geo lookup failed — fall through to locale-based guess.
   }
   return countryFromLocale();
+}
+
+/** Format an arbitrary minor-unit amount using a plan's currency metadata. */
+function formatMinorPrice(plan: SubscriptionPlan, minor: number): string {
+  const amount = minor / 10 ** plan.currency_minor_units;
+  try {
+    return new Intl.NumberFormat("en", {
+      style: "currency",
+      currency: plan.currency,
+      currencyDisplay: "narrowSymbol",
+      minimumFractionDigits: amount % 1 === 0 ? 0 : plan.currency_minor_units,
+      maximumFractionDigits: plan.currency_minor_units,
+    }).format(amount);
+  } catch {
+    return `${plan.currency} ${amount.toFixed(plan.currency_minor_units)}`;
+  }
+}
+
+/** How many credits the minimum top-up buys on a pay-as-you-go plan. */
+function creditsPerTopUp(plan: SubscriptionPlan): number {
+  if (!plan.credit_price_cents_per_1000) return 0;
+  return Math.round(
+    (plan.min_topup_cents / plan.credit_price_cents_per_1000) * 1000,
+  );
+}
+
+/** Human labels for the entitlement flags we surface on a card. */
+const ENTITLEMENT_LABELS: Record<string, string> = {
+  voice_clone: "Voice cloning",
+  live_voice_chat: "Live voice chat",
+  custom_integrations: "Custom integrations",
+  multilanguage: "Translation and multi-language",
+  demo_video_export: "Demo video export",
+  demo_sandbox: "Demo sandboxes",
+  priority_support: "Priority support",
+};
+
+/** What a few common actions cost, so PAYG buyers can judge the rate. */
+const CREDIT_COSTS: { label: string; credits: number }[] = [
+  { label: "Create announcement or survey", credits: 40 },
+  { label: "Generate a demo SOP PDF", credits: 4 },
+  { label: "Voice Mode reply (speech in + out)", credits: 4 },
+];
+
+/** True only for the genuinely free plan — not for quote-on-request tiers. */
+function isFreePlan(plan: SubscriptionPlan): boolean {
+  return plan.localized_price_minor === 0 && !plan.contact_sales;
 }
 
 /**
@@ -180,10 +236,23 @@ const comparisonRows: {
 }[] = [
   {
     label: "Price",
-    render: (p) =>
-      p.localized_price_minor === 0 ? "Free" : formatPrice(p),
+    render: (p) => {
+      if (p.contact_sales) {
+        return p.min_topup_cents > 0
+          ? `From ${formatMinorPrice(p, p.min_topup_cents * (p.exchange_rate || 1))}`
+          : "Custom";
+      }
+      return isFreePlan(p) ? "Free" : formatPrice(p);
+    },
   },
-  { label: "Monthly credits", render: (p) => formatLimit(p.monthly_credits) },
+  {
+    label: "Monthly credits",
+    render: (p) =>
+      /* PAYG has no monthly allowance — you buy credits instead. */
+      p.monthly_credits === 0 && p.credit_price_cents_per_1000 > 0
+        ? "Pay as you go"
+        : formatLimit(p.monthly_credits),
+  },
   {
     label: "Credit rate",
     render: (p) => `${creditRateLabel(p.credit_rate_multiplier).multiplier}×`,
@@ -192,7 +261,39 @@ const comparisonRows: {
     label: "Sites",
     render: (p) => (p.max_sites === -1 ? "Unlimited" : p.max_sites),
   },
-  { label: "Team seats", render: (p) => p.max_seats },
+  {
+    label: "Team seats",
+    render: (p) => (p.max_seats === -1 ? "Unlimited" : p.max_seats),
+  },
+  {
+    label: "Voice clones",
+    render: (p) =>
+      p.entitlements?.voice_clone
+        ? p.max_voice_clones === -1 || p.max_voice_clones === 0
+          ? "Unlimited"
+          : p.max_voice_clones
+        : <span className="text-slate-300">—</span>,
+  },
+  {
+    label: "Video & sandbox exports",
+    render: (p) =>
+      !p.entitlements?.demo_video_export ? (
+        <span className="text-slate-300">—</span>
+      ) : p.quotas?.video_exports === -1 ? (
+        "Unlimited"
+      ) : (
+        `${p.quotas?.video_exports ?? 0}/mo`
+      ),
+  },
+  {
+    label: "Priority support",
+    render: (p) =>
+      p.entitlements?.priority_support ? (
+        "Included"
+      ) : (
+        <span className="text-slate-300">—</span>
+      ),
+  },
   { label: "Data retention", render: (p) => `${p.data_retention_days} days` },
   {
     label: "Bring your own AI key",
@@ -236,12 +337,13 @@ export default function PricingPage() {
   }, []);
 
   const getCtaText = (plan: SubscriptionPlan) => {
-    if (plan.localized_price_minor === 0) return "Get started free";
+    if (plan.contact_sales) return "Talk to sales";
+    if (isFreePlan(plan)) return "Get started";
     if (plan.trial_days > 0) return `Start ${plan.trial_days}-day free trial`;
     return "Get started";
   };
 
-  const isHighlighted = (index: number) => index === 1;
+  const isHighlighted = (plan: SubscriptionPlan) => plan.slug === "pro";
 
   return (
     <main className="min-h-screen bg-canvas">
@@ -269,7 +371,7 @@ export default function PricingPage() {
               <span className="text-[#f0c9a0]">for your team</span>
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-pretty text-lead text-slate-300">
-              Start free and scale when you're ready. Every plan includes what
+              Get started free and scale when you're ready. Every plan includes what
               you need to drive product adoption, with no credit card required to
               begin.
             </p>
@@ -296,11 +398,16 @@ export default function PricingPage() {
               </button>
             </div>
           ) : (
-            <div data-stagger className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 lg:grid-cols-3">
+            <div data-stagger className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {plans.map((plan, index) => {
-                const highlighted = isHighlighted(index);
-                const isFree = plan.localized_price_minor === 0;
+                const highlighted = isHighlighted(plan);
+                const isFree = isFreePlan(plan);
                 const rate = creditRateLabel(plan.credit_rate_multiplier);
+                /* PAYG has no monthly allowance — it sells credits outright,
+                   so its credits block reads as "what the top-up buys". */
+                const isPayg =
+                  plan.monthly_credits === 0 &&
+                  plan.credit_price_cents_per_1000 > 0;
                 return (
                   <div
                     key={plan.id}
@@ -329,9 +436,23 @@ export default function PricingPage() {
 
                       {/* Price */}
                       <div className="mt-6">
-                        {isFree ? (
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-4xl font-semibold tracking-tight text-slate-900">
+                        {plan.contact_sales ? (
+                          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                            <span className="text-2xl font-semibold tracking-tight text-slate-900 xl:text-3xl">
+                              Custom
+                            </span>
+                            <span className="text-sm text-slate-500">
+                              {plan.min_topup_cents > 0
+                                ? `from ${formatMinorPrice(
+                                    plan,
+                                    plan.min_topup_cents * (plan.exchange_rate || 1),
+                                  )} — book a demo`
+                                : "tailored to your team"}
+                            </span>
+                          </div>
+                        ) : isFree ? (
+                          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                            <span className="text-2xl font-semibold tracking-tight text-slate-900 xl:text-3xl">
                               Free
                             </span>
                             <span className="text-sm text-slate-500">
@@ -339,8 +460,8 @@ export default function PricingPage() {
                             </span>
                           </div>
                         ) : (
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-4xl font-semibold tracking-tight text-slate-900">
+                          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                            <span className="text-2xl font-semibold tracking-tight text-slate-900 xl:text-3xl">
                               {formatPrice(plan)}
                             </span>
                             <span className="text-sm text-slate-500">
@@ -360,12 +481,14 @@ export default function PricingPage() {
 
                       {/* Credits block */}
                       <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
-                        <div className="flex items-start justify-between gap-3">
+                        <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1.5">
                           <div className="text-2xl font-semibold tracking-tight text-slate-900">
-                            {formatLimit(plan.monthly_credits)}
+                            {isPayg
+                              ? creditsPerTopUp(plan).toLocaleString("en-US")
+                              : formatLimit(plan.monthly_credits)}
                           </div>
                           <span
-                            className={`shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ${
+                            className={`whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ${
                               rate.isBest
                                 ? "bg-emerald-50 text-emerald-700"
                                 : "bg-amber-50 text-amber-700"
@@ -375,31 +498,52 @@ export default function PricingPage() {
                           </span>
                         </div>
                         <div className="mt-0.5 text-sm text-slate-500">
-                          credits every month
+                          {isPayg
+                            ? `credits for ${formatMinorPrice(
+                                plan,
+                                plan.min_topup_cents * (plan.exchange_rate || 1),
+                              )} — top up any time`
+                            : "credits every month"}
                         </div>
+
+                        {isPayg && (
+                          <dl className="mt-4 space-y-1.5 border-t border-slate-200 pt-4 text-sm">
+                            {CREDIT_COSTS.map((c) => (
+                              <div
+                                key={c.label}
+                                className="flex flex-wrap items-baseline justify-between gap-x-3"
+                              >
+                                <dt className="text-slate-600">{c.label}</dt>
+                                <dd className="font-semibold text-slate-900">
+                                  {c.credits} credits
+                                </dd>
+                              </div>
+                            ))}
+                          </dl>
+                        )}
                       </div>
 
                       {/* Key specs */}
                       <dl className="mt-6 space-y-3 text-sm">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                           <dt className="text-slate-600">Sites</dt>
                           <dd className="font-semibold text-slate-900">
                             {plan.max_sites === -1 ? "Unlimited" : plan.max_sites}
                           </dd>
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                           <dt className="text-slate-600">Team seats</dt>
                           <dd className="font-semibold text-slate-900">
-                            {plan.max_seats}
+                            {plan.max_seats === -1 ? "Unlimited" : plan.max_seats}
                           </dd>
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                           <dt className="text-slate-600">Data retention</dt>
                           <dd className="font-semibold text-slate-900">
                             {plan.data_retention_days} days
                           </dd>
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                           <dt className="text-slate-600">Bring your own AI key</dt>
                           <dd className="font-semibold text-slate-900">
                             {plan.byok_allowed ? "Available" : "—"}
@@ -430,6 +574,33 @@ export default function PricingPage() {
                           </ul>
                         </div>
                       )}
+
+                      {/* Not included — derived from the API's entitlement
+                          flags so it can't drift from what the plan grants. */}
+                      {(() => {
+                        const missing = Object.entries(ENTITLEMENT_LABELS)
+                          .filter(([key]) => plan.entitlements?.[key] === false)
+                          .map(([, label]) => label);
+                        if (!missing.length) return null;
+                        return (
+                          <div className="mt-6 border-t border-slate-100 pt-6">
+                            <p className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-400">
+                              Not included
+                            </p>
+                            <ul className="mt-4 space-y-3">
+                              {missing.map((label) => (
+                                <li
+                                  key={label}
+                                  className="flex items-start gap-2.5 text-sm text-slate-500"
+                                >
+                                  <X className="mt-0.5 h-4 w-4 shrink-0 text-slate-300" />
+                                  <span>{label}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })()}
 
                       {/* CTA */}
                       <div className="mt-8 pt-2">
@@ -475,7 +646,7 @@ export default function PricingPage() {
       {!loading && !error && plans.length > 0 && (
         <section className="border-t border-slate-200 bg-slate-50 py-20 sm:py-24">
           <Container>
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-7xl overflow-x-auto">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
                 Compare credits and access
               </h2>
@@ -497,7 +668,7 @@ export default function PricingPage() {
                         >
                           <span className="inline-flex items-baseline gap-2">
                             {plan.name}
-                            {isHighlighted(index) && (
+                            {isHighlighted(plan) && (
                               <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-purple-600">
                                 Recommended
                               </span>

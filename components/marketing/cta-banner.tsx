@@ -38,7 +38,7 @@ export function CtaBanner({
               target="_blank"
               className="inline-flex items-center justify-center rounded-xl bg-white px-9 py-4 text-base font-medium text-purple-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-purple-50"
             >
-              Start free
+              Get started
             </Link>
             <Link
               href="/pricing"

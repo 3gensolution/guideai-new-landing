@@ -315,7 +315,7 @@ export function Header() {
                     : "bg-purple-600 text-white shadow-md shadow-purple-600/20 hover:bg-purple-500"
                 )}
               >
-                Start free
+                Get started
               </Link>
             </div>
 
@@ -391,7 +391,7 @@ export function Header() {
                 target="_blank"
                 className="mt-4 flex w-full items-center justify-center rounded-full bg-purple-600 px-5 py-3 text-sm font-medium text-white shadow-md shadow-purple-600/25"
               >
-                Start free
+                Get started
               </Link>
             </div>
           )}

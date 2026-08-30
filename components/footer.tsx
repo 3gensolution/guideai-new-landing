@@ -87,7 +87,7 @@ export function Footer() {
                   href={DASHBOARD_URL}
                   className="inline-flex items-center justify-center rounded-md bg-purple-600 px-6 py-4 text-base font-medium text-white shadow-lg shadow-purple-950/30 transition hover:bg-purple-500"
                 >
-                  Start free
+                  Get started
                 </Link>
                 <button
                   type="button"

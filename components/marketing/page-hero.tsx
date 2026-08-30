@@ -12,7 +12,7 @@ export function PageHero({
   badge,
   title,
   description,
-  primaryCta = { href: DASHBOARD_URL, label: "Start free", external: true },
+  primaryCta = { href: DASHBOARD_URL, label: "Get started", external: true },
   secondaryCta = { href: "/pricing", label: "See pricing" },
   children,
 }: {

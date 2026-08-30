@@ -119,7 +119,7 @@ export function HomeHero() {
               target="_blank"
               className="inline-flex items-center justify-center bg-[#e8a56d] px-9 py-4 text-sm font-semibold uppercase tracking-[0.08em] text-[#2b1420] transition duration-300 hover:bg-[#efb684]"
             >
-              Start free
+              Get started
             </Link>
             <button
               type="button"

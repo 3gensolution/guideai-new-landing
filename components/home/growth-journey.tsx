@@ -151,7 +151,7 @@ export function GrowthJourney() {
             target="_blank"
             className="inline-flex items-center justify-center rounded-full bg-purple-600 px-8 py-3.5 text-base font-medium text-white shadow-lg shadow-purple-600/25 transition hover:-translate-y-0.5 hover:bg-purple-500"
           >
-            Start free
+            Get started
           </Link>
           <Link
             href="/pricing"
