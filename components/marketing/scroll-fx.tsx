@@ -40,6 +40,14 @@ export function ScrollFx() {
 
     if (!reduced) root.classList.add("fx-ready");
 
+    /* On phones the URL bar collapsing fires a resize with a changed height
+       but the same width. Recalculating there yanks positions mid-scroll, so
+       only refresh when the width actually changes. */
+    ScrollTrigger.config({
+      ignoreMobileResize: true,
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+    });
+
     const mm = gsap.matchMedia();
     let rewire: (() => void) | null = null;
 
@@ -55,6 +63,8 @@ export function ScrollFx() {
             ease: GSAP_EASE,
             delay: parseFloat(el.dataset.revealDelay || "0"),
             scrollTrigger: { trigger: el, start: "top 88%", once: true },
+            onStart: () => gsap.set(el, { willChange: "transform, opacity" }),
+            onComplete: () => gsap.set(el, { willChange: "auto" }),
           }
         );
       });
@@ -80,6 +90,9 @@ export function ScrollFx() {
               ease: GSAP_EASE,
               stagger: 0.09,
               scrollTrigger: { trigger: group, start: "top 86%", once: true },
+              onStart: () =>
+                gsap.set(fresh, { willChange: "transform, opacity" }),
+              onComplete: () => gsap.set(fresh, { willChange: "auto" }),
             }
           );
         });
@@ -128,6 +141,17 @@ export function ScrollFx() {
         });
       });
 
+    });
+
+    /* The single cinematic moment: one pinned section whose visual panels
+       cross-fade as you scroll through it. Desktop only — pinning on
+       touch devices fights native scrolling. */
+    /* Scrub-driven effects are desktop-only. On mobile they repaint a scaled
+       bitmap on every scroll frame, which reads as flicker, and they fight the
+       URL-bar show/hide that fires resize mid-scroll. */
+    mm.add(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+      () => {
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
         const speed = parseFloat(el.dataset.parallax || "0.15");
         gsap.fromTo(
@@ -163,14 +187,7 @@ export function ScrollFx() {
           }
         );
       });
-    });
 
-    /* The single cinematic moment: one pinned section whose visual panels
-       cross-fade as you scroll through it. Desktop only — pinning on
-       touch devices fights native scrolling. */
-    mm.add(
-      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-      () => {
         gsap.utils
           .toArray<HTMLElement>("[data-pin-scene]")
           .forEach((scene) => {
