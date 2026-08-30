@@ -199,11 +199,29 @@ export function Header() {
      scroll off it. Pages without a dark hero opt out via DARK_HERO. */
   const overHero = hasDarkHero(pathname) && !scrolled && !mobileMenuOpen;
 
+  /* Two separate thresholds on purpose. With a single 24px line, the tiniest
+     scroll jitter around it flips `scrolled` back and forth, and every flip
+     toggles backdrop-blur — which Safari and Brave repaint by rebuilding the
+     whole backdrop layer. That rebuild is the flicker. Turning the bar solid
+     at 64px and clear again only below 8px leaves a dead zone that jitter
+     cannot cross. Reads are also coalesced into one rAF per frame, and state
+     is set only on a real change so scrolling stops re-rendering the header. */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled((prev) => (prev ? y > 8 : y > 64));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(read);
+    };
+    read();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
@@ -222,16 +240,20 @@ export function Header() {
         className="relative"
         onMouseLeave={() => setOpenMenu(null)}
       >
-        {/* Full-bleed bar, level with the hero — no island, no border. */}
-        <div
-          className={cn(
-            "px-6 transition-colors duration-500 lg:px-10",
-            overHero
-              ? "bg-transparent"
-              : "border-b border-slate-200/70 bg-white/90 backdrop-blur-xl"
-          )}
-        >
-          <nav className="mx-auto flex h-20 max-w-[100rem] items-center justify-between">
+        {/* Full-bleed bar, level with the hero — no island, no border.
+            The blurred surface is a permanent sibling layer that only fades
+            its opacity. Adding and removing backdrop-blur made Safari build
+            and tear down the backdrop layer on every scroll-state change,
+            which flickered; a layer that always exists is rasterized once. */}
+        <div className="relative px-6 lg:px-10">
+          <div
+            aria-hidden
+            className={cn(
+              "pointer-events-none absolute inset-0 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl transition-opacity duration-500",
+              overHero ? "opacity-0" : "opacity-100"
+            )}
+          />
+          <nav className="relative mx-auto flex h-20 max-w-[100rem] items-center justify-between">
             <div className="flex items-center gap-x-10">
               <Link href="/" className="flex items-center gap-2">
                 <Image

@@ -29,6 +29,13 @@ const GSAP_EASE = "power3.out";
  * (see globals.css). It is added only once GSAP is live, so if this script
  * fails or never runs, every element stays visible.
  */
+/* Below this width every effect is off. Reveal animations hide their target
+   with `fx-ready` before fading it back in, and on phones that hide lands
+   after first paint — content appears, blanks, then fades. Scrub effects made
+   it worse by repainting on every scroll frame while the URL bar resized.
+   Desktop keeps the motion; phones and tablets render plain static content. */
+const DESKTOP = "(min-width: 1024px)";
+
 export function ScrollFx() {
   const pathname = usePathname();
 
@@ -37,8 +44,11 @@ export function ScrollFx() {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const desktop = window.matchMedia(DESKTOP).matches;
 
-    if (!reduced) root.classList.add("fx-ready");
+    /* Never add fx-ready on mobile: it is the class that hides reveal
+       targets, so skipping it leaves everything visible from first paint. */
+    if (!reduced && desktop) root.classList.add("fx-ready");
 
     /* On phones the URL bar collapsing fires a resize with a changed height
        but the same width. Recalculating there yanks positions mid-scroll, so
@@ -51,7 +61,7 @@ export function ScrollFx() {
     const mm = gsap.matchMedia();
     let rewire: (() => void) | null = null;
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
+    mm.add(`${DESKTOP} and (prefers-reduced-motion: no-preference)`, () => {
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.fromTo(
           el,
@@ -236,6 +246,16 @@ export function ScrollFx() {
           });
       }
     );
+
+    /* Nothing below this point matters when no triggers exist — refreshing
+       and observing the DOM on mobile is pure cost with no effect. Still
+       revert the matchMedia context so a resize past 1024px re-wires cleanly. */
+    if (!desktop) {
+      return () => {
+        mm.revert();
+        root.classList.remove("fx-ready");
+      };
+    }
 
     // Recalculate trigger positions once images settle the layout.
     const refresh = () => ScrollTrigger.refresh();

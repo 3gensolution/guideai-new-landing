@@ -34,7 +34,7 @@ export function GuideAiSdk() {
         data-bubble-icon="spark"
         data-bubble-position="bottom-right"
         data-bubble-mode="drift"
-        data-bubble-drift-enabled="true"
+        data-bubble-drift-enabled="false"
         data-bubble-drift-spring="0.0003"
         data-bubble-drift-damping="0.993"
         data-bubble-drift-min-interval="18000"

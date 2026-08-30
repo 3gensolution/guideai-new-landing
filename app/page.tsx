@@ -4,6 +4,7 @@ import { HomeHero } from "@/components/home/hero";
 import { FeatureTabs } from "@/components/home/feature-tabs";
 import { GrowthJourney } from "@/components/home/growth-journey";
 import { AudienceColumns } from "@/components/home/audience-columns";
+import { TrainingFormats } from "@/components/home/training-formats";
 import { AdoptionLoop } from "@/components/home/adoption-loop";
 import { TrustSection } from "@/components/home/trust-section";
 import {
@@ -125,6 +126,7 @@ export default function Home() {
         <StatBand />
         <ProblemSection />
         <AudienceColumns />
+        <TrainingFormats />
         <FeatureTabs />
         <AdoptionLoop />
         <CopilotSection />

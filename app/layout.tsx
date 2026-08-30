@@ -118,7 +118,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${figtree.variable} ${geist.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
-        <ScrollFx />
+        {/* <ScrollFx /> */}
         {children}
         {/* Analytics mounts only after opt-in consent (NDPA 2023 §§25-26). */}
         <CookieConsent />
