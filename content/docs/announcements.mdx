@@ -1,0 +1,56 @@
+---
+title: Publish announcements
+description: Tell users about new features and changes inside the product, where they'll actually see them.
+icon: Megaphone
+---
+
+Announcements are in-app messages: a modal, a banner or a side drawer. Use them for new features, changes, maintenance notices or offers. Unread announcements also collect behind a small **beacon** with an unread count, so users can catch up later.
+
+**Before you start:** 3Guide is [installed in your app](/docs/quickstart).
+
+<Steps>
+<Step>
+
+### Create the announcement
+
+Open **Content → Announcements** and either **Start from a template** or create a blank one. It opens in the **Announcement Studio**.
+
+</Step>
+<Step>
+
+### Write and design it
+
+Edit the content on the **Canvas**, then choose **Display as**: a modal in the centre of the screen, a banner across the top (default height 150px, maximum 300px), or a drawer from the side.
+
+Enter a **Preview URL** to see it on top of your real app while you edit.
+
+</Step>
+<Step>
+
+### Decide who sees it, and when
+
+| Setting | Options |
+| --- | --- |
+| **How to show** | **Auto-show**: appears on its own, after an optional **Auto-show delay**. **Beacon click**: waits in the beacon until the user opens it. |
+| **How often** | **Once**, **Per session**, **Per day** or **Every visit** |
+| **Route (optional)** | Only show it on matching pages, for example `/billing/*` |
+| **Schedule window** | Only show it between two dates, for launches and time-limited offers |
+| **Attach guide (optional)** | Add a button that starts one of your [guides](/docs/guides), so "we've launched X" leads straight into "here's how to use X" |
+
+</Step>
+<Step>
+
+### Make it live
+
+Switch it to **Active**. Open your app to check it appears where and when you expect.
+
+</Step>
+</Steps>
+
+## See how it's doing
+
+The **Announcements** page shows total impressions, average conversion, active triggers and user sentiment for your announcements. Open any announcement again to edit it, or switch it off.
+
+## Defaults for all announcements
+
+Your snippet can set the site-wide default surface, for example `data-announcement-surface="banner"`. Anything you choose in the Studio for a specific announcement takes priority. All options are in the [SDK reference](/docs/sdk-reference#announcements).

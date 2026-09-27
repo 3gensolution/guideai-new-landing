@@ -1,0 +1,98 @@
+---
+title: Scanner reference
+description: Commands, options and build plugins for the @guideai/scanner CLI.
+icon: Terminal
+---
+
+`@guideai/scanner` reads your source code and builds the [knowledge base](/docs/knowledge-base) of your app's routes and elements.
+
+## Install
+
+```bash
+npm install --save-dev @guideai/scanner   # in your project
+npm install -g @guideai/scanner           # or globally
+```
+
+The command it installs is `guideai-scan`.
+
+## Options
+
+| Option | Default | What it does |
+| --- | --- | --- |
+| `--key <key>` | none | Your **Admin API Key** (`sk_live_…`). Required to upload; must start with `sk_live_`. |
+| `--dir <dir>` | current folder | The project's root directory |
+| `--output <file>` | none | Also save the result to a JSON file |
+| `--dry-run` | off | Scan without uploading. Prints the result if `--output` isn't set. |
+| `--api-url <url>` | `https://cdn.3guideai.com` | 3Guide API address |
+
+## Common commands
+
+```bash
+# Preview in the terminal
+npx guideai-scan --dry-run
+
+# Preview into a file you can inspect or upload later
+npx guideai-scan --dry-run --output scan-results.json
+
+# Scan and upload
+npx guideai-scan --key sk_live_YOUR_ADMIN_KEY
+
+# Scan an app in a sub-folder, upload, and keep a copy
+npx guideai-scan --dir ./apps/web --key sk_live_YOUR_ADMIN_KEY --output scan-results.json
+```
+
+## What it does
+
+1. Detects your framework: Next.js (App and Pages Router), React Router, Vue Router / Nuxt, Angular, Remix, SvelteKit or plain HTML
+2. Extracts your routes
+3. Extracts interactive elements on each route
+4. Gives every element a fingerprint so it can be found again after UI changes
+5. Builds a map of how pages and elements relate
+6. Uploads the result (unless `--dry-run`)
+
+`node_modules` is always skipped. The scanner collects structure only: routes, elements and labels, not your data or secrets.
+
+## Output
+
+```json title="scan-results.json"
+{
+  "framework": "nextjs-app-router",
+  "routes": [],
+  "elements": [],
+  "ui_map": {},
+  "duration_ms": 1234
+}
+```
+
+Upload a file like this from **Data & Insights → Knowledge Base → Upload Scan**.
+
+## Build plugins
+
+Scan automatically on every production build. Both plugins read the key from the `GUIDEAI_API_KEY` environment variable (or an `apiKey` option).
+
+```ts title="vite.config.ts"
+import { guideai } from '@guideai/scanner/vite'
+
+export default { plugins: [guideai({ siteId: 'YOUR_SITE_ID' })] }
+```
+
+```js title="webpack.config.js"
+const { GuideAIWebpackPlugin } = require('@guideai/scanner/webpack')
+
+module.exports = { plugins: [new GuideAIWebpackPlugin({ siteId: 'YOUR_SITE_ID' })] }
+```
+
+| Option | Default | What it does |
+| --- | --- | --- |
+| `siteId` | none | Your site ID |
+| `apiKey` | `GUIDEAI_API_KEY` | Admin API Key |
+| `only` | `['production']` | The `NODE_ENV` values that trigger a scan |
+
+## Errors
+
+| Message | Fix |
+| --- | --- |
+| `--key is required unless --dry-run is enabled` | Add `--key sk_live_…`, or use `--dry-run` |
+| `API key must start with sk_live_` | You've used the Public Token (`pk_live_…`). Use the **Admin API Key** from **Settings → SDK Installation**. |
+| `401` / `403` on upload | The key is wrong or has been rotated. Copy it again from the dashboard. |
+| `[GuideAI] No API key found` (build plugin) | Set `GUIDEAI_API_KEY` in the build environment |

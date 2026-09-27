@@ -1,0 +1,57 @@
+---
+title: Troubleshooting
+description: Fixes for the problems people hit most often.
+icon: Wrench
+---
+
+## The chat bubble doesn't appear
+
+Work down this list:
+
+1. **Is the page's address allowed?** Open **Settings → General** and check your app's hostname is the **Domain URL** or in **Related domains**. Staging, preview and `localhost` addresses need adding too. Otherwise every request is refused with a **403** error (visible in the browser's Network tab).
+2. **Are both attributes on the script?** The console shows *"No script tag found with data-site-id and data-token"* if either is missing.
+3. **Is the bubble switched off?** Check the snippet doesn't have `data-bubble-enabled="false"` or `data-headless="true"`, and that the page isn't listed in `data-disable-routes`.
+4. **Content Security Policy?** Allow `https://cdn.3guideai.com` in `script-src` and `connect-src`, and `https://api.3guideai.com` in `connect-src`.
+5. **Just changed a setting in the dashboard?** Reload the page. Settings apply on the next load.
+
+## Guides point at the wrong element, or can't find it
+
+- Check the step's **Confidence** in the guide builder, and re-pick the element if it's low.
+- Re-scan your app after UI changes ([Keep it up to date](/docs/knowledge-base#keep-it-up-to-date)), then click **Refresh** on the Knowledge Base page.
+- Give key elements a stable `data-guideai="…"` attribute. It's the strongest signal 3Guide uses to find them.
+
+## Help hints don't show
+
+Hints are off by default. Add `data-help-hints="true"` to the snippet. Hints are cached for up to 24 hours, so test edits in a private window.
+
+## The chat answers "how do I…?" badly
+
+The chat builds walkthroughs from your knowledge base. Open **Data & Insights → Knowledge Base**: if pages are missing, scan again (with the CLI or the extension's Deep Scan), and click **Refresh**.
+
+## The Assistant toggle is missing
+
+Assistant mode only appears once at least one API connection is set up in **Automation → Copilot Tools**, and the widget mode is `combined` or `assistant`. See [Set up the AI Assistant](/docs/assistant).
+
+## "AI Provider Not Configured" when generating
+
+Open **Settings → AI Provider**. Either use the platform default, or re-enter your own provider's key and click **Test Connection**.
+
+## The scanner won't upload
+
+See the error table in the [Scanner reference](/docs/scanner-reference#errors). The most common cause is using the Public Token (`pk_live_…`) instead of the Admin API Key (`sk_live_…`).
+
+## The extension says "Not a registered GuideAI site"
+
+Add the site's domain under **Administration → Sites** (or to **Related domains** of an existing site), then reopen the extension on that tab.
+
+## Guide Pro: "GuideAI extension is required to create demos"
+
+Install and enable the [extension](/docs/install-extension), sign in, then refresh the Guide Pro page.
+
+## No replays
+
+Replays are off by default. Add `data-recording="true"` to the **tracking** script, and check the sample rate and triggers in **Replays → Recording settings**.
+
+## Still stuck?
+
+Email [info@3guideai.com](mailto:info@3guideai.com) with your site name, the page address, and what you see in the browser console.

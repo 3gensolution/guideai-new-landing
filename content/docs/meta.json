@@ -1,0 +1,22 @@
+{
+  "title": "3Guide Docs",
+  "pages": [
+    "index",
+    "---Getting started---",
+    "quickstart",
+    "install-extension",
+    "---Workflows---",
+    "knowledge-base",
+    "guides",
+    "help-hints",
+    "announcements",
+    "assistant",
+    "guide-pro",
+    "company-workflows",
+    "analytics",
+    "---Reference---",
+    "sdk-reference",
+    "scanner-reference",
+    "troubleshooting"
+  ]
+}

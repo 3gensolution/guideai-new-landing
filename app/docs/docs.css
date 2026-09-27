@@ -1,0 +1,20 @@
+/* Fumadocs' own theme layer, scoped to the docs routes so it can't collide
+   with the marketing site's tokens in globals.css. Neutral base, brand purple
+   for links, active items and step markers only. */
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@source '../../node_modules/fumadocs-ui/dist/**/*.js';
+@source '../../content/docs/**/*.mdx';
+@source '../../components/docs/**/*.tsx';
+
+:root {
+  --color-fd-primary: #7c3aed;
+  --color-fd-primary-foreground: #ffffff;
+}
+
+.dark {
+  --color-fd-primary: #a78bfa;
+  --color-fd-primary-foreground: #1e1033;
+}

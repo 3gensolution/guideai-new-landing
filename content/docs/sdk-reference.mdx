@@ -1,0 +1,158 @@
+---
+title: SDK reference
+description: Every script attribute and JavaScript method, in one place.
+icon: Code
+---
+
+3Guide ships as two scripts. Load one or both:
+
+| Script | `data-guideai-bundle` | What it does |
+| --- | --- | --- |
+| `https://cdn.3guideai.com/sdk/guideai.js` | `guidance` | Chat bubble, guides, help hints, announcements, AI Assistant |
+| `https://cdn.3guideai.com/sdk/guideai-tracking.js` | `tracking` | Analytics, replays, feature flags. Invisible. |
+
+Both need the same `data-site-id` and `data-token`. When both are loaded they share one `window.guideai` object.
+
+The easiest way to set most attributes is the editor in **Settings → SDK Installation**, which builds the snippet for you. Some settings, such as the bubble label, icon and widget mode, can also be saved there and are applied on the next page load without changing your snippet.
+
+## Script attributes
+
+### Required
+
+| Attribute | Value |
+| --- | --- |
+| `data-site-id` | Your site's ID |
+| `data-token` | Your Public Token (`pk_live_…`) |
+
+### Connection
+
+| Attribute | Default | Notes |
+| --- | --- | --- |
+| `data-api-url` | `https://cdn.3guideai.com` | 3Guide API address |
+| `data-cdn-url` | `https://cdn.3guideai.com` | Where knowledge base and assets load from |
+| `data-disable-routes` | none | Comma-separated paths where 3Guide stays completely off, e.g. `/admin/*,/checkout` |
+
+### Chat and bubble
+
+| Attribute | Default | Notes |
+| --- | --- | --- |
+| `data-widget-mode` | `combined` | `combined`, `guide`, `assistant` or `support`. See [chat modes](/docs/assistant#1-choose-the-chat-mode). |
+| `data-bubble-enabled` | `true` | Show the chat bubble |
+| `data-bubble-label` | none | Text on the bubble, e.g. `Help` |
+| `data-bubble-icon` | `robot` | Mascot icon. Or set `data-bubble-image` to your own image URL. |
+| `data-bubble-position` | `bottom-right` | `bottom-right` or `bottom-left` |
+| `data-bubble-mode` | `drift` | How the bubble moves: `drift` (gently floats) or `crawl` (moves along the page edges with speech messages) |
+| `data-chat-expand-dock` | `right` | Where the expanded chat docks: `right`, `left` or `bottom` |
+| `data-chat-suggestions` | *How do I get started?*, *Show me around* | Starter questions, separated by `\|` |
+| `data-chat-guidance-title` / `-text` | built in | Welcome text in Guidance mode |
+| `data-chat-assistant-title` / `-text` | built in | Welcome text in Assistant mode |
+| `data-live-support` | `true` | Allow hand-off to a person |
+| `data-headless` | `false` | No built-in UI at all. Drive everything from your own code. |
+
+### Look and feel
+
+| Attribute | Default |
+| --- | --- |
+| `data-theme-primary` | `#3b82f6` |
+| `data-theme-text` | `#1a1a2e` |
+| `data-theme-background` | `#ffffff` |
+| `data-theme-font` | system font |
+| `data-color-scheme` | `light` (or `dark`, `auto`) |
+| `data-bubble-background`, `data-bubble-background-hover`, `data-bubble-text-color`, `data-bubble-border`, `data-bubble-border-hover`, `data-bubble-shadow`, `data-bubble-shadow-hover`, `data-bubble-focus-ring` | derived from the theme |
+
+### Guides and hints
+
+| Attribute | Default | Notes |
+| --- | --- | --- |
+| `data-guides-enabled` | `true` | Allow guides to play |
+| `data-auto-advance-on-target-click` | `true` | Move to the next step when the user clicks the highlighted element |
+| `data-chip-dismiss-seconds` | `300` | How long a dismissed suggestion chip stays hidden |
+| `data-help-hints` | `false` | **Set to `true` to show [help hints](/docs/help-hints)** |
+| `data-help-hints-cache-ttl-ms` | `86400000` (24 h) | How long hints are cached in the browser |
+
+### Announcements
+
+| Attribute | Default | Notes |
+| --- | --- | --- |
+| `data-announcement-surface` | `modal` | `modal`, `banner` or `drawer` |
+| `data-announcement-display-mode` | `auto` | Default for announcements that don't set their own |
+| `data-announcement-frequency` | `once` | Default frequency |
+| `data-announcement-auto-show-delay-ms` | `500` | Delay before auto-showing |
+| `data-announcement-close-on-backdrop` | `true` | Close when the backdrop is clicked |
+
+Settings chosen for an individual announcement in the Studio take priority.
+
+### Analytics and privacy
+
+| Attribute | Default | Notes |
+| --- | --- | --- |
+| `data-recording` | `false` | Session replays (on the tracking script) |
+| `data-geolocation` | `off` | `off`, `granted-only` or `prompt`. Location otherwise comes from the IP address. |
+| `data-idle-timeout` | `20000` | Milliseconds before a visitor counts as idle |
+| `data-session-timeout-ms` | `1800000` | Inactivity before a new session starts (30 min) |
+| `data-batch-size` / `data-batch-interval-ms` | `50` / `30000` | How events are batched |
+| `data-feedback-auto-prompt` | `false` | Ask for feedback automatically |
+
+## JavaScript API
+
+Everything is on `window.guideai`. It's available once the script has loaded. Wait for it with:
+
+```js
+await window.guideai.ready()
+```
+
+### Identity
+
+| Method | What it does |
+| --- | --- |
+| `initialize({ visitor, account })` | Identify the signed-in person and their account, with any properties |
+| `identify(userId)` | Switch to a stable user ID, merging earlier anonymous activity |
+| `updateOptions({ visitor, account })` | Update person or account properties |
+| `clearSession()` | Forget the current person. Call on sign-out. |
+
+### Analytics
+
+| Method | What it does |
+| --- | --- |
+| `track(name, properties?)` | Send a business event, e.g. `track('invoice_paid', { amount: 120 })` |
+| `trackFeature(key, label?, properties?)` | Record use of a feature |
+| `pageLoad()` | Record a page view manually, for routers 3Guide can't detect |
+| `flushNow()` | Send buffered events immediately |
+| `optOut()` / `optIn()` / `isOptedOut()` | Pause and resume tracking, e.g. for consent |
+
+### Feature flags
+
+| Method | What it does |
+| --- | --- |
+| `isFeatureEnabled(key)` | `true` if the flag is on for this visitor |
+| `getFeatureFlag(key)` | The flag's value or variant |
+| `getFeatureFlagPayload(key)` | Extra data attached to the flag |
+| `reloadFeatureFlags()` | Fetch flags again, e.g. after `identify` |
+
+### Guides
+
+| Method | What it does |
+| --- | --- |
+| `validateGuideById(id)` | Check a guide exists and can play |
+| `showGuideById(id, stepIndex?)` | Start a guide, optionally from a given step |
+| `dismissGuide()` | Close the guide that's playing |
+
+### Chat
+
+| Method | What it does |
+| --- | --- |
+| `openChat()` | Open the chat |
+| `openGuidance()` / `openAssistant()` | Open it in a specific mode |
+| `openSupportChat()` | Open a conversation with your team |
+| `send(text)` | Send a message as the user |
+| `expandChat(dock?)` / `collapseChat()` | Expand the chat (`right`, `left` or `bottom`) or collapse it |
+
+### Surveys and lifecycle
+
+| Method | What it does |
+| --- | --- |
+| `showNPSSurvey(context?)` / `showCSATSurvey(context?)` | Show a survey now |
+| `on(event, handler)` | Listen to SDK events |
+| `destroy()` | Remove 3Guide from the page |
+
+To change script attributes on a live page, call `destroy()`, then add the script tag again with the new attributes.

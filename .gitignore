@@ -21,3 +21,6 @@ giga*
 # A stray pnpm lockfile makes Vercel switch package managers and fail CI.
 pnpm-lock.yaml
 yarn.lock
+
+# fumadocs generated content index
+.source

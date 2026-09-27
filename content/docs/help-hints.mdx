@@ -1,0 +1,70 @@
+---
+title: Add help hints
+description: Put a small "?" next to the fields and buttons people get wrong, with AI or by hand.
+icon: Lightbulb
+---
+
+A help hint is a small **?** icon beside an element. Hovering or tapping it shows a short explanation. Use hints for tricky form fields, unclear settings, or anything that generates the same support question every week.
+
+**Before you start:** 3Guide is [installed in your app](/docs/quickstart).
+
+<Steps>
+<Step>
+
+### Turn hints on in your snippet
+
+Help hints are off by default. Add `data-help-hints="true"` to your 3Guide script tag and redeploy:
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-guideai-bundle="guidance"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_TOKEN"
+  data-help-hints="true"
+></script>
+```
+
+</Step>
+<Step>
+
+### Create hints
+
+Choose either way. You can mix them.
+
+<Tabs items={['Generate with AI', 'Add them with the extension']}>
+<Tab value="Generate with AI">
+
+1. Open **Content → Help Hints** in the dashboard.
+2. Use **Generate Help Hints with AI**: choose a page from your knowledge base, or enter its URL.
+3. Review the hints it writes for that page's elements, and edit or delete any you don't want.
+
+This works best once you've [built a knowledge base](/docs/knowledge-base), because the AI needs to know what's on the page.
+
+</Tab>
+<Tab value="Add them with the extension">
+
+1. Open the page in Chrome and open the [extension](/docs/install-extension) → **Help Hints**.
+2. Click **Add Help Hint**, then **Ctrl+Click** (⌘+Click on Mac) the element on the page.
+3. Write what users should know about it, and save.
+
+<Screenshot src="/docs/extension/help-hints.png" alt="Help Hints panel in the extension" caption="Help Hints in the extension, on a page with no hints yet" width={420} height={760} narrow />
+
+</Tab>
+</Tabs>
+
+</Step>
+<Step>
+
+### Check them live
+
+Reload the page in your app. The **?** icons appear next to the elements you chose. Hints are cached in the browser for up to 24 hours, so if an edit doesn't show, try a private window.
+
+</Step>
+</Steps>
+
+The **Help Hints** page in the dashboard shows the total number of hints, how many pages are covered, and the average per page.
+
+<Callout title="Hint or guide?">
+  Use a **hint** when one sentence answers the question and the user should stay in control. Use a [guide](/docs/guides) when the answer is a sequence of steps.
+</Callout>

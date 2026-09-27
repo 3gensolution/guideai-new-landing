@@ -1,0 +1,204 @@
+---
+title: Quickstart
+description: The complete setup for your own web app, from sign-up to a live guide. Every step is on this page.
+icon: Rocket
+---
+
+By the end of this page you'll have 3Guide running in your app, a knowledge base of your screens, and your first guide playing for users.
+
+**You'll need:** access to your app's HTML or code, and Node.js 18+ if you want to scan from the command line.
+
+<Steps>
+<Step>
+
+### Create your account
+
+Go to [dashboard.3guideai.com/signup](https://dashboard.3guideai.com/signup) and enter your work email, company name and a password.
+
+3Guide creates your first **site** straight away. A site is one app you want to add 3Guide to. It's named after your company, and its domain is set from your email address, which you'll correct in the next step.
+
+</Step>
+<Step>
+
+### Tell 3Guide where your app lives
+
+In the dashboard, open **Administration → Settings → General**.
+
+1. Set **Domain URL** to the address of your app, for example `app.example.com`.
+2. Under **Related domains**, add every other address where the script will run, one per line:
+   - staging or preview sites, for example `staging.example.com`
+   - `localhost` if you want to test on your machine
+   - `*.example.com` to allow every subdomain
+3. Save.
+
+<Callout type="warn" title="Why this matters">
+  3Guide only answers requests from the domains listed here. If the script runs anywhere else, every request is refused with a 403 error and nothing appears. `www.` is ignored, so `example.com` also covers `www.example.com`.
+</Callout>
+
+Have more than one app? Add each one under **Administration → Sites → Create site**, then switch between them from the site picker at the top of the dashboard.
+
+</Step>
+<Step>
+
+### Copy your snippet and keys
+
+Open **Settings → SDK Installation**. Everything you need is on this tab:
+
+| Item | Looks like | Where it goes |
+| --- | --- | --- |
+| **SDK snippet** | a `<script>` tag | In your app. You can style the chat bubble in the editor above it first. |
+| **Public Token** | `pk_live_…` | Already inside the snippet. Safe to expose in your page. |
+| **Admin API Key** | `sk_live_…` | **Secret.** Used by the scanner and to sign in to the extension. Never put it in front-end code. |
+
+</Step>
+<Step>
+
+### Add the snippet to your app
+
+Paste the snippet so it loads on every page, just before `</body>`. The core of it looks like this:
+
+<Tabs items={['HTML', 'Next.js', 'React (Vite / CRA)']}>
+<Tab value="HTML">
+
+```html title="index.html"
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-guideai-bundle="guidance"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_TOKEN"
+></script>
+```
+
+</Tab>
+<Tab value="Next.js">
+
+```tsx title="app/layout.tsx"
+import Script from 'next/script'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Script
+          src="https://cdn.3guideai.com/sdk/guideai.js"
+          strategy="afterInteractive"
+          data-guideai-bundle="guidance"
+          data-site-id="YOUR_SITE_ID"
+          data-token="pk_live_YOUR_TOKEN"
+        />
+      </body>
+    </html>
+  )
+}
+```
+
+</Tab>
+<Tab value="React (Vite / CRA)">
+
+```html title="index.html"
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  <script
+    src="https://cdn.3guideai.com/sdk/guideai.js"
+    data-guideai-bundle="guidance"
+    data-site-id="YOUR_SITE_ID"
+    data-token="pk_live_YOUR_TOKEN"
+  ></script>
+</body>
+```
+
+Single-page apps are fine: 3Guide notices route changes on its own.
+
+</Tab>
+</Tabs>
+
+Want analytics too? Add the tracking script next to it. It's covered step by step in [Analytics](/docs/analytics).
+
+<Callout title="Using a Content Security Policy?">
+  Allow `https://cdn.3guideai.com` in `script-src` and `connect-src`, and `https://api.3guideai.com` in `connect-src`.
+</Callout>
+
+</Step>
+<Step>
+
+### Check that it's working
+
+Deploy (or run locally, if you added `localhost` in step 2) and reload your app. The chat bubble appears in the bottom-right corner.
+
+No bubble? Open the browser console and check [Troubleshooting](/docs/troubleshooting). It's almost always a domain that isn't listed in step 2, or a missing `data-site-id` / `data-token`.
+
+</Step>
+<Step>
+
+### Scan your app to build the knowledge base
+
+The scan teaches 3Guide your pages and buttons, so guides and answers point at the right places. Run it from your project folder:
+
+```bash title="Terminal"
+npm install --save-dev @guideai/scanner
+
+# 1. Preview what it finds, without uploading anything
+npx guideai-scan --dry-run
+
+# 2. Scan and upload with your Admin API Key
+npx guideai-scan --key sk_live_YOUR_ADMIN_KEY
+```
+
+The scanner detects your framework (Next.js, React Router, Vue/Nuxt, Angular, Remix, SvelteKit or plain HTML) and prints how many routes and elements it found.
+
+Then open **Data & Insights → Knowledge Base** in the dashboard. You'll see the new snapshot with its routes and elements. Click **Refresh** so the assistant uses it immediately rather than a cached copy.
+
+<Callout title="No access to the code?">
+  Scan the running app from your browser instead, with the extension's **Deep Scan**. See [Build your knowledge base](/docs/knowledge-base#option-b-deep-scan-with-the-extension).
+</Callout>
+
+</Step>
+<Step>
+
+### Publish your first guide
+
+1. Open **Content → Guides** and click **AI Generate**.
+2. Choose **Generate a Single Guide**.
+3. Describe the task, for example *"Guide new users through creating their first project"*. Optionally enter the page it starts on, such as `/projects`.
+4. When it's ready, the guide opens in the builder. Check each step's text and target element.
+5. Click **Publish**.
+
+Reload your app and open the chat bubble: your published guides are listed there for users to start. You can also ask it *"how do I create a project?"* to get a walkthrough built on the spot, or start a guide from your own code. See [How users reach a guide](/docs/guides#how-users-reach-a-guide).
+
+</Step>
+<Step>
+
+### Recommended: identify your users
+
+Tell 3Guide who is signed in, so guides can be targeted and analytics can follow a person across sessions. Call this after sign-in, and on every page load while they're signed in:
+
+```js
+window.guideai.initialize({
+  visitor: { id: currentUser.id, email: currentUser.email, full_name: currentUser.name },
+  account: { id: currentAccount.id, name: currentAccount.name },
+})
+```
+
+On sign-out, call `window.guideai.clearSession()` so the next person on that browser starts fresh.
+
+</Step>
+</Steps>
+
+## What's next
+
+<Cards>
+  <Card title="Build better guides" href="/docs/guides">
+    Record guides with the extension, add actions, choose triggers and target the right users.
+  </Card>
+  <Card title="Turn on the AI Assistant" href="/docs/assistant">
+    Connect your API so users can ask for results, not tutorials.
+  </Card>
+  <Card title="Keep the knowledge base current" href="/docs/knowledge-base#keep-it-up-to-date">
+    Re-scan on every deploy with a build plugin or CI.
+  </Card>
+  <Card title="Set up analytics" href="/docs/analytics">
+    Track events, watch replays and see detected problems.
+  </Card>
+</Cards>

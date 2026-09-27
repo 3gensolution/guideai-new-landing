@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { source } from '@/lib/source'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.3guideai.com'
@@ -70,12 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/docs`,
+    ...source.getPages().map((page) => ({
+      url: `${baseUrl}${page.url}`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
+      changeFrequency: 'weekly' as const,
+      priority: page.url === '/docs' ? 0.7 : 0.6,
+    })),
     {
       url: `${baseUrl}/policy`,
       lastModified: new Date(),

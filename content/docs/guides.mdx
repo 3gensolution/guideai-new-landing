@@ -1,0 +1,102 @@
+---
+title: Create and publish guides
+description: Build step-by-step walkthroughs with AI or by recording them, edit every step, and get them in front of users.
+icon: MousePointerClick
+---
+
+A guide is a step-by-step walkthrough that runs on your live app. Each step points at a real element (a tooltip, a highlight, or a modal) and can wait for the user to act or do the action for them.
+
+**Before you start:** 3Guide is [installed in your app](/docs/quickstart) and you've [built a knowledge base](/docs/knowledge-base). AI-generated guides are only as accurate as the map.
+
+## 1. Create the guide
+
+Choose one of two ways.
+
+<Tabs items={['Generate with AI', 'Record with the extension']}>
+<Tab value="Generate with AI">
+
+1. In the dashboard, open **Content → Guides** and click **AI Generate**.
+2. Pick an option:
+   - **Generate a Single Guide**: describe the task (*"Help new users create their first product listing"*), optionally give the page it starts on (`/products`) and a title. Leave the title blank and one is written for you.
+   - **Auto-Generate All Guides** (recommended for new sites): 3Guide analyses your knowledge base and drafts guides for your main flows.
+3. Wait for *"Guide created!"*. The new guide opens in the builder as a draft.
+
+</Tab>
+<Tab value="Record with the extension">
+
+1. Open your app in Chrome, on the page where the task starts. The site must be registered in the dashboard.
+2. Open the [extension](/docs/install-extension) → **Guide Builder**.
+3. **Name your guide**, and optionally add a subtitle for its intro card.
+4. Under **Record your steps**, choose how you'll select elements:
+   - **Ctrl-click** (Windows) / **⌘-click** (Mac): normal clicks keep working the page, and only modified clicks are recorded. Best for flows that span several pages.
+   - **Left click**: every click is recorded.
+5. Click **Start Recording**, then select each element in the order a user would.
+6. Click **Stop Recording**, then **Save Guide**. Upload it to your site, or keep it as a JSON file.
+
+<Screenshot src="/docs/extension/guide-builder.png" alt="Guide Builder with Name, Record and Save steps" caption="Guide Builder: name, record, save" width={420} height={1250} narrow />
+
+The guide appears in **Content → Guides**, ready to edit.
+
+</Tab>
+</Tabs>
+
+## 2. Edit it in the builder
+
+Open the guide from **Content → Guides**. The builder has the step list on the left, a live preview in the middle, and the selected step's settings on the right.
+
+**Step type.** Choose how the step looks:
+
+| Type | Use it for |
+| --- | --- |
+| **Tooltip** | A short instruction next to an element |
+| **Highlight** | Drawing attention to an element without much text |
+| **Modal** | A welcome, explanation or summary that isn't tied to one element |
+| **Action** | A step that does something (see below) |
+
+**Target element.** Pick the element with the extension, or type a CSS selector under **Manual CSS Selector**. The **Confidence** score shows how reliably 3Guide can find that element again. Low confidence means it's worth re-picking.
+
+**Action.** For action steps, choose **Click**, **Fill input** (with a value), **Select option**, **Navigate** (to a URL), **Scroll**, or **None (informational)**. Tick **Requires confirmation** or **Sensitive action** for anything the user should approve first.
+
+**Appearance.** Position the tooltip (above, below, left, right or auto), choose how the element is marked (box, circle, underline, spotlight, arrow or marker) and the transition between steps.
+
+Click **Save** as you go.
+
+## 3. Publish
+
+Click **Publish** in the builder toolbar. The guide goes live immediately, with no deploy on your side. You can switch it back to **Draft** at any time. The **Guides** page shows how many are published and drafts, with average steps and confidence.
+
+## How users reach a guide
+
+- **From the chat bubble.** Published guides for the site are listed in the widget, and users can start one from there.
+- **By asking.** A user who asks the chat *"how do I…?"* gets a walkthrough built on the spot from your knowledge base, even when no guide exists yet.
+- **"Continue your guide".** If someone leaves a guide halfway, a chip beside the bubble offers to pick up where they left off.
+- **From your own code.** Start a guide from a button, an onboarding checklist or an email link:
+
+  ```js
+  await window.guideai.showGuideById('YOUR_GUIDE_ID') // optional 2nd argument: step to start from
+  await window.guideai.dismissGuide()                 // close the current guide
+  ```
+
+- **From the extension.** **Guides List** plays any published guide for the current site.
+
+<Callout type="info" title="Trigger setting">
+  The builder toolbar also has a **Trigger** field (Manual, Automatic, URL Match, Element Click) that records when a guide is meant to start. Use the options above to put a guide in front of users.
+</Callout>
+
+## Play guides from the extension
+
+Open the extension on a registered site → **Guides List** to browse and play its published guides. Useful for checking a guide on production, or for guiding people on apps where the snippet isn't installed.
+
+## When your UI changes
+
+Every step recognises its element by several signals at once, not a single selector, so most redesigns don't break anything. When a change does break a step, 3Guide's auto-heal inspects the new page, finds where the element moved and repairs the step. Keep an eye on the **Avg. confidence** figure on the Guides page, and re-scan your app after big releases ([Keep it up to date](/docs/knowledge-base#keep-it-up-to-date)).
+
+<Callout title="Make key elements easy to find">
+  Give important buttons and fields a stable `data-guideai` attribute, for example `<button data-guideai="create-project">`. It's the strongest signal 3Guide uses to find an element, and it survives restyling and text changes.
+</Callout>
+
+## Related
+
+- Add small, always-available tips instead: [Help hints](/docs/help-hints)
+- Announce a new feature and link it to a guide: [Announcements](/docs/announcements)
+- Measure completion and drop-off: [Analytics](/docs/analytics)

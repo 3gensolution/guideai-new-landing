@@ -1,0 +1,116 @@
+---
+title: Set up the chat and AI Assistant
+description: Choose what the chat bubble does, connect your API so the Assistant can get things done, add documents, and set up hand-off to your team.
+icon: Bot
+---
+
+The chat bubble has two modes:
+
+- **Guidance mode** teaches. A user asks *"how do I invite a teammate?"* and gets a walkthrough on the page, built from your [knowledge base](/docs/knowledge-base). It works as soon as 3Guide is installed.
+- **Assistant mode** does the work. A user asks *"show me last month's orders"* and the Assistant calls your API and answers with the data. It switches on once you connect at least one API.
+
+**Before you start:** 3Guide is [installed in your app](/docs/quickstart), and you have your API's OpenAPI (Swagger) spec to hand.
+
+## 1. Choose the chat mode
+
+Set `data-widget-mode` on your snippet, or pick it in **Settings → SDK Installation** and copy the updated snippet:
+
+| Value | What users get |
+| --- | --- |
+| `combined` (default) | A Guidance / Assistant toggle. Assistant only appears once an API is connected. |
+| `guide` | Guidance only: walkthroughs, never actions |
+| `assistant` | Assistant only |
+| `support` | Support chat with your team |
+
+The chat always shows which mode it's in, so nobody asks a how-to question and has something done by mistake.
+
+## 2. Connect your API
+
+<Steps>
+<Step>
+
+Open **Automation → Copilot Tools** in the dashboard. This is where the Assistant's API connections live.
+
+</Step>
+<Step>
+
+**Add an API connection:**
+
+- **Name**: what it covers, e.g. *Billing API* or *User Management*.
+- **Base URL**: e.g. `https://api.yourapp.com`.
+- **API docs**: paste your OpenAPI spec (JSON or YAML), or upload a `.json` / `.yaml` / `.yml` file.
+
+3Guide reads the spec and turns each endpoint into something the Assistant can call.
+
+</Step>
+<Step>
+
+**Choose how it authenticates:**
+
+| Method | Use it when |
+| --- | --- |
+| **No authentication** | The endpoints are public |
+| **API Key / Token** | One server-side key works for every user. Enter the header name (e.g. `Authorization`) and value. It's stored by 3Guide and always masked. |
+| **Bearer token from page session** | Each user should act as themselves. The token is read from the user's browser storage at call time: enter the **exact storage key** (e.g. `access_token`), an optional **JSON token path**, and the **permitted page origin** (e.g. `https://app.example.com`). The token is never shown in previews or stored. |
+
+</Step>
+<Step>
+
+**Review the endpoints.** Click **View Endpoints** on the connection. Each one shows its method, path and a **risk** level (read, write or destructive), so you can see at a glance what the Assistant can change. Before it runs anything that changes data, the Assistant shows the user what it's about to do and waits for them to confirm.
+
+</Step>
+</Steps>
+
+## 3. Add knowledge documents
+
+Give the Assistant what isn't in your API: policies, pricing rules, manuals, FAQs.
+
+1. On the API connection, click **Knowledge**.
+2. **Upload Document** (PDF, Word, TXT, Markdown, CSV, JSON or HTML), or write or paste text straight in and save it as a document.
+
+## 4. Set the Assistant's profile
+
+Under **Assistant Profile**, choose the role it plays. This shapes its tone and priorities:
+
+- **Default (automatic)**: works out the best role from your app
+- **Product assistant**, **Onboarding assistant**, **Support assistant** or **Sales assistant**
+
+Add instructions of your own, for example *"Mention the approved 14-day trial when it is relevant."* Then click **Save Assistant Profile**.
+
+## 5. Set up hand-off to a person
+
+Under **Escalation & Ticket Submission**, add one or more channels. When the Assistant can't resolve something, it hands the conversation to your team:
+
+| Channel | You'll enter |
+| --- | --- |
+| **Built-in support inbox** | Nothing. Conversations land in **Support → Live Support**. |
+| **Email** | SMTP host, port, user, password, from address and recipients |
+| **Slack** / **Discord** | A webhook URL (and optional channel) |
+| **WhatsApp** | A phone number and access token |
+| **Webhook** | Your ticket endpoint, HTTP method, JSON body, optional signing secret (HMAC), and the path of the ticket ID in the response |
+
+Use **Test delivery** to send a marked sample before relying on it. Set the success and error messages users see, and **Save Escalation Settings**.
+
+## 6. Try it
+
+Open your app, click the chat bubble, switch to **Assistant** and ask for something your API can do. If it answers from the wrong place or can't find an endpoint, check the endpoint descriptions in your OpenAPI spec: the Assistant relies on them to pick the right call.
+
+## Optional: use your own AI provider
+
+3Guide uses its built-in AI by default (Google Gemini). To use your own account, open **Settings → AI Provider**, choose a provider, paste your API key and **Test Connection**. You can also pick a different model per feature, such as the in-app chat.
+
+## Use your own chat interface
+
+Already have a chat UI? You can drive 3Guide from your own code instead of the bubble. The key calls are in the [SDK reference](/docs/sdk-reference#chat):
+
+```js
+window.guideai.openGuidance()               // open the chat in Guidance mode
+window.guideai.openAssistant()              // open it in Assistant mode
+window.guideai.send('Show me my open invoices')
+```
+
+## Related
+
+- Voice conversations with the Assistant are available on paid plans.
+- The Assistant can also answer *"show me how X works"* with a [Guide Pro demo](/docs/guide-pro#let-the-chat-use-your-demos).
+- Requests the Assistant couldn't complete show up in [Analytics](/docs/analytics) as a signal of what users want.
