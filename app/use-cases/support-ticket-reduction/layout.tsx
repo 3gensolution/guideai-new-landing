@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Support Ticket Reduction',
   description:
-    'Deflect repetitive how-do-I questions with AI answers, in-context walkthroughs, and a copilot that completes tasks — before they ever become tickets.',
+    'Deflect repetitive how-do-I questions with AI answers, in-context walkthroughs, and an AI assistant that completes tasks through your APIs — before they ever become tickets.',
   openGraph: {
     title: 'Support Ticket Reduction | 3Guide',
     description:

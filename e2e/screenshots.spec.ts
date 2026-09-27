@@ -212,7 +212,7 @@ test.describe("Documentation Screenshots", () => {
     });
   });
 
-  test("capture copilot chat open", async ({ page }) => {
+  test("capture chat open", async ({ page }) => {
     await page.goto(DEMO_APP_URL, { waitUntil: "domcontentloaded" });
     await page.waitForTimeout(4000);
 
@@ -224,12 +224,12 @@ test.describe("Documentation Screenshots", () => {
     }
 
     await page.screenshot({
-      path: path.join(SCREENSHOT_DIR, "copilot-chat-open.png"),
+      path: path.join(SCREENSHOT_DIR, "chat-open.png"),
       fullPage: false,
     });
   });
 
-  test("capture copilot walkthrough", async ({ page }) => {
+  test("capture chat walkthrough", async ({ page }) => {
     await page.goto(DEMO_APP_URL, { waitUntil: "domcontentloaded" });
     await page.waitForTimeout(4000);
 
@@ -248,7 +248,7 @@ test.describe("Documentation Screenshots", () => {
     }
 
     await page.screenshot({
-      path: path.join(SCREENSHOT_DIR, "copilot-walkthrough-generation.png"),
+      path: path.join(SCREENSHOT_DIR, "chat-walkthrough-generation.png"),
       fullPage: false,
     });
   });

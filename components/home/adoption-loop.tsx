@@ -7,93 +7,89 @@ import { Container, Section } from "@/components/marketing/primitives";
 import { cn } from "@/lib/utils";
 
 /**
+ * How the four products drive adoption together, in funnel order:
+ * Guide Pro → Guidance → Assistant → Analytics → back into Guidance.
+ *
  * Expanding colour-block carousel (Freshworks-style). Collapsed stages are
- * narrow vertical slivers showing a tinted product shot; the active one opens
- * into a full editorial panel with the outcome, description, a stat and a link.
+ * narrow vertical slivers; the active one opens into a full editorial panel
+ * with the outcome, description, a stage number and a link.
  *
  * Colour is doing the work here, so each stage owns a saturated block —
  * a deliberate break from the page's purple-only system.
  */
 const stages = [
   {
-    name: "Dashboard",
-    pillar: "Build",
-    outcome: "Where your team builds and watches everything",
+    name: "Guide Pro",
+    pillar: "Attract",
+    outcome: "Prospects try your product before they buy",
     description:
-      "Build guides, watch analytics, and see exactly what users are struggling with — in one console your team actually owns.",
+      "An interactive demo on your website turns curious visitors into leads.",
     stat: "01",
-    statLabel: "No developer required",
-    href: "/guides",
+    statLabel: "Visitor → lead",
+    href: "/guide-pro",
     bg: "#E8A54F",
     ink: "#2A1A05",
   },
   {
-    name: "Analytics",
-    pillar: "Prove",
-    outcome: "Not page views — where people give up",
+    name: "Guidance",
+    pillar: "Onboard",
+    outcome: "New users are walked through setup",
     description:
-      "Funnels, drop-off points, sentiment, and how efficiently staff complete tasks. Hard data on exactly where your product confuses people.",
+      "Step-by-step help on the screen gets them to their first win, fast.",
     stat: "02",
-    statLabel: "Proof for the board",
-    href: "/analytics",
+    statLabel: "Sign-up → active user",
+    href: "/guides",
     bg: "#E8603C",
     ink: "#2A0D05",
   },
   {
-    name: "Support desk",
-    pillar: "Resolve",
-    outcome: "When the AI can't handle it, a person takes over",
+    name: "AI Assistant",
+    pillar: "Accelerate",
+    outcome: "Busy users just ask, and it's done",
     description:
-      "A full human-support console — inbox, contacts, SLAs, canned replies, team routing — in the same place the AI already works.",
+      "No tutorial needed for people who just want the result.",
     stat: "03",
-    statLabel: "One place, no handoff",
-    href: "/support-desk",
+    statLabel: "Request → result",
+    href: "/assistant",
     bg: "#D6379B",
     ink: "#2A031B",
   },
   {
-    name: "Extension",
-    pillar: "Act",
-    outcome: "A copilot that acts on the user's behalf",
+    name: "Analytics",
+    pillar: "Improve",
+    outcome: "You see where people still get stuck",
     description:
-      "A browser extension that acts on the user's behalf, so it can finish the jobs that need real credentials.",
+      "3Guide suggests a fix, and shows you whether it worked. Then the loop starts again.",
     stat: "04",
-    statLabel: "Handles logged-in work",
-    href: "/copilot",
+    statLabel: "Problem → proven fix",
+    href: "/analytics",
     bg: "#7C4DE0",
     ink: "#170432",
-  },
-  {
-    name: "UI Analyzer",
-    pillar: "Learn",
-    outcome: "It analyzes your UI before day one",
-    description:
-      "Maps every page and button in advance, so the AI starts out already knowing your product's layout instead of learning it live.",
-    stat: "05",
-    statLabel: "Knows your app upfront",
-    href: "/guides",
-    bg: "#7BB93F",
-    ink: "#132404",
   },
 ];
 
 export function AdoptionLoop() {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
 
   return (
-    <Section className="overflow-hidden">
+    <Section id="together" className="overflow-hidden bg-canvas">
       <Container>
         <div
           data-reveal
           className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
         >
-          <h2 className="font-display max-w-3xl text-balance text-section text-slate-900">
-            The widget is the start.{" "}
-            <span className="text-purple-600">This is the whole suite.</span>
-          </h2>
+          <div className="max-w-3xl">
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.22em] text-purple-600">
+              How they work together
+            </p>
+            <h2 className="font-display mt-5 text-balance text-section text-slate-900">
+              From first visit{" "}
+              <span className="text-purple-600">to loyal customer.</span>
+            </h2>
+          </div>
           <p className="max-w-md text-base leading-relaxed text-slate-600">
-            Guidance, answers, and automation are what your users see. Behind
-            them sits a full product suite your team runs the business on.
+            Each product picks up where the last one leaves off, so customers
+            keep moving forward instead of getting stuck.
           </p>
         </div>
 

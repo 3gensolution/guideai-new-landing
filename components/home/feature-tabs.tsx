@@ -5,10 +5,8 @@ import Image from "next/image";
 import {
   BarChart3,
   Bot,
-  MonitorPlay,
   MousePointerClick,
   Presentation,
-  Sparkles,
 } from "lucide-react";
 import {
   ArrowLink,
@@ -21,107 +19,73 @@ import { cn } from "@/lib/utils";
 
 const tabs = [
   {
-    key: "guides",
-    label: "In-App Guides",
-    icon: MousePointerClick,
-    title: "Click-by-click walkthroughs, built visually",
+    key: "analytics",
+    label: "Analytics",
+    icon: BarChart3,
+    title: "Know exactly where customers give up",
     description:
-      "Create guided tours by clicking through your own product. Publish in one click, target by segment, and never write custom code for onboarding again.",
+      "See the step where people drop off, get a suggested fix, and find out whether it actually helped.",
     bullets: [
-      "Visual builder via the Chrome extension",
-      "AI writes the steps, tooltips, and copy for you",
-      "Self-healing keeps every guide working after redesigns",
+      "Spot drop-offs before they cost you customers",
+      "A suggested fix for every problem found",
+      "See the real impact of every change",
     ],
-    image: "/guidance-mode.gif",
-    imageAlt: "3Guide guides dashboard with published and draft guides",
-    href: "/guides",
-    linkLabel: "Explore In-App Guides",
+    image: "/friction-img.png",
+    imageAlt: "3Guide Analytics showing where users drop off",
+    href: "/analytics",
+    linkLabel: "Explore Analytics",
   },
   {
-    key: "guide-pro",
-    label: "Guide Pro",
-    icon: Presentation,
-    title: "Train employees and onboard clients without a live call",
+    key: "guidance",
+    label: "Guidance",
+    icon: MousePointerClick,
+    title: "Show users how, right inside your product",
     description:
-      "Turn a few clicks through your product into a shareable, self-paced walkthrough — so a new hire learns the workflow in their own time and a new client onboards without booking your team. AI adds the tooltips, voiceover, and zoom.",
+      "Step-by-step walkthroughs, tips and announcements that appear on the real screen, at the moment people need them.",
     bullets: [
-      "Practice in a safe copy of your product — no login, no real data",
-      "AI writes tooltips and narration, picks the best zoom per screen",
-      "Export to PDF, GIF, or MP4 for your LMS or knowledge base",
+      "Get new users to their first win faster",
+      "Launch features people actually notice",
+      "Keeps working when your product changes",
     ],
-    image: "/guide-pro-img.png",
-    imageAlt: "An interactive Guide Pro walkthrough in the builder",
-    href: "/guide-pro",
-    linkLabel: "Explore Guide Pro",
+    image: "/guidance-mode.gif",
+    imageAlt: "A 3Guide walkthrough highlighting each step on screen",
+    href: "/guides",
+    linkLabel: "Explore Guidance",
   },
   {
     key: "assistant",
     label: "AI Assistant",
     icon: Bot,
-    title: "Answers trained on your product, not the open web",
+    title: "Let users skip the tutorial",
     description:
-      "An assistant embedded in your app that answers user questions from a knowledge base built automatically from your own website and docs.",
+      "Users ask for what they want, and the assistant gets it done for them, from pulling up a report to completing a task.",
     bullets: [
-      "Knowledge base builds and refreshes itself",
-      "Answers cite your own content",
-      "Escalates to your support desk when a human is needed",
+      "Fewer support tickets",
+      "Faster results for busy users",
+      "Learn what your customers need most",
     ],
     image: "/assistant-mode.gif",
-    imageAlt: "The 3Guide assistant answering a product question in-app",
-    href: "/copilot",
+    imageAlt: "The 3Guide AI Assistant completing a request",
+    href: "/assistant",
     linkLabel: "Explore the AI Assistant",
   },
   {
-    key: "copilot",
-    label: "Browser Copilot",
-    icon: Sparkles,
-    title: "An AI that completes the task for your users",
+    key: "guide-pro",
+    label: "Guide Pro",
+    icon: Presentation,
+    title: "Demos that win customers and train teams",
     description:
-      "Beyond showing users where to click. The autonomous copilot clicks, types, and navigates on their behalf while they watch every step.",
+      "Turn a quick recording of your product into an interactive demo for your website, your sales team, or staff training.",
     bullets: [
-      "Executes clicks, form fills, and navigation on the live page",
-      "Plans multi-step tasks from one natural-language request",
-      "Allowlisted actions and confirmations keep it safe",
+      "Capture more leads from your website",
+      "Onboard clients without live calls",
+      "One recording becomes a demo, a video and a guide",
     ],
-    image: "/copilot.png",
-    imageAlt: "3Guide Autonomous Copilot running browser tasks",
-    href: "/copilot",
-    linkLabel: "Meet the Browser Copilot",
+    image: "/guide-pro-img.png",
+    imageAlt: "An interactive Guide Pro demo",
+    href: "/guide-pro",
+    linkLabel: "Explore Guide Pro",
   },
-  {
-    key: "analytics",
-    label: "Friction Analytics",
-    icon: BarChart3,
-    title: "See exactly where users get stuck",
-    description:
-      "Funnels, session drill-downs, and friction signals out of the box so 'users are confused' becomes 'users can't find the export button.'",
-    bullets: [
-      "Acquisition and activation funnels automatically",
-      "Session-level drill-down by source, device, and location",
-      "Measure guide completion and time-to-value",
-    ],
-    image: "/friction-img.png",
-    imageAlt: "3Guide visitors explorer with sessions and sources",
-    href: "/analytics",
-    linkLabel: "Explore Friction Analytics",
-  }
-  // {
-  //   key: "support",
-  //   label: "Support Desk",
-  //   icon: Inbox,
-  //   title: "AI deflects the repetitive. Your team gets the rest.",
-  //   description:
-  //     "A full support inbox with assignment, automation rules, and AI-drafted replies — escalations arrive with the whole conversation and user context attached.",
-  //   bullets: [
-  //     "Shared inbox with assignment and internal notes",
-  //     "Automation rules for routing, tagging, and SLAs",
-  //     "AI-suggested replies grounded in your knowledge base",
-  //   ],
-  //   image: "/docs/bubble-on-live-site.png",
-  //   imageAlt: "The 3Guide support widget embedded on a live product",
-  //   href: "/support-desk",
-  //   linkLabel: "Explore the Support Desk",
-  // },
 ];
 
 export function FeatureTabs() {
@@ -129,12 +93,12 @@ export function FeatureTabs() {
   const tab = tabs[active];
 
   return (
-    <Section id="platform" className="bg-canvas">
+    <Section id="platform" className="bg-canvas-deep">
       <Container className="px-6">
         <SectionHeading
-          eyebrow="What you install"
-          title="One layer. No rebuild. No migration."
-          description="In-app guidance, interactive demos, polished training video, an AI assistant, a task-completing copilot, and friction analytics — every capability points at the same outcome: users who succeed with your product."
+          eyebrow="What you get"
+          title="Four ways to get customers using your product"
+          description="Start with the one you need today. Add the others when you're ready."
           align="center"
         />
 
@@ -150,7 +114,6 @@ export function FeatureTabs() {
             px-4
             py-4
             pl-2
-            lg:pl-24
             [scrollbar-width:none]
             [-ms-overflow-style:none]
             [&::-webkit-scrollbar]:hidden

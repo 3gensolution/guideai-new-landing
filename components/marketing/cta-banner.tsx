@@ -3,8 +3,8 @@ import { Container } from "./primitives";
 import { DASHBOARD_URL } from "@/lib/site";
 
 export function CtaBanner({
-  title = "A product that explains itself needs less help",
-  description = "One that operates itself needs less of your user's time at all. Paste one line of code and see the difference in a week.",
+  title = "Get more customers using your product",
+  description = "Start free with any of the four products, and add the rest when you're ready.",
 }: {
   title?: string;
   description?: string;
@@ -38,7 +38,7 @@ export function CtaBanner({
               target="_blank"
               className="inline-flex items-center justify-center rounded-xl bg-white px-9 py-4 text-base font-medium text-purple-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-purple-50"
             >
-              Get started
+              Start free
             </Link>
             <Link
               href="/pricing"
@@ -48,7 +48,7 @@ export function CtaBanner({
             </Link>
           </div>
           <p className="relative mt-7 text-base text-purple-200">
-            No credit card required · One line of code · No rebuild
+            Free plan · No credit card · Works on tools you didn't build
           </p>
         </div>
       </Container>

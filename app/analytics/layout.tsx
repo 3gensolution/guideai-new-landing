@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Friction Analytics',
+  title: 'Analytics — Find and Fix Where Users Struggle',
   description:
-    'Identify and eliminate user friction with 3Guide Friction Analytics. Track user behavior, detect drop-offs, and optimize your product experience with AI-driven insights.',
+    'See exactly where customers get stuck in your product, get a suggested fix for each problem, and find out whether it worked.',
   openGraph: {
-    title: 'Friction Analytics | 3Guide',
+    title: 'Analytics — Find and Fix Where Users Struggle | 3Guide',
     description:
-      'Identify and eliminate user friction. Track behavior, detect drop-offs, and optimize your product experience.',
+      'See where customers give up. Fix it, and prove it worked.',
     url: 'https://www.3guideai.com/analytics',
   },
   alternates: {

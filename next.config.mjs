@@ -36,6 +36,10 @@ const nextConfig = {
   turbopack: {
     root: ".",
   },
+  // Keep old /copilot links working now that the page is /assistant.
+  async redirects() {
+    return [{ source: '/copilot', destination: '/assistant', permanent: true }]
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }]
   },

@@ -16,7 +16,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { PillarStrip } from "@/components/marketing/pillar-strip";
+import { ProductStrip } from "@/components/marketing/product-strip";
 import {
   Container,
   Section,
@@ -209,7 +209,7 @@ export default function SupportDeskPage() {
             <span className="text-[#f0c9a0]">Humans finish strong.</span>
           </>
         }
-        description="A full support inbox built into your adoption platform. The AI assistant deflects the repetitive questions; your team gets the rest — with assignment, automation rules, and every user's product context attached."
+        description="A full support inbox built into 3Guide. The AI assistant deflects the repetitive questions; your team gets the rest — with assignment, automation rules, and every user's product context attached."
       >
         <div data-reveal data-reveal-delay="0.15" className="mx-auto mt-16 max-w-4xl">
           <InboxMock />
@@ -222,13 +222,13 @@ export default function SupportDeskPage() {
             eyebrow="Deflect"
             accent="violet"
             title="Most questions never become tickets"
-            description="The in-app assistant answers how-do-I questions instantly from your knowledge base, and can walk users through the flow — or complete it for them with the copilot. Your queue only sees what truly needs a person."
+            description="The in-app chat answers how-do-I questions from your app's knowledge base and walks users through the flow, and the AI Assistant can simply complete the task for them. Your queue only sees what truly needs a person."
             bullets={[
-              "AI answers grounded in your own docs and site",
+              "Answers grounded in your app and your documents",
               "Guided walkthroughs offered as answers",
               "Seamless handoff with full conversation history",
             ]}
-            image="/docs/copilot-chat-open.png"
+            image="/docs/chat-open.png"
             imageAlt="The 3Guide assistant resolving a question before it becomes a ticket"
           />
           <FeatureRow
@@ -276,7 +276,7 @@ export default function SupportDeskPage() {
         </Container>
       </Section>
 
-      <PillarStrip active="support" />
+      <ProductStrip />
       <FaqSection items={faqItems} title="Support desk, answered" />
       <CtaBanner
         title="Give your support team superpowers"

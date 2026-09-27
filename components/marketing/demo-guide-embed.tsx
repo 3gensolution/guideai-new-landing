@@ -5,9 +5,9 @@ import { createPortal } from "react-dom";
 import { Play } from "lucide-react";
 
 const DEMO_SHARE_URL =
-  "https://demo.3guideai.com/share/zt5XLm5K3h3P-0wZ0MV56A?embed=1";
+  "https://demo.3guideai.com/share/CIthWKilpUT3wZ1C03lEZw?embed=1&autostart=1";
 const DEMO_THUMBNAIL =
-  "https://res.cloudinary.com/dulfwgfga/image/upload/v1783284390/guideai/demos/demo_7fb05626c9ba.jpg";
+  "https://res.cloudinary.com/dulfwgfga/image/upload/v1789374700/guideai/demos/demo_b1af94a8640c.jpg";
 
 export function DemoGuideProEmbed() {
   const [demoStarted, setDemoStarted] = useState(false);
@@ -21,7 +21,7 @@ export function DemoGuideProEmbed() {
         <div
           role="button"
           tabIndex={0}
-          aria-label="View interactive product demo"
+          aria-label="Explore the Guide Pro demo"
           onClick={() => setDemoStarted(true)}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") setDemoStarted(true);
@@ -32,11 +32,11 @@ export function DemoGuideProEmbed() {
           }}
         >
           <p className="max-w-[80%] px-6 text-center text-xl font-medium leading-snug text-white sm:text-3xl">
-            Take a tour of Product Tour
+            Record Once. Share Everywhere
           </p>
           <span className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-8 py-4 text-base font-medium uppercase tracking-wider text-white shadow-lg shadow-purple-950/30 transition group-hover:scale-105 group-hover:bg-purple-500">
             <Play className="h-5 w-5 fill-current" />
-            View demo
+            Explore Guide Pro
           </span>
         </div>
       </div>
@@ -68,7 +68,7 @@ export function DemoGuideProEmbed() {
                 <iframe
                   loading="lazy"
                   src={DEMO_SHARE_URL}
-                  title="Product showcase"
+                  title="Guide Pro demo"
                   allow="fullscreen"
                   allowFullScreen
                   frameBorder="0"

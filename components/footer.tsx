@@ -9,11 +9,12 @@ import { DASHBOARD_URL } from "@/lib/site";
 
 const navigation = {
   product: [
-    { name: "In-App Guides", href: "/guides" },
+    { name: "Analytics", href: "/analytics" },
+    { name: "Guidance", href: "/guides" },
+    { name: "AI Assistant", href: "/assistant" },
     { name: "Guide Pro", href: "/guide-pro" },
     { name: "Guide Studio", href: "/studio" },
-    { name: "GuideAI CoPilot", href: "/copilot" },
-    { name: "Friction Analytics", href: "/analytics" },
+    { name: "Support Desk", href: "/support-desk" },
     { name: "Pricing", href: "/pricing" },
   ],
   solutions: [
@@ -22,6 +23,11 @@ const navigation = {
       name: "Support Ticket Reduction",
       href: "/use-cases/support-ticket-reduction",
     },
+    {
+      name: "Client & Employee Training",
+      href: "/use-cases/client-and-employee-training",
+    },
+    { name: "Documentation", href: "/docs" },
   ],
   company: [
     { name: "Contact", href: "mailto:info@3guideai.com" },
@@ -72,8 +78,8 @@ export function Footer() {
                 </span>
               </Link>
               <p className="mt-6 text-base font-medium leading-relaxed text-slate-300">
-                The AI-first product adoption platform. Guide, answer, and act
-                directly inside your product.
+                The digital adoption agent. See where users struggle, teach
+                them in the product, do it for them, and prove it worked.
               </p>
               <Link
                 href="mailto:info@3guideai.com"

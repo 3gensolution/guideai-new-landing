@@ -18,7 +18,7 @@ import { DownloadButtons } from "@/components/studio/download-buttons";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { PillarStrip } from "@/components/marketing/pillar-strip";
+import { ProductStrip } from "@/components/marketing/product-strip";
 import {
   Container,
   Section,
@@ -162,7 +162,7 @@ export default function StudioPage() {
               "Real cursor capture for clicks and motion",
             ]}
             badges={["macOS", "Windows", "Linux"]}
-            image="/copilot.png"
+            image="/guide-studio-img.png"
             imageAlt="Recording a screen with Guide Studio"
           />
           <FeatureRow
@@ -252,7 +252,7 @@ export default function StudioPage() {
         </Container>
       </Section>
 
-      <PillarStrip active="training" />
+      <ProductStrip />
       <FaqSection items={faqItems} title="Guide Studio, answered" />
       <CtaBanner
         title="Make product videos worth watching — free"

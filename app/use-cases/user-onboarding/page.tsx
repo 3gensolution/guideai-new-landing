@@ -4,7 +4,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { PillarStrip } from "@/components/marketing/pillar-strip";
+import { ProductStrip } from "@/components/marketing/product-strip";
 import {
   Container,
   Section,
@@ -44,14 +44,14 @@ const painSections = [
     ],
     image: "/guides-img.png",
     imageAlt: "Building onboarding guides visually in the 3Guide dashboard",
-    link: { href: "/guides", label: "Explore in-app guides" },
+    link: { href: "/guides", label: "Explore Guidance" },
     reverse: true,
   },
   {
     quote:
       "“New users churn before they reach the aha moment and we don't know why.”",
     accent: "violet" as const,
-    eyebrow: "Friction analytics",
+    eyebrow: "Analytics",
     title: "See the exact step where activation dies",
     description:
       "Acquisition and activation funnels are tracked out of the box. Find the drop-off step, ship a guide against it, and measure the lift. The whole loop lives in one platform.",
@@ -62,7 +62,7 @@ const painSections = [
     ],
     image: "/activation-img.png",
     imageAlt: "Activation funnel with drop-off analysis in 3Guide",
-    link: { href: "/analytics", label: "Explore friction analytics" },
+    link: { href: "/analytics", label: "Explore Analytics" },
   },
 ];
 
@@ -80,12 +80,12 @@ const faqItems = [
   {
     question: "What if users skip the tour?",
     answer:
-      "Guides are only one layer. The in-app assistant answers questions on demand, can restart any walkthrough contextually, and the copilot can simply complete the task when a user prefers that.",
+      "Guides are only one layer. Users can ask the chat how to do anything and get a walkthrough built on the spot, or ask the AI Assistant to simply do it for them.",
   },
   {
     question: "How do we know it's working?",
     answer:
-      "Guide completion, drop-off steps, and activation funnels are measured automatically, so you can compare cohorts before and after every change.",
+      "With 3Guide Analytics on, guide completion, drop-off steps and activation funnels are measured automatically. Fixes that Analytics proposes are tested against a 10% holdout, so you see the real lift, not a before-and-after guess.",
   },
 ];
 
@@ -173,7 +173,7 @@ export default function UserOnboardingPage() {
         </Container>
       </Section>
 
-      <PillarStrip active="adoption" />
+      <ProductStrip />
       <FaqSection items={faqItems} title="User onboarding, answered" />
       <CtaBanner
         title="Activate more of the users you already have"

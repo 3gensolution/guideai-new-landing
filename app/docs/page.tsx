@@ -56,7 +56,7 @@ const sidebar = [
   { id: "api-reference", label: "API Reference", icon: Layers },
   { id: "events", label: "Events", icon: Radio },
   { id: "guides-builder", label: "Guide Builder", icon: Play },
-  { id: "copilot-setup", label: "Browser Copilot", icon: MessageSquare },
+  { id: "assistant-setup", label: "AI Chat & Assistant", icon: MessageSquare },
   { id: "analytics-setup", label: "Analytics", icon: BarChart3 },
   // { id: "fingerprinting", label: "Fingerprinting", icon: Shield },
   { id: "showcase", label: "Visual Showcase", icon: Palette },
@@ -286,7 +286,7 @@ export default function DocsPage() {
             <p className="mt-6 text-lg leading-8 text-slate-600">
               Complete guide to integrating 3Guide into your application.
               Two complementary bundles <strong className="text-purple-600">Full SDK</strong> for
-              guides, chat & copilot, and{" "}
+              guides, chat & assistant, and{" "}
               <strong className="text-purple-600">Tracking SDK</strong> for
               friction analytics & detection. Use one or both.
             </p>
@@ -343,7 +343,7 @@ export default function DocsPage() {
                   SaaS. It ships as two complementary bundles: the{" "}
                   <strong className="text-purple-600">Full SDK</strong>{" "}
                   (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai.js</code>)
-                  for interactive guides, AI chat, browser copilot, and the
+                  for interactive guides, AI chat, AI assistant, and the
                   floating bubble; and the{" "}
                   <strong className="text-purple-600">Tracking SDK</strong>{" "}
                   (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai-tracking.js</code>)
@@ -369,7 +369,7 @@ export default function DocsPage() {
                       <MessageSquare className="h-5 w-5 text-purple-600" />
                     </div>
                     <h3 className="mt-4 font-semibold text-slate-900">
-                      Browser Copilot
+                      AI Chat & Assistant
                     </h3>
                     <p className="mt-2 text-sm text-slate-600">
                       Always-on AI assistant powered by RAG and your
@@ -402,7 +402,7 @@ export default function DocsPage() {
                 {/* Architecture diagram screenshot */}
                 <ScreenshotPlaceholder
                   id="screenshot-architecture"
-                  caption="3Guide architecture — SDK, Scanner CLI, Dashboard, Browser Copilot, and Backend working together."
+                  caption="3Guide architecture — SDK, Scanner CLI, Dashboard, AI Chat & Assistant, and Backend working together."
                   screenshotPath="architecture-overview.png"
                 />
 
@@ -412,7 +412,7 @@ export default function DocsPage() {
                 <div className="mt-4 space-y-3 text-sm text-slate-600">
                   <p>
                     <strong className="text-slate-700">Full SDK</strong> (<code className="text-xs text-purple-600">guideai.js</code>) —
-                    Guides, AI chat, browser copilot, floating bubble,
+                    Guides, AI chat, AI assistant, floating bubble,
                     segmentation, and deep UI analyzer. Handles guide playback,
                     recording, and LLM-powered walkthroughs.
                   </p>
@@ -421,7 +421,7 @@ export default function DocsPage() {
                     Friction analytics, all detection modules (rage clicks, dead
                     clicks, form tracking), help hints, announcements, NPS/CSAT
                     surveys, feedback, chips, and session recording. No bubble,
-                    chat, guides, or copilot.
+                    chat, guides, or assistant.
                   </p>
                   <p>
                     <strong className="text-slate-700">Scanner CLI</strong> —
@@ -473,8 +473,8 @@ export default function DocsPage() {
                     </div>
                     <div className="space-y-4 p-6">
                       <p className="text-sm text-slate-600">
-                        Interactive guides, AI chat, browser copilot, and the
-                        floating bubble. For guide-based onboarding, copilot
+                        Interactive guides, AI chat, AI assistant, and the
+                        floating bubble. For guide-based onboarding, assistant
                         assistance, and visual walkthroughs.
                       </p>
                       <div className="space-y-2">
@@ -484,7 +484,7 @@ export default function DocsPage() {
                         <ul className="space-y-1.5 text-sm text-slate-600">
                           {[
                             "Interactive guide playback",
-                            "AI browser copilot & chat",
+                            "AI chat & assistant",
                             "Floating bubble (drift / crawl)",
                             "Guide recording & authoring",
                             "Deep UI analyzer",
@@ -545,7 +545,7 @@ export default function DocsPage() {
                     <div className="space-y-4 p-6">
                       <p className="text-sm text-slate-600">
                         Analytics-only bundle. All tracking, detection, and
-                        engagement UI without the guide/chat/copilot overhead.
+                        engagement UI without the guide/chat/assistant overhead.
                       </p>
                       <div className="space-y-2">
                         <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
@@ -576,7 +576,7 @@ export default function DocsPage() {
                         <ul className="space-y-1.5 text-sm text-slate-500">
                           {[
                             "Floating bubble",
-                            "AI chat & copilot",
+                            "AI chat & assistant",
                             "Guide playback",
                             "Guide recording",
                             "Resource center",
@@ -609,7 +609,7 @@ export default function DocsPage() {
                     <p>
                       <strong className="text-purple-600">Use the Full SDK</strong> if
                       you want interactive guides, AI chat, the floating bubble,
-                      or browser copilot. It focuses on guide-based onboarding
+                      or AI assistant. It focuses on guide-based onboarding
                       and AI assistance — it does <strong className="text-slate-700">not</strong> include
                       friction analytics or detection modules.
                     </p>
@@ -627,7 +627,7 @@ export default function DocsPage() {
                     <p>
                       <strong className="text-slate-700">Use both together</strong> if
                       you want the full experience — add both script tags and
-                      get guides + copilot + analytics + detection.
+                      get guides + assistant + analytics + detection.
                       Both bundles expose{" "}
                       <code className="rounded bg-slate-100 px-1 text-xs text-purple-600">window.guideai</code>{" "}
                       and use the same stub loader pattern.
@@ -650,7 +650,7 @@ export default function DocsPage() {
                     <tbody className="divide-y divide-slate-200">
                       {[
                         ["Guide playback", true, false],
-                        ["AI chat & copilot", true, false],
+                        ["AI chat & assistant", true, false],
                         ["Floating bubble (drift / crawl)", true, false],
                         ["Guide recording & authoring", true, false],
                         ["Deep UI analyzer", true, false],
@@ -754,7 +754,7 @@ export default function DocsPage() {
                         in your HTML. No npm install or build step required.
                       </p>
                       <p className="mt-2 text-sm text-slate-500">
-                        <strong className="text-purple-600">Full SDK</strong> — guides, chat, copilot, and bubble:
+                        <strong className="text-purple-600">Full SDK</strong> — guides, chat, assistant, and bubble:
                       </p>
                       <CodeBlock
                         code={`<script
@@ -849,7 +849,7 @@ export default function DocsPage() {
                   Choose the bundle that fits your use case.
                 </p>
                 <p className="mt-3 text-sm font-medium text-purple-600">
-                  Full SDK (guides + chat + copilot + bubble):
+                  Full SDK (guides + chat + assistant + bubble):
                 </p>
                 <CodeBlock
                   code={`<script
@@ -2214,12 +2214,12 @@ function handlePurchase(cart) {
 
                   <Expandable title="Use both bundles together">
                     <p className="text-sm text-slate-600">
-                      Add both script tags to get guides + copilot + full analytics.
+                      Add both script tags to get guides + assistant + full analytics.
                       Both bundles share the same{" "}
                       <code className="text-xs text-purple-600">window.guideai</code> namespace.
                     </p>
                     <CodeBlock
-                      code={`<!-- Full SDK for guides, chat, copilot, bubble -->
+                      code={`<!-- Full SDK for guides, chat, assistant, bubble -->
 <script
   src="https://cdn.3guideai.com/sdk/guideai.js"
   data-site-id="site_YOUR_SITE_ID"
@@ -2528,28 +2528,28 @@ function handlePurchase(cart) {
               </div>
 
               {/* ============================================ */}
-              {/* COPILOT SETUP */}
+              {/* ASSISTANT SETUP */}
               {/* ============================================ */}
-              <div id="copilot-setup" className="scroll-mt-32">
+              <div id="assistant-setup" className="scroll-mt-32">
                 <h2 className="text-3xl font-medium text-slate-900">
-                  Browser Copilot
+                  AI Chat & Assistant
                   <span className="ml-3 inline-flex items-center rounded bg-purple-100 px-2 py-0.5 text-sm font-normal text-purple-600">
                     Full SDK only
                   </span>
                 </h2>
                 <p className="mt-4 text-slate-600">
-                  The Browser Copilot is an AI assistant that lives in your
-                  product. It uses RAG with your scanned knowledge base to
+                  The in-app chat and AI Assistant live in your
+                  product. They use RAG with your scanned knowledge base to
                   answer questions, generate walkthroughs on-the-fly, and
-                  execute copilot tool calls. This feature requires the{" "}
+                  execute assistant tool calls. This feature requires the{" "}
                   <strong className="text-purple-600">Full SDK</strong>{" "}
                   (<code className="rounded bg-slate-100 px-1 text-xs text-purple-600">guideai.js</code>).
                 </p>
 
                 <YouTubeEmbed
-                  title="Browser Copilot Setup & Demo"
+                  title="AI Chat & Assistant Setup & Demo"
                   videoId="PLACEHOLDER"
-                  description="Setting up the Browser Copilot — configure knowledge base, customize appearance, and see it answer user questions in real-time."
+                  description="Setting up the AI Chat & Assistant — configure knowledge base, customize appearance, and see it answer user questions in real-time."
                 />
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900">
@@ -2573,20 +2573,20 @@ function handlePurchase(cart) {
                     LLM generates guide steps that the SDK renders as an ephemeral guide.
                   </p>
                   <p>
-                    <strong className="text-slate-700">5.</strong> Optional copilot tools allow the AI to
+                    <strong className="text-slate-700">5.</strong> Optional assistant tools allow the AI to
                     execute data queries and actions on behalf of the user (with confirmation for destructive actions).
                   </p>
                 </div>
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900">
-                  Enabling the copilot
+                  Enabling the chat
                 </h3>
                 <p className="mt-2 text-slate-600">
-                  The copilot is enabled by default when the bubble is active.
+                  The chat is enabled by default when the bubble is active.
                   Users click the bubble to open the chat interface.
                 </p>
                 <CodeBlock
-                  code={`<!-- Copilot enabled by default with bubble -->
+                  code={`<!-- Chat enabled by default with bubble -->
 <script
   src="https://cdn.3guideai.com/sdk/guideai.js"
   data-site-id="site_YOUR_SITE_ID"
@@ -2614,15 +2614,15 @@ function handlePurchase(cart) {
                 </div>
 
                 <ScreenshotPlaceholder
-                  id="screenshot-copilot-chat"
-                  caption="The Browser Copilot answering a user question with step-by-step instructions."
-                  screenshotPath="copilot-chat-open.png"
+                  id="screenshot-chat"
+                  caption="The AI Chat & Assistant answering a user question with step-by-step instructions."
+                  screenshotPath="chat-open.png"
                 />
 
                 <ScreenshotPlaceholder
-                  id="screenshot-copilot-walkthrough"
-                  caption="Copilot generating an on-the-fly walkthrough from a natural language question."
-                  screenshotPath="copilot-walkthrough-generation.png"
+                  id="screenshot-chat-walkthrough"
+                  caption="The chat generating an on-the-fly walkthrough from a natural language question."
+                  screenshotPath="chat-walkthrough-generation.png"
                 />
               </div>
 
@@ -2833,7 +2833,7 @@ window.guideai.markFeature("used_export");`}
                 <p className="mt-4 text-slate-600">
                   Every aspect of 3Guide is configurable. Below is a visual
                   reference of all the different setups, icons, animations,
-                  themes, and guide types available. Bubble, guide, and copilot
+                  themes, and guide types available. Bubble, guide, and assistant
                   visuals apply to the{" "}
                   <strong className="text-purple-600">Full SDK</strong>.
                   Theming and announcements apply to the{" "}

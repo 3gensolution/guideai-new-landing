@@ -1,63 +1,30 @@
 import Link from "next/link";
-import { ArrowRight, GraduationCap, LifeBuoy, Rocket } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container, Section } from "./primitives";
+import { PRODUCTS, type ProductKey } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
-/* Pillar strip — the connective tissue across every product page.     */
-/* Adoption · Training · Support. Shows which pillar this page serves,  */
-/* and links to the other two so the whole site reads as one system.   */
+/* Product strip: the connective tissue across every product page.     */
+/* Shows the four products, marks the one this page is about, and     */
+/* says what each adds, so the site reads as one system.               */
 /* ------------------------------------------------------------------ */
 
-export type Pillar = "adoption" | "training" | "support";
-
-interface PillarDef {
-  key: Pillar;
-  label: string;
-  icon: typeof Rocket;
-  tagline: string;
-  href: string;
-}
-
-const PILLARS: PillarDef[] = [
-  {
-    key: "adoption",
-    label: "Adoption",
-    icon: Rocket,
-    tagline: "Guide users to their first win, and every one after.",
-    href: "/guides",
-  },
-  {
-    key: "training",
-    label: "Training",
-    icon: GraduationCap,
-    tagline: "Teach clients and staff inside the product itself.",
-    href: "/use-cases/client-and-employee-training",
-  },
-  {
-    key: "support",
-    label: "Support",
-    icon: LifeBuoy,
-    tagline: "Answer questions before they become tickets.",
-    href: "/support-desk",
-  },
-];
-
-export function PillarStrip({ active }: { active: Pillar }) {
+export function ProductStrip({ active }: { active?: ProductKey }) {
   return (
     <Section className="border-y border-slate-200/70 bg-canvas-deep py-16 sm:py-20">
       <Container>
         <p className="text-center font-mono text-sm font-semibold uppercase tracking-[0.2em] text-purple-600">
-          One platform · Three jobs
+          Use one, or all four
         </p>
         <h2 className="mx-auto mt-4 max-w-2xl text-balance text-center font-display text-sub font-semibold text-slate-900">
-          Adoption, training, and support — working together
+          Each works on its own. Together, they cover the whole customer journey.
         </h2>
         <div
           data-stagger
-          className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-3"
+          className="mx-auto mt-12 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {PILLARS.map((p) => {
+          {PRODUCTS.map((p) => {
             const isActive = p.key === active;
             return (
               <Link
@@ -73,7 +40,7 @@ export function PillarStrip({ active }: { active: Pillar }) {
               >
                 {isActive && (
                   <span className="absolute right-4 top-4 rounded-full bg-purple-600 px-2.5 py-0.5 text-[0.65rem] font-medium uppercase tracking-wider text-white">
-                    You're here
+                    You&apos;re here
                   </span>
                 )}
                 <span
@@ -86,15 +53,18 @@ export function PillarStrip({ active }: { active: Pillar }) {
                 >
                   <p.icon className="h-6 w-6" />
                 </span>
-                <h3 className="mt-5 text-xl font-medium text-slate-900">
-                  {p.label}
+                <p className="mt-5 font-mono text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
+                  {p.job}
+                </p>
+                <h3 className="mt-1 text-xl font-medium text-slate-900">
+                  {p.name}
                 </h3>
-                <p className="mt-2 flex-1 text-base leading-relaxed text-slate-600">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
                   {p.tagline}
                 </p>
                 {!isActive && (
                   <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-purple-600">
-                    Explore {p.label.toLowerCase()}
+                    Explore {p.name}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 )}
@@ -102,6 +72,15 @@ export function PillarStrip({ active }: { active: Pillar }) {
             );
           })}
         </div>
+        <p className="mt-10 text-center">
+          <Link
+            href="/#together"
+            className="inline-flex items-center gap-1.5 text-base font-medium text-purple-700 underline-offset-4 hover:underline"
+          >
+            See how they drive adoption together
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </p>
       </Container>
     </Section>
   );

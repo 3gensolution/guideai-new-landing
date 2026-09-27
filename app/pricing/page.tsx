@@ -210,7 +210,7 @@ const faqs = [
   // {
   //   question: "What counts as a Monthly Active User (MAU)?",
   //   answer:
-  //     "An MAU is any unique user who interacts with at least one 3Guide feature (guide, Copilot, or tracked event) within a calendar month.",
+  //     "An MAU is any unique user who interacts with at least one 3Guide feature (guide, assistant, or tracked event) within a calendar month.",
   // },
   {
     question: "Can I use 3Guide for free forever?",

@@ -11,8 +11,6 @@ import {
   GraduationCap,
   Menu,
   MessageCircleQuestion,
-  MonitorPlay,
-  MousePointerClick,
   Presentation,
   Rocket,
   Sparkles,
@@ -21,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { DASHBOARD_URL } from "@/lib/site";
+import { MORE_TOOLS, PRODUCTS } from "@/lib/products";
 
 /* Legal/utility pages keep a plain light top instead of the plum hero. */
 const LIGHT_HERO_ROUTES = ["/policy", "/terms", "/docs"];
@@ -58,7 +57,7 @@ interface MenuDef {
 const menus: Record<"solutions" | "product", MenuDef> = {
   solutions: {
     label: "Solutions",
-    intro: "Start from the outcome you're after — 3Guide maps to it.",
+    intro: "Start from the outcome you're after. 3Guide maps to it.",
     columns: [
       {
         heading: "By use case",
@@ -93,95 +92,67 @@ const menus: Record<"solutions" | "product", MenuDef> = {
         heading: "By outcome",
         items: [
           {
-            name: "Reduce time-to-value",
-            description: "Get users to their first win faster.",
-            href: "/use-cases/user-onboarding",
-            icon: MousePointerClick,
-          },
-          {
-            name: "Cut support volume",
-            description: "Deflect repetitive questions with AI.",
-            href: "/use-cases/support-ticket-reduction",
-            icon: MessageCircleQuestion,
-          },
-          {
-            name: "Understand friction",
-            description: "See exactly where users get stuck.",
+            name: "Find where users struggle",
+            description: "Problems detected and ranked for you.",
             href: "/analytics",
             icon: BarChart3,
           },
-        ],
-      },
-    ],
-    feature: {
-      eyebrow: "The whole loop",
-      title: "One platform, every stage of adoption",
-      description:
-        "Guide, understand, answer, and act — installed with a single snippet.",
-      href: "/#platform",
-      image: "/assistant-img.png",
-      imageAlt: "A guided onboarding tour running live",
-    },
-  },
-  product: {
-    label: "Product",
-    intro: "Everything the 3Guide SDK runs on your product.",
-    columns: [
-      {
-        heading: "Guide & train",
-        items: [
           {
-            name: "In-App Guides",
-            description: "Visual walkthroughs that heal themselves.",
-            href: "/guides",
-            icon: MousePointerClick,
-          },
-          {
-            name: "Guide Pro",
-            description: "Interactive, shareable product demos.",
+            name: "Capture leads with demos",
+            description: "Interactive demos on your site.",
             href: "/guide-pro",
             icon: Presentation,
           },
           {
-            name: "Guide Studio",
-            description: "Screen recording to polished video.",
-            href: "/studio",
-            icon: MonitorPlay,
-          },
-        ],
-      },
-      {
-        heading: "Answer & act",
-        items: [
-          {
-            name: "AI Assistant",
-            description: "Answers trained on your product.",
-            href: "/copilot",
-            icon: Bot,
-          },
-          {
-            name: "Browser Copilot",
-            description: "An AI that completes the task for users.",
-            href: "/copilot",
-            icon: Sparkles,
-          },
-          {
-            name: "Friction Analytics",
-            description: "Funnels, sessions, and friction signals.",
-            href: "/analytics",
-            icon: BarChart3,
+            name: "Let users skip the tutorial",
+            description: "The AI Assistant just does it.",
+            href: "/assistant",
+            icon: MessageCircleQuestion,
           },
         ],
       },
     ],
     feature: {
-      eyebrow: "Beyond guidance",
-      title: "An AI that acts, not just points",
+      eyebrow: "How it fits together",
+      title: "From first demo to fully adopted",
       description:
-        "The Browser Copilot clicks, fills, and navigates — with the user watching every step.",
-      href: "/copilot",
-      image: "/co-pilot.png",
-      imageAlt: "The 3Guide Browser Copilot running tasks",
+        "How the four products move customers from first visit to loyal user.",
+      href: "/#together",
+      image: "/guidance.png",
+      imageAlt: "A guided walkthrough running live in a product",
+    },
+  },
+  product: {
+    label: "Product",
+    intro: "Four products. Use one, or all four.",
+    columns: [
+      {
+        heading: "Products",
+        items: PRODUCTS.map((p) => ({
+          name: p.name,
+          description: p.job + ".",
+          href: p.href,
+          icon: p.icon,
+        })),
+      },
+      {
+        heading: "Also in 3Guide",
+        items: MORE_TOOLS.map((t) => ({
+          name: t.name,
+          description: t.tagline,
+          href: t.href,
+          icon: t.icon,
+        })),
+      },
+    ],
+    feature: {
+      eyebrow: "Only in 3Guide",
+      title: "Find the problem, fix it, prove it worked",
+      description:
+        "See where customers get stuck, fix it in the product, and know whether it helped.",
+      href: "/analytics",
+      image: "/friction-img.png",
+      imageAlt: "3Guide Analytics overview",
     },
   },
 };

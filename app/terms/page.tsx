@@ -12,7 +12,7 @@ const sections: { title: string; body: string[] }[] = [
   {
     title: "2. The services",
     body: [
-      "3Guide provides a product adoption platform including in-app guides, an AI assistant, friction analytics, a support desk, and a browser copilot. We may add, change, or remove features over time. Features marked as beta or under development are provided as-is and may change without notice.",
+      "3Guide provides a product adoption platform including product analytics, in-app guidance, an AI assistant, interactive product demos (Guide Pro), a support desk, and a browser extension. We may add, change, or remove features over time. Features marked as beta or under development are provided as-is and may change without notice.",
     ],
   },
   {
@@ -24,7 +24,7 @@ const sections: { title: string; body: string[] }[] = [
   {
     title: "4. Acceptable use",
     body: [
-      "You agree not to misuse the Services — including attempting to access other customers' data, reverse-engineering the platform, using the Services to violate applicable law, or deploying the browser copilot to automate actions on websites you do not own or have permission to operate on.",
+      "You agree not to misuse the Services — including attempting to access other customers' data, reverse-engineering the platform, using the Services to violate applicable law, or using the AI assistant or browser extension to automate actions on websites you do not own or have permission to operate on.",
     ],
   },
   {
@@ -42,7 +42,7 @@ const sections: { title: string; body: string[] }[] = [
   {
     title: "7. Disclaimers",
     body: [
-      "The Services are provided “as is” without warranties of any kind. AI-generated content — including assistant answers, generated guides, and copilot actions — may contain errors; you are responsible for reviewing configuration and supervising automated actions in your environment.",
+      "The Services are provided “as is” without warranties of any kind. AI-generated content — including assistant answers, assistant actions, and generated guides — may contain errors; you are responsible for reviewing configuration and supervising automated actions in your environment.",
     ],
   },
   {

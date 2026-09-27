@@ -2,51 +2,31 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { HomeHero } from "@/components/home/hero";
 import { FeatureTabs } from "@/components/home/feature-tabs";
-import { GrowthJourney } from "@/components/home/growth-journey";
-import { AudienceColumns } from "@/components/home/audience-columns";
-import { TrainingFormats } from "@/components/home/training-formats";
 import { AdoptionLoop } from "@/components/home/adoption-loop";
-import { TrustSection } from "@/components/home/trust-section";
-import {
-  CopilotSection,
-  IndustriesSection,
-  ProblemSection,
-  StatBand,
-  UseCasesSection,
-} from "@/components/home/sections";
+import { ProblemSection, WhoItsFor } from "@/components/home/sections";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
 
 const faqItems = [
   {
-    question: "What exactly is 3Guide?",
+    question: "What does 3Guide do for my business?",
     answer:
-      "A layer you add on top of software you already have — no rebuild required — that teaches people how to use it, and increasingly, just does things for them. You paste one line of code into your web app and a small AI helper lives inside your product from that moment on.",
+      "It gets more of your customers and staff actually using your software. People who would have got stuck are shown how, or have the task done for them. You see where people struggle and whether your fixes worked. And your product can sell itself through interactive demos.",
   },
   {
-    question: "How is this different from a help widget or a tooltip tool?",
+    question: "Do we need developers?",
     answer:
-      "Ordinary help widgets explain the seven clicks. 3Guide can perform them. A user types “cancel my subscription” and the copilot navigates and clicks through the workflow itself, with the user watching every step. There's a browser automation engine underneath that drives the page the way a person would.",
+      "Only to add one line to your website. After that, your team builds everything without code. For tools you didn't build, like Salesforce, there's a browser extension instead.",
   },
   {
-    question: "Our UI changes constantly. Won't the guides break?",
+    question: "Do we have to use all four products?",
     answer:
-      "That's the hard problem in this market, and most tools silently rot. 3Guide identifies every element six different ways at once — ID, text, position, surroundings, appearance and more — so if one clue disappears the others still find it. When a tour does break, an AI inspects the changed page, works out where the button went, and repairs the walkthrough itself.",
+      "No. Each one works on its own, and every one is on the Free plan. Start with the problem you have today and add the others when you're ready.",
   },
   {
-    question: "Where does the AI get its answers?",
+    question: "How is 3Guide different from other tools?",
     answer:
-      "From your product specifically, not the open web. 3Guide builds a knowledge base from your site and docs and keeps it current, and a UI analyzer can read your interface to map every page and button in advance — so the assistant starts out already knowing your layout. You review and curate what it uses.",
-  },
-  {
-    question: "Is it safe to let an AI click things in our product?",
-    answer:
-      "The widget deliberately separates the two modes. A coloured badge and a different prompt tell the user whether they're asking how to do something or telling it to act. The copilot only performs supported actions, confirms sensitive steps, and runs in the user's own session with their permissions.",
-  },
-  {
-    question: "What do we actually get for the subscription?",
-    answer:
-      "Fewer support tickets, faster onboarding for new users and new staff, and hard data on exactly where your product confuses people. Beyond the widget you get the dashboard, analytics, a live support inbox, a browser extension, a UI analyzer, and automatic video walkthroughs.",
+      "Most tools do one job: an analytics tool shows where people drop off, a tour tool shows them around. 3Guide does both, and closes the loop. It spots the problem, helps fix it, and shows you whether the fix worked.",
   },
 ];
 
@@ -84,7 +64,7 @@ const jsonLd = {
   alternateName: ["3GuideAI", "3guideai", "GuideAI", "Guide AI"],
   applicationCategory: "BusinessApplication",
   description:
-    "AI-First Product Adoption Platform. Build in-app guides in minutes, keep them current automatically with AI-powered onboarding, friction analytics, and browser Copilot.",
+    "Digital adoption agent. Find where users struggle with product analytics, teach them with self-healing in-app guides, do tasks for them with an AI assistant, and sell and train with interactive demos — then prove each fix worked with a holdout group.",
   url: "https://www.3guideai.com",
   operatingSystem: "Web",
   offers: {
@@ -96,12 +76,13 @@ const jsonLd = {
   provider: { "@id": "https://www.3guideai.com/#organization" },
   sameAs: SAME_AS,
   featureList: [
-    "AI-powered in-app guides",
-    "Auto-healing product tours",
-    "Browser Copilot with RAG-powered Q&A",
-    "Friction analytics and user behavior tracking",
-    "AI-first support desk",
-    "User segmentation and targeting",
+    "Product analytics: funnels, retention, paths, web analytics",
+    "Session replay, error tracking, feature flags and experiments",
+    "Automatic problem detection with holdout-tested fixes",
+    "Self-healing in-app guides, help hints and announcements",
+    "AI assistant that calls your APIs and acts on the page",
+    "Interactive product demos with lead capture and SOP export",
+    "Browser extension for third-party apps",
   ],
 }; 
 
@@ -123,21 +104,11 @@ export default function Home() {
       <main className="min-h-screen bg-canvas">
         <Header />
         <HomeHero />
-        <StatBand />
         <ProblemSection />
-        <AudienceColumns />
-        <TrainingFormats />
         <FeatureTabs />
         <AdoptionLoop />
-        <CopilotSection />
-        <GrowthJourney />
-        <IndustriesSection />
-        <UseCasesSection />
-        <TrustSection />
-        <FaqSection
-          items={faqItems}
-          description="The questions buyers actually ask before installing 3Guide."
-        />
+        <WhoItsFor />
+        <FaqSection items={faqItems} />
         <CtaBanner />
         <Footer />
       </main>

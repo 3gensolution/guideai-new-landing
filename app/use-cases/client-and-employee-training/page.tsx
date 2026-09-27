@@ -4,7 +4,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { PillarStrip } from "@/components/marketing/pillar-strip";
+import { ProductStrip } from "@/components/marketing/product-strip";
 import {
   Container,
   Section,
@@ -19,15 +19,15 @@ const painSections = [
     eyebrow: "Employee enablement",
     title: "Train your team inside the tools they actually use",
     description:
-      "Build click-by-click walkthroughs that run right on top of your internal apps. New employees learn by doing guided step by step through real workflows, instead of sitting through a recording or reading a wiki that's already out of date.",
+      "Build click-by-click walkthroughs that run right on top of your internal apps. New employees learn by doing guided step by step through real workflows, instead of sitting through a recording or reading a wiki that's already out of date. With the browser extension, that includes tools you didn't build, like Salesforce.",
     bullets: [
-      "In-app guides that walk staff through real tasks",
+      "Guides on your own apps and third-party tools alike",
       "Self-updating steps that heal when the UI changes",
       "Role-based tours so each team sees only what they need",
     ],
     image: "/guidance.png",
     imageAlt: "An in-app training walkthrough running on an internal tool",
-    link: { href: "/guides", label: "Explore In-App Guides" },
+    link: { href: "/guides", label: "Explore Guidance" },
   },
   {
     quote:
@@ -40,7 +40,7 @@ const painSections = [
     bullets: [
       "Self-serve interactive demos, no live product needed",
       "AI-written tooltips and narration for every step",
-      "Share as a link, or embed in your help center",
+      "Share a link, embed it, or export a written SOP",
     ],
     image: "/guide-pro-img.png",
     imageAlt: "A client working through an interactive training demo",
@@ -179,7 +179,7 @@ export default function ClientEmployeeTrainingPage() {
         </Container>
       </Section>
 
-      <PillarStrip active="training" />
+      <ProductStrip />
       <FaqSection items={faqItems} title="Client & employee training, answered" />
       <CtaBanner
         title="Turn your product into its own training program"

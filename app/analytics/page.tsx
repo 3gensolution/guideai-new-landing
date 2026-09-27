@@ -1,87 +1,82 @@
 import Image from "next/image";
 import {
-  Activity,
-  Filter,
-  Gauge,
-  LineChart,
-  MousePointerClick,
-  Users,
+  CheckCircle2,
+  Layers,
+  Rocket,
+  Search,
+  TrendingUp,
+  Wand2,
 } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PageHero } from "@/components/marketing/page-hero";
-import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { PillarStrip } from "@/components/marketing/pillar-strip";
+import { ProductStrip } from "@/components/marketing/product-strip";
+import { CapabilityGrid } from "@/components/marketing/capability-grid";
 import {
   Container,
   Section,
   SectionHeading,
-  accentCycle,
-  accents,
 } from "@/components/marketing/primitives";
-import { cn } from "@/lib/utils";
 
-const capabilities = [
+const value = [
   {
-    icon: LineChart,
-    title: "Acquisition funnels",
+    icon: Search,
+    title: "Problems found for you",
     description:
-      "Visitors → signups → trials → conversions, tracked out of the box with period-over-period trends.",
+      "No digging through dashboards. 3Guide flags where people drop off, get confused or hit errors, starting with the most costly.",
   },
   {
-    icon: MousePointerClick,
-    title: "Friction signals",
+    icon: Wand2,
+    title: "A suggested fix for each one",
     description:
-      "Rage clicks, dead ends, and hesitation points surfaced automatically before users write in about them.",
+      "For every problem it drafts a fix, like a walkthrough or a tip. Your team reviews it before anything goes live.",
   },
   {
-    icon: Users,
-    title: "Visitor explorer",
+    icon: CheckCircle2,
+    title: "Proof that it worked",
     description:
-      "Drill into sessions by source, device, and location to see what real users actually do.",
+      "Each fix is tested with real users against a comparison group, so you see the true impact, not a guess.",
+  },
+];
+
+const audience = [
+  {
+    icon: Rocket,
+    title: "SaaS & subscription businesses",
+    description:
+      "Turn more trials into paying customers, and catch the moments that lead to churn.",
   },
   {
-    icon: Gauge,
-    title: "Guide performance",
+    icon: TrendingUp,
+    title: "Services with complex sign-ups",
     description:
-      "Completion rates, drop-off steps, and time-to-value for every guide you publish.",
+      "Fintech, insurance and online services: see where applicants give up, and win them back.",
   },
   {
-    icon: Activity,
-    title: "Feature adoption",
+    icon: Layers,
+    title: "Teams tired of juggling tools",
     description:
-      "Know which features get used, which get ignored, and which segments never find them.",
-  },
-  {
-    icon: Filter,
-    title: "Segmentation",
-    description:
-      "Slice every metric by plan, segment, or behavior to target guidance where it moves the needle.",
+      "Product analytics, session recordings and A/B testing in one place, instead of three subscriptions.",
   },
 ];
 
 const faqItems = [
   {
-    question: "Do I need to instrument events myself?",
+    question: "Do we need a data team to use it?",
     answer:
-      "Core funnel sessions, signups, trials, guide interactions work automatically from the same snippet that powers guides. You can add custom events when you want more granularity.",
+      "No. 3Guide finds the problems and explains them in plain language. You don't need to build reports or write queries to get value.",
   },
   {
-    question: "How is this different from a general analytics tool?",
+    question: "Can we use Analytics on its own?",
     answer:
-      "3Guide analytics are built around adoption: friction points, guide completion, and time-to-value. And because guides live in the same platform, you can go from spotting a drop-off to shipping a fix in minutes without switching tools.",
+      "Yes. It works as a complete analytics tool by itself. Add Guidance and the suggested fixes can go live in your product straight away.",
   },
   {
-    question: "Can I export the data?",
+    question: "How do you know a fix really worked?",
     answer:
-      "Yes the dashboard supports one-click export, and paid plans include configurable data retention.",
-  },
-  {
-    question: "Is user data handled safely?",
-    answer:
-      "3Guide collects product interaction data, not page content. Data is scoped to your workspace and covered by plan-level retention controls.",
+      "A small share of users don't see the fix, and 3Guide compares the two groups. If the fix helps, it rolls out to everyone. If it doesn't, it's removed.",
   },
 ];
 
@@ -91,19 +86,19 @@ export default function AnalyticsPage() {
       <Header />
 
       <PageHero
-        badge="Friction Analytics"
+        badge="Analytics"
         title={
           <>
-            See where users <span className="text-[#f0c9a0]">get stuck</span>{" "}
-            then fix it in-product
+            See where customers give up.{" "}
+            <span className="text-[#f0c9a0]">Fix it, and prove it worked.</span>
           </>
         }
-        description="3Guide tracks how real users move through your product where they hesitate, drop off, or succeed and pairs every insight with the tool to act on it: a guide, an answer, or a copilot task."
+        description="3Guide shows you the exact moments people get stuck in your product, suggests how to fix each one, and tells you whether the fix actually helped."
       >
-        <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-2xl shadow-purple-950/10 ring-1 ring-slate-900/5">
+        <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/40">
           <Image
             src="/friction-img.png"
-            alt="3Guide executive overview with visitor, signup, and conversion metrics"
+            alt="3Guide Analytics showing where users drop off"
             width={1600}
             height={860}
             className="h-auto w-full"
@@ -112,69 +107,30 @@ export default function AnalyticsPage() {
         </div>
       </PageHero>
 
-      <Section>
-        <Container className="space-y-24">
-          <FeatureRow
-            eyebrow="Understand"
-            accent="cyan"
-            title="Every visitor, every session, every stumble"
-            description="The visitor explorer breaks traffic down by source, device, location, and behavior lets you replay how sessions unfolded, so 'users are confused' becomes 'users can't find the export button.'"
-            bullets={[
-              "Session timelines with landing pages and feature usage",
-              "Top sources, devices, and peak hours at a glance",
-              "Filter everything down to a single confused user",
-            ]}
-            image="/session-img.png"
-            imageAlt="3Guide visitors explorer with sessions, sources, and device breakdowns"
-          />
-          <FeatureRow
-            eyebrow="Act"
-            accent="violet"
-            title="Close the loop: insight → guide → lift"
-            description="Analytics that live next to your guides change what you do with them. Spot the drop-off, ship a targeted guide to that exact step, and watch the funnel move all in one place."
-            bullets={[
-              "Deploy guides directly against friction points",
-              "Measure completion and conversion lift per guide",
-              "Prove ROI with before/after funnel comparisons",
-            ]}
-            image="/session-id.png"
-            imageAlt="Funnel analysis showing where guides lift conversion"
-            reverse
-          />
-        </Container>
-      </Section>
-
-      <Section className="bg-slate-50">
+      <Section className="bg-canvas-deep">
         <Container>
           <SectionHeading
-            eyebrow="Capabilities"
-            title="Adoption analytics, not vanity metrics"
+            eyebrow="What it does for you"
+            title="Stop guessing why customers leave"
             align="center"
           />
-          <div data-stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((cap, i) => (
-              <div
-                key={cap.title}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-950/10"
-              >
-                <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl", accents[accentCycle[i % accentCycle.length]].tile)}>
-                  <cap.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 text-base font-semibold text-slate-900">
-                  {cap.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  {cap.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          <CapabilityGrid items={value} className="mx-auto mt-14 max-w-5xl" />
         </Container>
       </Section>
 
-      <PillarStrip active="adoption" />
-      <FaqSection items={faqItems} title="Friction analytics, answered" />
-      <CtaBanner title="Find your funnel's leaks this week" />
+      <Section className="bg-canvas">
+        <Container>
+          <SectionHeading eyebrow="Who it's for" title="Who gets the most from it" align="center" />
+          <CapabilityGrid items={audience} className="mx-auto mt-12 max-w-5xl" />
+        </Container>
+      </Section>
+
+      <ProductStrip active="analytics" />
+      <FaqSection items={faqItems} title="Analytics, answered" />
+      <CtaBanner
+        title="Find out where customers get stuck"
+        description="Analytics is on the Free plan, so you can start today."
+      />
       <Footer />
     </main>
   );

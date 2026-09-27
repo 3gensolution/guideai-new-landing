@@ -4,7 +4,7 @@ import { PageHero } from "@/components/marketing/page-hero";
 import { FeatureRow } from "@/components/marketing/feature-row";
 import { FaqSection } from "@/components/marketing/faq";
 import { CtaBanner } from "@/components/marketing/cta-banner";
-import { PillarStrip } from "@/components/marketing/pillar-strip";
+import { ProductStrip } from "@/components/marketing/product-strip";
 import {
   Container,
   Section,
@@ -16,18 +16,18 @@ const painSections = [
     quote:
       "“We want real answers from an AI that knows our product, not another canned-response chatbot.”",
     accent: "violet" as const,
-    eyebrow: "AI assistant",
+    eyebrow: "Grounded answers",
     title: "Answers grounded in your product, not the open web",
     description:
-      "3Guide builds a knowledge base automatically by scanning your website and docs, and keeps it fresh. The assistant answers from your features, your terminology, your screenshots and says so when it doesn't know.",
+      "3Guide scans your app to build a knowledge base of its pages and controls, and you add the documents that matter. The chat answers from your features and your terminology, and asks which one you meant when a question is ambiguous.",
     bullets: [
-      "Knowledge base auto-built and auto-refreshed",
-      "Answers cite your own content",
-      "Curate and extend sources whenever you want",
+      "Knowledge base built from a scan of your app",
+      "Upload your own documents on top",
+      "Asks for clarification instead of guessing",
     ],
     image: "/assistant-img.png",
     imageAlt: "The 3Guide assistant answering from the product knowledge base",
-    link: { href: "/copilot", label: "Meet the AI assistant" },
+    link: { href: "/assistant", label: "Meet the AI Assistant" },
   },
   {
     quote:
@@ -36,10 +36,10 @@ const painSections = [
     eyebrow: "Guided deflection",
     title: "Don't describe the fix, walk them through it",
     description:
-      "For how-do-I questions, the assistant doesn't paste a doc link. It offers a live walkthrough that highlights each step in the real UI or hands the task to the copilot to complete outright.",
+      "For how-do-I questions, the chat doesn't paste a doc link. It builds a live walkthrough that highlights each step in the real UI. And when the user just wants it done, the AI Assistant calls your API and does it.",
     bullets: [
-      "Walkthroughs generated from natural-language questions",
-      "Copilot completes routine tasks on request",
+      "Walkthroughs generated from the user's own question",
+      "The AI Assistant completes routine tasks through your APIs",
       "Repetitive tickets stop reaching the queue at all",
     ],
     image: "/guidance.png",
@@ -70,12 +70,12 @@ const faqItems = [
   {
     question: "How is this different from adding a chatbot to our site?",
     answer:
-      "Generic chatbots answer from generic knowledge. 3Guide answers from a knowledge base built from your own product, can show users the steps live in your UI, and can even complete the task via the browser copilot, three levels of deflection instead of one.",
+      "Generic chatbots answer from generic knowledge. 3Guide answers from a knowledge base built from your own product, shows users the steps live in your UI, and can complete the task outright through your APIs. Then Analytics tells you which questions nobody managed to resolve, so you can fix the cause.",
   },
   {
     question: "What keeps the knowledge base accurate?",
     answer:
-      "It's rebuilt from your site and docs automatically, so shipped changes flow into answers. You can also curate entries manually pin canonical answers, exclude pages, or add internal knowledge.",
+      "It comes from a scan of your app plus the documents you upload. Re-scan after a release and the changes flow into answers, and guides whose steps broke are repaired by auto-heal.",
   },
   {
     question: "Will users get stuck talking to a bot when they need a human?",
@@ -85,7 +85,7 @@ const faqItems = [
   {
     question: "How do we measure the deflection?",
     answer:
-      "The dashboard tracks AI-resolved conversations versus escalations, repeat question topics, and ticket volume over time so the reduction is a number, not a feeling.",
+      "With 3Guide Analytics on, you can see which guides and answers users completed, and requests nobody could resolve are grouped as intent gaps, so you know exactly what to fix next.",
   },
 ];
 
@@ -102,7 +102,7 @@ export default function SupportTicketReductionPage() {
             <span className="text-[#f0c9a0]">Deflect it forever.</span>
           </>
         }
-        description="Your support queue is full of questions your product should answer itself. 3Guide deflects them in-app with AI answers, live walkthroughs, and a copilot that does the task, so your team only sees what truly needs a human."
+        description="Your support queue is full of questions your product should answer itself. 3Guide deflects them in-app with grounded answers, live walkthroughs, and an AI Assistant that simply does the task, so your team only sees what truly needs a human."
       />
 
       <Section className="pt-0">
@@ -132,25 +132,30 @@ export default function SupportTicketReductionPage() {
         <Container>
           <SectionHeading
             eyebrow="The ladder"
-            title="Three levels of deflection before a ticket exists"
+            title="Four levels of deflection before a ticket exists"
             align="center"
           />
-          <div data-stagger className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+          <div data-stagger className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 step: "01",
                 title: "Answer",
-                text: "The assistant resolves the question instantly from your knowledge base.",
+                text: "The chat answers from your app's knowledge base and your documents.",
               },
               {
                 step: "02",
                 title: "Show",
-                text: "A live walkthrough highlights each step in your real UI.",
+                text: "Guidance builds a live walkthrough that highlights each step in your real UI.",
               },
               {
                 step: "03",
                 title: "Do",
-                text: "The copilot completes the task for the user, with their confirmation.",
+                text: "The AI Assistant completes the task through your API, with the user's confirmation.",
+              },
+              {
+                step: "04",
+                title: "Fix",
+                text: "Analytics surfaces what users still can't do, so you remove the cause.",
               },
             ].map((item) => (
               <div
@@ -172,7 +177,7 @@ export default function SupportTicketReductionPage() {
         </Container>
       </Section>
 
-      <PillarStrip active="support" />
+      <ProductStrip />
       <FaqSection items={faqItems} title="Ticket reduction, answered" />
       <CtaBanner
         title="Shrink the queue without shrinking the team"
