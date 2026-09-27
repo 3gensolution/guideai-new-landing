@@ -119,7 +119,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${figtree.variable} ${geist.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${figtree.variable} ${geist.variable} ${geistMono.variable}`}
+      // On /docs, Fumadocs' theme script sets the theme class and
+      // color-scheme on <html> before React hydrates. This only silences
+      // this element's own attributes, not its children.
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased">
         {/* <ScrollFx /> */}
         {children}

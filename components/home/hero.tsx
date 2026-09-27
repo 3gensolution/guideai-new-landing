@@ -4,13 +4,26 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight } from "lucide-react";
+import {
+  BarChart3,
+  FileText,
+  MessageCircle,
+  MonitorPlay,
+  Sparkles,
+} from "lucide-react";
 import { ContactFormDialog } from "@/components/contact-form-dialog";
 import { DemoEmbed } from "@/components/marketing/demo-embed";
 import { Container } from "@/components/marketing/primitives";
 import { HeroStreaks } from "@/components/marketing/hero-streaks";
 import { DASHBOARD_URL } from "@/lib/site";
-import { PRODUCTS } from "@/lib/products";
+
+const capabilities = [
+  { label: "Guidance", href: "/guides", icon: Sparkles },
+  { label: "Ask 3Guide", href: "/assistant", icon: MessageCircle },
+  { label: "Guide Pro", href: "/guide-pro", icon: MonitorPlay },
+  { label: "Documentation", href: "/docs", icon: FileText },
+  { label: "Analytics", href: "/analytics", icon: BarChart3 },
+];
 
 export function HomeHero() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -90,18 +103,13 @@ export function HomeHero() {
 
           <h1 className="font-display mt-7 text-display text-white">
             <span className="block overflow-hidden pb-[0.1em]">
-              <span data-hero="line" className="block text-[#f0c9a0]">
-                An expert beside
+              <span data-hero="line" className="block text-balance text-[#f0c9a0]">
+                Software should teach itself.
               </span>
             </span>
             <span className="block overflow-hidden pb-[0.1em]">
-              <span data-hero="line" className="block text-[#f0c9a0]">
-                every user.
-              </span>
-            </span>
-            <span className="block overflow-hidden pb-[0.1em]">
-              <span data-hero="line" className="block">
-                In every product.
+              <span data-hero="line" className="block text-balance">
+                3Guide makes that possible.
               </span>
             </span>
           </h1>
@@ -110,9 +118,11 @@ export function HomeHero() {
             data-hero="sub"
             className="mx-auto mt-8 max-w-2xl text-pretty text-lead text-slate-300"
           >
-            3Guide is an AI agent that knows your software inside out. It shows
-            your customers and staff how, does the task when they&apos;d rather
-            not learn, and tells you where they struggle.
+            3Guide is the intelligence layer for software adoption. It
+            understands what users are trying to do, guides them step by step,
+            answers questions in context, turns workflows into reusable
+            documentation and product demos with Guide Pro, and reveals where
+            adoption breaks down through analytics.
           </p>
 
           <div
@@ -135,35 +145,23 @@ export function HomeHero() {
             </button>
           </div>
 
-          {/* The product chain, like a capture → video → guide strip: the four
-              products in the order a problem travels through them. */}
-          <div data-hero="rating" className="mt-12">
-            <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-3 xl:-mx-28 xl:flex-nowrap">
-              {PRODUCTS.map((p, i) => (
-                <li key={p.key} className="flex items-center gap-2">
-                  <Link
-                    href={p.href}
-                    className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm text-slate-200 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
-                  >
-                    <p.icon className="h-4 w-4 text-[#f0c9a0]" />
-                    <span className="font-medium">{p.name}</span>
-                    <span className="hidden text-slate-400 xl:inline">
-                      · {p.job}
-                    </span>
-                  </Link>
-                  {i < PRODUCTS.length - 1 && (
-                    <ArrowRight
-                      aria-hidden
-                      className="h-4 w-4 shrink-0 text-slate-500 max-sm:hidden"
-                    />
-                  )}
-                </li>
-              ))}
-            </ol>
-            <p className="mt-5 text-sm text-slate-400">
-              Use one, or all four. Free to start.
-            </p>
-          </div>
+          {/* What 3Guide does, one chip per capability. */}
+          <ul
+            data-hero="rating"
+            className="mt-12 flex flex-wrap items-center justify-center gap-3"
+          >
+            {capabilities.map((c) => (
+              <li key={c.label}>
+                <Link
+                  href={c.href}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-white/35 hover:bg-white/10 hover:text-white"
+                >
+                  <c.icon className="h-4 w-4 text-[#f0c9a0]" />
+                  {c.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
 

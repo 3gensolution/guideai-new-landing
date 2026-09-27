@@ -1,0 +1,2234 @@
+{
+  "framework": "nextjs-app-router",
+  "routes": [
+    {
+      "path": "/",
+      "component_name": "HomePage",
+      "source_file": "app/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/analytics",
+      "component_name": "AnalyticsPage",
+      "source_file": "app/analytics/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/assistant",
+      "component_name": "AssistantPage",
+      "source_file": "app/assistant/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/docs/:slug*",
+      "component_name": "SlugPage",
+      "source_file": "app/docs/[[...slug]]/page.tsx",
+      "dynamic_segments": [
+        "slug"
+      ],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/guide-pro",
+      "component_name": "GuideProPage",
+      "source_file": "app/guide-pro/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/guides",
+      "component_name": "GuidesPage",
+      "source_file": "app/guides/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/policy",
+      "component_name": "PolicyPage",
+      "source_file": "app/policy/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/pricing",
+      "component_name": "PricingPage",
+      "source_file": "app/pricing/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/studio",
+      "component_name": "StudioPage",
+      "source_file": "app/studio/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/support-desk",
+      "component_name": "SupportDeskPage",
+      "source_file": "app/support-desk/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/terms",
+      "component_name": "TermsPage",
+      "source_file": "app/terms/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/use-cases/client-and-employee-training",
+      "component_name": "ClientAndEmployeeTrainingPage",
+      "source_file": "app/use-cases/client-and-employee-training/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/use-cases/support-ticket-reduction",
+      "component_name": "SupportTicketReductionPage",
+      "source_file": "app/use-cases/support-ticket-reduction/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    },
+    {
+      "path": "/use-cases/user-onboarding",
+      "component_name": "UserOnboardingPage",
+      "source_file": "app/use-cases/user-onboarding/page.tsx",
+      "dynamic_segments": [],
+      "auth_required": false,
+      "headings": []
+    }
+  ],
+  "elements": [
+    {
+      "id": "000aa46e-1cbe-4d45-847e-8cd629bf1ecb",
+      "route_path": "/guide-pro",
+      "tag": "link",
+      "text": "Build a demo free",
+      "component_name": "GuideProPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+      "accessible_name": "Build a demo free",
+      "parent_label": "Demos that win customers. Guides that train teams.",
+      "section_label": "Demos that win customers. Guides that train teams.",
+      "enabled": true,
+      "href": "expression",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "Build a demo free",
+          "variants": [
+            "Build a demo free",
+            "build a demo free"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "link",
+          "dom_depth": 0,
+          "score": 15
+        },
+        "tier4_context": {
+          "parent_text": "Demos that win customers. Guides that train teams.",
+          "nearest_heading": "Demos that win customers. Guides that train teams.",
+          "score": 15
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 60
+      }
+    },
+    {
+      "id": "859eb6b6-da07-480f-ad11-b92c04cb8ec9",
+      "route_path": "/guide-pro",
+      "tag": "link",
+      "text": "See pricing",
+      "component_name": "GuideProPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+      "accessible_name": "See pricing",
+      "parent_label": "Demos that win customers. Guides that train teams.",
+      "section_label": "Demos that win customers. Guides that train teams.",
+      "enabled": true,
+      "href": "/pricing",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "See pricing",
+          "variants": [
+            "See pricing",
+            "see pricing"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "link",
+          "dom_depth": 0,
+          "score": 15
+        },
+        "tier4_context": {
+          "parent_text": "Demos that win customers. Guides that train teams.",
+          "nearest_heading": "Demos that win customers. Guides that train teams.",
+          "score": 15
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 60
+      }
+    },
+    {
+      "id": "16e8b53c-2222-4f5c-8f88-0d41f23b1cf5",
+      "route_path": "/policy",
+      "tag": "a",
+      "text": "Skip to content",
+      "component_name": "PolicyPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+      "accessible_name": "Skip to content",
+      "selector": "a[href=\"#main\"]",
+      "enabled": true,
+      "href": "#main",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "Skip to content",
+          "variants": [
+            "Skip to content",
+            "skip to content"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "a",
+          "role": "link",
+          "dom_depth": 0,
+          "score": 25
+        },
+        "tier4_context": {
+          "score": 0
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 55
+      }
+    },
+    {
+      "id": "e521fe21-4295-4fd9-94c5-0263c2c79293",
+      "route_path": "/policy",
+      "tag": "a",
+      "text": "info@3guideai.com",
+      "component_name": "PolicyPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+      "accessible_name": "info@3guideai.com",
+      "parent_label": "1. Information We Collect",
+      "section_label": "5. Data Retention",
+      "selector": "a[href=\"mailto:info@3guideai.com\"]",
+      "enabled": true,
+      "href": "mailto:info@3guideai.com",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "info@3guideai.com",
+          "variants": [
+            "info@3guideai.com"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "a",
+          "role": "link",
+          "dom_depth": 0,
+          "score": 25
+        },
+        "tier4_context": {
+          "parent_text": "1. Information We Collect",
+          "nearest_heading": "5. Data Retention",
+          "score": 15
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 70
+      }
+    },
+    {
+      "id": "75feb7e0-f688-412f-b56f-715b44e32063",
+      "route_path": "/policy",
+      "tag": "link",
+      "text": "Docs",
+      "component_name": "PolicyPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+      "accessible_name": "Docs",
+      "parent_label": "1. Information We Collect",
+      "section_label": "12. Contact Us",
+      "enabled": true,
+      "href": "/docs",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "Docs",
+          "variants": [
+            "Docs",
+            "docs"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "link",
+          "dom_depth": 0,
+          "score": 15
+        },
+        "tier4_context": {
+          "parent_text": "1. Information We Collect",
+          "nearest_heading": "12. Contact Us",
+          "score": 15
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 60
+      }
+    },
+    {
+      "id": "d6d04314-e28a-4f4d-baa6-995a37d6ad02",
+      "route_path": "/pricing",
+      "tag": "contactformdialog",
+      "component_name": "PricingPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+      "enabled": true,
+      "action_type": "click",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "variants": [],
+          "score": 0
+        },
+        "tier3_structural": {
+          "tag": "contactformdialog",
+          "dom_depth": 0,
+          "score": 15
+        },
+        "tier4_context": {
+          "score": 0
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 15
+      }
+    },
+    {
+      "id": "7dd38455-f498-47ff-98ae-de0e1563b52e",
+      "route_path": "/pricing",
+      "tag": "button",
+      "text": "Retry",
+      "component_name": "PricingPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+      "accessible_name": "Retry",
+      "section_label": "Find the right plan for your team",
+      "enabled": true,
+      "action_type": "click",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "Retry",
+          "variants": [
+            "Retry",
+            "retry"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "button",
+          "role": "button",
+          "dom_depth": 0,
+          "score": 25
+        },
+        "tier4_context": {
+          "nearest_heading": "Find the right plan for your team",
+          "score": 15
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 70
+      }
+    },
+    {
+      "id": "5496bcaf-8465-4e72-9de2-8f2a36355b7f",
+      "route_path": "/pricing",
+      "tag": "button",
+      "component_name": "PricingPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+      "enabled": true,
+      "action_type": "click",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "variants": [],
+          "score": 0
+        },
+        "tier3_structural": {
+          "tag": "button",
+          "role": "button",
+          "dom_depth": 0,
+          "score": 25
+        },
+        "tier4_context": {
+          "score": 0
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 25
+      }
+    },
+    {
+      "id": "7e04beca-edea-404c-b5b2-3f638d450d2b",
+      "route_path": "/pricing",
+      "tag": "link",
+      "component_name": "PricingPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+      "enabled": true,
+      "href": "expression",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "variants": [],
+          "score": 0
+        },
+        "tier3_structural": {
+          "tag": "link",
+          "dom_depth": 0,
+          "score": 15
+        },
+        "tier4_context": {
+          "score": 0
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 15
+      }
+    },
+    {
+      "id": "b2ef0072-5535-4258-84c2-7f3bb9d6b3be",
+      "route_path": "/studio",
+      "tag": "link",
+      "text": "Download Guide Studio — free",
+      "component_name": "StudioPage",
+      "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx",
+      "accessible_name": "Download Guide Studio — free",
+      "parent_label": "Record your screen. Ship a polished video.",
+      "section_label": "Record your screen. Ship a polished video.",
+      "enabled": true,
+      "href": "#download",
+      "action_type": "navigate",
+      "fingerprint": {
+        "tier1_stable": {
+          "score": 0
+        },
+        "tier2_text": {
+          "text_content": "Download Guide Studio — free",
+          "variants": [
+            "Download Guide Studio — free",
+            "download guide studio — free"
+          ],
+          "score": 30
+        },
+        "tier3_structural": {
+          "tag": "link",
+          "dom_depth": 0,
+          "score": 15
+        },
+        "tier4_context": {
+          "parent_text": "Record your screen. Ship a polished video.",
+          "nearest_heading": "Record your screen. Ship a polished video.",
+          "score": 15
+        },
+        "tier5_position": {
+          "score": 0
+        },
+        "total_score": 60
+      }
+    }
+  ],
+  "ui_map": {
+    "version": 1,
+    "framework": "nextjs-app-router",
+    "root": {
+      "id": "app",
+      "kind": "app",
+      "label": "Application",
+      "metadata": {
+        "framework": "nextjs-app-router"
+      },
+      "children": [
+        {
+          "id": "route",
+          "kind": "route",
+          "label": "HomePage",
+          "route_path": "/",
+          "component_name": "HomePage",
+          "source_file": "app/page.tsx",
+          "metadata": {
+            "path": "/",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-analytics",
+          "kind": "route",
+          "label": "AnalyticsPage",
+          "route_path": "/analytics",
+          "component_name": "AnalyticsPage",
+          "source_file": "app/analytics/page.tsx",
+          "metadata": {
+            "path": "/analytics",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-assistant",
+          "kind": "route",
+          "label": "AssistantPage",
+          "route_path": "/assistant",
+          "component_name": "AssistantPage",
+          "source_file": "app/assistant/page.tsx",
+          "metadata": {
+            "path": "/assistant",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-docs-slug",
+          "kind": "route",
+          "label": "SlugPage",
+          "route_path": "/docs/:slug*",
+          "component_name": "SlugPage",
+          "source_file": "app/docs/[[...slug]]/page.tsx",
+          "metadata": {
+            "path": "/docs/:slug*",
+            "dynamic_segments": [
+              "slug"
+            ],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-guide-pro",
+          "kind": "route",
+          "label": "GuideProPage",
+          "route_path": "/guide-pro",
+          "component_name": "GuideProPage",
+          "source_file": "app/guide-pro/page.tsx",
+          "metadata": {
+            "path": "/guide-pro",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": [
+              {
+                "from_route_path": "/guide-pro",
+                "from_route_url": "/guide-pro",
+                "to_route_path": "/pricing",
+                "to_route_url": "/pricing",
+                "from_node_id": "route-guide-pro-guide-pro",
+                "from_node_kind": "route",
+                "to_node_id": "route-pricing-pricing",
+                "to_node_kind": "route",
+                "kind": "navigates_to",
+                "scope": "route",
+                "label": "See pricing",
+                "metadata": {
+                  "element_id": "859eb6b6-da07-480f-ad11-b92c04cb8ec9"
+                }
+              }
+            ]
+          },
+          "children": [
+            {
+              "id": "group-guide-pro-section-demos-that-win-customers-guides-that-train-teams",
+              "kind": "section",
+              "label": "Demos that win customers. Guides that train teams.",
+              "route_path": "/guide-pro",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+              "children": [
+                {
+                  "id": "element-guide-pro-000aa46e-1cbe-4d45-847e-8cd629bf1ecb",
+                  "kind": "element",
+                  "label": "Build a demo free",
+                  "route_path": "/guide-pro",
+                  "component_name": "GuideProPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+                  "element_id": "000aa46e-1cbe-4d45-847e-8cd629bf1ecb",
+                  "action_type": "navigate",
+                  "text": "Build a demo free",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "expression",
+                    "accessible_name": "Build a demo free",
+                    "parent_label": "Demos that win customers. Guides that train teams.",
+                    "section_label": "Demos that win customers. Guides that train teams.",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                },
+                {
+                  "id": "element-guide-pro-859eb6b6-da07-480f-ad11-b92c04cb8ec9",
+                  "kind": "element",
+                  "label": "See pricing",
+                  "route_path": "/guide-pro",
+                  "component_name": "GuideProPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+                  "element_id": "859eb6b6-da07-480f-ad11-b92c04cb8ec9",
+                  "action_type": "navigate",
+                  "text": "See pricing",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "/pricing",
+                    "accessible_name": "See pricing",
+                    "parent_label": "Demos that win customers. Guides that train teams.",
+                    "section_label": "Demos that win customers. Guides that train teams.",
+                    "enabled": true,
+                    "fingerprint_score": 60,
+                    "linked_route_path": "/pricing",
+                    "linked_route_origin": ""
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "route-guides",
+          "kind": "route",
+          "label": "GuidesPage",
+          "route_path": "/guides",
+          "component_name": "GuidesPage",
+          "source_file": "app/guides/page.tsx",
+          "metadata": {
+            "path": "/guides",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-policy",
+          "kind": "route",
+          "label": "PolicyPage",
+          "route_path": "/policy",
+          "component_name": "PolicyPage",
+          "source_file": "app/policy/page.tsx",
+          "metadata": {
+            "path": "/policy",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": [
+            {
+              "id": "group-policy-navigation-5-data-retention",
+              "kind": "navigation",
+              "label": "5. Data Retention",
+              "route_path": "/policy",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+              "children": [
+                {
+                  "id": "element-policy-a-href-mailto-info-3guideai-com",
+                  "kind": "element",
+                  "label": "info@3guideai.com",
+                  "route_path": "/policy",
+                  "component_name": "PolicyPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+                  "selector": "a[href=\"mailto:info@3guideai.com\"]",
+                  "element_id": "e521fe21-4295-4fd9-94c5-0263c2c79293",
+                  "action_type": "navigate",
+                  "text": "info@3guideai.com",
+                  "metadata": {
+                    "tag": "a",
+                    "href": "mailto:info@3guideai.com",
+                    "accessible_name": "info@3guideai.com",
+                    "parent_label": "1. Information We Collect",
+                    "section_label": "5. Data Retention",
+                    "enabled": true,
+                    "fingerprint_score": 70
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-policy-navigation-policypage",
+              "kind": "navigation",
+              "label": "PolicyPage",
+              "route_path": "/policy",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+              "children": [
+                {
+                  "id": "element-policy-a-href-main",
+                  "kind": "element",
+                  "label": "Skip to content",
+                  "route_path": "/policy",
+                  "component_name": "PolicyPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+                  "selector": "a[href=\"#main\"]",
+                  "element_id": "16e8b53c-2222-4f5c-8f88-0d41f23b1cf5",
+                  "action_type": "navigate",
+                  "text": "Skip to content",
+                  "metadata": {
+                    "tag": "a",
+                    "href": "#main",
+                    "accessible_name": "Skip to content",
+                    "enabled": true,
+                    "fingerprint_score": 55
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-policy-section-12-contact-us",
+              "kind": "section",
+              "label": "12. Contact Us",
+              "route_path": "/policy",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+              "children": [
+                {
+                  "id": "element-policy-75feb7e0-f688-412f-b56f-715b44e32063",
+                  "kind": "element",
+                  "label": "Docs",
+                  "route_path": "/policy",
+                  "component_name": "PolicyPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+                  "element_id": "75feb7e0-f688-412f-b56f-715b44e32063",
+                  "action_type": "navigate",
+                  "text": "Docs",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "/docs",
+                    "accessible_name": "Docs",
+                    "parent_label": "1. Information We Collect",
+                    "section_label": "12. Contact Us",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "route-pricing",
+          "kind": "route",
+          "label": "PricingPage",
+          "route_path": "/pricing",
+          "component_name": "PricingPage",
+          "source_file": "app/pricing/page.tsx",
+          "metadata": {
+            "path": "/pricing",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": [
+            {
+              "id": "group-pricing-section-find-the-right-plan-for-your-team",
+              "kind": "section",
+              "label": "Find the right plan for your team",
+              "route_path": "/pricing",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+              "children": [
+                {
+                  "id": "element-pricing-7dd38455-f498-47ff-98ae-de0e1563b52e",
+                  "kind": "element",
+                  "label": "Retry",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "7dd38455-f498-47ff-98ae-de0e1563b52e",
+                  "action_type": "click",
+                  "text": "Retry",
+                  "metadata": {
+                    "tag": "button",
+                    "accessible_name": "Retry",
+                    "section_label": "Find the right plan for your team",
+                    "enabled": true,
+                    "fingerprint_score": 70
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-pricing-component-pricingpage",
+              "kind": "component",
+              "label": "PricingPage",
+              "route_path": "/pricing",
+              "component_name": "PricingPage",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+              "children": [
+                {
+                  "id": "element-pricing-d6d04314-e28a-4f4d-baa6-995a37d6ad02",
+                  "kind": "element",
+                  "label": "contactformdialog",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "d6d04314-e28a-4f4d-baa6-995a37d6ad02",
+                  "action_type": "click",
+                  "metadata": {
+                    "tag": "contactformdialog",
+                    "enabled": true,
+                    "fingerprint_score": 15
+                  },
+                  "children": []
+                },
+                {
+                  "id": "element-pricing-5496bcaf-8465-4e72-9de2-8f2a36355b7f",
+                  "kind": "element",
+                  "label": "button",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "5496bcaf-8465-4e72-9de2-8f2a36355b7f",
+                  "action_type": "click",
+                  "metadata": {
+                    "tag": "button",
+                    "enabled": true,
+                    "fingerprint_score": 25
+                  },
+                  "children": []
+                },
+                {
+                  "id": "element-pricing-7e04beca-edea-404c-b5b2-3f638d450d2b",
+                  "kind": "element",
+                  "label": "expression",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "7e04beca-edea-404c-b5b2-3f638d450d2b",
+                  "action_type": "navigate",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "expression",
+                    "enabled": true,
+                    "fingerprint_score": 15
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "route-studio",
+          "kind": "route",
+          "label": "StudioPage",
+          "route_path": "/studio",
+          "component_name": "StudioPage",
+          "source_file": "app/studio/page.tsx",
+          "metadata": {
+            "path": "/studio",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": [
+            {
+              "id": "group-studio-section-record-your-screen-ship-a-polished-video",
+              "kind": "section",
+              "label": "Record your screen. Ship a polished video.",
+              "route_path": "/studio",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx",
+              "children": [
+                {
+                  "id": "element-studio-b2ef0072-5535-4258-84c2-7f3bb9d6b3be",
+                  "kind": "element",
+                  "label": "Download Guide Studio — free",
+                  "route_path": "/studio",
+                  "component_name": "StudioPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx",
+                  "element_id": "b2ef0072-5535-4258-84c2-7f3bb9d6b3be",
+                  "action_type": "navigate",
+                  "text": "Download Guide Studio — free",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "#download",
+                    "accessible_name": "Download Guide Studio — free",
+                    "parent_label": "Record your screen. Ship a polished video.",
+                    "section_label": "Record your screen. Ship a polished video.",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "route-support-desk",
+          "kind": "route",
+          "label": "SupportDeskPage",
+          "route_path": "/support-desk",
+          "component_name": "SupportDeskPage",
+          "source_file": "app/support-desk/page.tsx",
+          "metadata": {
+            "path": "/support-desk",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-terms",
+          "kind": "route",
+          "label": "TermsPage",
+          "route_path": "/terms",
+          "component_name": "TermsPage",
+          "source_file": "app/terms/page.tsx",
+          "metadata": {
+            "path": "/terms",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-use-cases-client-and-employee-training",
+          "kind": "route",
+          "label": "ClientAndEmployeeTrainingPage",
+          "route_path": "/use-cases/client-and-employee-training",
+          "component_name": "ClientAndEmployeeTrainingPage",
+          "source_file": "app/use-cases/client-and-employee-training/page.tsx",
+          "metadata": {
+            "path": "/use-cases/client-and-employee-training",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-use-cases-support-ticket-reduction",
+          "kind": "route",
+          "label": "SupportTicketReductionPage",
+          "route_path": "/use-cases/support-ticket-reduction",
+          "component_name": "SupportTicketReductionPage",
+          "source_file": "app/use-cases/support-ticket-reduction/page.tsx",
+          "metadata": {
+            "path": "/use-cases/support-ticket-reduction",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        },
+        {
+          "id": "route-use-cases-user-onboarding",
+          "kind": "route",
+          "label": "UserOnboardingPage",
+          "route_path": "/use-cases/user-onboarding",
+          "component_name": "UserOnboardingPage",
+          "source_file": "app/use-cases/user-onboarding/page.tsx",
+          "metadata": {
+            "path": "/use-cases/user-onboarding",
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "links_to": []
+          },
+          "children": []
+        }
+      ]
+    },
+    "route_count": 14,
+    "element_count": 10,
+    "connections": [
+      {
+        "from_route_path": "/guide-pro",
+        "from_route_url": "/guide-pro",
+        "to_route_path": "/pricing",
+        "to_route_url": "/pricing",
+        "from_node_id": "route-guide-pro-guide-pro",
+        "from_node_kind": "route",
+        "to_node_id": "route-pricing-pricing",
+        "to_node_kind": "route",
+        "kind": "navigates_to",
+        "scope": "route",
+        "label": "See pricing",
+        "metadata": {
+          "element_id": "859eb6b6-da07-480f-ad11-b92c04cb8ec9"
+        }
+      }
+    ],
+    "generated_at": "2026-09-27T10:31:10.704Z"
+  },
+  "product_graph": {
+    "version": 1,
+    "framework": "nextjs-app-router",
+    "application": {
+      "type": "support",
+      "confidence": 0.7100000000000001,
+      "signals": [
+        "contact",
+        "analytics",
+        "pricing",
+        "support",
+        "ticket"
+      ]
+    },
+    "layout": {
+      "hasNavbar": false,
+      "hasSidebar": false,
+      "hasTopbar": false,
+      "hasFooter": false,
+      "hasTabs": true,
+      "hasDropdowns": false,
+      "hasAccordions": false,
+      "hasDialogs": true,
+      "hasForms": true
+    },
+    "root": {
+      "id": "app",
+      "kind": "app",
+      "label": "Application",
+      "metadata": {
+        "framework": "nextjs-app-router"
+      },
+      "children": [
+        {
+          "id": "layout-shell",
+          "kind": "layout",
+          "label": "Application Shell",
+          "metadata": {
+            "hasNavbar": false,
+            "hasSidebar": false,
+            "hasTopbar": false,
+            "hasFooter": false,
+            "hasTabs": true,
+            "hasDropdowns": false,
+            "hasAccordions": false,
+            "hasDialogs": true,
+            "hasForms": true
+          },
+          "children": []
+        },
+        {
+          "id": "screen",
+          "kind": "screen",
+          "label": "HomePage",
+          "route_path": "/",
+          "component_name": "HomePage",
+          "source_file": "app/page.tsx",
+          "metadata": {
+            "path": "/",
+            "canonical_path": "/",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|homepage|app/page.tsx|"
+          },
+          "children": []
+        },
+        {
+          "id": "screen-analytics",
+          "kind": "screen",
+          "label": "AnalyticsPage",
+          "route_path": "/analytics",
+          "component_name": "AnalyticsPage",
+          "source_file": "app/analytics/page.tsx",
+          "metadata": {
+            "path": "/analytics",
+            "canonical_path": "/analytics",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|analyticspage|app/analytics/page.tsx|analytics"
+          },
+          "children": []
+        },
+        {
+          "id": "screen-assistant",
+          "kind": "screen",
+          "label": "AssistantPage",
+          "route_path": "/assistant",
+          "component_name": "AssistantPage",
+          "source_file": "app/assistant/page.tsx",
+          "metadata": {
+            "path": "/assistant",
+            "canonical_path": "/assistant",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|assistantpage|app/assistant/page.tsx|assistant"
+          },
+          "children": []
+        },
+        {
+          "id": "section-docs",
+          "kind": "navigation",
+          "label": "Docs",
+          "route_path": "/docs",
+          "metadata": {
+            "segment": "docs"
+          },
+          "children": [
+            {
+              "id": "screen-docs-slug",
+              "kind": "screen",
+              "label": "SlugPage",
+              "route_path": "/docs/:slug*",
+              "component_name": "SlugPage",
+              "source_file": "app/docs/[[...slug]]/page.tsx",
+              "metadata": {
+                "path": "/docs/:slug*",
+                "canonical_path": "/docs/:slug*",
+                "aliases": [],
+                "dynamic_segments": [
+                  "slug"
+                ],
+                "auth_required": false,
+                "headings": [],
+                "route_signature": "|slugpage|app/docs/[[...slug]]/page.tsx|docs/:param"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "screen-guide-pro",
+          "kind": "screen",
+          "label": "GuideProPage",
+          "route_path": "/guide-pro",
+          "component_name": "GuideProPage",
+          "source_file": "app/guide-pro/page.tsx",
+          "metadata": {
+            "path": "/guide-pro",
+            "canonical_path": "/guide-pro",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|guidepropage|app/guide-pro/page.tsx|guide-pro"
+          },
+          "children": [
+            {
+              "id": "group-navigation-demos-that-win-customers-guides-that-train-teams-page-guide-pro-demos-that-win-customers-guides-that-tr",
+              "kind": "navigation",
+              "label": "Demos that win customers. Guides that train teams.",
+              "route_path": "/guide-pro",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+              "metadata": {
+                "scope": "page||/guide-pro|||demos that win customers. guides that train teams.|demos that win customers. guides that train teams.||"
+              },
+              "children": [
+                {
+                  "id": "element-guide-pro-users-mac-3gs-products-guideai-new-landing-app-guide-pro-page-tsx-build-a-demo-free-link",
+                  "kind": "element",
+                  "label": "Build a demo free",
+                  "route_path": "/guide-pro",
+                  "component_name": "GuideProPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+                  "element_id": "000aa46e-1cbe-4d45-847e-8cd629bf1ecb",
+                  "action_type": "navigate",
+                  "text": "Build a demo free",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "expression",
+                    "accessible_name": "Build a demo free",
+                    "parent_label": "Demos that win customers. Guides that train teams.",
+                    "section_label": "Demos that win customers. Guides that train teams.",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                },
+                {
+                  "id": "element-guide-pro-users-mac-3gs-products-guideai-new-landing-app-guide-pro-page-tsx-see-pricing-link",
+                  "kind": "element",
+                  "label": "See pricing",
+                  "route_path": "/guide-pro",
+                  "component_name": "GuideProPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+                  "element_id": "859eb6b6-da07-480f-ad11-b92c04cb8ec9",
+                  "action_type": "navigate",
+                  "text": "See pricing",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "/pricing",
+                    "accessible_name": "See pricing",
+                    "parent_label": "Demos that win customers. Guides that train teams.",
+                    "section_label": "Demos that win customers. Guides that train teams.",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "screen-guides",
+          "kind": "screen",
+          "label": "GuidesPage",
+          "route_path": "/guides",
+          "component_name": "GuidesPage",
+          "source_file": "app/guides/page.tsx",
+          "metadata": {
+            "path": "/guides",
+            "canonical_path": "/guides",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|guidespage|app/guides/page.tsx|guides"
+          },
+          "children": []
+        },
+        {
+          "id": "screen-policy",
+          "kind": "screen",
+          "label": "PolicyPage",
+          "route_path": "/policy",
+          "component_name": "PolicyPage",
+          "source_file": "app/policy/page.tsx",
+          "metadata": {
+            "path": "/policy",
+            "canonical_path": "/policy",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|policypage|app/policy/page.tsx|policy"
+          },
+          "children": [
+            {
+              "id": "group-navigation-12-contact-us-page-policy-12-contact-us-1-information-we-collect",
+              "kind": "navigation",
+              "label": "12. Contact Us",
+              "route_path": "/policy",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+              "metadata": {
+                "scope": "page||/policy|||12. contact us|1. information we collect||"
+              },
+              "children": [
+                {
+                  "id": "element-policy-users-mac-3gs-products-guideai-new-landing-app-policy-page-tsx-docs-link",
+                  "kind": "element",
+                  "label": "Docs",
+                  "route_path": "/policy",
+                  "component_name": "PolicyPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+                  "element_id": "75feb7e0-f688-412f-b56f-715b44e32063",
+                  "action_type": "navigate",
+                  "text": "Docs",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "/docs",
+                    "accessible_name": "Docs",
+                    "parent_label": "1. Information We Collect",
+                    "section_label": "12. Contact Us",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-navigation-5-data-retention-page-policy-5-data-retention-1-information-we-collect",
+              "kind": "navigation",
+              "label": "5. Data Retention",
+              "route_path": "/policy",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+              "metadata": {
+                "scope": "page||/policy|||5. data retention|1. information we collect||"
+              },
+              "children": [
+                {
+                  "id": "element-policy-users-mac-3gs-products-guideai-new-landing-app-policy-page-tsx-info-3guideai-com-a",
+                  "kind": "element",
+                  "label": "info@3guideai.com",
+                  "route_path": "/policy",
+                  "component_name": "PolicyPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+                  "selector": "a[href=\"mailto:info@3guideai.com\"]",
+                  "element_id": "e521fe21-4295-4fd9-94c5-0263c2c79293",
+                  "action_type": "navigate",
+                  "text": "info@3guideai.com",
+                  "metadata": {
+                    "tag": "a",
+                    "href": "mailto:info@3guideai.com",
+                    "accessible_name": "info@3guideai.com",
+                    "parent_label": "1. Information We Collect",
+                    "section_label": "5. Data Retention",
+                    "enabled": true,
+                    "fingerprint_score": 70
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-navigation-policypage-page-policy",
+              "kind": "navigation",
+              "label": "PolicyPage",
+              "route_path": "/policy",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+              "metadata": {
+                "scope": "page||/policy||||||"
+              },
+              "children": [
+                {
+                  "id": "element-policy-users-mac-3gs-products-guideai-new-landing-app-policy-page-tsx-skip-to-content-a",
+                  "kind": "element",
+                  "label": "Skip to content",
+                  "route_path": "/policy",
+                  "component_name": "PolicyPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+                  "selector": "a[href=\"#main\"]",
+                  "element_id": "16e8b53c-2222-4f5c-8f88-0d41f23b1cf5",
+                  "action_type": "navigate",
+                  "text": "Skip to content",
+                  "metadata": {
+                    "tag": "a",
+                    "href": "#main",
+                    "accessible_name": "Skip to content",
+                    "enabled": true,
+                    "fingerprint_score": 55
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "screen-pricing",
+          "kind": "screen",
+          "label": "PricingPage",
+          "route_path": "/pricing",
+          "component_name": "PricingPage",
+          "source_file": "app/pricing/page.tsx",
+          "metadata": {
+            "path": "/pricing",
+            "canonical_path": "/pricing",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|pricingpage|app/pricing/page.tsx|pricing"
+          },
+          "children": [
+            {
+              "id": "group-navigation-pricingpage-page-pricing",
+              "kind": "navigation",
+              "label": "PricingPage",
+              "route_path": "/pricing",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+              "metadata": {
+                "scope": "page||/pricing||||||"
+              },
+              "children": [
+                {
+                  "id": "element-pricing-users-mac-3gs-products-guideai-new-landing-app-pricing-page-tsx-link",
+                  "kind": "element",
+                  "label": "expression",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "7e04beca-edea-404c-b5b2-3f638d450d2b",
+                  "action_type": "navigate",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "expression",
+                    "enabled": true,
+                    "fingerprint_score": 15
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-section-find-the-right-plan-for-your-team-page-pricing-find-the-right-plan-for-your-team",
+              "kind": "section",
+              "label": "Find the right plan for your team",
+              "route_path": "/pricing",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+              "metadata": {
+                "scope": "page||/pricing|||find the right plan for your team|||"
+              },
+              "children": [
+                {
+                  "id": "element-pricing-users-mac-3gs-products-guideai-new-landing-app-pricing-page-tsx-retry-button",
+                  "kind": "element",
+                  "label": "Retry",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "7dd38455-f498-47ff-98ae-de0e1563b52e",
+                  "action_type": "click",
+                  "text": "Retry",
+                  "metadata": {
+                    "tag": "button",
+                    "accessible_name": "Retry",
+                    "section_label": "Find the right plan for your team",
+                    "enabled": true,
+                    "fingerprint_score": 70
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "group-component-pricingpage-page-pricing",
+              "kind": "component",
+              "label": "PricingPage",
+              "route_path": "/pricing",
+              "component_name": "PricingPage",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+              "metadata": {
+                "scope": "page||/pricing||||||"
+              },
+              "children": [
+                {
+                  "id": "element-pricing-users-mac-3gs-products-guideai-new-landing-app-pricing-page-tsx-contactformdialog",
+                  "kind": "element",
+                  "label": "contactformdialog",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "d6d04314-e28a-4f4d-baa6-995a37d6ad02",
+                  "action_type": "click",
+                  "metadata": {
+                    "tag": "contactformdialog",
+                    "enabled": true,
+                    "fingerprint_score": 15
+                  },
+                  "children": []
+                },
+                {
+                  "id": "element-pricing-users-mac-3gs-products-guideai-new-landing-app-pricing-page-tsx-button",
+                  "kind": "element",
+                  "label": "button",
+                  "route_path": "/pricing",
+                  "component_name": "PricingPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+                  "element_id": "5496bcaf-8465-4e72-9de2-8f2a36355b7f",
+                  "action_type": "click",
+                  "metadata": {
+                    "tag": "button",
+                    "enabled": true,
+                    "fingerprint_score": 25
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "screen-studio",
+          "kind": "screen",
+          "label": "StudioPage",
+          "route_path": "/studio",
+          "component_name": "StudioPage",
+          "source_file": "app/studio/page.tsx",
+          "metadata": {
+            "path": "/studio",
+            "canonical_path": "/studio",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|studiopage|app/studio/page.tsx|studio"
+          },
+          "children": [
+            {
+              "id": "group-navigation-record-your-screen-ship-a-polished-video-page-studio-record-your-screen-ship-a-polished-video-record-yo",
+              "kind": "navigation",
+              "label": "Record your screen. Ship a polished video.",
+              "route_path": "/studio",
+              "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx",
+              "metadata": {
+                "scope": "page||/studio|||record your screen. ship a polished video.|record your screen. ship a polished video.||"
+              },
+              "children": [
+                {
+                  "id": "element-studio-users-mac-3gs-products-guideai-new-landing-app-studio-page-tsx-download-guide-studio-free-link",
+                  "kind": "element",
+                  "label": "Download Guide Studio — free",
+                  "route_path": "/studio",
+                  "component_name": "StudioPage",
+                  "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx",
+                  "element_id": "b2ef0072-5535-4258-84c2-7f3bb9d6b3be",
+                  "action_type": "navigate",
+                  "text": "Download Guide Studio — free",
+                  "metadata": {
+                    "tag": "link",
+                    "href": "#download",
+                    "accessible_name": "Download Guide Studio — free",
+                    "parent_label": "Record your screen. Ship a polished video.",
+                    "section_label": "Record your screen. Ship a polished video.",
+                    "enabled": true,
+                    "fingerprint_score": 60
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "screen-support-desk",
+          "kind": "screen",
+          "label": "SupportDeskPage",
+          "route_path": "/support-desk",
+          "component_name": "SupportDeskPage",
+          "source_file": "app/support-desk/page.tsx",
+          "metadata": {
+            "path": "/support-desk",
+            "canonical_path": "/support-desk",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|supportdeskpage|app/support-desk/page.tsx|support-desk"
+          },
+          "children": []
+        },
+        {
+          "id": "screen-terms",
+          "kind": "screen",
+          "label": "TermsPage",
+          "route_path": "/terms",
+          "component_name": "TermsPage",
+          "source_file": "app/terms/page.tsx",
+          "metadata": {
+            "path": "/terms",
+            "canonical_path": "/terms",
+            "aliases": [],
+            "dynamic_segments": [],
+            "auth_required": false,
+            "headings": [],
+            "route_signature": "|termspage|app/terms/page.tsx|terms"
+          },
+          "children": []
+        },
+        {
+          "id": "section-use-cases",
+          "kind": "navigation",
+          "label": "Use Cases",
+          "route_path": "/use-cases",
+          "metadata": {
+            "segment": "use-cases"
+          },
+          "children": [
+            {
+              "id": "screen-use-cases-client-and-employee-training",
+              "kind": "screen",
+              "label": "ClientAndEmployeeTrainingPage",
+              "route_path": "/use-cases/client-and-employee-training",
+              "component_name": "ClientAndEmployeeTrainingPage",
+              "source_file": "app/use-cases/client-and-employee-training/page.tsx",
+              "metadata": {
+                "path": "/use-cases/client-and-employee-training",
+                "canonical_path": "/use-cases/client-and-employee-training",
+                "aliases": [],
+                "dynamic_segments": [],
+                "auth_required": false,
+                "headings": [],
+                "route_signature": "|clientandemployeetrainingpage|app/use-cases/client-and-employee-training/page.tsx|use-cases/client-and-employee-training"
+              },
+              "children": []
+            },
+            {
+              "id": "screen-use-cases-support-ticket-reduction",
+              "kind": "screen",
+              "label": "SupportTicketReductionPage",
+              "route_path": "/use-cases/support-ticket-reduction",
+              "component_name": "SupportTicketReductionPage",
+              "source_file": "app/use-cases/support-ticket-reduction/page.tsx",
+              "metadata": {
+                "path": "/use-cases/support-ticket-reduction",
+                "canonical_path": "/use-cases/support-ticket-reduction",
+                "aliases": [],
+                "dynamic_segments": [],
+                "auth_required": false,
+                "headings": [],
+                "route_signature": "|supportticketreductionpage|app/use-cases/support-ticket-reduction/page.tsx|use-cases/support-ticket-reduction"
+              },
+              "children": []
+            },
+            {
+              "id": "screen-use-cases-user-onboarding",
+              "kind": "screen",
+              "label": "UserOnboardingPage",
+              "route_path": "/use-cases/user-onboarding",
+              "component_name": "UserOnboardingPage",
+              "source_file": "app/use-cases/user-onboarding/page.tsx",
+              "metadata": {
+                "path": "/use-cases/user-onboarding",
+                "canonical_path": "/use-cases/user-onboarding",
+                "aliases": [],
+                "dynamic_segments": [],
+                "auth_required": false,
+                "headings": [],
+                "route_signature": "|useronboardingpage|app/use-cases/user-onboarding/page.tsx|use-cases/user-onboarding"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "route_count": 14,
+    "element_count": 10,
+    "connections": [
+      {
+        "from": "route-guide-pro-guide-pro",
+        "to": "route-pricing-pricing",
+        "kind": "navigates_to",
+        "label": "See pricing",
+        "metadata": {
+          "from_route_path": "/guide-pro",
+          "to_route_path": "/pricing",
+          "from_node_kind": "route",
+          "to_node_kind": "route",
+          "scope": "route",
+          "element_id": "859eb6b6-da07-480f-ad11-b92c04cb8ec9"
+        },
+        "confidence": {
+          "level": "candidate",
+          "score": 0.5
+        },
+        "evidence": [
+          {
+            "route_path": "/guide-pro",
+            "confidence": {
+              "level": "likely",
+              "score": 0.85
+            },
+            "reason": "Connection from /guide-pro to /pricing",
+            "evidence_type": "structure"
+          }
+        ]
+      }
+    ],
+    "generated_at": "2026-09-27T10:31:10.704Z",
+    "modules": [
+      {
+        "id": "module-analytics",
+        "name": "Analytics",
+        "description": "Analytics module (1 screens)",
+        "screen_ids": [
+          "screen-analytics"
+        ],
+        "confidence": {
+          "level": "likely",
+          "score": 0.75
+        },
+        "evidence": [
+          {
+            "route_path": "/analytics",
+            "source_file": "app/analytics/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Module inferred from 1 routes with path segment 'analytics'",
+            "evidence_type": "structure"
+          },
+          {
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Keyword match: 'analytics'",
+            "evidence_type": "text_content"
+          }
+        ],
+        "metadata": {
+          "domain_type": "dashboard",
+          "entry_screen_ids": [
+            "screen-analytics"
+          ],
+          "capabilities": [
+            "analytics"
+          ]
+        }
+      },
+      {
+        "id": "module-assistant",
+        "name": "Assistant",
+        "description": "Assistant module (1 screens)",
+        "screen_ids": [
+          "screen-assistant"
+        ],
+        "confidence": {
+          "level": "candidate",
+          "score": 0.65
+        },
+        "evidence": [
+          {
+            "route_path": "/assistant",
+            "source_file": "app/assistant/page.tsx",
+            "confidence": {
+              "level": "candidate",
+              "score": 0.65
+            },
+            "reason": "Module inferred from 1 routes with path segment 'assistant'",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "domain_type": "general",
+          "entry_screen_ids": [
+            "screen-assistant"
+          ],
+          "capabilities": []
+        }
+      },
+      {
+        "id": "module-docs",
+        "name": "Docs",
+        "description": "Docs module (1 screens)",
+        "screen_ids": [
+          "screen-docs-slug"
+        ],
+        "confidence": {
+          "level": "candidate",
+          "score": 0.65
+        },
+        "evidence": [
+          {
+            "route_path": "/docs/:slug*",
+            "source_file": "app/docs/[[...slug]]/page.tsx",
+            "confidence": {
+              "level": "candidate",
+              "score": 0.65
+            },
+            "reason": "Module inferred from 1 routes with path segment 'docs'",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "domain_type": "general",
+          "entry_screen_ids": [
+            "screen-docs-slug"
+          ],
+          "capabilities": []
+        }
+      },
+      {
+        "id": "module-guide-pro",
+        "name": "Guide Pro",
+        "description": "Guide Pro module (1 screens)",
+        "screen_ids": [
+          "screen-guide-pro"
+        ],
+        "confidence": {
+          "level": "likely",
+          "score": 0.75
+        },
+        "evidence": [
+          {
+            "route_path": "/guide-pro",
+            "source_file": "app/guide-pro/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Module inferred from 1 routes with path segment 'guide-pro'",
+            "evidence_type": "structure"
+          },
+          {
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Keyword match: 'pricing'",
+            "evidence_type": "text_content"
+          }
+        ],
+        "metadata": {
+          "domain_type": "landing_page",
+          "entry_screen_ids": [
+            "screen-guide-pro"
+          ],
+          "capabilities": [
+            "pricing"
+          ]
+        }
+      },
+      {
+        "id": "module-guides",
+        "name": "Guides",
+        "description": "Guides module (1 screens)",
+        "screen_ids": [
+          "screen-guides"
+        ],
+        "confidence": {
+          "level": "candidate",
+          "score": 0.65
+        },
+        "evidence": [
+          {
+            "route_path": "/guides",
+            "source_file": "app/guides/page.tsx",
+            "confidence": {
+              "level": "candidate",
+              "score": 0.65
+            },
+            "reason": "Module inferred from 1 routes with path segment 'guides'",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "domain_type": "general",
+          "entry_screen_ids": [
+            "screen-guides"
+          ],
+          "capabilities": []
+        }
+      },
+      {
+        "id": "module-policy",
+        "name": "Policy",
+        "description": "Policy module (1 screens)",
+        "screen_ids": [
+          "screen-policy"
+        ],
+        "confidence": {
+          "level": "candidate",
+          "score": 0.65
+        },
+        "evidence": [
+          {
+            "route_path": "/policy",
+            "source_file": "app/policy/page.tsx",
+            "confidence": {
+              "level": "candidate",
+              "score": 0.65
+            },
+            "reason": "Module inferred from 1 routes with path segment 'policy'",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "domain_type": "general",
+          "entry_screen_ids": [
+            "screen-policy"
+          ],
+          "capabilities": []
+        }
+      },
+      {
+        "id": "module-pricing",
+        "name": "Pricing",
+        "description": "Pricing module (1 screens)",
+        "screen_ids": [
+          "screen-pricing"
+        ],
+        "confidence": {
+          "level": "likely",
+          "score": 0.75
+        },
+        "evidence": [
+          {
+            "route_path": "/pricing",
+            "source_file": "app/pricing/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Module inferred from 1 routes with path segment 'pricing'",
+            "evidence_type": "structure"
+          },
+          {
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Keyword match: 'pricing'",
+            "evidence_type": "text_content"
+          }
+        ],
+        "metadata": {
+          "domain_type": "landing_page",
+          "entry_screen_ids": [
+            "screen-pricing"
+          ],
+          "capabilities": [
+            "pricing"
+          ]
+        }
+      },
+      {
+        "id": "module-studio",
+        "name": "Studio",
+        "description": "Studio module (1 screens)",
+        "screen_ids": [
+          "screen-studio"
+        ],
+        "confidence": {
+          "level": "candidate",
+          "score": 0.65
+        },
+        "evidence": [
+          {
+            "route_path": "/studio",
+            "source_file": "app/studio/page.tsx",
+            "confidence": {
+              "level": "candidate",
+              "score": 0.65
+            },
+            "reason": "Module inferred from 1 routes with path segment 'studio'",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "domain_type": "general",
+          "entry_screen_ids": [
+            "screen-studio"
+          ],
+          "capabilities": []
+        }
+      },
+      {
+        "id": "module-support-desk",
+        "name": "Support Desk",
+        "description": "Support Desk module (1 screens)",
+        "screen_ids": [
+          "screen-support-desk"
+        ],
+        "confidence": {
+          "level": "likely",
+          "score": 0.75
+        },
+        "evidence": [
+          {
+            "route_path": "/support-desk",
+            "source_file": "app/support-desk/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Module inferred from 1 routes with path segment 'support-desk'",
+            "evidence_type": "structure"
+          },
+          {
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Keyword match: 'support'",
+            "evidence_type": "text_content"
+          }
+        ],
+        "metadata": {
+          "domain_type": "support",
+          "entry_screen_ids": [
+            "screen-support-desk"
+          ],
+          "capabilities": [
+            "support"
+          ]
+        }
+      },
+      {
+        "id": "module-terms",
+        "name": "Terms",
+        "description": "Terms module (1 screens)",
+        "screen_ids": [
+          "screen-terms"
+        ],
+        "confidence": {
+          "level": "candidate",
+          "score": 0.65
+        },
+        "evidence": [
+          {
+            "route_path": "/terms",
+            "source_file": "app/terms/page.tsx",
+            "confidence": {
+              "level": "candidate",
+              "score": 0.65
+            },
+            "reason": "Module inferred from 1 routes with path segment 'terms'",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "domain_type": "general",
+          "entry_screen_ids": [
+            "screen-terms"
+          ],
+          "capabilities": []
+        }
+      },
+      {
+        "id": "module-use-cases",
+        "name": "Use Cases",
+        "description": "Use Cases module (3 screens)",
+        "screen_ids": [
+          "screen-use-cases-client-and-employee-training",
+          "screen-use-cases-support-ticket-reduction",
+          "screen-use-cases-user-onboarding"
+        ],
+        "confidence": {
+          "level": "likely",
+          "score": 0.7999999999999999
+        },
+        "evidence": [
+          {
+            "route_path": "/use-cases/client-and-employee-training",
+            "source_file": "app/use-cases/client-and-employee-training/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.7999999999999999
+            },
+            "reason": "Module inferred from 3 routes with path segment 'use-cases'",
+            "evidence_type": "structure"
+          },
+          {
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Keyword match: 'support'",
+            "evidence_type": "text_content"
+          },
+          {
+            "confidence": {
+              "level": "likely",
+              "score": 0.75
+            },
+            "reason": "Keyword match: 'ticket'",
+            "evidence_type": "text_content"
+          }
+        ],
+        "metadata": {
+          "domain_type": "support",
+          "entry_screen_ids": [
+            "screen-use-cases-client-and-employee-training"
+          ],
+          "capabilities": [
+            "support",
+            "ticket"
+          ]
+        }
+      }
+    ],
+    "sections": [
+      {
+        "id": "section-guide-pro-guidepropage",
+        "name": "Demos that win customers. Guides that train teams.",
+        "screen_id": "screen-guide-pro",
+        "route_path": "/guide-pro",
+        "element_ids": [
+          "000aa46e-1cbe-4d45-847e-8cd629bf1ecb",
+          "859eb6b6-da07-480f-ad11-b92c04cb8ec9"
+        ],
+        "section_type": "content",
+        "confidence": {
+          "level": "likely",
+          "score": 0.8
+        },
+        "evidence": [
+          {
+            "route_path": "/guide-pro",
+            "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.8
+            },
+            "reason": "Section detected with 2 elements",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "heading": "Demos that win customers. Guides that train teams.",
+          "component_name": "GuideProPage",
+          "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/guide-pro/page.tsx"
+        }
+      },
+      {
+        "id": "section-policy-policypage",
+        "name": "PolicyPage",
+        "screen_id": "screen-policy",
+        "route_path": "/policy",
+        "element_ids": [
+          "16e8b53c-2222-4f5c-8f88-0d41f23b1cf5",
+          "e521fe21-4295-4fd9-94c5-0263c2c79293",
+          "75feb7e0-f688-412f-b56f-715b44e32063"
+        ],
+        "section_type": "content",
+        "confidence": {
+          "level": "likely",
+          "score": 0.8
+        },
+        "evidence": [
+          {
+            "route_path": "/policy",
+            "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.8
+            },
+            "reason": "Section detected with 3 elements",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "component_name": "PolicyPage",
+          "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/policy/page.tsx"
+        }
+      },
+      {
+        "id": "section-pricing-pricingpage",
+        "name": "PricingPage",
+        "screen_id": "screen-pricing",
+        "route_path": "/pricing",
+        "element_ids": [
+          "d6d04314-e28a-4f4d-baa6-995a37d6ad02",
+          "7dd38455-f498-47ff-98ae-de0e1563b52e",
+          "5496bcaf-8465-4e72-9de2-8f2a36355b7f",
+          "7e04beca-edea-404c-b5b2-3f638d450d2b"
+        ],
+        "section_type": "content",
+        "confidence": {
+          "level": "likely",
+          "score": 0.8
+        },
+        "evidence": [
+          {
+            "route_path": "/pricing",
+            "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.8
+            },
+            "reason": "Section detected with 4 elements",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "component_name": "PricingPage",
+          "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/pricing/page.tsx"
+        }
+      },
+      {
+        "id": "section-studio-studiopage",
+        "name": "Record your screen. Ship a polished video.",
+        "screen_id": "screen-studio",
+        "route_path": "/studio",
+        "element_ids": [
+          "b2ef0072-5535-4258-84c2-7f3bb9d6b3be"
+        ],
+        "section_type": "content",
+        "confidence": {
+          "level": "likely",
+          "score": 0.8
+        },
+        "evidence": [
+          {
+            "route_path": "/studio",
+            "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx",
+            "confidence": {
+              "level": "likely",
+              "score": 0.8
+            },
+            "reason": "Section detected with 1 elements",
+            "evidence_type": "structure"
+          }
+        ],
+        "metadata": {
+          "heading": "Record your screen. Ship a polished video.",
+          "component_name": "StudioPage",
+          "source_file": "/Users/mac/3gs-products/guideai-new-landing/app/studio/page.tsx"
+        }
+      }
+    ],
+    "stateFlows": [],
+    "userJourneys": []
+  },
+  "duration_ms": 351
+}
