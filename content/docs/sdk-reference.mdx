@@ -4,7 +4,7 @@ description: Every script attribute and JavaScript method, in one place.
 icon: Code
 ---
 
-3Guide ships as two scripts. Load one or both:
+3Guide ships as two separate scripts. The Guidance script is 3Guide; the Analytics script is optional. See [Installation options](/docs/installation-options).
 
 | Script | `data-guideai-bundle` | What it does |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ The easiest way to set most attributes is the editor in **Settings → SDK Insta
 
 | Attribute | Value |
 | --- | --- |
-| `data-site-id` | Your site's ID |
+| `data-site-id` | Your site's ID (or read it from storage with `data-site-id-source`, `data-site-id-key` and `data-site-id-token-field`, see [Installation options](/docs/installation-options#2-read-the-site-id-from-your-apps-storage)) |
 | `data-token` | Your Public Token (`pk_live_…`) |
 
 ### Connection
@@ -36,18 +36,22 @@ The easiest way to set most attributes is the editor in **Settings → SDK Insta
 
 | Attribute | Default | Notes |
 | --- | --- | --- |
-| `data-widget-mode` | `combined` | `combined`, `guide`, `assistant` or `support`. See [chat modes](/docs/assistant#1-choose-the-chat-mode). |
+| `data-widget-mode` | set by [Agent Blueprint](/docs/agent-blueprint) | `combined`, `guide`, `assistant`, `support` or `docs`. Leave it out to let the dashboard decide. See [chat modes](/docs/assistant#1-choose-the-chat-mode). |
 | `data-bubble-enabled` | `true` | Show the chat bubble |
 | `data-bubble-label` | none | Text on the bubble, e.g. `Help` |
 | `data-bubble-icon` | `robot` | Mascot icon. Or set `data-bubble-image` to your own image URL. |
-| `data-bubble-position` | `bottom-right` | `bottom-right` or `bottom-left` |
+| `data-bubble-position` | `bottom-right` | `bottom-right`, `bottom-left` or `center` (bottom-centre) |
+| `data-bubble-bottom-offset` | `0` | Percentage of screen height. Positive moves the launcher up, negative down. |
 | `data-bubble-mode` | `drift` | How the bubble moves: `drift` (gently floats) or `crawl` (moves along the page edges with speech messages) |
 | `data-chat-expand-dock` | `right` | Where the expanded chat docks: `right`, `left` or `bottom` |
 | `data-chat-suggestions` | *How do I get started?*, *Show me around* | Starter questions, separated by `\|` |
 | `data-chat-guidance-title` / `-text` | built in | Welcome text in Guidance mode |
 | `data-chat-assistant-title` / `-text` | built in | Welcome text in Assistant mode |
 | `data-live-support` | `true` | Allow hand-off to a person |
-| `data-headless` | `false` | No built-in UI at all. Drive everything from your own code. |
+| `data-headless` | `false` | No built-in UI at all. Drive everything from your own code. See [Use 3Guide with your own AI](/docs/connect-your-ai). |
+| `data-voice-input` | `true` | Mic button. `false` hides it. |
+| `data-voice-reply` | `true` | Read answers to recorded messages aloud. `false` hides it. |
+| `data-live-voice` | `false` | Live conversation button. `true` shows it. |
 
 ### Look and feel
 
@@ -58,6 +62,7 @@ The easiest way to set most attributes is the editor in **Settings → SDK Insta
 | `data-theme-background` | `#ffffff` |
 | `data-theme-font` | system font |
 | `data-color-scheme` | `light` (or `dark`, `auto`) |
+| `data-dark-primary`, `data-dark-background`, `data-dark-text`, `data-dark-text-secondary`, `data-dark-text-muted`, `data-dark-border`, `data-dark-surface`, `data-dark-surface-hover` | built-in dark palette (used only when dark is active) |
 | `data-bubble-background`, `data-bubble-background-hover`, `data-bubble-text-color`, `data-bubble-border`, `data-bubble-border-hover`, `data-bubble-shadow`, `data-bubble-shadow-hover`, `data-bubble-focus-ring` | derived from the theme |
 
 ### Guides and hints
@@ -67,7 +72,7 @@ The easiest way to set most attributes is the editor in **Settings → SDK Insta
 | `data-guides-enabled` | `true` | Allow guides to play |
 | `data-auto-advance-on-target-click` | `true` | Move to the next step when the user clicks the highlighted element |
 | `data-chip-dismiss-seconds` | `300` | How long a dismissed suggestion chip stays hidden |
-| `data-help-hints` | `false` | **Set to `true` to show [help hints](/docs/help-hints)** |
+| `data-hint-icon-color`, `data-hint-button-color`, `data-hint-button-text-color`, `data-hint-button-label` | built in | [Help hint](/docs/help-hints#match-your-brand) colours and demo-button label. Hints are on by default; turn them off in **Settings**. |
 | `data-help-hints-cache-ttl-ms` | `86400000` (24 h) | How long hints are cached in the browser |
 
 ### Announcements
@@ -106,15 +111,14 @@ await window.guideai.ready()
 | Method | What it does |
 | --- | --- |
 | `initialize({ visitor, account })` | Identify the signed-in person and their account, with any properties |
-| `identify(userId)` | Switch to a stable user ID, merging earlier anonymous activity |
-| `updateOptions({ visitor, account })` | Update person or account properties |
+| `identify(userId)` | Switch to a stable user ID, merging earlier anonymous activity || `updateOptions({ visitor, account })` | Update person or account properties |
 | `clearSession()` | Forget the current person. Call on sign-out. |
 
 ### Analytics
 
 | Method | What it does |
 | --- | --- |
-| `track(name, properties?)` | Send a business event, e.g. `track('invoice_paid', { amount: 120 })` |
+| `track(name, properties?)` | Send a business event, e.g. `track('invoice_paid', { amount: 120 })`. `track('signup')` and `track('login')` also start [onboarding](/docs/onboarding), even without the Analytics script. |
 | `trackFeature(key, label?, properties?)` | Record use of a feature |
 | `pageLoad()` | Record a page view manually, for routers 3Guide can't detect |
 | `flushNow()` | Send buffered events immediately |
@@ -141,10 +145,16 @@ await window.guideai.ready()
 
 | Method | What it does |
 | --- | --- |
-| `openChat()` | Open the chat |
+| `openChat(mode?, lockMode?, anchor?, compact?)` | Open the chat, optionally in a mode, anchored to an element, compact or full. See [your own button](/docs/customize-widget#open-the-chat-from-your-own-button). |
 | `openGuidance()` / `openAssistant()` | Open it in a specific mode |
+| `openDocsSearch(anchor?)` / `closeDocsSearch()` | Open or close [Docs mode](/docs/docs-mode) search |
+| `setColorScheme(scheme)` | `light`, `dark` or `auto` |
+| `refreshHelpHints()` | Look for help hints again after your app changes the page |
 | `openSupportChat()` | Open a conversation with your team |
-| `send(text)` | Send a message as the user |
+| `send(text, { mode? })` | Send a message as the user. In headless mode it resolves with the answer and steps. |
+| `runWalkthrough(steps, title?)` | Play walkthrough steps on the page |
+| `navigateTo(url)` | Take the user to a page |
+| `assistantAvailable` | `true` if Assistant mode can answer on this site |
 | `expandChat(dock?)` / `collapseChat()` | Expand the chat (`right`, `left` or `bottom`) or collapse it |
 
 ### Surveys and lifecycle

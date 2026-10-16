@@ -1,0 +1,108 @@
+---
+title: Customize the widget
+description: Open 3Guide from your own button, move the launcher, switch on dark mode and choose the voice controls.
+icon: Palette
+---
+
+These options all go on the Guidance script tag, or in your own HTML. You don't need to change anything in the dashboard.
+
+## Open the chat from your own button
+
+**Why it matters:** help belongs where people get stuck, such as next to a form or in your header, not only in a bubble in the corner.
+
+Add `data-guideai-open-chat` to any button or link. It works the same in plain HTML, React, Vue, Angular and Next.js:
+
+```html
+<button data-guideai-open-chat>Guide me</button>
+```
+
+The chat opens anchored to that button.
+
+### Small composer or full chat
+
+| Attribute | What opens |
+| --- | --- |
+| `data-guideai-chat-view="compact"` | A small text box under the button. It grows into the full conversation after the first message. This is the default for your own buttons. |
+| `data-guideai-chat-view="full"` | The full chat panel, anchored to the button |
+
+### Choose the mode
+
+| Attribute | What the user gets |
+| --- | --- |
+| `data-guideai-chat-mode="guidance"` | Guidance only: "show me how" |
+| `data-guideai-chat-mode="assistant"` | Assistant only: "do it for me" (needs a [connected API](/docs/assistant#2-connect-your-api)) |
+| *(left out)* | On a full chat, the user can switch between both modes |
+
+```html
+<button data-guideai-open-chat data-guideai-chat-view="compact" data-guideai-chat-mode="guidance">
+  Guide me
+</button>
+
+<button data-guideai-open-chat data-guideai-chat-view="full">
+  Open help
+</button>
+```
+
+A compact box always uses a single mode, so give it a `data-guideai-chat-mode`.
+
+**Only want your own buttons?** Hide the built-in bubble with `data-bubble-enabled="false"` on the script tag.
+
+**From code:** `guideai.openChat(mode, lockMode, buttonElement, compact)`, for example:
+
+```js
+guideai.openChat('guidance', true, buttonElement, true) // compact, Guidance only
+```
+
+`guideai.openGuidance(button)` and `guideai.openAssistant(button)` are shortcuts.
+
+## Move the launcher
+
+**Why it matters:** the bubble shouldn't sit on top of a cookie banner, another chat widget or your own buttons.
+
+| Attribute | Values |
+| --- | --- |
+| `data-bubble-position` | `bottom-right` (default), `bottom-left` or `center` (bottom-centre) |
+| `data-bubble-bottom-offset` | A percentage of the screen height. Positive moves it up, negative moves it down. Default `0`. |
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  …
+  data-bubble-position="center"
+  data-bubble-bottom-offset="8"
+></script>
+```
+
+## Dark mode
+
+**Why it matters:** in a dark product, a bright white widget stands out for the wrong reasons.
+
+The widget is light unless you choose otherwise:
+
+| `data-color-scheme` | Result |
+| --- | --- |
+| `light` (default) | Always light |
+| `dark` | Always dark |
+| `auto` | Follows the visitor's device setting |
+
+Fine-tune the dark colours if you need to. Any you leave out keep the built-in dark palette:
+
+`data-dark-primary`, `data-dark-background`, `data-dark-text`, `data-dark-text-secondary`, `data-dark-text-muted`, `data-dark-border`, `data-dark-surface`, `data-dark-surface-hover`
+
+To switch from code, for example when the user changes your app's theme:
+
+```js
+guideai.setColorScheme('dark') // 'light', 'dark' or 'auto'
+```
+
+## Voice controls
+
+**Why it matters:** some pages suit talking more than typing, and some don't suit voice at all. You decide per page.
+
+Voice needs a plan that includes it. These attributes only turn controls off, or turn Live on, for the page they're on.
+
+| Attribute | Default | What it controls |
+| --- | --- | --- |
+| `data-voice-input` | on | The mic button: record a message instead of typing. `"false"` hides it. |
+| `data-voice-reply` | on | Read the answer aloud after a recorded message. `"false"` hides it. |
+| `data-live-voice` | off | A **Live conversation** button for a spoken back-and-forth. `"true"` shows it. |

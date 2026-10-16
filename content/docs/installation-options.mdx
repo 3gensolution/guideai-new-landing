@@ -1,0 +1,123 @@
+---
+title: Installation options
+description: The Guidance script and the Analytics script are separate. Install one or both, and start 3Guide the way that fits your app.
+icon: Plug
+---
+
+3Guide is installed with **two separate scripts**. They do different jobs, and you choose which ones you need.
+
+| Script | File | What it gives you | Do you need it? |
+| --- | --- | --- | --- |
+| **Guidance script** | `guideai.js` | The chat widget, Guidance and Assistant modes, Docs mode, guides, help hints, onboarding checklists, announcements and the coach | **Yes.** This is 3Guide. |
+| **Analytics script** | `guideai-tracking.js` | Product and web analytics, Visitors, replays, errors, feature flags and surveys | **No.** It's optional. |
+
+**You can skip analytics entirely.** Everything the Guidance script does works without it. If you want analytics later, add the second script. Nothing else changes.
+
+## Guidance only
+
+This is all most teams need:
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-guideai-bundle="guidance"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_TOKEN"
+></script>
+```
+
+## Guidance and analytics together
+
+Add the analytics script next to the Guidance script, with the same Site ID and token:
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-guideai-bundle="guidance"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_TOKEN"
+></script>
+<script
+  src="https://cdn.3guideai.com/sdk/guideai-tracking.js"
+  data-guideai-bundle="tracking"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_TOKEN"
+  async
+></script>
+```
+
+The two scripts share one `window.guideai` object, so there's nothing extra to connect. Calls such as `initialize()` and `identify()` reach both. See [Set up analytics](/docs/analytics) for the rest of the analytics setup.
+
+<Callout title="Analytics only?">
+  That works too. Load just `guideai-tracking.js` and you get analytics with no chat widget.
+</Callout>
+
+## Ways to start the Guidance script
+
+### 1. Standard script tag
+
+The snippet above. Copy it from **Settings → SDK Installation**, where you can also style the widget first. Use this unless one of the options below fits better.
+
+### 2. Read the Site ID from your app's storage
+
+**Why it matters:** if your product gives each customer their own 3Guide site, one script tag can serve them all. You don't need to build a snippet for each one.
+
+Instead of a fixed `data-site-id`, tell the script where your app keeps the ID:
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-guideai-bundle="guidance"
+  data-site-id-source="localStorage"
+  data-site-id-key="tenant"
+  data-site-id-token-field="guideaiSiteId"
+  data-token="pk_live_YOUR_TOKEN"
+></script>
+```
+
+| Attribute | What it means |
+| --- | --- |
+| `data-site-id-source` | Where to look: `localStorage`, `sessionStorage` or `cookie` |
+| `data-site-id-key` | The storage key your app writes |
+| `data-site-id-token-field` | Optional. The field inside that stored value, if it's JSON |
+
+If both are set, a literal `data-site-id` is used as the fallback.
+
+### 3. Tell 3Guide who is signed in, whenever you're ready
+
+**Why it matters:** in single-page apps the person often signs in after the script has loaded. You can call `initialize()` at any time, and calls made before the script finishes loading are kept and run once it's ready.
+
+```js
+window.guideai.initialize({
+  visitor: { id: currentUser.id, email: currentUser.email, full_name: currentUser.name },
+  account: { id: currentAccount.id, name: currentAccount.name },
+})
+```
+
+Wait for the widget to be fully ready (for example, before you enable your own input box) with:
+
+```js
+await window.guideai.ready()
+```
+
+### 4. Report sign-ups and logins (for onboarding)
+
+If you use [onboarding checklists](/docs/onboarding), tell 3Guide when someone signs up or logs in. **This works with the Guidance script alone. The Analytics script isn't required.**
+
+```js
+window.guideai.identify(user.id)
+window.guideai.track('signup') // right after an account is created
+window.guideai.track('login')  // after each login
+```
+
+If the Analytics script is also installed, the same `track()` call is recorded as an analytics event too.
+
+### 5. Headless: no 3Guide UI at all
+
+**Why it matters:** you can use your own chat or AI assistant and still get 3Guide's on-screen guidance. Add `data-headless="true"` and 3Guide draws nothing. See [Use 3Guide with your own AI](/docs/connect-your-ai).
+
+### 6. Let the dashboard choose the mode
+
+**Why it matters:** you can change what the widget does without redeploying your app.
+
+Leave `data-widget-mode` out of the script tag, and the flow you build in [Agent Blueprint](/docs/agent-blueprint) decides whether visitors get Guidance, Assistant, Docs, a sales agent or a support agent. Set `data-widget-mode` only when you want to fix the mode in your code. A value in the script tag always wins.

@@ -1,0 +1,120 @@
+---
+title: Use 3Guide with your own AI
+description: Already have an AI assistant in your product? Keep it, and give it 3Guide's Guidance mode so it can show people how, on their screen.
+icon: Cable
+---
+
+Many products already have an AI assistant. It can answer questions, but it can't see the user's screen, so it can't *show* anyone where to click. 3Guide can.
+
+There are two ways to connect them:
+
+| | What happens | Best when |
+| --- | --- | --- |
+| **[Your AI uses 3Guide for guidance](#your-ai-uses-3guide-for-guidance)** | Your chat stays exactly as it is. When a user needs to be shown how, 3Guide works out the steps and plays them on the page. | You have your own chat UI and want on-screen guidance in it |
+| **[3Guide's assistant uses your data](#3guides-assistant-uses-your-mcp-server)** | 3Guide's own assistant fetches answers from your MCP server | You use 3Guide's chat and want it to answer from your systems |
+
+## Your AI uses 3Guide for guidance
+
+**Why it matters:** your users keep the assistant they know, and it can now say *"here, let me show you"* and highlight the way on the live page. You don't add a second chat bubble or rebuild anything.
+
+<Steps>
+<Step>
+
+### Load 3Guide headless
+
+Add `data-headless="true"` to the Guidance script. 3Guide then draws nothing on its own: no bubble and no chat panel.
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-guideai-bundle="guidance"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_TOKEN"
+  data-headless="true"
+></script>
+```
+
+</Step>
+<Step>
+
+### Send "how do I…" questions to 3Guide
+
+When a user asks how to do something in your app, pass the question to 3Guide from your chat code:
+
+```js
+await window.guideai.ready()
+
+const reply = await window.guideai.send('How do I export a report?', { mode: 'guidance' })
+
+showInYourChat(reply.text)
+```
+
+3Guide reads the page the user is on and uses your [knowledge base](/docs/knowledge-base) to answer.
+
+</Step>
+<Step>
+
+### Play the walkthrough on the page
+
+When the answer includes steps, play them. A good place is a **Show me** button in your chat:
+
+```js
+if (reply.steps) {
+  await window.guideai.runWalkthrough(reply.steps, reply.title)
+}
+```
+
+3Guide highlights each step on the live page, the same way its own chat does.
+
+</Step>
+</Steps>
+
+### What comes back
+
+| Field | What it holds |
+| --- | --- |
+| `text` | The answer, ready to show in your chat |
+| `steps` / `title` | The walkthrough steps, already matched to elements on the live page |
+| `demo` | A [Guide Pro](/docs/guide-pro) demo to play, when one answers the question |
+| `navigation` | A page the answer wants to take the user to |
+| `escalation` | Set when the user should be handed to a person |
+
+### More you can do
+
+| Call | What it does |
+| --- | --- |
+| `guideai.send(text, { mode: 'assistant' })` | Ask 3Guide's Assistant instead, if you've [connected your API](/docs/assistant#2-connect-your-api) |
+| `guideai.assistantAvailable` | `true` if Assistant mode can answer on this site |
+| `guideai.runWalkthrough(steps, title)` | Play steps, from a reply or ones you saved earlier |
+| `guideai.navigateTo(url)` | Take the user to a page |
+| `guideai.chat.on('message', fn)` | Follow the conversation as it happens, e.g. to stream text into your UI |
+
+<Callout title="Which questions should go to 3Guide?">
+  Send questions about *where* something is or *how* to do it on screen ("where do I change my plan?", "how do I add a teammate?"). Keep questions about data and your business ("how many orders did I get?") with your own AI.
+</Callout>
+
+## 3Guide's assistant uses your MCP server
+
+This works in the other direction. If you have an [MCP](https://modelcontextprotocol.io) server, 3Guide's Assistant can call it to answer questions such as *"when is my next payout?"*.
+
+**Why it matters:** 3Guide calls your server directly with a service key you give it. Your users' sign-in tokens never pass through the browser for these calls.
+
+Register the server with your **Admin API Key** (`sk_live_…`). Its tools are discovered automatically:
+
+```bash
+curl -X POST https://api.3guideai.com/api/v1/copilot-tools \
+  -H "X-API-Key: sk_live_YOUR_ADMIN_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Northwind data",
+    "source": "mcp",
+    "base_url": "https://tools.example.com/mcp",
+    "auth_config": { "type": "api_key", "header": "X-Service-Secret", "key": "YOUR_SECRET" }
+  }'
+```
+
+3Guide connects when you save and reads your server's tool list, so a wrong URL or secret fails right away rather than on a user's first question. If you add tools later, send `PATCH` with `{"rediscover": true}` to read the list again.
+
+<Callout type="warn">
+  MCP connections are set up through the API only for now. They don't appear in **Copilot Tools** in the dashboard yet.
+</Callout>

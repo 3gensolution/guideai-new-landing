@@ -1,0 +1,84 @@
+---
+title: Onboarding checklists
+description: Give every new user a setup checklist that shows them each step and ticks itself off when they get there.
+icon: ListChecks
+---
+
+An onboarding checklist sets out what a new user needs to do to get value from your product, such as *create a project* or *invite a teammate*. It shows their progress, points them to the right place for each step, and ticks each one off by itself when they get there.
+
+**Why it matters:** people who finish setup stay. The checklist gets new users to their first win without your team walking each one through it, and the chat helps them with exactly the step they're on.
+
+**Before you start:** the Guidance script is [installed](/docs/quickstart). The Analytics script isn't needed. A [knowledge base](/docs/knowledge-base) helps you pick the buttons each step points to.
+
+<Steps>
+<Step>
+
+### Report sign-ups and logins
+
+The checklist is shown to people you report when they sign up or log in, and who haven't finished setup. Add this to your app:
+
+```js
+window.guideai.identify(user.id) // the same stable ID every time
+window.guideai.track('signup')   // right after an account is created
+window.guideai.track('login')    // after each login
+```
+
+Identifying someone isn't enough on its own. They also need a `signup` or `login`. Existing users who haven't finished setup see the checklist after their next login.
+
+</Step>
+<Step>
+
+### Build the checklist
+
+Open **Automation → Onboarding** and add a step for each outcome. For each step:
+
+1. **Where it happens**: choose a screen or route. **Find saved elements** lists the routes and buttons already in your knowledge base. If yours isn't listed, type it.
+2. **What "Show me" does**: highlight a control on the page, play guided actions, or play a [help hint](/docs/help-hints) demo.
+3. **How it's completed**. Choose one:
+
+| Rule | Ticks off when |
+| --- | --- |
+| **Success message appears** | A message you enter (e.g. *"Invoice created"*) shows on that step's page |
+| **Screen is reached** | The user gets to a screen or route |
+| **Application confirms an event** | Your backend confirms something that may take time, such as an approved verification |
+| **They tick it off themselves** | The user marks it done |
+
+You can make a step optional so people can skip it, or lock it until an earlier step is done.
+
+</Step>
+<Step>
+
+### Choose how it looks and starts
+
+- **Layout**: a floating card with progress and numbered steps, a centred panel, or a side popover that opens from a tab on the edge of the page so the page stays usable. Pick the colours and style.
+- **How it starts**: open the checklist automatically on the first visit, or invite people to start and keep a checklist button on screen.
+- **Chat during setup**: **Answer setup questions only** keeps the chat focused on setup until it's done. **Allow normal questions** helps with setup but answers anything.
+- **Let people dismiss it**: optionally adds *"I don't need this setup"* so people who don't need it can close it for good.
+
+</Step>
+<Step>
+
+### Publish
+
+Click **Publish**. People you report from now on see the checklist. When they open the chat, it shows their goal, progress and next step.
+
+</Step>
+</Steps>
+
+## Confirm a step from your backend
+
+For outcomes only your server knows about, such as a payment clearing or an identity check being approved, send this **after** it has actually succeeded:
+
+```http
+POST https://api.3guideai.com/api/v1/onboarding/confirm
+X-API-Key: sk_live_YOUR_ADMIN_KEY
+Content-Type: application/json
+
+{ "user_id": "person-123", "event": "kyc.approved" }
+```
+
+Use the same user ID you passed to `identify()`. Keep the Admin API Key on your server and never put it in front-end code.
+
+<Callout title="Coach a step instead of pointing at it">
+  Turn on **Coach through tasks** in [Agent Blueprint](/docs/agent-blueprint#guidance-coach) and pick **An onboarding checklist item**. That step's task is then talked through field by field, instead of only being pointed out.
+</Callout>

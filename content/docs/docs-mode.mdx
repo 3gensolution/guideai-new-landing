@@ -1,0 +1,47 @@
+---
+title: Docs mode
+description: A search box that plays the right how-to demo. No chat and no AI, so it's instant and costs nothing per question.
+icon: BookOpen
+---
+
+Docs mode turns the widget into a search box. A visitor types what they want to do, and the matching [Guide Pro](/docs/guide-pro) demo plays right below the box. It can play the whole demo, only the steps that match, or short clips from several demos back to back.
+
+**Why it matters:**
+
+- **No AI cost.** It's a plain text search, so it doesn't use AI credits.
+- **Instant, and always right.** People only ever see demos you recorded and approved. Nothing is generated.
+- **Self-serve help** for teams that want documentation, not a chatbot.
+
+**Before you start:** you have at least one published [Guide Pro](/docs/guide-pro) demo.
+
+<Steps>
+<Step>
+
+### Mark demos as documentation
+
+Open **Content → Guide Pro** and switch on **Use as documentation** on each demo card you want to be searchable. Only these demos are searched. The **Documentation** tab lists them.
+
+</Step>
+<Step>
+
+### Turn on Docs mode
+
+Choose one:
+
+- **For the whole widget:** set `data-widget-mode="docs"` on the Guidance script, or choose the **Docs** agent in [Agent Blueprint](/docs/agent-blueprint).
+- **From your own button:** `<button data-guideai-open-chat="docs">Search how-tos</button>`. The search box opens under the button.
+- **From code:** `guideai.openDocsSearch(buttonElement)` opens it, and `guideai.closeDocsSearch()` closes it.
+
+</Step>
+<Step>
+
+### Try it
+
+Reload your app, open the widget and type a task, for example *"invite a teammate"*. The best match starts playing.
+
+</Step>
+</Steps>
+
+<Callout title="Docs mode or Guidance mode?">
+  Use **Docs mode** when you have recorded demos for common tasks and want fast, predictable answers. Use **Guidance mode** when people ask questions you haven't recorded. It builds a walkthrough on the live page.
+</Callout>

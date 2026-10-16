@@ -1,0 +1,108 @@
+---
+title: Agent Blueprint
+description: Design how your AI agent thinks and talks, with no code. Pick who answers, what they can use, and what they can do, then test it before visitors see it.
+icon: Network
+---
+
+Agent Blueprint is a visual flow of what happens when a visitor sends a message: where the message comes from, which agent answers, what it reads, how it behaves, and what it's allowed to do.
+
+**Why it matters:** you shape your agent's job (guide, sell, support or document) without writing prompts or code. You can change it at any time without redeploying, and nothing reaches visitors until you save.
+
+Open it from **Automation → Agent Blueprint**.
+
+## Build a flow
+
+<Steps>
+<Step>
+
+### Start from a description, or by hand
+
+Type what you want in plain words, for example *"Greet visitors, recommend a plan and let them pay"*, and click **Build it**. The flow appears on the canvas for you to check. Or drag blocks in and connect them yourself.
+
+</Step>
+<Step>
+
+### Pick who answers
+
+The **Agent** block decides the agent's job:
+
+| Agent | What it does |
+| --- | --- |
+| **Guidance** | Walks visitors through your app on the page they're on |
+| **Assistant** | Answers from your data and acts on the page with the visitor's approval |
+| **Sales agent** | Greets visitors, recommends the right plan and can take payment |
+| **Support agent** | Diagnoses problems, fixes them with the visitor and escalates cleanly |
+| **Docs** | Searches your documentation demos and plays the right one ([Docs mode](/docs/docs-mode)) |
+
+</Step>
+<Step>
+
+### Add what it can use and do
+
+| Block | What it adds |
+| --- | --- |
+| **Read the page** | What the visitor sees right now |
+| **App map** | Your scanned routes and screens, for "show me around" answers |
+| **Your documents** | Policies, pricing and handbooks you've uploaded |
+| **Demo library** | Plays a documentation demo when one answers the question |
+| **Onboarding checklist** | Helps enrolled users finish their [setup](/docs/onboarding) |
+| **Behaviour** | A [Platform Playbook](/docs/platform-playbooks) that shapes how the agent acts |
+| **Requested behaviour** | Describe a behaviour that doesn't exist yet. The 3Guide team writes it. |
+| **Act on the page** | Fill, click and navigate, always asking the visitor first |
+| **Your API** | Fetch or change the visitor's data through the endpoints you [connected](/docs/assistant#2-connect-your-api) |
+| **Take payment** | Offer checkout through your own payment account ([below](#take-payments)) |
+| **Coach through tasks** | Talks visitors through each field and choice ([below](#guidance-coach)) |
+| **Hand to your team** | Opens a ticket when the agent can't answer |
+
+The canvas only offers the blocks that suit the agent you picked, and flags anything that needs fixing.
+
+</Step>
+<Step>
+
+### Test it, then save
+
+Use the test chat to talk to your agent before visitors do. Try *"Hi, what can you do?"*. The test shows which blocks ran. When you're happy, click **Save flow**. Visitors get the new flow from their next message.
+
+</Step>
+</Steps>
+
+<Callout title="Mode set in your script tag?">
+  If your Guidance script sets `data-widget-mode`, that value wins over the blueprint. Leave it out to let the blueprint decide ([details](/docs/installation-options#6-let-the-dashboard-choose-the-mode)).
+</Callout>
+
+## Guidance coach
+
+The coach is for *"how do I…"* requests. It takes the visitor to the right screen, then talks them through each field and choice until the task is done.
+
+**Why it matters:** pointing at a button helps with simple tasks. Long forms and unfamiliar settings are where people give up, and the coach stays with them all the way through.
+
+Add **Coach through tasks** to a Guidance, Sales or Support flow, then choose:
+
+| Setting | What it does |
+| --- | --- |
+| **Coach voice** | **Natural** speaks each line aloud. Each line is generated once and reused for every visitor, so you only pay for it once. **Off** shows the lines as text. |
+| **Offer help before each form** | Asks *"Want me to walk you through this?"* instead of starting straight away |
+| **Explain dropdown options** | Offers to explain what each choice in a list means |
+| **Screen checks per run** | When the coach can't find the way from your app map, it can look at the screen. Each look is a paid call. `0` turns it off. |
+| **Start a coach run from** | A "how do I…" in chat, an [onboarding checklist](/docs/onboarding) item, and/or the support agent |
+
+"Where is X?" questions still just point at the element.
+
+## Take payments
+
+**Why it matters:** a visitor who's ready to buy can pay right in the chat, so you don't lose the sale on the way to a checkout page.
+
+1. Add **Take payment** to a Guidance, Assistant, Sales or Support flow.
+2. Choose your provider (**Stripe**, **Paystack** or **Flutterwave**) and connect your account. Copy the webhook URL shown into your provider's dashboard as instructed.
+3. Add the items people can buy, each with a name, price and currency.
+
+When a visitor wants to buy, the agent shows a **Pay** button. The price always comes from your list, never from the AI, and the money goes straight into your own account.
+
+## Answer on WhatsApp
+
+Add the **WhatsApp** channel to answer messages to your WhatsApp Business number with the same Assistant, Sales or Support agent.
+
+1. Connect your WhatsApp account and enter your **WhatsApp phone number ID** (the long number Meta shows).
+2. In Meta, go to **your app → WhatsApp → Configuration**. Paste the callback URL and verify token shown, and subscribe to **messages**.
+
+Each WhatsApp message is answered on its own, and conversations aren't stored. Guidance and Docs aren't available on WhatsApp because there's no page to point at.
