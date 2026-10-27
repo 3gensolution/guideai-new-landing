@@ -9,7 +9,11 @@ const csp = [
   "style-src 'self' 'unsafe-inline' https://cdn.3guideai.com https://fonts.googleapis.com",
   "font-src 'self' data: https://cdn.3guideai.com https://fonts.gstatic.com",
   "img-src 'self' data: blob: https://cdn.3guideai.com https://res.cloudinary.com https://drive.google.com",
-  "connect-src 'self' https://api.3guideai.com https://cdn.3guideai.com https://dashboard.3guideai.com https://api-bdc.net https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+  // Soniox: the widget's live voice streams the mic and the spoken reply
+  // straight to these sockets.
+  "connect-src 'self' https://api.3guideai.com https://cdn.3guideai.com https://dashboard.3guideai.com https://api-bdc.net https://va.vercel-scripts.com https://vitals.vercel-insights.com wss://stt-rt.soniox.com wss://tts-rt.soniox.com",
+  // Spoken walkthrough steps play from blob: URLs.
+  "media-src 'self' blob: data:",
   "frame-src 'self' https://demo.3guideai.com https://www.youtube.com https://drive.google.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
@@ -24,7 +28,7 @@ const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(self), geolocation=(), interest-cohort=()' },
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
 ]
 
