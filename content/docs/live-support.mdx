@@ -1,0 +1,80 @@
+---
+title: Set up Live Support
+description: Let visitors hand a conversation to your team or open the helpdesk widget you already use.
+icon: Headset
+---
+
+Live Support gives visitors a human path when Guidance or the Assistant cannot
+resolve a question. It has two parts:
+
+- **Built-in Live Support**: visitors and agents use GuideAI's conversation
+  inbox.
+- **External support**: GuideAI opens an installed or connected helpdesk widget.
+
+## Built-in Live Support
+
+### Enable it
+
+1. Open **Settings → Support** and enable Live Support.
+2. Allow support in the widget with `data-live-support="true"` or leave the
+   attribute out, since it is enabled by default.
+3. In [Agent Blueprint](/docs/agent-blueprint), add **Hand to your team** to
+   the flow when the Assistant should escalate automatically.
+
+Visitors can also use `data-widget-mode="support"` to open directly in Support
+mode.
+
+### Work from the inbox
+
+Open **Support → Live Support** in the dashboard. Your team can:
+
+- See open visitor conversations
+- Join and reply to a conversation
+- Assign or claim a conversation
+- See when another agent is present
+- Close a resolved conversation
+- Escalate a conversation when another team or channel is needed
+
+The visitor stays in the same chat while the conversation moves from the AI to
+your team.
+
+## External support destinations
+
+Experience Studio can use an external destination instead of the built-in
+inbox:
+
+| Provider | Setup |
+| --- | --- |
+| **Tawk.to** | Paste the public `https://embed.tawk.to/PROPERTY_ID/WIDGET_ID` URL. No API key is needed. |
+| **Zendesk** | Open an installed Messaging or Classic widget. |
+| **HubSpot** | Open the installed chat widget. |
+| **Custom Helpdesk** | Handle the `guideai:open-external-support` event in your app. |
+| **Link or email** | Open a configured URL or email address. |
+
+Configure these from [Experience Studio](/docs/experience-studio). GuideAI
+does not ask visitors to configure a provider. If an external widget cannot be
+opened, the configured fallback or built-in support destination is used.
+
+### Custom Helpdesk event
+
+For a custom widget, acknowledge the event only after your widget has opened:
+
+```js
+document.addEventListener('guideai:open-external-support', (event) => {
+  if (event.detail.connectionId !== 'YOUR_CONNECTION_ID') return
+
+  openYourHelpdeskWidget()
+  event.preventDefault()
+})
+```
+
+If no handler acknowledges the event, GuideAI uses the configured fallback.
+
+## Escalation channels
+
+If you need a ticket rather than a live conversation, use **Escalation & Ticket
+Submission** in the Assistant settings. Email, Slack, Discord, WhatsApp and
+webhook delivery are separate from the built-in Live Support inbox.
+
+Use **Test delivery** before publishing the escalation flow. Never put a
+provider secret in browser code or in a public widget attribute.

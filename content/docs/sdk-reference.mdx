@@ -52,6 +52,20 @@ The easiest way to set most attributes is the editor in **Settings → SDK Insta
 | `data-voice-input` | `true` | Mic button. `false` hides it. |
 | `data-voice-reply` | `true` | Read answers to recorded messages aloud. `false` hides it. |
 | `data-live-voice` | `false` | Live conversation button. `true` shows it. |
+| `data-home-source` | `inline` | Use `published` to load the Home configuration published from Experience Studio. The generated installation snippet sets this for you. |
+
+### Experience Studio buttons
+
+When Home is enabled, any element can open a specific widget destination:
+
+```html
+<button data-guideai-open="home">Get help</button>
+<button data-guideai-open="assistant">Ask the Assistant</button>
+<button data-guideai-open="demos">Browse demos</button>
+```
+
+Use `home`, `chat`, `guidance`, `assistant`, `demos`, `blog`, `updates` or
+`support`. The destination is ignored when its Home section is disabled.
 
 ### Look and feel
 

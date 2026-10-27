@@ -55,6 +55,20 @@ guideai.openChat('guidance', true, buttonElement, true) // compact, Guidance onl
 
 `guideai.openGuidance(button)` and `guideai.openAssistant(button)` are shortcuts.
 
+If you have enabled [Experience Studio](/docs/experience-studio), use
+`data-guideai-open` to open a particular part of the widget:
+
+```html
+<button data-guideai-open="home">Open help centre</button>
+<button data-guideai-open="demos">Show demos</button>
+<button data-guideai-open="support">Contact support</button>
+```
+
+Supported destinations are `home`, `chat`, `guidance`, `assistant`, `demos`,
+`blog`, `updates` and `support`. Home, Blog and Updates require the matching
+Experience Studio section to be enabled. Existing `data-guideai-open-chat`
+buttons continue to work.
+
 ## Move the launcher
 
 **Why it matters:** the bubble shouldn't sit on top of a cookie banner, another chat widget or your own buttons.

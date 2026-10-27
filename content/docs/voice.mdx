@@ -1,0 +1,78 @@
+---
+title: Configure voice
+description: Let visitors speak to 3Guide, hear replies and hold a live conversation when their plan supports it.
+icon: Mic
+---
+
+3Guide has two voice experiences:
+
+- **Recorded voice**: a visitor records one message, sends it, and can hear the
+  answer spoken back.
+- **Live voice**: a visitor holds a spoken back-and-forth conversation with the
+  Assistant or Guidance agent.
+
+Voice availability depends on the site's plan and the voice services currently
+available to it. Text chat remains available when voice is unavailable.
+
+## Choose the controls
+
+On the Guidance script, use these attributes:
+
+| Attribute | Default | What it does |
+| --- | --- | --- |
+| `data-voice-input` | `true` | Shows the microphone control for recorded messages |
+| `data-voice-reply` | `true` | Reads recorded-message replies aloud |
+| `data-live-voice` | `false` | Shows the Live conversation control |
+
+```html
+<script
+  src="https://cdn.3guideai.com/sdk/guideai.js"
+  data-site-id="YOUR_SITE_ID"
+  data-token="pk_live_YOUR_PUBLIC_TOKEN"
+  data-live-voice="true"
+></script>
+```
+
+These attributes control whether the controls are shown on that page. They do
+not bypass plan entitlements or provider availability.
+
+## Recorded voice
+
+Recorded voice is a single push-to-talk turn. The browser captures audio,
+GuideAI transcribes it, sends the transcript through the normal conversation
+flow, and optionally speaks the final answer. It does not keep a continuous
+microphone session open.
+
+The visitor must allow microphone access. If permission is denied, the visitor
+can continue with typed messages.
+
+## Live voice
+
+Live voice keeps the conversation open while the visitor speaks and listens.
+It uses the same conversation context as text, including the current mode, page
+context, guides and confirmed tools. A visitor can interrupt the reply and the
+session will stop speaking before accepting the next turn.
+
+The browser checks voice capability before showing a usable control. Provider
+availability can vary, so a site may receive a normal text fallback even when
+the live-voice setting is enabled.
+
+## Voice welcome
+
+Sales flows can add a **Voice welcome** block in [Agent Blueprint](/docs/agent-blueprint).
+It speaks the opening greeting and can then offer a live conversation. If the
+visitor does not have microphone access or live voice is not available, the
+regular text welcome remains available.
+
+## Troubleshooting
+
+- If there is no microphone button, check `data-voice-input` and the site's plan.
+- If replies are silent, check `data-voice-reply`, browser audio permissions and
+  the device volume.
+- If Live conversation is missing, check `data-live-voice`, plan eligibility and
+  provider availability.
+- If audio stops after another Guide Pro narration or walkthrough starts, stop
+  the other audio first and reopen voice from the chat header.
+
+Voice turns and media generation can consume credits. The exact charge depends
+on the feature and the site's current plan configuration.
